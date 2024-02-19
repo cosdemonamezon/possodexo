@@ -21,44 +21,59 @@ class OpenSalesShift extends StatelessWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('เปิดใช้งานการพิมพ์ใบเสร็จ'),
+          Text('เปิดกะงานขาย'),
           IconButton(onPressed: () {}, icon: Icon(Icons.close)),
         ],
       ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          Divider(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                  flex: 4,
-                  child: Column(
-                    children: [
-                      Text('พนักงาน'),
-                      Text('เคาเตอร์'),
-                      Text('เงินทอนเริ่มต้น (เงินสดยกมา)'),
-                      Text('ยอดนับเงินสด (Cash Drawer)'),
-                      Text('หมายเหตุ'),
-                    ],
-                  )),
-              Expanded(
-                  flex: 6,
-                  child: Column(
-                    children: [
-                      InputTextFormField(size: size),
-                      InputTextFormField(size: size),
-                      InputTextFormField(size: size),
-                      InputTextFormField(size: size),
-                      InputTextFormField(size: size),
-                    ],
-                  )),
+              Text('พนักงาน', style: TextStyle(fontSize: 16),),
+              InputTextFormField(size: size),
             ],
           ),
+          SizedBox(height: size.height * 0.01,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('เคาเตอร์', style: TextStyle(fontSize: 16),),
+              InputTextFormField(size: size),
+            ],
+          ),
+          SizedBox(height: size.height * 0.01,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('เงินทอนเริ่มต้น (เงินสดยกมา)', style: TextStyle(fontSize: 16),),
+              InputTextFormField(size: size),
+            ],
+          ),
+          SizedBox(height: size.height * 0.01,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('ยอดนับเงินสด (Cash Drawer)', style: TextStyle(fontSize: 16),),
+              InputTextFormField(size: size),
+            ],
+          ),
+          SizedBox(height: size.height * 0.01,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('หมายเหตุ', style: TextStyle(fontSize: 16),),
+              InputTextFormField(size: size),
+            ],
+          ),
+          
         ],
       ),
       actions: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             GestureDetector(
               onTap: pressCancel,

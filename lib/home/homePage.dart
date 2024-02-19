@@ -4,6 +4,7 @@ import 'package:possodexo/home/widgets/ClosePrintDialog.dart';
 import 'package:possodexo/home/widgets/DropdownBranch.dart';
 import 'package:possodexo/home/widgets/OpenAndCloseSwitch.dart';
 import 'package:possodexo/home/widgets/OpenPrintDialog.dart';
+import 'package:possodexo/home/widgets/OpenSalesShift.dart';
 import 'package:possodexo/home/widgets/ShowOpenShift.dart';
 
 class HomePage extends StatefulWidget {
@@ -215,10 +216,28 @@ class _HomePageState extends State<HomePage> {
                     )
                   : ShowOpenShift(
                       size: size,
-                      press: () {
-                        setState(() {
-                          openShift = true;
-                        });
+                      press: () async {
+                        final ok = await showDialog(
+                          context: context,
+                          builder: (context) => OpenSalesShift(
+                            size: size,
+                            pressOk: () {
+                              Navigator.pop(context, true);
+                            },
+                            pressCancel: () {
+                              Navigator.pop(context, false);
+                            },
+                          ),
+                        );
+                        if (ok == true) {
+                          setState(() {
+                            openShift = true;
+                          });
+                        } else {
+                          setState(() {
+                            openShift = false;
+                          });
+                        }
                       },
                     )
             ],
