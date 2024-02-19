@@ -144,14 +144,19 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             Card(
                               elevation: 2,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0), side: BorderSide(color: kButtonColor)),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  side: BorderSide(color: kButtonColor)),
                               child: SizedBox(
                                 width: size.width * 0.14,
                                 height: size.height * 0.06,
                                 child: Center(
                                     child: Text(
                                   '1 - POS01',
-                                  style: TextStyle(color: kButtonColor, fontSize: 16, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      color: kButtonColor,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
                                 )),
                               ),
                             ),
@@ -159,7 +164,9 @@ class _HomePageState extends State<HomePage> {
                               onTap: () {},
                               child: Card(
                                 elevation: 5,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0), side: BorderSide(color: kButtonColor)),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    side: BorderSide(color: kButtonColor)),
                                 child: SizedBox(
                                   width: size.width * 0.10,
                                   height: size.height * 0.06,
@@ -169,7 +176,10 @@ class _HomePageState extends State<HomePage> {
                                       Icon(Icons.add),
                                       Text(
                                         'เพิ่ม',
-                                        style: TextStyle(color: kButtonColor, fontSize: 16, fontWeight: FontWeight.bold),
+                                        style: TextStyle(
+                                            color: kButtonColor,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
                                       ),
                                     ],
                                   )),
@@ -178,7 +188,9 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ],
                         ),
-                        SizedBox(height: size.height *0.01,),
+                        SizedBox(
+                          height: size.height * 0.01,
+                        ),
                         Container(
                           height: size.height * 0.10,
                           width: double.infinity,
@@ -196,7 +208,9 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                         ),
-                        SizedBox(height: size.height *0.01,),
+                        SizedBox(
+                          height: size.height * 0.01,
+                        ),
                       ],
                     )
                   : ShowOpenShift(
