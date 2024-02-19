@@ -4,7 +4,6 @@ import 'package:possodexo/home/widgets/ClosePrintDialog.dart';
 import 'package:possodexo/home/widgets/DropdownBranch.dart';
 import 'package:possodexo/home/widgets/OpenAndCloseSwitch.dart';
 import 'package:possodexo/home/widgets/OpenPrintDialog.dart';
-import 'package:possodexo/home/widgets/OpenSalesShift.dart';
 import 'package:possodexo/home/widgets/ShowOpenShift.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,6 +14,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<String> nationality = ["ไทย", "พมา", "ลาว"];
+  String lang = "ไทย";
+  int selectedIndex = 0;
+  void onItemTapped(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+  }
+
+  List<String> general = ["ไม่ระบุ", "ชาย", "หญิง"];
+  String sex = "ไม่ระบุ";
+  void onItemTapped1(int index) {
+    setState(() {});
+  }
+
   String sizeValue = 'สาขาพระราม 6';
   String printValue = 'พิมพ์ใบกำกับภาษี';
   bool open = true;
@@ -145,14 +159,19 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             Card(
                               elevation: 2,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0), side: BorderSide(color: kButtonColor)),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  side: BorderSide(color: kButtonColor)),
                               child: SizedBox(
                                 width: size.width * 0.14,
                                 height: size.height * 0.06,
                                 child: Center(
                                     child: Text(
                                   '1 - POS01',
-                                  style: TextStyle(color: kButtonColor, fontSize: 16, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      color: kButtonColor,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
                                 )),
                               ),
                             ),
@@ -160,7 +179,9 @@ class _HomePageState extends State<HomePage> {
                               onTap: () {},
                               child: Card(
                                 elevation: 5,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0), side: BorderSide(color: kButtonColor)),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    side: BorderSide(color: kButtonColor)),
                                 child: SizedBox(
                                   width: size.width * 0.10,
                                   height: size.height * 0.06,
@@ -170,7 +191,10 @@ class _HomePageState extends State<HomePage> {
                                       Icon(Icons.add),
                                       Text(
                                         'เพิ่ม',
-                                        style: TextStyle(color: kButtonColor, fontSize: 16, fontWeight: FontWeight.bold),
+                                        style: TextStyle(
+                                            color: kButtonColor,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
                                       ),
                                     ],
                                   )),
@@ -206,28 +230,10 @@ class _HomePageState extends State<HomePage> {
                     )
                   : ShowOpenShift(
                       size: size,
-                      press: () async {
-                        final ok = await showDialog(
-                          context: context,
-                          builder: (context) => OpenSalesShift(
-                            size: size,
-                            pressOk: () {
-                              Navigator.pop(context, true);
-                            },
-                            pressCancel: () {
-                              Navigator.pop(context, false);
-                            },
-                          ),
-                        );
-                        if (ok == true) {
-                          setState(() {
-                            openShift = true;
-                          });
-                        } else {
-                          setState(() {
-                            openShift = false;
-                          });
-                        }
+                      press: () {
+                        setState(() {
+                          openShift = true;
+                        });
                       },
                     )
             ],
@@ -240,17 +246,372 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               Container(
-                height: size.height * 0.094,
+                height: size.height * 0.15,
                 color: Colors.black,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'รายการชำระ',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'รายการชำระ',
+                        style: TextStyle(color: Colors.white, fontSize: 23),
+                      ),
+                    ),
+                    Container(
+                      width: size.width * 0.11,
+                      height: size.height * 0.06,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.white),
+                      child: Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                onItemTapped(0);
+                              },
+                              child: Container(
+                                width: size.width * 0.05,
+                                height: size.height * 0.05,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: selectedIndex == 0
+                                      ? Colors.blue
+                                      : Color.fromARGB(255, 255, 255, 255),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "ทั่วไป",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: selectedIndex == 0
+                                            ? Color.fromARGB(255, 255, 255, 255)
+                                            : Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                onItemTapped(1);
+                              },
+                              child: Container(
+                                width: size.width * 0.05,
+                                height: size.height * 0.05,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: selectedIndex == 1
+                                        ? Colors.blue
+                                        : Color.fromARGB(255, 255, 255, 255)),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "สมาชิก",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: selectedIndex == 1
+                                              ? Color.fromARGB(
+                                                  255, 255, 255, 255)
+                                              : Colors.black),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
                     )
                   ],
                 ),
               ),
+              Column(
+                children: [
+                  Container(
+                    color: Colors.white,
+                    height: size.height * 0.53,
+                    width: size.width * 1,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: size.height * 0.02,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: SizedBox(
+                                height: size.height * 0.12,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        border: Border(
+                                            bottom:
+                                                BorderSide(color: Colors.grey)),
+                                        borderRadius: BorderRadius.circular(2),
+                                        color: Color(0xFFFFFAFAFA)),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Opacity(
+                                          opacity: 0.09,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 5, top: 3),
+                                            child: Text(
+                                              'สัญชาติ',
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        DropdownButtonHideUnderline(
+                                          child: DropdownButton<String>(
+                                            isExpanded: true,
+                                            items: nationality
+                                                .map((String item) =>
+                                                    DropdownMenuItem<String>(
+                                                      value: item,
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                                horizontal:
+                                                                    1.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: Text(
+                                                            item,
+                                                            style:
+                                                                const TextStyle(
+                                                              fontSize: 16,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ))
+                                                .toList(),
+                                            value: lang,
+                                            onChanged: (v) {
+                                              setState(() {
+                                                lang = v!;
+                                              });
+                                            },
+                                            underline: SizedBox(),
+                                            dropdownColor: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: SizedBox(
+                                height: size.height * 0.12,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        border: Border(
+                                            bottom:
+                                                BorderSide(color: Colors.grey)),
+                                        borderRadius: BorderRadius.circular(2),
+                                        color: Color(0xFFFFFAFAFA)),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Opacity(
+                                          opacity: 0.09,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 5, top: 3),
+                                            child: Text(
+                                              'เพศ',
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        DropdownButtonHideUnderline(
+                                          child: DropdownButton<String>(
+                                            isExpanded: true,
+                                            items: general
+                                                .map((String item) =>
+                                                    DropdownMenuItem<String>(
+                                                      value: item,
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                                horizontal:
+                                                                    1.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: Text(
+                                                            item,
+                                                            style:
+                                                                const TextStyle(
+                                                              fontSize: 16,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ))
+                                                .toList(),
+                                            value: sex,
+                                            onChanged: (v) {
+                                              setState(() {
+                                                sex = v!;
+                                              });
+                                            },
+                                            underline: SizedBox(),
+                                            dropdownColor: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Container(
+                    color: Color.fromARGB(15, 0, 0, 0),
+                    height: size.height * 0.01,
+                    width: size.width * 1,
+                  ),
+                  Container(
+                    color: Colors.white,
+                    height: size.height * 0.25,
+                    width: size.width * 1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [Text("จำนวนสินค้า"), Text("0")],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [Text("รวม"), Text("0.00 ฿")],
+                          ),
+                          Divider(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [Text("ชำระทั้งหมด"), Text("0.00 ฿")],
+                          ),
+                          SizedBox(
+                            height: size.height * 0.01,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(color: Colors.black)),
+                                height: size.height * 0.05,
+                                width: size.width * 0.1,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("ดูโปรโมชั่น"),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Image.asset(
+                                        "assets/icons/Subtract.png",
+                                        scale: 15,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(color: Colors.black)),
+                                height: size.height * 0.05,
+                                width: size.width * 0.1,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("สมัครสมาชิก"),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 6,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: Color.fromARGB(110, 185, 185, 185)),
+                            height: size.height * 0.05,
+                            width: size.width * 0.21,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Opacity(
+                                    opacity: 0.8,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 5, top: 3),
+                                      child: Text(
+                                        'ชำระเงิน 0.00',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              )
             ],
           ),
         ),
