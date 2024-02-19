@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   phosphor_flutter: ^2.0.1
   dropdown_button2: ^2.3.9
-
+ 
 dev_dependencies:
   flutter_test:
     sdk: flutter
