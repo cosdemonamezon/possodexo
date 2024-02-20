@@ -123,7 +123,9 @@ class _FirstPageState extends State<FirstPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: size.height * 0.04,),
+                SizedBox(
+                  height: size.height * 0.04,
+                ),
               ],
             ),
           ),
@@ -134,12 +136,13 @@ class _FirstPageState extends State<FirstPage> {
               margin: EdgeInsets.only(top: 2, right: 1),
               padding: EdgeInsets.only(top: 0, right: 0, left: 0),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(1), topRight: Radius.circular(1)),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(1), topRight: Radius.circular(1)),
                 color: Color.fromARGB(255, 229, 230, 240),
               ),
               child: _pageView(),
             ),
-          ),
+          )
         ],
       ),
     );
