@@ -69,10 +69,9 @@ class _GridProMotionState extends State<GridProMotion> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(4.0),
                       child: DashedVerticalLine(),
                     ),
-                    // FishboneLine(),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
