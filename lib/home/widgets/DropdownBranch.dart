@@ -16,6 +16,7 @@ class DropdownBranch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      surfaceTintColor: Colors.white,
       color: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),

@@ -87,7 +87,7 @@ class _GridCoffeeState extends State<GridCoffee> {
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
             crossAxisSpacing: 10,
-            mainAxisExtent: 250,
+            mainAxisExtent: 180,
             mainAxisSpacing: 10,
           ),
           itemCount: gridCoffee.length,
@@ -100,6 +100,7 @@ class _GridCoffeeState extends State<GridCoffee> {
                       Image.asset(
                         gridCoffee[index]['image'],
                         width: size.width * 0.25,
+                        height: size.height * 0.26,
                         fit: BoxFit.cover,
                       ),
                       Padding(
@@ -115,7 +116,7 @@ class _GridCoffeeState extends State<GridCoffee> {
                         ),
                       ),
                       SizedBox(
-                        width: size.width * 0.22,
+                        width: size.width * 0.18,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [

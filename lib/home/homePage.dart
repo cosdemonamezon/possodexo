@@ -46,200 +46,223 @@ class _HomePageState extends State<HomePage> {
         Expanded(
             flex: 15,
             child: Column(children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: size.height * 0.08,
-                    width: size.width * 0.16,
-                    // color: Colors.grey,
-                    child: DropdownBranch(
-                      sizeValue: sizeValue,
-                      size: size,
-                      onSelected: (value) {
-                        setState(() {
-                          sizeValue = value!;
-                        });
-                      },
+              Container(
+                decoration: BoxDecoration(color: Color(0xFFECEFF1)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(2),
+                      height: size.height * 0.08,
+                      width: size.width * 0.16,
+                      // color: Colors.grey,
+                      child: DropdownBranch(
+                        sizeValue: sizeValue,
+                        size: size,
+                        onSelected: (value) {
+                          setState(() {
+                            sizeValue = value!;
+                          });
+                        },
+                      ),
                     ),
-                  ),
-                  Container(
-                    height: size.height * 0.08,
-                    width: size.width * 0.38,
-                    //color: Colors.grey,
-                    child: Row(
-                      children: [
-                        OpenAndCloseSwitch(
-                          size: size,
-                          open: open,
-                          showTextOpen: 'เปิดเมนู',
-                          showTextClose: 'ปิดเมนู',
-                          onChanged: (value) {
-                            setState(() {
-                              open = value;
-                            });
-                          },
-                        ),
-                        OpenAndCloseSwitch(
-                          size: size,
-                          open: print,
-                          showTextOpen: 'พิมพ์ใบเสร็จ',
-                          showTextClose: 'พิมพ์ใบเสร็จ',
-                          onChanged: (value) async {
-                            setState(() {
-                              print = value;
-                            });
-                            if (value == true) {
-                              showDialog(
-                                context: context,
-                                builder: (context) => OpenPrintDialog(
-                                  size: size,
-                                  pressOk: () {
-                                    Navigator.pop(context, true);
-                                  },
-                                  pressCancel: () {
-                                    Navigator.pop(context, false);
-                                  },
-                                ),
-                              );
-                            } else {
-                              showDialog(
-                                context: context,
-                                builder: (context) => ClosePrintDialog(
-                                  size: size,
-                                  pressOk: () {
-                                    Navigator.pop(context, true);
-                                  },
-                                  pressCancel: () {
-                                    Navigator.pop(context, false);
-                                  },
-                                ),
-                              );
-                            }
-                          },
-                        ),
-                        SizedBox(
-                          height: size.height * 0.06,
-                          width: size.width * 0.08,
-                          child: PopupMenuButton(
-                            icon: Icon(Icons.more_horiz),
-                            itemBuilder: (ctx) => [
-                              PopupMenuItem(
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.sticky_note_2),
-                                    Text('พิมพ์ใบกำกับภาษี'),
-                                  ],
-                                ),
-                                onTap: () {},
-                              ),
-                              PopupMenuItem(
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.receipt),
-                                    Text('พิมพ์ใบเสร็จย้อนหลัง'),
-                                  ],
-                                ),
-                                onTap: () {},
-                              ),
-                            ],
+                    Container(
+                      height: size.height * 0.08,
+                      width: size.width * 0.38,
+                      //color: Colors.grey,
+                      child: Row(
+                        children: [
+                          OpenAndCloseSwitch(
+                            size: size,
+                            open: open,
+                            showTextOpen: 'เปิดเมนู',
+                            showTextClose: 'ปิดเมนู',
+                            onChanged: (value) {
+                              setState(() {
+                                open = value;
+                              });
+                            },
                           ),
-                        )
-                      ],
+                          OpenAndCloseSwitch(
+                            size: size,
+                            open: print,
+                            showTextOpen: 'พิมพ์ใบเสร็จ',
+                            showTextClose: 'พิมพ์ใบเสร็จ',
+                            onChanged: (value) async {
+                              setState(() {
+                                print = value;
+                              });
+                              if (value == true) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => OpenPrintDialog(
+                                    size: size,
+                                    pressOk: () {
+                                      Navigator.pop(context, true);
+                                    },
+                                    pressCancel: () {
+                                      Navigator.pop(context, false);
+                                    },
+                                  ),
+                                );
+                              } else {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => ClosePrintDialog(
+                                    size: size,
+                                    pressOk: () {
+                                      Navigator.pop(context, true);
+                                    },
+                                    pressCancel: () {
+                                      Navigator.pop(context, false);
+                                    },
+                                  ),
+                                );
+                              }
+                            },
+                          ),
+                          SizedBox(
+                            height: size.height * 0.06,
+                            width: size.width * 0.08,
+                            child: PopupMenuButton(
+                              icon: Icon(Icons.more_horiz),
+                              itemBuilder: (ctx) => [
+                                PopupMenuItem(
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.sticky_note_2),
+                                      Text('พิมพ์ใบกำกับภาษี'),
+                                    ],
+                                  ),
+                                  onTap: () {},
+                                ),
+                                PopupMenuItem(
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.receipt),
+                                      Text('พิมพ์ใบเสร็จย้อนหลัง'),
+                                    ],
+                                  ),
+                                  onTap: () {},
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              Divider(),
+              Container(
+                decoration: BoxDecoration(
+                  color: Color(0xFFECEFF1),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 2,
+                      blurRadius: 1,
+                      offset: Offset(0, 1),
+                    ),
+                  ],
+                ),
+              ),
 
               //ส่วนแสดงสินค้า
               openShift == true
-                  ? Column(
-                      children: [
-                        Row(
-                          children: [
-                            Card(
-                              elevation: 2,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  side: BorderSide(color: kButtonColor)),
-                              child: SizedBox(
-                                width: size.width * 0.14,
-                                height: size.height * 0.06,
-                                child: Center(
-                                    child: Text(
-                                  '1 - POS01',
-                                  style: TextStyle(
-                                      color: kButtonColor,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {},
-                              child: Card(
-                                elevation: 5,
+                  ? Container(
+                      color: Colors.white,
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Card(
+                                elevation: 2,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5.0),
                                     side: BorderSide(color: kButtonColor)),
                                 child: SizedBox(
                                   width: size.width * 0.14,
                                   height: size.height * 0.06,
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.add),
-                                      Text(
-                                        'เพิ่ม',
-                                        style: TextStyle(
-                                            color: kButtonColor,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
+                                  child: Center(
+                                      child: Text(
+                                    '1 - POS01',
+                                    style: TextStyle(
+                                        color: kButtonColor,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  )),
                                 ),
                               ),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: size.height * 0.01,
-                        ),
-                        Container(
-                          height: size.height * 0.1,
-                          width: double.infinity,
-                          color: kTabColor,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Text('data'),
-                                  Icon(Icons.arrow_downward),
-                                ],
-                              ),
-                              Row(),
+                              GestureDetector(
+                                onTap: () {},
+                                child: Card(
+                                  elevation: 5,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      side: BorderSide(color: kButtonColor)),
+                                  color: Colors.white,
+                                  child: SizedBox(
+                                    width: size.width * 0.1,
+                                    height: size.height * 0.06,
+                                    child: Row(
+                                      children: [
+                                        Image.asset(
+                                          'assets/icons/add.png',
+                                          scale: 25,
+                                        ),
+                                        Text(
+                                          'เพิ่ม',
+                                          style: TextStyle(
+                                              color: kButtonColor,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              )
                             ],
                           ),
-                        ),
-                        SizedBox(
-                          height: size.height * 0.01,
-                        ),
-                        Container(
-                          height: size.height * 0.574,
-                          child: SingleChildScrollView(
-                            child: SizedBox(
-                              child: GridCoffee(),
+                          SizedBox(
+                            height: size.height * 0.01,
+                          ),
+                          Container(
+                            height: size.height * 0.1,
+                            width: double.infinity,
+                            color: kTabColor,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text('data'),
+                                    Icon(Icons.arrow_downward),
+                                  ],
+                                ),
+                                Row(),
+                              ],
                             ),
                           ),
-                        ),
-                        Container(
-                          height: size.height * 0.13,
-                          child: GridProMotion(),
-                        )
-                      ],
+                          SizedBox(
+                            height: size.height * 0.01,
+                          ),
+                          Container(
+                            height: size.height * 0.574,
+                            child: SingleChildScrollView(
+                              child: SizedBox(
+                                child: GridCoffee(),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: size.height * 0.13,
+                            child: GridProMotion(),
+                          )
+                        ],
+                      ),
                     )
                   : ShowOpenShift(
                       size: size,

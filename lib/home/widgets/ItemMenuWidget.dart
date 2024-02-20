@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ItemMenuWidget extends StatelessWidget {
-  const ItemMenuWidget({super.key, required this.pageActive, required this.icon, required this.menu, required this.press, required this.title});
+  const ItemMenuWidget(
+      {super.key,
+      required this.pageActive,
+      required this.icon,
+      required this.menu,
+      required this.press,
+      required this.title});
 
   final String pageActive, menu, title;
   final IconData icon;
