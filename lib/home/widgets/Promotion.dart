@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants.dart';
+
 class GridProMotion extends StatefulWidget {
   const GridProMotion({super.key});
 
@@ -12,26 +14,20 @@ class _GridProMotionState extends State<GridProMotion> {
     {
       'image': 'assets/images/figure.png',
       'Tiltle': 'BUY 2 PAY 2  ฿ 165.00',
-      'Order1': 'Matcha Latte',
-      'Order2': 'Americano'
+      'Order1': 'น้ำผึ้งมะนาวซุปเปอร์เวค (Honey Lemon Superwake)',
+      'Order2': 'อเมริการโน่น้ำผึ้งมะนาว (Americano Honey Lemon)'
     },
     {
       'image': 'assets/images/figure.png',
       'Tiltle': 'BUY 2 PAY 2  ฿ 165.00',
-      'Order1': 'Matcha Latte',
-      'Order2': 'Americano'
+      'Order1': 'กาแฟสังขยา (Custard Coffee)',
+      'Order2': 'สังขยาลาเต้ (Custrad Latte)'
     },
     {
       'image': 'assets/images/figure.png',
       'Tiltle': 'BUY 2 PAY 2  ฿ 165.00',
-      'Order1': 'Matcha Latte',
-      'Order2': 'Americano'
-    },
-    {
-      'image': 'assets/images/figure.png',
-      'Tiltle': 'BUY 2 PAY 2  ฿ 165.00',
-      'Order1': 'Matcha Latte',
-      'Order2': 'Americano'
+      'Order1': 'คาผูชิโน่ร้อน (Hot Capucino)',
+      'Order2': 'ลาเต้ร้อน (Hot Latte)'
     },
   ];
 
@@ -41,14 +37,13 @@ class _GridProMotionState extends State<GridProMotion> {
     return Container(
       decoration: BoxDecoration(color: Color(0xFF37474F)),
       child: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(10.0),
         child: GridView.builder(
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              crossAxisSpacing: 10,
-              mainAxisExtent: 75,
-              mainAxisSpacing: 10,
+              crossAxisCount: 3,
+              crossAxisSpacing: 20,
+              mainAxisExtent: 85,
             ),
             itemCount: GridProMotion.length,
             itemBuilder: (_, index) {
@@ -58,7 +53,7 @@ class _GridProMotionState extends State<GridProMotion> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(6)),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8),
@@ -69,10 +64,9 @@ class _GridProMotionState extends State<GridProMotion> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.only(top: 4, bottom: 4),
                       child: DashedVerticalLine(),
                     ),
-                    // FishboneLine(),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,11 +77,11 @@ class _GridProMotionState extends State<GridProMotion> {
                         ),
                         Text(
                           GridProMotion[index]['Order1'],
-                          style: TextStyle(fontSize: 12),
+                          style: TextStyle(fontSize: 10, color: ktextColr),
                         ),
                         Text(
                           GridProMotion[index]['Order2'],
-                          style: TextStyle(fontSize: 12),
+                          style: TextStyle(fontSize: 10, color: ktextColr),
                         ),
                       ],
                     ),

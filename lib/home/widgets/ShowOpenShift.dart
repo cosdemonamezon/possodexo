@@ -16,7 +16,10 @@ class ShowOpenShift extends StatelessWidget {
           height: size.height * 0.2,
         ),
         Center(
-          child: Image.asset('assets/icons/Clock.png'),
+          child: Image.asset(
+            'assets/icons/Clockblue.png',
+            scale: 4,
+          ),
         ),
         Text('Shift is closed'),
         Text('เปิดกะงานเพื่อทำการขาย'),

@@ -16,6 +16,7 @@ class ClosePrintDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      surfaceTintColor: Colors.white,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(2))),
       title: Column(
@@ -38,6 +39,7 @@ class ClosePrintDialog extends StatelessWidget {
               onTap: pressCancel,
               child: Card(
                 //color: Colors.blue,
+                surfaceTintColor: Colors.white,
                 elevation: 5,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.0),
