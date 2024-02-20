@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class OpenAndCloseSwitch extends StatelessWidget {
-  OpenAndCloseSwitch({super.key, required this.size, required this.open, required this.showTextClose, required this.showTextOpen, required this.onChanged});
+  OpenAndCloseSwitch(
+      {super.key,
+      required this.size,
+      required this.open,
+      required this.showTextClose,
+      required this.showTextOpen,
+      required this.onChanged});
 
   final Size size;
   final bool open;
@@ -21,9 +27,13 @@ class OpenAndCloseSwitch extends StatelessWidget {
                 value: open,
                 onChanged: onChanged,
                 activeColor: Colors.blue,
+                inactiveThumbColor: Colors.white,
+                inactiveTrackColor: Colors.grey,
               ),
             ),
-            open == true ? Expanded(child: Text(showTextOpen)) : Expanded(child: Text(showTextClose))
+            open == true
+                ? Expanded(child: Text(showTextOpen))
+                : Expanded(child: Text(showTextClose))
           ],
         ));
   }

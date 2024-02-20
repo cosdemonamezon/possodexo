@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:possodexo/constants.dart';
 
 class DropdownBranch extends StatelessWidget {
-  DropdownBranch({super.key, required this.sizeValue, required this.size, required this.onSelected});
+  DropdownBranch(
+      {super.key,
+      required this.sizeValue,
+      required this.size,
+      required this.onSelected});
 
   final String sizeValue;
   final Size size;
@@ -12,6 +16,7 @@ class DropdownBranch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
       ),
