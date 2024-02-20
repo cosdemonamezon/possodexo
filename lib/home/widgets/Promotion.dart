@@ -68,7 +68,10 @@ class _GridProMotionState extends State<GridProMotion> {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    DashedVerticalLine(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: DashedVerticalLine(),
+                    ),
                     // FishboneLine(),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -102,7 +105,7 @@ class DashedVerticalLine extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 5, // กว้างของเส้นประ
-      height: 200, // ความสูงของเส้นประ
+      height: 120, // ความสูงของเส้นประ
       child: CustomPaint(
         painter: DashedLinePainter(),
       ),

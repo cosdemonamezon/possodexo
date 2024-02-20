@@ -45,9 +45,8 @@ class _HomePageState extends State<HomePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-          flex: 15,
-          child: Column(
-            children: [
+            flex: 15,
+            child: Column(children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -189,8 +188,7 @@ class _HomePageState extends State<HomePage> {
                                 child: SizedBox(
                                   width: size.width * 0.14,
                                   height: size.height * 0.06,
-                                  child: Center(
-                                      child: Row(
+                                  child: Row(
                                     children: [
                                       Icon(Icons.add),
                                       Text(
@@ -200,74 +198,50 @@ class _HomePageState extends State<HomePage> {
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold),
                                       ),
-                                GestureDetector(
-                                onTap: () {},
-                                child: Card(
-                                  elevation: 5,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5.0),
-                                      side: BorderSide(color: kButtonColor)),
-                                  child: SizedBox(
-                                    width: size.width * 0.10,
-                                    height: size.height * 0.06,
-                                    child: Center(
-                                        child: Row(
-                                      children: [
-                                        Icon(Icons.add),
-                                        Text(
-                                          'เพิ่ม',
-                                          style: TextStyle(
-                                              color: kButtonColor,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    ),
-                                    ),
+                                    ],
                                   ),
                                 ),
                               ),
-                          ),
-                          SizedBox(
-                            height: size.height * 0.01,
-                          ),
-                          Container(
-                            height: size.height * 0.1,
-                            width: double.infinity,
-                            color: kTabColor,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text('data'),
-                                    Icon(Icons.arrow_downward),
-                                  ],
-                                ),
-                                Row(),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: size.height * 0.01,
-                          ),
-                          Container(
-                            height: size.height * 0.574,
-                            child: SingleChildScrollView(
-                              child: SizedBox(
-                                child: GridCoffee(),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: size.height * 0.01,
+                        ),
+                        Container(
+                          height: size.height * 0.1,
+                          width: double.infinity,
+                          color: kTabColor,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Text('data'),
+                                  Icon(Icons.arrow_downward),
+                                ],
                               ),
+                              Row(),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: size.height * 0.01,
+                        ),
+                        Container(
+                          height: size.height * 0.574,
+                          child: SingleChildScrollView(
+                            child: SizedBox(
+                              child: GridCoffee(),
                             ),
                           ),
-                          Container(
-                            height: size.height * 0.13,
-                            child: GridProMotion(),
-                          )
-                          ]
-                        ],
-                      ]
-                      ),
-                    ),
+                        ),
+                        Container(
+                          height: size.height * 0.13,
+                          child: GridProMotion(),
+                        )
+                      ],
+                    )
                   : ShowOpenShift(
                       size: size,
                       press: () {
@@ -276,6 +250,7 @@ class _HomePageState extends State<HomePage> {
                         });
                       },
                     ),
+            ])),
         //Expanded(flex: 1, child: Container()),
         //ส่วนสำหรับแสดง รายการคิดเงิน
         Expanded(
