@@ -200,10 +200,6 @@ class _HomePageState extends State<HomePage> {
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold),
                                       ),
-                                    ],
-                                  )),
-                                ),
-                              ),
                                 GestureDetector(
                                 onTap: () {},
                                 child: Card(
@@ -280,9 +276,6 @@ class _HomePageState extends State<HomePage> {
                         });
                       },
                     ),
-            ],
-          ),
-        
         //Expanded(flex: 1, child: Container()),
         //ส่วนสำหรับแสดง รายการคิดเงิน
         Expanded(
