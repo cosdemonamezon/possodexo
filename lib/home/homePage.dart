@@ -5,9 +5,11 @@ import 'package:possodexo/home/widgets/DropdownBranch.dart';
 import 'package:possodexo/home/widgets/OpenAndCloseSwitch.dart';
 import 'package:possodexo/home/widgets/OpenPrintDialog.dart';
 import 'package:possodexo/home/widgets/ShowOpenShift.dart';
+import 'widgets/GridProduct.dart';
+import 'widgets/Promotion.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -53,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     height: size.height * 0.08,
                     width: size.width * 0.16,
-                    //color: Colors.grey,
+                    // color: Colors.grey,
                     child: DropdownBranch(
                       sizeValue: sizeValue,
                       size: size,
@@ -152,6 +154,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               Divider(),
+
               //ส่วนแสดงสินค้า
               openShift == true
                   ? Column(
@@ -184,7 +187,7 @@ class _HomePageState extends State<HomePage> {
                                     borderRadius: BorderRadius.circular(5.0),
                                     side: BorderSide(color: kButtonColor)),
                                 child: SizedBox(
-                                  width: size.width * 0.10,
+                                  width: size.width * 0.14,
                                   height: size.height * 0.06,
                                   child: Center(
                                       child: Row(
@@ -201,34 +204,74 @@ class _HomePageState extends State<HomePage> {
                                   )),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: size.height * 0.01,
-                        ),
-                        Container(
-                          height: size.height * 0.10,
-                          width: double.infinity,
-                          color: kTabColor,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Text('data'),
-                                  Icon(Icons.arrow_downward),
-                                ],
+                                GestureDetector(
+                                onTap: () {},
+                                child: Card(
+                                  elevation: 5,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      side: BorderSide(color: kButtonColor)),
+                                  child: SizedBox(
+                                    width: size.width * 0.10,
+                                    height: size.height * 0.06,
+                                    child: Center(
+                                        child: Row(
+                                      children: [
+                                        Icon(Icons.add),
+                                        Text(
+                                          'เพิ่ม',
+                                          style: TextStyle(
+                                              color: kButtonColor,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    ),
+                                  ),
+                                ),
                               ),
-                              Row(),
-                            ],
                           ),
-                        ),
-                        SizedBox(
-                          height: size.height * 0.01,
-                        ),
-                      ],
-                    )
+                          SizedBox(
+                            height: size.height * 0.01,
+                          ),
+                          Container(
+                            height: size.height * 0.1,
+                            width: double.infinity,
+                            color: kTabColor,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text('data'),
+                                    Icon(Icons.arrow_downward),
+                                  ],
+                                ),
+                                Row(),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: size.height * 0.01,
+                          ),
+                          Container(
+                            height: size.height * 0.574,
+                            child: SingleChildScrollView(
+                              child: SizedBox(
+                                child: GridCoffee(),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: size.height * 0.13,
+                            child: GridProMotion(),
+                          )
+                          ]
+                        ],
+                      ]
+                      ),
+                    ),
                   : ShowOpenShift(
                       size: size,
                       press: () {
@@ -236,10 +279,10 @@ class _HomePageState extends State<HomePage> {
                           openShift = true;
                         });
                       },
-                    )
+                    ),
             ],
           ),
-        ),
+        
         //Expanded(flex: 1, child: Container()),
         //ส่วนสำหรับแสดง รายการคิดเงิน
         Expanded(
