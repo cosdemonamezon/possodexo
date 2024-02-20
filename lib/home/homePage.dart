@@ -124,29 +124,39 @@ class _HomePageState extends State<HomePage> {
                           ),
                           SizedBox(
                             height: size.height * 0.06,
-                            width: size.width * 0.08,
-                            child: PopupMenuButton(
-                              icon: Icon(Icons.more_horiz),
-                              itemBuilder: (ctx) => [
-                                PopupMenuItem(
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.sticky_note_2),
-                                      Text('พิมพ์ใบกำกับภาษี'),
-                                    ],
+                            width: size.width * 0.04,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(color: Color(0xFF1264E3))),
+                              child: PopupMenuButton(
+                                color: Colors.white,
+                                surfaceTintColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.zero),
+                                icon: Icon(Icons.more_horiz),
+                                itemBuilder: (ctx) => [
+                                  PopupMenuItem(
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.sticky_note_2),
+                                        Text('พิมพ์ใบกำกับภาษี'),
+                                      ],
+                                    ),
+                                    onTap: () {},
                                   ),
-                                  onTap: () {},
-                                ),
-                                PopupMenuItem(
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.receipt),
-                                      Text('พิมพ์ใบเสร็จย้อนหลัง'),
-                                    ],
+                                  PopupMenuItem(
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.receipt),
+                                        Text('พิมพ์ใบเสร็จย้อนหลัง'),
+                                      ],
+                                    ),
+                                    onTap: () {},
                                   ),
-                                  onTap: () {},
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           )
                         ],
@@ -178,6 +188,7 @@ class _HomePageState extends State<HomePage> {
                           Row(
                             children: [
                               Card(
+                                surfaceTintColor: Colors.white,
                                 elevation: 2,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5.0),
@@ -198,19 +209,25 @@ class _HomePageState extends State<HomePage> {
                               GestureDetector(
                                 onTap: () {},
                                 child: Card(
+                                  surfaceTintColor: Colors.white,
                                   elevation: 5,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5.0),
                                       side: BorderSide(color: kButtonColor)),
                                   color: Colors.white,
                                   child: SizedBox(
-                                    width: size.width * 0.1,
+                                    width: size.width * 0.07,
                                     height: size.height * 0.06,
                                     child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Image.asset(
                                           'assets/icons/add.png',
                                           scale: 25,
+                                        ),
+                                        SizedBox(
+                                          width: 10,
                                         ),
                                         Text(
                                           'เพิ่ม',
