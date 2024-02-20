@@ -43,7 +43,7 @@ class _GridProMotionState extends State<GridProMotion> {
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
               crossAxisSpacing: 20,
-              mainAxisExtent: 75,
+              mainAxisExtent: 85,
             ),
             itemCount: GridProMotion.length,
             itemBuilder: (_, index) {

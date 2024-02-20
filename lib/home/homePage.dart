@@ -194,7 +194,7 @@ class _HomePageState extends State<HomePage> {
                                     borderRadius: BorderRadius.circular(5.0),
                                     side: BorderSide(color: kButtonColor)),
                                 child: SizedBox(
-                                  width: size.width * 0.14,
+                                  width: size.width * 0.1,
                                   height: size.height * 0.06,
                                   child: Center(
                                       child: Text(
@@ -267,7 +267,7 @@ class _HomePageState extends State<HomePage> {
                             height: size.height * 0.01,
                           ),
                           Container(
-                            height: size.height * 0.574,
+                            height: size.height * 0.58,
                             child: SingleChildScrollView(
                               child: SizedBox(
                                 child: GridCoffee(),
@@ -275,7 +275,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           Container(
-                            height: size.height * 0.13,
+                            height: size.height * 0.145,
                             child: GridProMotion(),
                           )
                         ],
