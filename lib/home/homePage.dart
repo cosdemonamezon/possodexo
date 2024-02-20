@@ -17,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   List<String> nationality = ["ไทย", "พมา", "ลาว"];
   String lang = "ไทย";
   int selectedIndex = 0;
+  int selectedIndex1 = 0;
   void onItemTapped(int index) {
     setState(() {
       selectedIndex = index;
@@ -363,15 +364,20 @@ class _HomePageState extends State<HomePage> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Opacity(
-                                          opacity: 0.09,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 5, top: 3),
-                                            child: Text(
-                                              'สัญชาติ',
-                                              style: TextStyle(
-                                                fontSize: 12,
+                                        InkWell(
+                                          onTap: () {
+                                            selectedIndex1 = (0);
+                                          },
+                                          child: Opacity(
+                                            opacity: 0.09,
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, top: 3),
+                                              child: Text(
+                                                'สัญชาติ',
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                ),
                                               ),
                                             ),
                                           ),
