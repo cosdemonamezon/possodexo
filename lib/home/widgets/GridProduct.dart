@@ -107,7 +107,7 @@ class _GridCoffeeState extends State<GridCoffee> {
                           padding: EdgeInsets.all(4),
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(8)),
+                              borderRadius: BorderRadius.circular(4)),
                           child: Text(
                             gridCoffee[index]['price'],
                           ),
