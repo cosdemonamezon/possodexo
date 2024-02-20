@@ -56,8 +56,9 @@ class _GridProMotionState extends State<GridProMotion> {
                 padding: EdgeInsets.all(4),
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
+                    borderRadius: BorderRadius.circular(6)),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8),
@@ -67,8 +68,11 @@ class _GridProMotionState extends State<GridProMotion> {
                         fit: BoxFit.cover,
                       ),
                     ),
+                    DashedVerticalLine(),
+                    // FishboneLine(),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           GridProMotion[index]['Tiltle'],
@@ -81,7 +85,7 @@ class _GridProMotionState extends State<GridProMotion> {
                         Text(
                           GridProMotion[index]['Order2'],
                           style: TextStyle(fontSize: 12),
-                        )
+                        ),
                       ],
                     ),
                   ],
@@ -90,5 +94,48 @@ class _GridProMotionState extends State<GridProMotion> {
             }),
       ),
     );
+  }
+}
+
+class DashedVerticalLine extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 5, // กว้างของเส้นประ
+      height: 200, // ความสูงของเส้นประ
+      child: CustomPaint(
+        painter: DashedLinePainter(),
+      ),
+    );
+  }
+}
+
+class DashedLinePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Color(0xFF90A4AE)
+      ..strokeWidth = 1
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round;
+
+    final double dashWidth = 5;
+    final double dashSpace = 5;
+
+    double startY = 0;
+    while (startY < size.height) {
+      canvas.drawLine(
+        Offset(size.width / 2, startY),
+        Offset(size.width / 2, startY + dashWidth),
+        paint,
+      );
+      startY += (dashWidth + dashSpace);
+    }
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
   }
 }
