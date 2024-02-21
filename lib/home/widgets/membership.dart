@@ -33,6 +33,7 @@ class _MembershipState extends State<Membership> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return AlertDialog(
+      surfaceTintColor: Colors.white,
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(2))),
@@ -406,21 +407,21 @@ class _MembershipState extends State<Membership> {
                         text: 'นโยบายความเป็นส่วนตัว',
                         style: TextStyle(
                           decoration: _hover ? TextDecoration.underline : null,
-                          color: Colors.blue, // เปลี่ยนสีเป็นสีแดง
+                          color: Colors.blue, // เปลี่ยนสี
                         ),
-                        mouseCursor: SystemMouseCursors.click,
+                        mouseCursor: SystemMouseCursors.alias,
                         onEnter: (event) => setState(() => _hover = true),
                         onExit: (event) => setState(() => _hover = false)),
                     TextSpan(
                       text: 'และ',
                       style: TextStyle(
-                        color: Colors.black, // เปลี่ยนสีเป็นสีแดง
+                        color: Colors.black,
                       ),
                     ),
                     TextSpan(
                       text: 'นโยบายคุกกี้',
                       style: TextStyle(
-                        color: Colors.blue, // เปลี่ยนสีเป็นสีแดง
+                        color: Colors.blue,
                       ),
                     ),
                   ],
@@ -445,6 +446,7 @@ class _MembershipState extends State<Membership> {
                     side: BorderSide(color: kButtonColor)),
 
                 child: Container(
+                  color: Colors.white,
                   width: size.width * 0.18,
                   height: size.height * 0.06,
                   child: Center(
