@@ -7,6 +7,7 @@ import 'package:possodexo/home/widgets/DropdownBranch.dart';
 import 'package:possodexo/home/widgets/OpenAndCloseSwitch.dart';
 import 'package:possodexo/home/widgets/OpenPrintDialog.dart';
 import 'package:possodexo/home/widgets/ShowOpenShift.dart';
+import 'package:possodexo/home/widgets/TablePromotion.dart';
 import 'package:possodexo/home/widgets/membership.dart';
 import 'widgets/GridProduct.dart';
 import 'widgets/Promotion.dart';
@@ -417,7 +418,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Container(
                     color: Colors.white,
-                    height: size.height * 0.53,
+                    height: size.height * 0.5,
                     width: size.width * 1,
                     child: Column(
                       children: [
@@ -606,7 +607,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Container(
                     color: Colors.white,
-                    height: size.height * 0.25,
+                    height: size.height * 0.29,
                     width: size.width * 1,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -670,31 +671,40 @@ class _HomePageState extends State<HomePage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(color: Colors.black)),
-                                height: size.height * 0.05,
-                                width: size.width * 0.1,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "ดูโปรโมชั่น",
-                                        style: TextStyle(
-                                          fontFamily: 'IBMPlexSansThai',
+                              InkWell(
+                                onTap: () async {
+                                  final statusD = await showDialog(
+                                      context: context,
+                                      builder: (context) => TablePromotion());
+                                  if (statusD == true) {}
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      border: Border.all(color: Colors.black)),
+                                  height: size.height * 0.05,
+                                  width: size.width * 0.1,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "ดูโปรโมชั่น",
+                                          style: TextStyle(
+                                            fontFamily: 'IBMPlexSansThai',
+                                          ),
                                         ),
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Image.asset(
-                                        "assets/icons/Subtract.png",
-                                        scale: 15,
-                                      )
-                                    ],
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Image.asset(
+                                          "assets/icons/Subtract.png",
+                                          scale: 15,
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -702,7 +712,11 @@ class _HomePageState extends State<HomePage> {
                                 onTap: () async {
                                   final statusD = await showDialog(
                                       context: context,
-                                      builder: (context) => Membership());
+                                      builder: (context) => Membership(
+                                            closeblack: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ));
                                   if (statusD == true) {}
                                 },
                                 child: Container(

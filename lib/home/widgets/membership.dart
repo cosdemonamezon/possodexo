@@ -6,8 +6,11 @@ import 'package:possodexo/home/widgets/ClosePrintDialog.dart';
 import 'package:possodexo/home/widgets/PolicyPage.dart';
 
 class Membership extends StatefulWidget {
-  const Membership({super.key, l});
-
+  const Membership({
+    super.key,
+    required this.closeblack,
+  });
+  final VoidCallback closeblack;
   @override
   State<Membership> createState() => _MembershipState();
 }
@@ -22,7 +25,7 @@ class _MembershipState extends State<Membership> {
     setState(() {});
   }
 
-  List<String> nationality = ["ไทย", "พมา", "ลาว"];
+  List<String> nationality = ["ไทย", "พม๋า", "ลาว"];
   String lang = "ไทย";
 
   List<String> general = ["ไม่ระบุ", "ชาย", "หญิง"];
@@ -43,10 +46,24 @@ class _MembershipState extends State<Membership> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'สมัครสมาชิก',
-            style: TextStyle(
-                fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'สมัครสมาชิก',
+                style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black),
+              ),
+              InkWell(
+                onTap: widget.closeblack,
+                child: Icon(
+                  Icons.close,
+                  color: Colors.grey,
+                ),
+              )
+            ],
           ),
           Divider(),
         ],
@@ -122,7 +139,9 @@ class _MembershipState extends State<Membership> {
                       hintText: "ชื่อ",
                     ),
                     validator: (value) {
-                      if (value == '') {}
+                      if (value == '') {
+                        return "โปรดใส่ข้อความให้ครบถ้วน";
+                      }
                       return null;
                     },
                   ),
@@ -148,7 +167,9 @@ class _MembershipState extends State<Membership> {
                       hintText: "สกุล",
                     ),
                     validator: (value) {
-                      if (value == '') {}
+                      if (value == '') {
+                        return "โปรดใส่ข้อความให้ครบถ้วน";
+                      }
                       return null;
                     },
                   ),
@@ -501,6 +522,25 @@ class _MembershipState extends State<Membership> {
   }
 
   Future<DateTime?> pickDate() => showDatePicker(
+        builder: (context, child) {
+          return Theme(
+            data: Theme.of(context).copyWith(
+              colorScheme: ColorScheme.light(
+                primary:
+                    Color.fromARGB(255, 1, 95, 171), // header background color
+                onPrimary:
+                    Color.fromARGB(255, 255, 255, 255), // header text color
+                onSurface: Colors.black, // body text color
+              ),
+              textButtonTheme: TextButtonThemeData(
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.blue, // button text color
+                ),
+              ),
+            ),
+            child: child!,
+          );
+        },
         context: context,
         initialDate: DateTime.now(),
         firstDate: DateTime(1900),
