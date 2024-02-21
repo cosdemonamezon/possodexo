@@ -29,6 +29,7 @@ class DropdownBranch extends StatelessWidget {
             'Select Item',
             style: TextStyle(
               fontSize: 14,
+              fontFamily: 'IBMPlexSansThai',
               color: Theme.of(context).hintColor,
             ),
           ),
@@ -39,6 +40,7 @@ class DropdownBranch extends StatelessWidget {
                       item,
                       style: TextStyle(
                         fontSize: 14,
+                        fontFamily: 'IBMPlexSansThai',
                       ),
                     ),
                   ))

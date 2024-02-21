@@ -22,14 +22,29 @@ class OpenPrintDialog extends StatelessWidget {
       title: Column(
         children: [
           Image.asset('assets/icons/Receipt.png'),
-          Text('เปิดใช้งานการพิมพ์ใบเสร็จ'),
+          Text(
+            'เปิดใช้งานการพิมพ์ใบเสร็จ',
+            style: TextStyle(
+              fontFamily: 'IBMPlexSansThai',
+            ),
+          ),
         ],
       ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text('โปรดตรวจสอบและเตรียมกระดาษพิมพ์ให้เรียบร้อย'),
-          Text('ก่อนการเปิดใช้งานฟังก์ชันการพิมพ์'),
+          Text(
+            'โปรดตรวจสอบและเตรียมกระดาษพิมพ์ให้เรียบร้อย',
+            style: TextStyle(
+              fontFamily: 'IBMPlexSansThai',
+            ),
+          ),
+          Text(
+            'ก่อนการเปิดใช้งานฟังก์ชันการพิมพ์',
+            style: TextStyle(
+              fontFamily: 'IBMPlexSansThai',
+            ),
+          ),
         ],
       ),
       actions: [
@@ -52,9 +67,11 @@ class OpenPrintDialog extends StatelessWidget {
                       child: Text(
                     'ยกเลิก',
                     style: TextStyle(
-                        color: kButtonColor,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold),
+                      color: kButtonColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'IBMPlexSansThai',
+                    ),
                   )),
                 ),
               ),

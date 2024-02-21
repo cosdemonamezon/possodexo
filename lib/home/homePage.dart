@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:possodexo/constants.dart';
 import 'package:possodexo/home/widgets/ClosePrintDialog.dart';
@@ -36,6 +38,7 @@ class _HomePageState extends State<HomePage> {
   bool open = true;
   bool print = false;
   bool openShift = false;
+  int qty = 0;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -141,7 +144,12 @@ class _HomePageState extends State<HomePage> {
                                     child: Row(
                                       children: [
                                         Icon(Icons.sticky_note_2),
-                                        Text('พิมพ์ใบกำกับภาษี'),
+                                        Text(
+                                          'พิมพ์ใบกำกับภาษี',
+                                          style: TextStyle(
+                                            fontFamily: 'IBMPlexSansThai',
+                                          ),
+                                        ),
                                       ],
                                     ),
                                     onTap: () {},
@@ -150,7 +158,12 @@ class _HomePageState extends State<HomePage> {
                                     child: Row(
                                       children: [
                                         Icon(Icons.receipt),
-                                        Text('พิมพ์ใบเสร็จย้อนหลัง'),
+                                        Text(
+                                          'พิมพ์ใบเสร็จย้อนหลัง',
+                                          style: TextStyle(
+                                            fontFamily: 'IBMPlexSansThai',
+                                          ),
+                                        ),
                                       ],
                                     ),
                                     onTap: () {},
@@ -201,6 +214,7 @@ class _HomePageState extends State<HomePage> {
                                     '1 - POS01',
                                     style: TextStyle(
                                         color: kButtonColor,
+                                        fontFamily: 'IBMPlexSansThai',
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold),
                                   )),
@@ -233,6 +247,7 @@ class _HomePageState extends State<HomePage> {
                                           'เพิ่ม',
                                           style: TextStyle(
                                               color: kButtonColor,
+                                              fontFamily: 'IBMPlexSansThai',
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold),
                                         ),
@@ -255,7 +270,12 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 Row(
                                   children: [
-                                    Text('data'),
+                                    Text(
+                                      'data',
+                                      style: TextStyle(
+                                        fontFamily: 'IBMPlexSansThai',
+                                      ),
+                                    ),
                                     Icon(Icons.arrow_downward),
                                   ],
                                 ),
@@ -270,7 +290,9 @@ class _HomePageState extends State<HomePage> {
                             height: size.height * 0.58,
                             child: SingleChildScrollView(
                               child: SizedBox(
-                                child: GridCoffee(),
+                                child: GridCoffee(
+                                  qty: qty,
+                                ),
                               ),
                             ),
                           ),
@@ -306,7 +328,11 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         'รายการชำระ',
-                        style: TextStyle(color: Colors.white, fontSize: 23),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 23,
+                          fontFamily: 'IBMPlexSansThai',
+                        ),
                       ),
                     ),
                     Container(
@@ -340,6 +366,7 @@ class _HomePageState extends State<HomePage> {
                                       "ทั่วไป",
                                       style: TextStyle(
                                         fontSize: 16,
+                                        fontFamily: 'IBMPlexSansThai',
                                         color: selectedIndex == 0
                                             ? Color.fromARGB(255, 255, 255, 255)
                                             : Colors.black,
@@ -368,6 +395,7 @@ class _HomePageState extends State<HomePage> {
                                       "สมาชิก",
                                       style: TextStyle(
                                           fontSize: 16,
+                                          fontFamily: 'IBMPlexSansThai',
                                           color: selectedIndex == 1
                                               ? Color.fromARGB(
                                                   255, 255, 255, 255)
@@ -423,6 +451,7 @@ class _HomePageState extends State<HomePage> {
                                               'สัญชาติ',
                                               style: TextStyle(
                                                 fontSize: 12,
+                                                fontFamily: 'IBMPlexSansThai',
                                               ),
                                             ),
                                           ),
@@ -496,6 +525,7 @@ class _HomePageState extends State<HomePage> {
                                               'เพศ',
                                               style: TextStyle(
                                                 fontSize: 12,
+                                                fontFamily: 'IBMPlexSansThai',
                                               ),
                                             ),
                                           ),
@@ -546,6 +576,21 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ],
                         ),
+
+                        /// โช สินค้า
+                        // GestureDetector(
+                        //   onTap: () async {
+                        //     final listItem2 = await showDialog(
+                        //         context: context,
+                        //         builder: (context) {
+                        //           return GridCoffee();
+                        //         });
+
+                        //     if (listItem2 != null) {
+                        //       setState(() {});
+                        //     }
+                        //   },
+                        // )
                       ],
                     ),
                   ),
@@ -568,16 +613,55 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [Text("จำนวนสินค้า"), Text("0")],
+                            children: [
+                              Text(
+                                "จำนวนสินค้า",
+                                style: TextStyle(
+                                  fontFamily: 'IBMPlexSansThai',
+                                ),
+                              ),
+                              Text(
+                                "0",
+                                style: TextStyle(
+                                  fontFamily: 'IBMPlexSansThai',
+                                ),
+                              )
+                            ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [Text("รวม"), Text("0.00 ฿")],
+                            children: [
+                              Text(
+                                "รวม",
+                                style: TextStyle(
+                                  fontFamily: 'IBMPlexSansThai',
+                                ),
+                              ),
+                              Text(
+                                "0.00 ฿",
+                                style: TextStyle(
+                                  fontFamily: 'IBMPlexSansThai',
+                                ),
+                              )
+                            ],
                           ),
                           Divider(),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [Text("ชำระทั้งหมด"), Text("0.00 ฿")],
+                            children: [
+                              Text(
+                                "ชำระทั้งหมด",
+                                style: TextStyle(
+                                  fontFamily: 'IBMPlexSansThai',
+                                ),
+                              ),
+                              Text(
+                                "0.00 ฿",
+                                style: TextStyle(
+                                  fontFamily: 'IBMPlexSansThai',
+                                ),
+                              )
+                            ],
                           ),
                           SizedBox(
                             height: size.height * 0.01,
@@ -596,7 +680,12 @@ class _HomePageState extends State<HomePage> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text("ดูโปรโมชั่น"),
+                                      Text(
+                                        "ดูโปรโมชั่น",
+                                        style: TextStyle(
+                                          fontFamily: 'IBMPlexSansThai',
+                                        ),
+                                      ),
                                       SizedBox(
                                         width: 5,
                                       ),
@@ -619,7 +708,12 @@ class _HomePageState extends State<HomePage> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text("สมัครสมาชิก"),
+                                      Text(
+                                        "สมัครสมาชิก",
+                                        style: TextStyle(
+                                          fontFamily: 'IBMPlexSansThai',
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -649,6 +743,7 @@ class _HomePageState extends State<HomePage> {
                                         'ชำระเงิน 0.00',
                                         style: TextStyle(
                                           fontSize: 12,
+                                          fontFamily: 'IBMPlexSansThai',
                                         ),
                                       ),
                                     ),

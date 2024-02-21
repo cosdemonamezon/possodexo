@@ -32,8 +32,20 @@ class OpenAndCloseSwitch extends StatelessWidget {
               ),
             ),
             open == true
-                ? Expanded(child: Text(showTextOpen))
-                : Expanded(child: Text(showTextClose))
+                ? Expanded(
+                    child: Text(
+                    showTextOpen,
+                    style: TextStyle(
+                      fontFamily: 'IBMPlexSansThai',
+                    ),
+                  ))
+                : Expanded(
+                    child: Text(
+                    showTextClose,
+                    style: TextStyle(
+                      fontFamily: 'IBMPlexSansThai',
+                    ),
+                  ))
           ],
         ));
   }

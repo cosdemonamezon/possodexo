@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:possodexo/home/widgets/Promotion.dart';
 
-class GridCoffee extends StatefulWidget {
-  const GridCoffee({super.key});
+import 'OpenDialogProduct.dart';
 
+class GridCoffee extends StatefulWidget {
+  GridCoffee({super.key, required this.qty});
+
+  int qty = 0;
   @override
   State<GridCoffee> createState() => _GridCoffeeState();
 }
 
 class _GridCoffeeState extends State<GridCoffee> {
+  int qty = 0;
   final List<Map<String, dynamic>> gridCoffee = [
     {
       'image': 'assets/images/coffee2.png',
@@ -83,16 +87,34 @@ class _GridCoffeeState extends State<GridCoffee> {
     return Padding(
       padding: const EdgeInsets.all(25.0),
       child: GridView.builder(
-          shrinkWrap: true,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-            crossAxisSpacing: 10,
-            mainAxisExtent: 180,
-            mainAxisSpacing: 10,
-          ),
-          itemCount: gridCoffee.length,
-          itemBuilder: (_, index) {
-            return Column(
+        shrinkWrap: true,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4,
+          crossAxisSpacing: 10,
+          mainAxisExtent: 180,
+          mainAxisSpacing: 10,
+        ),
+        itemCount: gridCoffee.length,
+        itemBuilder: (_, index) {
+          return InkWell(
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) => OpenDialogProduct(
+                  gridCoffee: gridCoffee[index],
+                  pressaccept: () {
+                    Navigator.pop(context, true);
+                  },
+                  presscancel: () {
+                    Navigator.pop(context, false);
+                  },
+                  pressclose: () {
+                    Navigator.pop(context, false);
+                  },
+                ),
+              );
+            },
+            child: Column(
               children: [
                 Expanded(
                   child: Stack(
@@ -112,6 +134,9 @@ class _GridCoffeeState extends State<GridCoffee> {
                               borderRadius: BorderRadius.circular(4)),
                           child: Text(
                             gridCoffee[index]['price'],
+                            style: TextStyle(
+                              fontFamily: 'IBMPlexSansThai',
+                            ),
                           ),
                         ),
                       ),
@@ -127,18 +152,23 @@ class _GridCoffeeState extends State<GridCoffee> {
                               child: Center(
                                   child: Text(
                                 gridCoffee[index]['name'],
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'IBMPlexSansThai',
+                                ),
                               )),
                             ),
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
               ],
-            );
-          }),
+            ),
+          );
+        },
+      ),
     );
   }
 }

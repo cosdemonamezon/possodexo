@@ -37,7 +37,7 @@ class _GridProMotionState extends State<GridProMotion> {
     return Container(
       decoration: BoxDecoration(color: Color(0xFF37474F)),
       child: Padding(
-        padding: EdgeInsets.all(10.0),
+        padding: EdgeInsets.only(left: 8, right: 8, top: 10, bottom: 5),
         child: GridView.builder(
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -73,15 +73,26 @@ class _GridProMotionState extends State<GridProMotion> {
                       children: [
                         Text(
                           GridProMotion[index]['Tiltle'],
-                          style: TextStyle(fontSize: 14),
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontFamily: 'IBMPlexSansThai',
+                              fontWeight: FontWeight.bold),
                         ),
                         Text(
                           GridProMotion[index]['Order1'],
-                          style: TextStyle(fontSize: 10, color: ktextColr),
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: ktextColr,
+                            fontFamily: 'IBMPlexSansThai',
+                          ),
                         ),
                         Text(
                           GridProMotion[index]['Order2'],
-                          style: TextStyle(fontSize: 10, color: ktextColr),
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: ktextColr,
+                            fontFamily: 'IBMPlexSansThai',
+                          ),
                         ),
                       ],
                     ),

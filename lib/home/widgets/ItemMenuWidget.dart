@@ -39,7 +39,11 @@ class ItemMenuWidget extends StatelessWidget {
                   SizedBox(height: 5),
                   Text(
                     title,
-                    style: TextStyle(color: Colors.white, fontSize: 10),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                      fontFamily: 'IBMPlexSansThai',
+                    ),
                   ),
                 ],
               ),

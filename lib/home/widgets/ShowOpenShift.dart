@@ -21,8 +21,18 @@ class ShowOpenShift extends StatelessWidget {
             scale: 4,
           ),
         ),
-        Text('Shift is closed'),
-        Text('เปิดกะงานเพื่อทำการขาย'),
+        Text(
+          'Shift is closed',
+          style: TextStyle(
+            fontFamily: 'IBMPlexSansThai',
+          ),
+        ),
+        Text(
+          'เปิดกะงานเพื่อทำการขาย',
+          style: TextStyle(
+            fontFamily: 'IBMPlexSansThai',
+          ),
+        ),
         SizedBox(
           height: size.height * 0.02,
         ),
@@ -43,6 +53,7 @@ class ShowOpenShift extends StatelessWidget {
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
+                    fontFamily: 'IBMPlexSansThai',
                     fontWeight: FontWeight.bold),
               )),
             ),

@@ -117,7 +117,11 @@ class _FirstPageState extends State<FirstPage> {
                       children: [
                         Text(
                           'ออกจากระบบ',
-                          style: TextStyle(color: Colors.white, fontSize: 12),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontFamily: 'IBMPlexSansThai',
+                          ),
                         ),
                       ],
                     ),
