@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class InputTextFormField extends StatelessWidget {
-  const InputTextFormField({
+class InputAnnotationTextFormField extends StatelessWidget {
+  const InputAnnotationTextFormField({
     super.key,
     required this.size,
   });
@@ -16,9 +16,9 @@ class InputTextFormField extends StatelessWidget {
         child: TextFormField(
           style: TextStyle(fontSize: 22),
           decoration: InputDecoration(
-            hintText: 'รหัสพนักงาน',
+            contentPadding: EdgeInsets.only(left: 10),
+            hintText: 'หมายเหตุ',
             hintStyle: TextStyle(fontSize: 22),
-            prefixIcon: Icon(Icons.person),
           ),
         ));
   }

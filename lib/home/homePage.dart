@@ -138,11 +138,15 @@ class _HomePageState extends State<HomePage> {
                             height: size.height * 0.06,
                             width: size.width * 0.04,
                             child: Container(
-                              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8), border: Border.all(color: Color(0xFF1264E3))),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(color: Color(0xFF1264E3))),
                               child: PopupMenuButton(
                                 color: Colors.white,
                                 surfaceTintColor: Colors.white,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.zero),
                                 icon: Icon(Icons.more_horiz),
                                 itemBuilder: (ctx) => [
                                   PopupMenuItem(
@@ -208,14 +212,20 @@ class _HomePageState extends State<HomePage> {
                               Card(
                                 surfaceTintColor: Colors.white,
                                 elevation: 2,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0), side: BorderSide(color: kButtonColor)),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    side: BorderSide(color: kButtonColor)),
                                 child: SizedBox(
                                   width: size.width * 0.1,
                                   height: size.height * 0.06,
                                   child: Center(
                                       child: Text(
                                     '1 - POS01',
-                                    style: TextStyle(color: kButtonColor, fontFamily: 'IBMPlexSansThai', fontSize: 16, fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                        color: kButtonColor,
+                                        fontFamily: 'IBMPlexSansThai',
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
                                   )),
                                 ),
                               ),
@@ -224,13 +234,16 @@ class _HomePageState extends State<HomePage> {
                                 child: Card(
                                   surfaceTintColor: Colors.white,
                                   elevation: 5,
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0), side: BorderSide(color: kButtonColor)),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      side: BorderSide(color: kButtonColor)),
                                   color: Colors.white,
                                   child: SizedBox(
                                     width: size.width * 0.07,
                                     height: size.height * 0.06,
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Image.asset(
                                           'assets/icons/add.png',
@@ -241,7 +254,11 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         Text(
                                           'เพิ่ม',
-                                          style: TextStyle(color: kButtonColor, fontFamily: 'IBMPlexSansThai', fontSize: 16, fontWeight: FontWeight.bold),
+                                          style: TextStyle(
+                                              color: kButtonColor,
+                                              fontFamily: 'IBMPlexSansThai',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold),
                                         ),
                                       ],
                                     ),
@@ -263,19 +280,23 @@ class _HomePageState extends State<HomePage> {
                                   width: 20,
                                 ),
                                 DropdownButton<String>(
+                                  focusColor: Colors.white,
+                                  dropdownColor: Colors.white,
+                                  style: TextStyle(color: Colors.white),
                                   icon: Icon(
                                     Icons.arrow_drop_down,
                                     color: Colors.white,
                                   ),
                                   underline: SizedBox(),
                                   items: product
-                                      .map((String item) => DropdownMenuItem<String>(
+                                      .map((String item) =>
+                                          DropdownMenuItem<String>(
                                             value: item,
                                             child: Text(
                                               item,
                                               style: TextStyle(
                                                 fontFamily: 'IBMPlexSansThai',
-                                                color: sclectedProduct == item ? Colors.white : Colors.black,
+                                                color: Colors.black,
                                               ),
                                             ),
                                           ))
@@ -286,21 +307,6 @@ class _HomePageState extends State<HomePage> {
                                       sclectedProduct = v!;
                                     });
                                   },
-                                ),
-                                Container(
-                                  width: size.width * 0.2,
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        'สินค้าท้งหมด',
-                                        style: TextStyle(fontFamily: 'IBMPlexSansThai', color: Colors.white),
-                                      ),
-                                      Icon(
-                                        Icons.arrow_drop_down,
-                                        color: Colors.white,
-                                      ),
-                                    ],
-                                  ),
                                 ),
                                 Row(),
                               ],
@@ -375,7 +381,9 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       width: size.width * 0.11,
                       height: size.height * 0.06,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Colors.white),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.white),
                       child: Padding(
                         padding: const EdgeInsets.all(2.0),
                         child: Row(
@@ -390,7 +398,9 @@ class _HomePageState extends State<HomePage> {
                                 height: size.height * 0.05,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
-                                  color: selectedIndex == 0 ? Colors.blue : Color.fromARGB(255, 255, 255, 255),
+                                  color: selectedIndex == 0
+                                      ? Colors.blue
+                                      : Color.fromARGB(255, 255, 255, 255),
                                 ),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -400,7 +410,9 @@ class _HomePageState extends State<HomePage> {
                                       style: TextStyle(
                                         fontSize: 16,
                                         fontFamily: 'IBMPlexSansThai',
-                                        color: selectedIndex == 0 ? Color.fromARGB(255, 255, 255, 255) : Colors.black,
+                                        color: selectedIndex == 0
+                                            ? Color.fromARGB(255, 255, 255, 255)
+                                            : Colors.black,
                                       ),
                                     ),
                                   ],
@@ -414,13 +426,23 @@ class _HomePageState extends State<HomePage> {
                               child: Container(
                                 width: size.width * 0.05,
                                 height: size.height * 0.05,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: selectedIndex == 1 ? Colors.blue : Color.fromARGB(255, 255, 255, 255)),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: selectedIndex == 1
+                                        ? Colors.blue
+                                        : Color.fromARGB(255, 255, 255, 255)),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
                                       "สมาชิก",
-                                      style: TextStyle(fontSize: 16, fontFamily: 'IBMPlexSansThai', color: selectedIndex == 1 ? Color.fromARGB(255, 255, 255, 255) : Colors.black),
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: 'IBMPlexSansThai',
+                                          color: selectedIndex == 1
+                                              ? Color.fromARGB(
+                                                  255, 255, 255, 255)
+                                              : Colors.black),
                                     ),
                                   ],
                                 ),
@@ -453,14 +475,21 @@ class _HomePageState extends State<HomePage> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
-                                    decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
+                                    decoration: BoxDecoration(
+                                        border: Border(
+                                            bottom:
+                                                BorderSide(color: Colors.grey)),
+                                        borderRadius: BorderRadius.circular(2),
+                                        color: Color(0xFFFFFAFAFA)),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Opacity(
                                           opacity: 0.09,
                                           child: Padding(
-                                            padding: const EdgeInsets.only(left: 5, top: 3),
+                                            padding: const EdgeInsets.only(
+                                                left: 5, top: 3),
                                             child: Text(
                                               'สัญชาติ',
                                               style: TextStyle(
@@ -474,15 +503,23 @@ class _HomePageState extends State<HomePage> {
                                           child: DropdownButton<String>(
                                             isExpanded: true,
                                             items: nationality
-                                                .map((String item) => DropdownMenuItem<String>(
+                                                .map((String item) =>
+                                                    DropdownMenuItem<String>(
                                                       value: item,
                                                       child: Padding(
-                                                        padding: const EdgeInsets.symmetric(horizontal: 1.0),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                                horizontal:
+                                                                    1.0),
                                                         child: Padding(
-                                                          padding: const EdgeInsets.all(8.0),
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
                                                           child: Text(
                                                             item,
-                                                            style: const TextStyle(
+                                                            style:
+                                                                const TextStyle(
                                                               fontSize: 16,
                                                             ),
                                                           ),
@@ -512,14 +549,21 @@ class _HomePageState extends State<HomePage> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
-                                    decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
+                                    decoration: BoxDecoration(
+                                        border: Border(
+                                            bottom:
+                                                BorderSide(color: Colors.grey)),
+                                        borderRadius: BorderRadius.circular(2),
+                                        color: Color(0xFFFFFAFAFA)),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Opacity(
                                           opacity: 0.09,
                                           child: Padding(
-                                            padding: const EdgeInsets.only(left: 5, top: 3),
+                                            padding: const EdgeInsets.only(
+                                                left: 5, top: 3),
                                             child: Text(
                                               'เพศ',
                                               style: TextStyle(
@@ -533,15 +577,23 @@ class _HomePageState extends State<HomePage> {
                                           child: DropdownButton<String>(
                                             isExpanded: true,
                                             items: general
-                                                .map((String item) => DropdownMenuItem<String>(
+                                                .map((String item) =>
+                                                    DropdownMenuItem<String>(
                                                       value: item,
                                                       child: Padding(
-                                                        padding: const EdgeInsets.symmetric(horizontal: 1.0),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                                horizontal:
+                                                                    1.0),
                                                         child: Padding(
-                                                          padding: const EdgeInsets.all(8.0),
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
                                                           child: Text(
                                                             item,
-                                                            style: const TextStyle(
+                                                            style:
+                                                                const TextStyle(
                                                               fontSize: 16,
                                                             ),
                                                           ),
@@ -662,17 +714,22 @@ class _HomePageState extends State<HomePage> {
                             children: [
                               InkWell(
                                 onTap: () async {
-                                  final statusD = await showDialog(context: context, builder: (context) => TablePromotion());
+                                  final statusD = await showDialog(
+                                      context: context,
+                                      builder: (context) => TablePromotion());
                                   if (statusD == true) {}
                                 },
                                 child: Container(
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), border: Border.all(color: Colors.black)),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      border: Border.all(color: Colors.black)),
                                   height: size.height * 0.05,
                                   width: size.width * 0.1,
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Text(
                                           "ดูโปรโมชั่น",
@@ -704,13 +761,16 @@ class _HomePageState extends State<HomePage> {
                                   if (statusD == true) {}
                                 },
                                 child: Container(
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), border: Border.all(color: Colors.black)),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      border: Border.all(color: Colors.black)),
                                   height: size.height * 0.05,
                                   width: size.width * 0.1,
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Text("สมัครสมาชิก"),
                                       ],
@@ -724,7 +784,9 @@ class _HomePageState extends State<HomePage> {
                             height: 6,
                           ),
                           Container(
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Color.fromARGB(110, 185, 185, 185)),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: Color.fromARGB(110, 185, 185, 185)),
                             height: size.height * 0.05,
                             width: size.width * 0.21,
                             child: Padding(
@@ -735,7 +797,8 @@ class _HomePageState extends State<HomePage> {
                                   Opacity(
                                     opacity: 0.8,
                                     child: Padding(
-                                      padding: const EdgeInsets.only(left: 5, top: 3),
+                                      padding: const EdgeInsets.only(
+                                          left: 5, top: 3),
                                       child: Text(
                                         'ชำระเงิน 0.00',
                                         style: TextStyle(

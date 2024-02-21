@@ -18,6 +18,7 @@ class _GridCoffeeState extends State<GridCoffee> {
       'image': 'assets/images/coffee2.png',
       'price': '฿ 165.00',
       'name': 'Matcha Latte',
+      'type': 'drink'
     },
     {
       'image': 'assets/images/coffee3.png',

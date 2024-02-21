@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:possodexo/constants.dart';
+import 'package:possodexo/login/widgets/InputAnnotationTextFormField.dart';
+import 'package:possodexo/login/widgets/InputChangeTextFormField.dart';
 import 'package:possodexo/login/widgets/InputTextFormField.dart';
+
+import '../../login/widgets/InputCounterDropDownFormField.dart';
 
 class OpenSalesShift extends StatelessWidget {
   const OpenSalesShift({
@@ -17,7 +21,10 @@ class OpenSalesShift extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(2))),
+      surfaceTintColor: Colors.white,
+      backgroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(2))),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -32,43 +39,65 @@ class OpenSalesShift extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('พนักงาน', style: TextStyle(fontSize: 16),),
+              Text(
+                'พนักงาน',
+                style: TextStyle(fontSize: 16),
+              ),
               InputTextFormField(size: size),
             ],
           ),
-          SizedBox(height: size.height * 0.01,),
+          SizedBox(
+            height: size.height * 0.01,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('เคาเตอร์', style: TextStyle(fontSize: 16),),
-              InputTextFormField(size: size),
+              Text(
+                'เคาเตอร์',
+                style: TextStyle(fontSize: 16),
+              ),
+              InputCounterDropDownFormField(size: size),
             ],
           ),
-          SizedBox(height: size.height * 0.01,),
+          SizedBox(
+            height: size.height * 0.01,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('เงินทอนเริ่มต้น (เงินสดยกมา)', style: TextStyle(fontSize: 16),),
-              InputTextFormField(size: size),
+              Text(
+                'เงินทอนเริ่มต้น (เงินสดยกมา)',
+                style: TextStyle(fontSize: 16),
+              ),
+              InputChangeTextFormField(size: size),
             ],
           ),
-          SizedBox(height: size.height * 0.01,),
+          SizedBox(
+            height: size.height * 0.01,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('ยอดนับเงินสด (Cash Drawer)', style: TextStyle(fontSize: 16),),
-              InputTextFormField(size: size),
+              Text(
+                'ยอดนับเงินสด (Cash Drawer)',
+                style: TextStyle(fontSize: 16),
+              ),
+              InputChangeTextFormField(size: size),
             ],
           ),
-          SizedBox(height: size.height * 0.01,),
+          SizedBox(
+            height: size.height * 0.01,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('หมายเหตุ', style: TextStyle(fontSize: 16),),
-              InputTextFormField(size: size),
+              Text(
+                'หมายเหตุ',
+                style: TextStyle(fontSize: 16),
+              ),
+              InputAnnotationTextFormField(size: size),
             ],
           ),
-          
         ],
       ),
       actions: [
@@ -78,20 +107,30 @@ class OpenSalesShift extends StatelessWidget {
             GestureDetector(
               onTap: pressCancel,
               child: Card(
+                surfaceTintColor: Colors.white,
+                color: Colors.white,
                 //color: Colors.blue,
                 elevation: 5,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0), side: BorderSide(color: kButtonColor)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    side: BorderSide(color: kButtonColor)),
 
                 child: Container(
-                  width: size.width * 0.18,
+                  width: size.width * 0.12,
                   height: size.height * 0.06,
                   child: Center(
                       child: Text(
                     'ยกเลิก',
-                    style: TextStyle(color: kButtonColor, fontSize: 16, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: kButtonColor,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
                   )),
                 ),
               ),
+            ),
+            SizedBox(
+              width: 10,
             ),
             GestureDetector(
               onTap: pressOk,
@@ -102,12 +141,15 @@ class OpenSalesShift extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5.0),
                 ),
                 child: Container(
-                  width: size.width * 0.18,
+                  width: size.width * 0.12,
                   height: size.height * 0.06,
                   child: Center(
                       child: Text(
                     'ยืนยัน',
-                    style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
                   )),
                 ),
               ),
