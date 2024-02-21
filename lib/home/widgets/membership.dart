@@ -436,11 +436,11 @@ class _MembershipState extends State<Membership> {
                       onEnter: (event) => setState(() => _hover = true),
                       onExit: (event) => setState(() => _hover = false),
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Policypage()));
+                        ..onTap = () async {
+                          final statusD = await showDialog(
+                              context: context,
+                              builder: (context) => Policypage());
+                          if (statusD == true) {}
                         },
                     ),
                     TextSpan(
@@ -524,19 +524,17 @@ class _MembershipState extends State<Membership> {
   Future<DateTime?> pickDate() => showDatePicker(
         builder: (context, child) {
           return Theme(
-            data: Theme.of(context).copyWith(
-              colorScheme: ColorScheme.light(
-                primary:
-                    Color.fromARGB(255, 1, 95, 171), // header background color
-                onPrimary:
-                    Color.fromARGB(255, 255, 255, 255), // header text color
-                onSurface: Colors.black, // body text color
-              ),
-              textButtonTheme: TextButtonThemeData(
-                style: TextButton.styleFrom(
-                  foregroundColor: Colors.blue, // button text color
+            data: ThemeData.light().copyWith(
+              datePickerTheme: DatePickerThemeData(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.zero,
                 ),
               ),
+              inputDecorationTheme: InputDecorationTheme(
+                  border: OutlineInputBorder(borderRadius: BorderRadius.zero)),
+              primaryColor: const Color(0xFF8CE7F1),
+              colorScheme: ColorScheme.light(primary: const Color(0xFF8CE7F1)),
+              buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
             ),
             child: child!,
           );

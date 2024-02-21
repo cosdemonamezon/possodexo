@@ -13,11 +13,12 @@ class _PolicypageState extends State<Policypage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Container(
-      width: size.width * 0.02,
-      height: size.height * 0.1,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8), color: Colors.white),
+    return AlertDialog(
+      surfaceTintColor: Colors.white,
+      backgroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(2))),
+      title: Text("desofo"),
     );
   }
 }
