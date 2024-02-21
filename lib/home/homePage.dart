@@ -258,8 +258,10 @@ class _HomePageState extends State<HomePage> {
                             width: double.infinity,
                             color: kTabColor,
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
+                                SizedBox(
+                                  width: 20,
+                                ),
                                 DropdownButton<String>(
                                   icon: Icon(
                                     Icons.arrow_drop_down,
