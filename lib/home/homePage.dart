@@ -7,6 +7,7 @@ import 'package:possodexo/home/widgets/DropdownBranch.dart';
 import 'package:possodexo/home/widgets/OpenAndCloseSwitch.dart';
 import 'package:possodexo/home/widgets/OpenPrintDialog.dart';
 import 'package:possodexo/home/widgets/ShowOpenShift.dart';
+import 'package:possodexo/home/widgets/membership.dart';
 import 'widgets/GridProduct.dart';
 import 'widgets/Promotion.dart';
 
@@ -708,12 +709,7 @@ class _HomePageState extends State<HomePage> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text(
-                                        "สมัครสมาชิก",
-                                        style: TextStyle(
-                                          fontFamily: 'IBMPlexSansThai',
-                                        ),
-                                      ),
+                                      Text("สมัครสมาชิก"),
                                     ],
                                   ),
                                 ),
