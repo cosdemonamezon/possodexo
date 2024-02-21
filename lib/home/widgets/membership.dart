@@ -1,7 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:possodexo/constants.dart';
 import 'package:possodexo/extension/dateExtension.dart';
 import 'package:possodexo/home/widgets/ClosePrintDialog.dart';
+import 'package:possodexo/home/widgets/PolicyPage.dart';
 
 class Membership extends StatefulWidget {
   const Membership({super.key, l});
@@ -404,14 +406,22 @@ class _MembershipState extends State<Membership> {
                       fontFamily: "DB Heavent"),
                   children: [
                     TextSpan(
-                        text: 'นโยบายความเป็นส่วนตัว',
-                        style: TextStyle(
-                          decoration: _hover ? TextDecoration.underline : null,
-                          color: Colors.blue, // เปลี่ยนสี
-                        ),
-                        mouseCursor: SystemMouseCursors.alias,
-                        onEnter: (event) => setState(() => _hover = true),
-                        onExit: (event) => setState(() => _hover = false)),
+                      text: 'นโยบายความเป็นส่วนตัว',
+                      style: TextStyle(
+                        decoration: _hover ? TextDecoration.underline : null,
+                        color: Colors.blue, // เปลี่ยนสี
+                      ),
+                      mouseCursor: SystemMouseCursors.click,
+                      onEnter: (event) => setState(() => _hover = true),
+                      onExit: (event) => setState(() => _hover = false),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Policypage()));
+                        },
+                    ),
                     TextSpan(
                       text: 'และ',
                       style: TextStyle(

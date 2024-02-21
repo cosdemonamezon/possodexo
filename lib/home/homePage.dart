@@ -698,19 +698,28 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                               ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(color: Colors.black)),
-                                height: size.height * 0.05,
-                                width: size.width * 0.1,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text("สมัครสมาชิก"),
-                                    ],
+                              InkWell(
+                                onTap: () async {
+                                  final statusD = await showDialog(
+                                      context: context,
+                                      builder: (context) => Membership());
+                                  if (statusD == true) {}
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      border: Border.all(color: Colors.black)),
+                                  height: size.height * 0.05,
+                                  width: size.width * 0.1,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text("สมัครสมาชิก"),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
