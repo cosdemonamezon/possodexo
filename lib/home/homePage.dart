@@ -274,8 +274,10 @@ class _HomePageState extends State<HomePage> {
                             width: double.infinity,
                             color: kTabColor,
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
+                                SizedBox(
+                                  width: 20,
+                                ),
                                 DropdownButton<String>(
                                   icon: Icon(
                                     Icons.arrow_drop_down,
@@ -303,23 +305,6 @@ class _HomePageState extends State<HomePage> {
                                       sclectedProduct = v!;
                                     });
                                   },
-                                ),
-                                Container(
-                                  width: size.width * 0.2,
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        'สินค้าท้งหมด',
-                                        style: TextStyle(
-                                            fontFamily: 'IBMPlexSansThai',
-                                            color: Colors.white),
-                                      ),
-                                      Icon(
-                                        Icons.arrow_drop_down,
-                                        color: Colors.white,
-                                      ),
-                                    ],
-                                  ),
                                 ),
                                 Row(),
                               ],
