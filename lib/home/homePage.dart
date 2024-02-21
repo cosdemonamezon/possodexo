@@ -35,6 +35,12 @@ class _HomePageState extends State<HomePage> {
     setState(() {});
   }
 
+  List<String> product = ["ทั้งหมด", "เครื่องดื่ม", "ของหวาน"];
+  String sclectedProduct = "ทั้งหมด";
+  void onTapProduct(int index) {
+    setState(() {});
+  }
+
   String sizeValue = 'สาขาพระราม 6';
   String printValue = 'พิมพ์ใบกำกับภาษี';
   bool open = true;
@@ -270,16 +276,50 @@ class _HomePageState extends State<HomePage> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      'data',
-                                      style: TextStyle(
-                                        fontFamily: 'IBMPlexSansThai',
+                                DropdownButton<String>(
+                                  icon: Icon(
+                                    Icons.arrow_drop_down,
+                                    color: Colors.white,
+                                  ),
+                                  underline: SizedBox(),
+                                  items: product
+                                      .map((String item) =>
+                                          DropdownMenuItem<String>(
+                                            value: item,
+                                            child: Text(
+                                              item,
+                                              style: TextStyle(
+                                                fontFamily: 'IBMPlexSansThai',
+                                                color: sclectedProduct == item
+                                                    ? Colors.white
+                                                    : Colors.black,
+                                              ),
+                                            ),
+                                          ))
+                                      .toList(),
+                                  value: sclectedProduct,
+                                  onChanged: (v) {
+                                    setState(() {
+                                      sclectedProduct = v!;
+                                    });
+                                  },
+                                ),
+                                Container(
+                                  width: size.width * 0.2,
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        'สินค้าท้งหมด',
+                                        style: TextStyle(
+                                            fontFamily: 'IBMPlexSansThai',
+                                            color: Colors.white),
                                       ),
-                                    ),
-                                    Icon(Icons.arrow_downward),
-                                  ],
+                                      Icon(
+                                        Icons.arrow_drop_down,
+                                        color: Colors.white,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 Row(),
                               ],

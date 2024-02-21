@@ -21,7 +21,7 @@ class ItemMenuWidget extends StatelessWidget {
         child: MouseRegion(
             cursor: SystemMouseCursors.click,
             child: AnimatedContainer(
-              padding: EdgeInsets.symmetric(vertical: 12),
+              padding: EdgeInsets.symmetric(vertical: 16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 color: pageActive == menu ? Colors.blueAccent : Colors.grey,
