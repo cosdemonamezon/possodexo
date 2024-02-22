@@ -797,182 +797,194 @@ class _HomePageState extends State<HomePage> {
                     height: size.height * 0.01,
                     width: size.width * 1,
                   ),
-                  Container(
-                    color: Colors.white,
-                    height: size.height * 0.29,
-                    width: size.width * 1,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: size.height * 0.04,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Column(
+                    children: [
+                      Container(
+                        color: Colors.white,
+                        height: size.height * 0.29,
+                        width: size.width * 1,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
                             children: [
-                              Text(
-                                "จำนวนสินค้า",
-                                style: TextStyle(
-                                  fontFamily: 'IBMPlexSansThai',
-                                ),
+                              SizedBox(
+                                height: size.height * 0.01,
                               ),
-                              Text(
-                                "0",
-                                style: TextStyle(
-                                  fontFamily: 'IBMPlexSansThai',
-                                ),
-                              )
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "รวม",
-                                style: TextStyle(
-                                  fontFamily: 'IBMPlexSansThai',
-                                ),
-                              ),
-                              Text(
-                                "0.00 ฿",
-                                style: TextStyle(
-                                  fontFamily: 'IBMPlexSansThai',
-                                ),
-                              )
-                            ],
-                          ),
-                          Divider(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "ชำระทั้งหมด",
-                                style: TextStyle(
-                                  fontFamily: 'IBMPlexSansThai',
-                                ),
-                              ),
-                              Text(
-                                "0.00 ฿",
-                                style: TextStyle(
-                                  fontFamily: 'IBMPlexSansThai',
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: size.height * 0.02,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              InkWell(
-                                onTap: () async {
-                                  final statusD = await showDialog(
-                                      context: context,
-                                      builder: (context) => TablePromotion(
-                                            closeblack: () {
-                                              Navigator.pop(context);
-                                            },
-                                          ));
-                                  if (statusD == true) {}
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      border: Border.all(color: Colors.black)),
-                                  height: size.height * 0.05,
-                                  width: size.width * 0.1,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          "ดูโปรโมชั่น",
-                                          style: TextStyle(
-                                            fontFamily: 'IBMPlexSansThai',
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Image.asset(
-                                          "assets/icons/Subtract.png",
-                                          scale: 15,
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () async {
-                                  final statusD = await showDialog(
-                                      context: context,
-                                      builder: (context) => Membership(
-                                            closeblack: () {
-                                              Navigator.pop(context);
-                                            },
-                                          ));
-                                  if (statusD == true) {}
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      border: Border.all(color: Colors.black)),
-                                  height: size.height * 0.05,
-                                  width: size.width * 0.1,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text("สมัครสมาชิก"),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 6,
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                color: Color.fromARGB(110, 185, 185, 185)),
-                            height: size.height * 0.05,
-                            width: size.width * 0.21,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Opacity(
-                                    opacity: 0.8,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 5, top: 3),
-                                      child: Text(
-                                        'ชำระเงิน 0.00',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          fontFamily: 'IBMPlexSansThai',
+                                  Text(
+                                    "จำนวนสินค้า",
+                                    style: TextStyle(
+                                      fontFamily: 'IBMPlexSansThai',
+                                    ),
+                                  ),
+                                  Text(
+                                    "0",
+                                    style: TextStyle(
+                                      fontFamily: 'IBMPlexSansThai',
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "รวม",
+                                    style: TextStyle(
+                                      fontFamily: 'IBMPlexSansThai',
+                                    ),
+                                  ),
+                                  Text(
+                                    "0.00 ฿",
+                                    style: TextStyle(
+                                      fontFamily: 'IBMPlexSansThai',
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Divider(),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "ชำระทั้งหมด",
+                                    style: TextStyle(
+                                      fontFamily: 'IBMPlexSansThai',
+                                    ),
+                                  ),
+                                  Text(
+                                    "0.00 ฿",
+                                    style: TextStyle(
+                                      fontFamily: 'IBMPlexSansThai',
+                                    ),
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: size.height * 0.02,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  InkWell(
+                                    onTap: () async {
+                                      final statusD = await showDialog(
+                                          context: context,
+                                          builder: (context) => TablePromotion(
+                                                closeblack: () {
+                                                  Navigator.pop(context);
+                                                },
+                                              ));
+                                      if (statusD == true) {}
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          border:
+                                              Border.all(color: Colors.black)),
+                                      height: size.height * 0.05,
+                                      width: size.width * 0.1,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "ดูโปรโมชั่น",
+                                              style: TextStyle(
+                                                fontFamily: 'IBMPlexSansThai',
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                            Image.asset(
+                                              "assets/icons/Subtract.png",
+                                              scale: 15,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () async {
+                                      final statusD = await showDialog(
+                                          context: context,
+                                          builder: (context) => Membership(
+                                                closeblack: () {
+                                                  Navigator.pop(context);
+                                                },
+                                              ));
+                                      if (statusD == true) {}
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          border:
+                                              Border.all(color: Colors.black)),
+                                      height: size.height * 0.05,
+                                      width: size.width * 0.1,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text("สมัครสมาชิก"),
+                                          ],
                                         ),
                                       ),
                                     ),
                                   ),
                                 ],
                               ),
-                            ),
-                          )
-                        ],
+                              SizedBox(
+                                height: 6,
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: Color.fromARGB(110, 185, 185, 185)),
+                                height: size.height * 0.05,
+                                width: size.width * 0.21,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Opacity(
+                                        opacity: 0.8,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 5, top: 3),
+                                          child: Text(
+                                            'ชำระเงิน 0.00',
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              fontFamily: 'IBMPlexSansThai',
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   )
                 ],
               )
