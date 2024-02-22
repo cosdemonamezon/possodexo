@@ -107,7 +107,7 @@ class _FirstPageState extends State<FirstPage> {
                     width: size.width * 0.08,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: Colors.grey,
+                      color: Color.fromARGB(255, 68, 68, 68),
                     ),
                     duration: Duration(milliseconds: 300),
                     curve: Curves.slowMiddle,

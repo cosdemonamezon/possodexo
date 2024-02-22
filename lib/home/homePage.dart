@@ -839,7 +839,7 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           SizedBox(
-                            height: size.height * 0.01,
+                            height: size.height * 0.02,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
