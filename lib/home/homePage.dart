@@ -607,6 +607,7 @@ class _HomePageState extends State<HomePage> {
                     width: size.width * 1,
                     child: Column(
                       children: [
+                        Container(),
                         SizedBox(
                           height: size.height * 0.02,
                         ),
@@ -783,17 +784,15 @@ class _HomePageState extends State<HomePage> {
                             : Column(
                                 children: List.generate(
                                     selectedItem.length,
-                                    (index) => SingleChildScrollView(
-                                          child: Column(
-                                            children: [
-                                              Text(
-                                                gridCoffee[index]['name'],
-                                              ),
-                                              Text(
-                                                gridCoffee[index]['price'],
-                                              ),
-                                            ],
-                                          ),
+                                    (index) => Column(
+                                          children: [
+                                            Text(
+                                              gridCoffee[index]['name'],
+                                            ),
+                                            Text(
+                                              gridCoffee[index]['price'],
+                                            ),
+                                          ],
                                         )),
                               )
                       ],
