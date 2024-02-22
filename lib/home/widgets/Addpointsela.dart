@@ -1,43 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:possodexo/constants.dart';
 import 'package:possodexo/login/widgets/InputAnnotationTextFormField.dart';
-import 'package:possodexo/login/widgets/InputChangeTextFormField.dart';
+import 'package:possodexo/login/widgets/InputCounterDropDownFormField.dart';
 import 'package:possodexo/login/widgets/InputTextFormField.dart';
 
-import '../../login/widgets/InputCounterDropDownFormField.dart';
+import '../../constants.dart';
 
-class OpenSalesShift extends StatelessWidget {
-  const OpenSalesShift({
+class Addpointsela extends StatelessWidget {
+  const Addpointsela({
     super.key,
     required this.size,
     required this.pressOk,
     required this.pressCancel,
     required this.pressClose,
   });
-
   final Size size;
   final VoidCallback pressOk;
   final VoidCallback pressCancel;
   final VoidCallback pressClose;
-
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8))),
       surfaceTintColor: Colors.white,
       backgroundColor: Colors.white,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(2))),
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      title: Column(
         children: [
-          Text('เปิดกะงานขาย'),
-          IconButton(onPressed: pressClose, icon: Icon(Icons.close)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'เพิ่มจุดขาย POS',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontFamily: 'IBMPlexSansThai',
+                ),
+              ),
+              IconButton(onPressed: pressClose, icon: Icon(Icons.close)),
+            ],
+          ),
+          Divider(
+            color: Color(0xFF78909C),
+          )
         ],
       ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Divider(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -51,9 +60,7 @@ class OpenSalesShift extends StatelessWidget {
               InputTextFormField(size: size),
             ],
           ),
-          SizedBox(
-            height: size.height * 0.01,
-          ),
+          SizedBox(height: size.height * 0.023),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -67,41 +74,7 @@ class OpenSalesShift extends StatelessWidget {
               InputCounterDropDownFormField(size: size),
             ],
           ),
-          SizedBox(
-            height: size.height * 0.01,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                width: size.width * 0.2,
-                child: Text(
-                  'เงินทอนเริ่มต้น (เงินสดยกมา)',
-                  style: TextStyle(fontSize: 16),
-                ),
-              ),
-              InputChangeTextFormField(size: size),
-            ],
-          ),
-          SizedBox(
-            height: size.height * 0.01,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                width: size.width * 0.2,
-                child: Text(
-                  'ยอดนับเงินสด (Cash Drawer)',
-                  style: TextStyle(fontSize: 16),
-                ),
-              ),
-              InputChangeTextFormField(size: size),
-            ],
-          ),
-          SizedBox(
-            height: size.height * 0.01,
-          ),
+          SizedBox(height: size.height * 0.023),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

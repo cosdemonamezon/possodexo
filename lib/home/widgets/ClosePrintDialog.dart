@@ -22,14 +22,32 @@ class ClosePrintDialog extends StatelessWidget {
       title: Column(
         children: [
           Image.asset('assets/icons/ReceiptX.png'),
-          Text('ปิดใช้งานการพิมพ์ใบเสร็จ'),
+          Text(
+            'ปิดใช้งานการพิมพ์ใบเสร็จ',
+            style: TextStyle(
+              fontSize: 22,
+              fontFamily: 'IBMPlexSansThai',
+            ),
+          ),
         ],
       ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text('การปิดฟังก์ชันจะทำให้ระบบหยุดการพิมพ์ใบเสร็จ'),
-          Text('สำหรับการชำระเงินของลูกค้า'),
+          Text(
+            'การปิดฟังก์ชันจะทำให้ระบบหยุดการพิมพ์ใบเสร็จ',
+            style: TextStyle(
+              fontSize: 22,
+              fontFamily: 'IBMPlexSansThai',
+            ),
+          ),
+          Text(
+            'สำหรับการชำระเงินของลูกค้า',
+            style: TextStyle(
+              fontSize: 22,
+              fontFamily: 'IBMPlexSansThai',
+            ),
+          ),
         ],
       ),
       actions: [
@@ -53,6 +71,7 @@ class ClosePrintDialog extends StatelessWidget {
                     'ยกเลิก',
                     style: TextStyle(
                         color: kButtonColor,
+                        fontFamily: 'IBMPlexSansThai',
                         fontSize: 16,
                         fontWeight: FontWeight.bold),
                   )),
@@ -74,9 +93,11 @@ class ClosePrintDialog extends StatelessWidget {
                       child: Text(
                     'ยืนยัน',
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold),
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'IBMPlexSansThai',
+                    ),
                   )),
                 ),
               ),

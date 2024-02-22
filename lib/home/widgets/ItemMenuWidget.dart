@@ -14,40 +14,43 @@ class ItemMenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 9),
-      child: GestureDetector(
-        onTap: press,
-        child: MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: AnimatedContainer(
-              padding: EdgeInsets.symmetric(vertical: 16),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: pageActive == menu ? Colors.blueAccent : Colors.grey,
-              ),
-              duration: Duration(milliseconds: 300),
-              curve: Curves.slowMiddle,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    image,
-                    scale: 25,
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10,
-                      fontFamily: 'IBMPlexSansThai',
+    return Container(
+      height: 120,
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 9),
+        child: GestureDetector(
+          onTap: press,
+          child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: AnimatedContainer(
+                padding: EdgeInsets.symmetric(vertical: 16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: pageActive == menu ? Colors.blueAccent : Colors.grey,
+                ),
+                duration: Duration(milliseconds: 300),
+                curve: Curves.slowMiddle,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      image,
+                      scale: 25,
                     ),
-                  ),
-                ],
-              ),
-            )),
+                    SizedBox(height: 5),
+                    Text(
+                      title,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                        fontFamily: 'IBMPlexSansThai',
+                      ),
+                    ),
+                  ],
+                ),
+              )),
+        ),
       ),
     );
   }

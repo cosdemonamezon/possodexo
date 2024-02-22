@@ -10,6 +10,7 @@ import 'package:possodexo/home/widgets/OpenSalesShift.dart';
 import 'package:possodexo/home/widgets/ShowOpenShift.dart';
 import 'package:possodexo/home/widgets/TablePromotion.dart';
 import 'package:possodexo/home/widgets/membership.dart';
+import 'widgets/Addpointsela.dart';
 import 'widgets/GridProduct.dart';
 import 'widgets/Promotion.dart';
 
@@ -324,7 +325,23 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => Addpointsela(
+                                      size: size,
+                                      pressCancel: () {
+                                        Navigator.pop(context, false);
+                                      },
+                                      pressOk: () {
+                                        Navigator.pop(context, true);
+                                      },
+                                      pressClose: () {
+                                        Navigator.pop(context, false);
+                                      },
+                                    ),
+                                  );
+                                },
                                 child: Card(
                                   surfaceTintColor: Colors.white,
                                   elevation: 5,
@@ -456,6 +473,9 @@ class _HomePageState extends State<HomePage> {
                             },
                             pressOk: () {
                               Navigator.pop(context, true);
+                            },
+                            pressClose: () {
+                              Navigator.pop(context, false);
                             },
                           ),
                         );
