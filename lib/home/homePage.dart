@@ -800,7 +800,7 @@ class _HomePageState extends State<HomePage> {
                                                   InkWell(
                                                     onTap: () {
                                                       setState(() {
-                                                        if (qty > 0) {
+                                                        if (qty > 1) {
                                                           qty = qty - 1;
                                                         }
                                                       });
