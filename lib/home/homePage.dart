@@ -472,7 +472,6 @@ class _HomePageState extends State<HomePage> {
                                     );
                                     selectedItem.add(item);
                                     setState(() {});
-                                    inspect(selectedItem);
                                   },
                                 ),
                               ),
@@ -806,8 +805,21 @@ class _HomePageState extends State<HomePage> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Text(selectedItem[index].name ??
-                                                  ''),
+                                              Row(
+                                                children: [
+                                                  IconButton(
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          selectedItem
+                                                              .removeAt(index);
+                                                        });
+                                                      },
+                                                      icon: Icon(Icons.delete)),
+                                                  Text(selectedItem[index]
+                                                          .name ??
+                                                      ''),
+                                                ],
+                                              ),
                                               Row(
                                                 children: [
                                                   InkWell(
