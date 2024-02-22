@@ -848,7 +848,11 @@ class _HomePageState extends State<HomePage> {
                                 onTap: () async {
                                   final statusD = await showDialog(
                                       context: context,
-                                      builder: (context) => TablePromotion());
+                                      builder: (context) => TablePromotion(
+                                            closeblack: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ));
                                   if (statusD == true) {}
                                 },
                                 child: Container(

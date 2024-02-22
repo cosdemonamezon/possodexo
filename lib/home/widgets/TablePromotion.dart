@@ -1,11 +1,13 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:possodexo/home/data/detialdata.dart';
 import 'package:possodexo/home/model/detialmodel.dart';
 
 class TablePromotion extends StatefulWidget {
-  const TablePromotion({super.key});
+  const TablePromotion({
+    super.key,
+    required this.closeblack,
+  });
+  final VoidCallback closeblack;
 
   @override
   State<TablePromotion> createState() => _TablePromotionState();
@@ -28,20 +30,30 @@ class _TablePromotionState extends State<TablePromotion> {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(2))),
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              "โปรโมชั่นทั้งหมด",
-              style: TextStyle(
-                fontFamily: 'IBMPlexSansThai',
+            Row(
+              children: [
+                Container(
+                  child: Text(
+                    "โปรโมชั่นทั้งหมด",
+                    style: TextStyle(
+                      fontFamily: 'IBMPlexSansThai',
+                    ),
+                  ),
+                ),
+                Image.asset(
+                  "assets/icons/Subtract.png",
+                  scale: 15,
+                ),
+              ],
+            ),
+            InkWell(
+              onTap: widget.closeblack,
+              child: Icon(
+                Icons.close,
+                color: Colors.grey,
               ),
-            ),
-            SizedBox(
-              width: 5,
-            ),
-            Image.asset(
-              "assets/icons/Subtract.png",
-              scale: 15,
             )
           ],
         ),

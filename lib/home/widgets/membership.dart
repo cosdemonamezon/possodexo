@@ -532,8 +532,8 @@ class _MembershipState extends State<Membership> {
               ),
               inputDecorationTheme: InputDecorationTheme(
                   border: OutlineInputBorder(borderRadius: BorderRadius.zero)),
-              primaryColor: const Color(0xFF8CE7F1),
-              colorScheme: ColorScheme.light(primary: const Color(0xFF8CE7F1)),
+              primaryColor: Colors.blue,
+              colorScheme: ColorScheme.light(primary: Colors.blue),
               buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
             ),
             child: child!,

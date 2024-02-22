@@ -68,7 +68,7 @@ class _OpenDialogDessertState extends State<OpenDialogDessert> {
                   width: size.width * 0.15,
                   height: size.height * 0.04,
                   child: Text(
-                    "ขนาน",
+                    "ซอส",
                     style: TextStyle(
                       fontSize: 18,
                       fontFamily: 'IBMPlexSansThai',
