@@ -28,7 +28,7 @@ class _GridCoffeeState extends State<GridCoffee> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.all(25.0),
+      padding: const EdgeInsets.all(18.0),
       child: GridView.builder(
         shrinkWrap: true,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

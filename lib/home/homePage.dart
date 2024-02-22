@@ -23,7 +23,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<String> filteredProducts = [];
-  List<String> nationality = ["ไทย", "พมา", "ลาว"];
+  List<String> nationality = ["ไทย", "พม๋า", "ลาว"];
   String lang = "ไทย";
   List<ItemSelect> selectedItem = [];
   int selectedIndex = 0;
@@ -137,6 +137,18 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     gridCoffees = gridCoffee;
   }
+
+  double newtotal(ItemSelect orders) =>
+      double.parse((orders.qty! * orders.price!).toString());
+
+  double sumPrice(List<ItemSelect> productPrice) => productPrice.fold(
+      0, (previousValue, element) => previousValue + newtotal(element));
+
+  double newtotaQTYl(ItemSelect orders) =>
+      double.parse((orders.qty).toString());
+
+  double sumQTY(List<ItemSelect> productPrice) => productPrice.fold(
+      0, (previousValue, element) => previousValue + newtotaQTYl(element));
 
   String sizeValue = 'สาขาพระราม 6';
   String printValue = 'พิมพ์ใบกำกับภาษี';
@@ -888,22 +900,24 @@ class _HomePageState extends State<HomePage> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Text(selectedItem[index]
-                                                  .price
-                                                  .toString()),
+                                              Text(
+                                                selectedItem[index]
+                                                    .price!
+                                                    .toStringAsFixed(2),
+                                              ),
                                               selectedItem[index].priceQTY == 0
                                                   ? Text(
                                                       selectedItem[index]
-                                                          .price
-                                                          .toString(),
+                                                          .price!
+                                                          .toStringAsFixed(2),
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold),
                                                     )
                                                   : Text(
                                                       selectedItem[index]
-                                                          .priceQTY
-                                                          .toString(),
+                                                          .priceQTY!
+                                                          .toStringAsFixed(2),
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -951,7 +965,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                   Text(
-                                    "0",
+                                    '${sumQTY(selectedItem)} ชิ้น',
                                     style: TextStyle(
                                       fontFamily: 'IBMPlexSansThai',
                                     ),
@@ -969,7 +983,25 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                   Text(
-                                    "0.00 ฿",
+                                    '${sumPrice(selectedItem)} ฿',
+                                    style: TextStyle(
+                                      fontFamily: 'IBMPlexSansThai',
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "ส่วนลด",
+                                    style: TextStyle(
+                                      fontFamily: 'IBMPlexSansThai',
+                                    ),
+                                  ),
+                                  Text(
+                                    '0 ฿',
                                     style: TextStyle(
                                       fontFamily: 'IBMPlexSansThai',
                                     ),
@@ -988,7 +1020,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                   Text(
-                                    "0.00 ฿",
+                                    "${sumPrice(selectedItem)} ฿",
                                     style: TextStyle(
                                       fontFamily: 'IBMPlexSansThai',
                                     ),
