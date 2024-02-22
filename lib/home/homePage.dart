@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   List<String> filteredProducts = [];
   List<String> nationality = ["ไทย", "พมา", "ลาว"];
   String lang = "ไทย";
+  List<ItemSelect> selectedItem = [];
   int selectedIndex = 0;
   void onItemTapped(int index) {
     setState(() {
@@ -443,18 +444,30 @@ class _HomePageState extends State<HomePage> {
                           SizedBox(
                             height: size.height * 0.01,
                           ),
-                          Container(
+                          SizedBox(
                             height: size.height * 0.58,
                             child: SingleChildScrollView(
                               child: SizedBox(
                                 child: GridCoffee(
                                   qty: qty,
                                   gridCoffee: gridCoffees,
+                                  onChange: (value) {
+                                    // inspect(value);
+                                    final item = ItemSelect(
+                                      image: value['image'],
+                                      price: value['price'],
+                                      name: value['name'],
+                                      type: value['type'],
+                                    );
+                                    selectedItem.add(item);
+                                    setState(() {});
+                                    inspect(selectedItem);
+                                  },
                                 ),
                               ),
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             height: size.height * 0.145,
                             child: GridProMotion(),
                           )
@@ -618,7 +631,7 @@ class _HomePageState extends State<HomePage> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Opacity(
-                                          opacity: 0.09,
+                                          opacity: 0.5,
                                           child: Padding(
                                             padding: const EdgeInsets.only(
                                                 left: 5, top: 3),
@@ -692,7 +705,7 @@ class _HomePageState extends State<HomePage> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Opacity(
-                                          opacity: 0.09,
+                                          opacity: 0.5,
                                           child: Padding(
                                             padding: const EdgeInsets.only(
                                                 left: 5, top: 3),
@@ -766,6 +779,12 @@ class _HomePageState extends State<HomePage> {
                         //     }
                         //   },
                         // )
+                        selectedItem.isEmpty
+                            ? SizedBox.shrink()
+                            : Column(
+                                children: List.generate(selectedItem.length,
+                                    (index) => Text('data')),
+                              )
                       ],
                     ),
                   ),
@@ -786,6 +805,9 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
+                          SizedBox(
+                            height: size.height * 0.04,
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -960,4 +982,18 @@ class _HomePageState extends State<HomePage> {
       ],
     );
   }
+}
+
+class ItemSelect {
+  String? image;
+  String? price;
+  String? name;
+  String? type;
+
+  ItemSelect({
+    this.image,
+    this.price,
+    this.name,
+    this.type,
+  });
 }

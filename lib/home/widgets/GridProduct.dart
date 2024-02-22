@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:possodexo/home/widgets/OpenDialogDessert.dart';
 import 'package:possodexo/home/widgets/Promotion.dart';
@@ -5,10 +7,16 @@ import 'package:possodexo/home/widgets/Promotion.dart';
 import 'OpenDialogProduct.dart';
 
 class GridCoffee extends StatefulWidget {
-  GridCoffee({super.key, required this.qty, required this.gridCoffee});
+  GridCoffee({
+    super.key,
+    required this.qty,
+    required this.gridCoffee,
+    required this.onChange,
+  });
 
   int qty = 0;
   List<dynamic> gridCoffee = [];
+  final ValueChanged onChange;
   @override
   State<GridCoffee> createState() => _GridCoffeeState();
 }
@@ -32,9 +40,9 @@ class _GridCoffeeState extends State<GridCoffee> {
         itemCount: widget.gridCoffee.length,
         itemBuilder: (_, index) {
           return InkWell(
-            onTap: () {
+            onTap: () async {
               if (widget.gridCoffee[index]['type'] == 'ของหวาน') {
-                showDialog(
+                final item = await showDialog(
                     context: context,
                     builder: (context) => OpenDialogDessert(
                           gridCoffee: widget.gridCoffee[index],
@@ -42,12 +50,15 @@ class _GridCoffeeState extends State<GridCoffee> {
                             Navigator.pop(context);
                           },
                           pressaccept: () {
-                            Navigator.pop(context);
+                            Navigator.pop(context, widget.gridCoffee[index]);
                           },
                           presscancel: () {
                             Navigator.pop(context);
                           },
                         ));
+                if (item != null) {
+                  widget.onChange(item);
+                }
               } else {
                 showDialog(
                   context: context,
