@@ -26,7 +26,9 @@ class ItemMenuWidget extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 16),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: pageActive == menu ? Colors.blueAccent : Colors.grey,
+                  color: pageActive == menu
+                      ? Colors.blueAccent
+                      : Color.fromARGB(255, 68, 68, 68),
                 ),
                 duration: Duration(milliseconds: 300),
                 curve: Curves.slowMiddle,
