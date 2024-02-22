@@ -460,7 +460,6 @@ class _HomePageState extends State<HomePage> {
                                     );
                                     selectedItem.add(item);
                                     setState(() {});
-                                    inspect(selectedItem);
                                   },
                                 ),
                               ),
@@ -785,11 +784,89 @@ class _HomePageState extends State<HomePage> {
                                 child: ListView.builder(
                                   itemCount: selectedItem.length,
                                   itemBuilder: (context, index) {
-                                    return Column(
-                                      children: [
-                                        Text(gridCoffee[index]['name']),
-                                        Text(gridCoffee[index]['price']),
-                                      ],
+                                    return Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(selectedItem[index].name ??
+                                                  ''),
+                                              Row(
+                                                children: [
+                                                  InkWell(
+                                                    onTap: () {
+                                                      setState(() {
+                                                        if (qty > 0) {
+                                                          qty = qty - 1;
+                                                        }
+                                                      });
+                                                    },
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                          color:
+                                                              Color(0xFF9E9E9E),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(6)),
+                                                      child: Icon(Icons.remove),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Text("${qty}"),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  InkWell(
+                                                    onTap: () {
+                                                      setState(() {
+                                                        qty = qty + 1;
+                                                      });
+                                                    },
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                          color:
+                                                              Color(0xFF9E9E9E),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(6)),
+                                                      child: Icon(Icons.add),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text('ขนาด'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text('โปรโมชั่น'),
+                                            ],
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(selectedItem[index].price ??
+                                                  ''),
+                                              Text(
+                                                selectedItem[index].price ?? '',
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     );
                                   },
                                 ))
