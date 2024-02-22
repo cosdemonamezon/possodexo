@@ -21,6 +21,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<String> filteredProducts = [];
   List<String> nationality = ["ไทย", "พมา", "ลาว"];
   String lang = "ไทย";
   int selectedIndex = 0;
@@ -36,10 +37,103 @@ class _HomePageState extends State<HomePage> {
     setState(() {});
   }
 
-  List<String> product = ["ทั้งหมด", "เครื่องดื่ม", "ของหวาน"];
+  List<Map<String, String>> product = [
+    {'name': 'ทั้งหมด', 'type': 'all'},
+    {'name': 'เครื่องดื่ม', 'type': 'drink'},
+    {'name': 'ของหวาน', 'type': 'dessert'}
+  ];
   String sclectedProduct = "ทั้งหมด";
+
+  List<Map<String, dynamic>> gridCoffees = [];
+  List<Map<String, dynamic>> gridCoffee = [
+    {
+      'image': 'assets/images/coffee2.png',
+      'price': '฿ 165.00',
+      'name': 'Matcha Latte',
+      'type': 'เครื่องดื่ม'
+    },
+    {
+      'image': 'assets/images/coffee3.png',
+      'price': '฿ 65.00',
+      'name': 'Americano',
+      'type': 'เครื่องดื่ม'
+    },
+    {
+      'image': 'assets/images/coffee4.png',
+      'price': '฿ 165.00',
+      'name': 'Matcha Latte',
+      'type': 'เครื่องดื่ม'
+    },
+    {
+      'image': 'assets/images/coffee5.png',
+      'price': '฿ 65.00',
+      'name': 'Americano',
+      'type': 'เครื่องดื่ม'
+    },
+    {
+      'image': 'assets/images/coffee6.png',
+      'price': '฿ 165.00',
+      'name': 'Americano',
+      'type': 'เครื่องดื่ม'
+    },
+    {
+      'image': 'assets/images/coffee7.png',
+      'price': '฿ 65.00',
+      'name': 'Matcha Latte',
+      'type': 'เครื่องดื่ม'
+    },
+    {
+      'image': 'assets/images/coffee8.png',
+      'price': '฿ 165.00',
+      'name': 'Americano',
+      'type': 'เครื่องดื่ม'
+    },
+    {
+      'image': 'assets/images/coffee9.png',
+      'price': '฿ 65.00',
+      'name': 'Matcha Latte',
+      'type': 'เครื่องดื่ม'
+    },
+    {
+      'image': 'assets/images/coddee10.png',
+      'price': '฿ 165.00',
+      'name': 'Americano',
+      'type': 'เครื่องดื่ม'
+    },
+    {
+      'image': 'assets/images/coffee9.png',
+      'price': '฿ 65.00',
+      'name': 'Matcha Latte',
+      'type': 'เครื่องดื่ม'
+    },
+    {
+      'image': 'assets/images/dessert3.jpg',
+      'price': '฿ 165.00',
+      'name': 'ข้าวเหนียวมะม่วง',
+      'type': 'ของหวาน'
+    },
+    {
+      'image': 'assets/images/dessert2.jpg',
+      'price': '฿ 65.00',
+      'name': 'บิงซู',
+      'type': 'ของหวาน'
+    },
+    {
+      'image': 'assets/images/dessert1.jpg',
+      'price': '฿ 165.00',
+      'name': 'มัฟฟิน',
+      'type': 'ของหวาน'
+    },
+  ];
+
   void onTapProduct(int index) {
     setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    gridCoffees = gridCoffee;
   }
 
   String sizeValue = 'สาขาพระราม 6';
@@ -280,31 +374,48 @@ class _HomePageState extends State<HomePage> {
                                   width: 20,
                                 ),
                                 DropdownButton<String>(
-                                  focusColor: Colors.white,
-                                  dropdownColor: Colors.white,
-                                  style: TextStyle(color: Colors.white),
+                                  selectedItemBuilder: (e) =>
+                                      product.map<Widget>((item) {
+                                    return Center(
+                                      child: Text(
+                                        item['name']!,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    );
+                                  }).toList(),
                                   icon: Icon(
                                     Icons.arrow_drop_down,
                                     color: Colors.white,
                                   ),
                                   underline: SizedBox(),
                                   items: product
-                                      .map((String item) =>
-                                          DropdownMenuItem<String>(
-                                            value: item,
-                                            child: Text(
-                                              item,
-                                              style: TextStyle(
-                                                fontFamily: 'IBMPlexSansThai',
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                          ))
-                                      .toList(),
+                                      .map<DropdownMenuItem<String>>((item) {
+                                    return DropdownMenuItem<String>(
+                                      value: item['name'],
+                                      child: Text(
+                                        item['name']!,
+                                        style: TextStyle(
+                                          fontFamily: 'IBMPlexSansThai',
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    );
+                                  }).toList(),
                                   value: sclectedProduct,
                                   onChanged: (v) {
                                     setState(() {
                                       sclectedProduct = v!;
+                                      gridCoffees = gridCoffee;
+                                      gridCoffees =
+                                          gridCoffees.where((product) {
+                                        if (v == 'ทั้งหมด') {
+                                          return true;
+                                        } else {
+                                          return product['type'] == v;
+                                        }
+                                      }).toList();
                                     });
                                   },
                                 ),
@@ -321,6 +432,7 @@ class _HomePageState extends State<HomePage> {
                               child: SizedBox(
                                 child: GridCoffee(
                                   qty: qty,
+                                  gridCoffee: gridCoffees,
                                 ),
                               ),
                             ),
