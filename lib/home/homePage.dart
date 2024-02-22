@@ -50,79 +50,79 @@ class _HomePageState extends State<HomePage> {
   List<Map<String, dynamic>> gridCoffee = [
     {
       'image': 'assets/images/coffee2.png',
-      'price': '฿ 165.00',
+      'price': 165,
       'name': 'Matcha Latte',
       'type': 'เครื่องดื่ม'
     },
     {
       'image': 'assets/images/coffee3.png',
-      'price': '฿ 65.00',
+      'price': 65,
       'name': 'Americano',
       'type': 'เครื่องดื่ม'
     },
     {
       'image': 'assets/images/coffee4.png',
-      'price': '฿ 165.00',
+      'price': 165,
       'name': 'Matcha Latte',
       'type': 'เครื่องดื่ม'
     },
     {
       'image': 'assets/images/coffee5.png',
-      'price': '฿ 65.00',
+      'price': 65,
       'name': 'Americano',
       'type': 'เครื่องดื่ม'
     },
     {
       'image': 'assets/images/coffee6.png',
-      'price': '฿ 165.00',
+      'price': 165,
       'name': 'Americano',
       'type': 'เครื่องดื่ม'
     },
     {
       'image': 'assets/images/coffee7.png',
-      'price': '฿ 65.00',
+      'price': 65,
       'name': 'Matcha Latte',
       'type': 'เครื่องดื่ม'
     },
     {
       'image': 'assets/images/coffee8.png',
-      'price': '฿ 165.00',
+      'price': 165,
       'name': 'Americano',
       'type': 'เครื่องดื่ม'
     },
     {
       'image': 'assets/images/coffee9.png',
-      'price': '฿ 65.00',
+      'price': 65,
       'name': 'Matcha Latte',
       'type': 'เครื่องดื่ม'
     },
     {
       'image': 'assets/images/coddee10.png',
-      'price': '฿ 165.00',
+      'price': 165,
       'name': 'Americano',
       'type': 'เครื่องดื่ม'
     },
     {
       'image': 'assets/images/coffee9.png',
-      'price': '฿ 65.00',
+      'price': 65,
       'name': 'Matcha Latte',
       'type': 'เครื่องดื่ม'
     },
     {
       'image': 'assets/images/dessert3.jpg',
-      'price': '฿ 165.00',
+      'price': 165,
       'name': 'Mango Sticky Rice',
       'type': 'ของหวาน'
     },
     {
       'image': 'assets/images/dessert2.jpg',
-      'price': '฿ 65.00',
+      'price': 65,
       'name': 'Bingsu',
       'type': 'ของหวาน'
     },
     {
       'image': 'assets/images/dessert1.jpg',
-      'price': '฿ 165.00',
+      'price': 165,
       'name': 'waffle',
       'type': 'ของหวาน'
     },
@@ -781,7 +781,7 @@ class _HomePageState extends State<HomePage> {
                         // )
                         selectedItem.isEmpty
                             ? SizedBox.shrink()
-                            : Container(
+                            : SizedBox(
                                 height: size.height * 0.39,
                                 child: ListView.builder(
                                   itemCount: selectedItem.length,
@@ -800,11 +800,28 @@ class _HomePageState extends State<HomePage> {
                                                 children: [
                                                   InkWell(
                                                     onTap: () {
-                                                      setState(() {
-                                                        if (qty > 1) {
-                                                          qty = qty - 1;
-                                                        }
-                                                      });
+                                                      if (selectedItem[index]
+                                                              .qty! >
+                                                          1) {
+                                                        setState(() {
+                                                          selectedItem[index]
+                                                                  .qty =
+                                                              selectedItem[
+                                                                          index]
+                                                                      .qty! -
+                                                                  1;
+                                                          final price =
+                                                              selectedItem[
+                                                                          index]
+                                                                      .price! *
+                                                                  selectedItem[
+                                                                          index]
+                                                                      .qty!;
+
+                                                          selectedItem[index]
+                                                              .priceQTY = price;
+                                                        });
+                                                      }
                                                     },
                                                     child: Container(
                                                       decoration: BoxDecoration(
@@ -819,14 +836,28 @@ class _HomePageState extends State<HomePage> {
                                                   SizedBox(
                                                     width: 10,
                                                   ),
-                                                  Text("${qty}"),
+                                                  Text(
+                                                      "${selectedItem[index].qty}"),
                                                   SizedBox(
                                                     width: 10,
                                                   ),
                                                   InkWell(
                                                     onTap: () {
                                                       setState(() {
-                                                        qty = qty + 1;
+                                                        selectedItem[index]
+                                                                .qty =
+                                                            selectedItem[index]
+                                                                    .qty! +
+                                                                1;
+                                                        final price =
+                                                            selectedItem[index]
+                                                                    .price! *
+                                                                selectedItem[
+                                                                        index]
+                                                                    .qty!;
+
+                                                        selectedItem[index]
+                                                            .priceQTY = price;
                                                       });
                                                     },
                                                     child: Container(
@@ -857,14 +888,26 @@ class _HomePageState extends State<HomePage> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Text(selectedItem[index].price ??
-                                                  ''),
-                                              Text(
-                                                selectedItem[index].price ?? '',
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
+                                              Text(selectedItem[index]
+                                                  .price
+                                                  .toString()),
+                                              selectedItem[index].priceQTY == 0
+                                                  ? Text(
+                                                      selectedItem[index]
+                                                          .price
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    )
+                                                  : Text(
+                                                      selectedItem[index]
+                                                          .priceQTY
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
                                             ],
                                           ),
                                         ],
@@ -1085,14 +1128,18 @@ class _HomePageState extends State<HomePage> {
 
 class ItemSelect {
   String? image;
-  String? price;
+  int? price;
+  int? priceQTY;
   String? name;
   String? type;
+  int? qty;
 
   ItemSelect({
     this.image,
     this.price,
+    this.priceQTY = 0,
     this.name,
     this.type,
+    this.qty = 1,
   });
 }
