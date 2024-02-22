@@ -585,7 +585,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Container(
                     color: Colors.white,
-                    height: size.height * 0.5,
+                    height: size.height * 0.543,
                     width: size.width * 1,
                     child: Column(
                       children: [
