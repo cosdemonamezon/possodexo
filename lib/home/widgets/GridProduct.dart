@@ -41,7 +41,25 @@ class _GridCoffeeState extends State<GridCoffee> {
         itemBuilder: (_, index) {
           return InkWell(
             onTap: () async {
-              if (widget.gridCoffee[index]['type'] == 'ของหวาน') {
+              if (widget.gridCoffee[index]['type'] == 'เครื่องดื่ม') {
+                final item = await showDialog(
+                    context: context,
+                    builder: (context) => OpenDialogProduct(
+                          gridCoffee: widget.gridCoffee[index],
+                          pressclose: () {
+                            Navigator.pop(context);
+                          },
+                          pressaccept: () {
+                            Navigator.pop(context, widget.gridCoffee[index]);
+                          },
+                          presscancel: () {
+                            Navigator.pop(context);
+                          },
+                        ));
+                if (item != null) {
+                  widget.onChange(item);
+                }
+              } else {
                 final item = await showDialog(
                     context: context,
                     builder: (context) => OpenDialogDessert(
@@ -59,22 +77,6 @@ class _GridCoffeeState extends State<GridCoffee> {
                 if (item != null) {
                   widget.onChange(item);
                 }
-              } else {
-                showDialog(
-                  context: context,
-                  builder: (context) => OpenDialogProduct(
-                    gridCoffee: widget.gridCoffee[index],
-                    pressaccept: () {
-                      Navigator.pop(context, true);
-                    },
-                    presscancel: () {
-                      Navigator.pop(context, false);
-                    },
-                    pressclose: () {
-                      Navigator.pop(context, false);
-                    },
-                  ),
-                );
               }
             },
             child: Column(

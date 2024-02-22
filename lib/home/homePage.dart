@@ -452,7 +452,6 @@ class _HomePageState extends State<HomePage> {
                                   qty: qty,
                                   gridCoffee: gridCoffees,
                                   onChange: (value) {
-                                    // inspect(value);
                                     final item = ItemSelect(
                                       image: value['image'],
                                       price: value['price'],
