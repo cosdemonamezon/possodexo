@@ -12,11 +12,13 @@ class OpenSalesShift extends StatelessWidget {
     required this.size,
     required this.pressOk,
     required this.pressCancel,
+    required this.pressClose,
   });
 
   final Size size;
   final VoidCallback pressOk;
   final VoidCallback pressCancel;
+  final VoidCallback pressClose;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class OpenSalesShift extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text('เปิดกะงานขาย'),
-          IconButton(onPressed: () {}, icon: Icon(Icons.close)),
+          IconButton(onPressed: pressClose, icon: Icon(Icons.close)),
         ],
       ),
       content: Column(

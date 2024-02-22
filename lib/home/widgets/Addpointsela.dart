@@ -11,10 +11,12 @@ class Addpointsela extends StatelessWidget {
     required this.size,
     required this.pressOk,
     required this.pressCancel,
+    required this.pressClose,
   });
   final Size size;
   final VoidCallback pressOk;
   final VoidCallback pressCancel;
+  final VoidCallback pressClose;
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -34,9 +36,7 @@ class Addpointsela extends StatelessWidget {
                   fontFamily: 'IBMPlexSansThai',
                 ),
               ),
-              Icon(
-                Icons.close,
-              )
+              IconButton(onPressed: pressClose, icon: Icon(Icons.close)),
             ],
           ),
           Divider(

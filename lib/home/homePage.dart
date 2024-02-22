@@ -336,6 +336,9 @@ class _HomePageState extends State<HomePage> {
                                       pressOk: () {
                                         Navigator.pop(context, true);
                                       },
+                                      pressClose: () {
+                                        Navigator.pop(context, false);
+                                      },
                                     ),
                                   );
                                 },
@@ -470,6 +473,9 @@ class _HomePageState extends State<HomePage> {
                             },
                             pressOk: () {
                               Navigator.pop(context, true);
+                            },
+                            pressClose: () {
+                              Navigator.pop(context, false);
                             },
                           ),
                         );
