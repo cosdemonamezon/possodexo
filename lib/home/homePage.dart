@@ -111,19 +111,19 @@ class _HomePageState extends State<HomePage> {
     {
       'image': 'assets/images/dessert3.jpg',
       'price': '฿ 165.00',
-      'name': 'ข้าวเหนียวมะม่วง',
+      'name': 'Mango Sticky Rice',
       'type': 'ของหวาน'
     },
     {
       'image': 'assets/images/dessert2.jpg',
       'price': '฿ 65.00',
-      'name': 'บิงซู',
+      'name': 'Bingsu',
       'type': 'ของหวาน'
     },
     {
       'image': 'assets/images/dessert1.jpg',
       'price': '฿ 165.00',
-      'name': 'มัฟฟิน',
+      'name': 'waffle',
       'type': 'ของหวาน'
     },
   ];
@@ -781,20 +781,19 @@ class _HomePageState extends State<HomePage> {
                         // )
                         selectedItem.isEmpty
                             ? SizedBox.shrink()
-                            : Column(
-                                children: List.generate(
-                                    selectedItem.length,
-                                    (index) => Column(
-                                          children: [
-                                            Text(
-                                              gridCoffee[index]['name'],
-                                            ),
-                                            Text(
-                                              gridCoffee[index]['price'],
-                                            ),
-                                          ],
-                                        )),
-                              )
+                            : Container(
+                                height: size.height * 0.39,
+                                child: ListView.builder(
+                                  itemCount: selectedItem.length,
+                                  itemBuilder: (context, index) {
+                                    return Column(
+                                      children: [
+                                        Text(gridCoffee[index]['name']),
+                                        Text(gridCoffee[index]['price']),
+                                      ],
+                                    );
+                                  },
+                                ))
                       ],
                     ),
                   ),
