@@ -62,12 +62,12 @@ class _TablePromotionState extends State<TablePromotion> {
 
   Widget buildDatatable() {
     final columns = [
-      'PromoCode',
-      'Type',
-      'PromotionName',
-      'Details',
-      'StartDate',
-      'ExpirationDate',
+      'รหัสโปรโมชั่น',
+      'ประเภท',
+      'ชื่อโปรโมชั่น',
+      'รายละเอียด',
+      'วันเริ่ม',
+      'วันหมดอายุ',
     ];
 
     return DataTable(
