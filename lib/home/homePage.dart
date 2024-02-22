@@ -781,8 +781,20 @@ class _HomePageState extends State<HomePage> {
                         selectedItem.isEmpty
                             ? SizedBox.shrink()
                             : Column(
-                                children: List.generate(selectedItem.length,
-                                    (index) => Text('data')),
+                                children: List.generate(
+                                    selectedItem.length,
+                                    (index) => SingleChildScrollView(
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                gridCoffee[index]['name'],
+                                              ),
+                                              Text(
+                                                gridCoffee[index]['price'],
+                                              ),
+                                            ],
+                                          ),
+                                        )),
                               )
                       ],
                     ),
