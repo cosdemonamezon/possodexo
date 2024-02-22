@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:possodexo/home/widgets/OpenDialogDessert.dart';
 import 'package:possodexo/home/widgets/Promotion.dart';
 
 import 'OpenDialogProduct.dart';
@@ -32,21 +33,38 @@ class _GridCoffeeState extends State<GridCoffee> {
         itemBuilder: (_, index) {
           return InkWell(
             onTap: () {
-              showDialog(
-                context: context,
-                builder: (context) => OpenDialogProduct(
-                  gridCoffee: widget.gridCoffee[index],
-                  pressaccept: () {
-                    Navigator.pop(context, true);
-                  },
-                  presscancel: () {
-                    Navigator.pop(context, false);
-                  },
-                  pressclose: () {
-                    Navigator.pop(context, false);
-                  },
-                ),
-              );
+              if (widget.gridCoffee[index]['type'] == 'ของหวาน') {
+                showDialog(
+                    context: context,
+                    builder: (context) => OpenDialogDessert(
+                          gridCoffee: widget.gridCoffee[index],
+                          pressclose: () {
+                            Navigator.pop(context);
+                          },
+                          pressaccept: () {
+                            Navigator.pop(context);
+                          },
+                          presscancel: () {
+                            Navigator.pop(context);
+                          },
+                        ));
+              } else {
+                showDialog(
+                  context: context,
+                  builder: (context) => OpenDialogProduct(
+                    gridCoffee: widget.gridCoffee[index],
+                    pressaccept: () {
+                      Navigator.pop(context, true);
+                    },
+                    presscancel: () {
+                      Navigator.pop(context, false);
+                    },
+                    pressclose: () {
+                      Navigator.pop(context, false);
+                    },
+                  ),
+                );
+              }
             },
             child: Column(
               children: [
