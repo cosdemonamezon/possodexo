@@ -395,7 +395,7 @@ class _HomePageState extends State<HomePage> {
                             height: size.height * 0.01,
                           ),
                           Container(
-                            height: size.height * 0.1,
+                            height: size.height * 0.08,
                             width: double.infinity,
                             color: kTabColor,
                             child: Row(
@@ -457,7 +457,7 @@ class _HomePageState extends State<HomePage> {
                             height: size.height * 0.01,
                           ),
                           SizedBox(
-                            height: size.height * 0.58,
+                            height: size.height * 0.555,
                             child: SingleChildScrollView(
                               child: SizedBox(
                                 child: GridCoffee(
@@ -478,7 +478,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           SizedBox(
-                            height: size.height * 0.145,
+                            height: size.height * 0.140,
                             child: GridProMotion(),
                           )
                         ],
