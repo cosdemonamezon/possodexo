@@ -453,11 +453,11 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                           ),
+                          // SizedBox(
+                          //   height: size.height * 0.01,
+                          // ),
                           SizedBox(
-                            height: size.height * 0.01,
-                          ),
-                          SizedBox(
-                            height: size.height * 0.555,
+                            height: size.height * 0.565,
                             child: SingleChildScrollView(
                               child: SizedBox(
                                 child: GridCoffee(
