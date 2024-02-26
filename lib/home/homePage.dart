@@ -793,7 +793,7 @@ class _HomePageState extends State<HomePage> {
                         selectedItem.isEmpty
                             ? SizedBox.shrink()
                             : SizedBox(
-                                height: size.height * 0.30,
+                                height: size.height * 0.40,
                                 child: ListView.builder(
                                   itemCount: selectedItem.length,
                                   itemBuilder: (context, index) {
