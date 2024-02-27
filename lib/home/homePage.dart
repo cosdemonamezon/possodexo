@@ -395,7 +395,7 @@ class _HomePageState extends State<HomePage> {
                             height: size.height * 0.01,
                           ),
                           Container(
-                            height: size.height * 0.08,
+                            height: size.height * 0.1,
                             width: double.infinity,
                             color: kTabColor,
                             child: Row(
@@ -453,11 +453,11 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                           ),
-                          // SizedBox(
-                          //   height: size.height * 0.01,
-                          // ),
                           SizedBox(
-                            height: size.height * 0.565,
+                            height: size.height * 0.01,
+                          ),
+                          SizedBox(
+                            height: size.height * 0.536,
                             child: SingleChildScrollView(
                               child: SizedBox(
                                 child: GridCoffee(
@@ -478,7 +478,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           SizedBox(
-                            height: size.height * 0.140,
+                            height: size.height * 0.14,
                             child: GridProMotion(),
                           )
                         ],
@@ -517,7 +517,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               Container(
-                height: size.height * 0.08,
+                height: size.height * 0.15,
                 color: Colors.black,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -614,7 +614,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Container(
                     color: Colors.white,
-                    height: size.height * 0.55,
+                    height: size.height * 0.486,
                     width: size.width * 1,
                     child: Column(
                       children: [
@@ -671,7 +671,7 @@ class _HomePageState extends State<HomePage> {
                                                         child: Padding(
                                                           padding:
                                                               const EdgeInsets
-                                                                  .all(6.0),
+                                                                  .all(8.0),
                                                           child: Text(
                                                             item,
                                                             style:
@@ -793,7 +793,7 @@ class _HomePageState extends State<HomePage> {
                         selectedItem.isEmpty
                             ? SizedBox.shrink()
                             : SizedBox(
-                                height: size.height * 0.40,
+                                height: size.height * 0.3,
                                 child: ListView.builder(
                                   itemCount: selectedItem.length,
                                   itemBuilder: (context, index) {
@@ -1108,12 +1108,15 @@ class _HomePageState extends State<HomePage> {
                                               Border.all(color: Colors.black)),
                                       height: size.height * 0.05,
                                       width: size.width * 0.1,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text("สมัครสมาชิก"),
-                                        ],
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text("สมัครสมาชิก"),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -1122,32 +1125,46 @@ class _HomePageState extends State<HomePage> {
                               SizedBox(
                                 height: 6,
                               ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: Color.fromARGB(110, 185, 185, 185)),
-                                height: size.height * 0.05,
-                                width: size.width * 0.21,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Opacity(
-                                        opacity: 0.8,
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 5, top: 3),
-                                          child: Text(
-                                            'ชำระเงิน 0.00',
-                                            style: TextStyle(
-                                              fontSize: 12,
-                                              fontFamily: 'IBMPlexSansThai',
+                              GestureDetector(
+                                onTap: () {
+                                  if (selectedItem.isNotEmpty) {
+                                    inspect('object');
+                                  }
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: selectedItem.isNotEmpty
+                                          ? Colors.blue
+                                          : Color.fromARGB(110, 185, 185, 185)),
+                                  height: size.height * 0.05,
+                                  width: size.width * 0.21,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Opacity(
+                                          opacity: 0.8,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 5, top: 3),
+                                            child: Text(
+                                              'ชำระเงิน ',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  fontFamily: 'IBMPlexSansThai',
+                                                  color: selectedItem.isNotEmpty
+                                                      ? Colors.white
+                                                      : Color.fromARGB(
+                                                          110, 185, 185, 185)),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               )

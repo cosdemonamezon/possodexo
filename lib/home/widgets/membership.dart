@@ -18,7 +18,7 @@ class Membership extends StatefulWidget {
 class _MembershipState extends State<Membership> {
   var _hover = false;
   bool? Ichecked = false;
-  DateTime dateTime = DateTime.now();
+  DateTime? dateTime;
   List<String> antecedent = ["นาย", "นาง", "นางสาว"];
   String? name;
   void onItemTapped2(int index) {
@@ -182,39 +182,36 @@ class _MembershipState extends State<Membership> {
           ),
           Row(
             children: [
-              Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border(
-                      bottom: BorderSide(width: 2, color: Color(0xff78909C)),
-                    ),
-                  ),
-                  width: size.width * 0.15,
-                  height: size.height * 0.1,
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () async {
-                          final date = await pickDate();
-                          if (date == null) return;
-                          setState(() => dateTime = date);
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 8, right: 3),
-                          child: Row(
-                            children: [
-                              Text(dateTime.formatTo('dd/MM/y')),
-                              SizedBox(width: size.width * 0.068),
-                              Image.asset(
-                                "assets/icons/CalendarBlank.png",
-                                scale: 25,
-                              ),
-                            ],
-                          ),
-                        ),
+              GestureDetector(
+                onTap: () async {
+                  final date = await pickDate();
+                  if (date == null) return;
+                  setState(() => dateTime = date);
+                },
+                child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border(
+                        bottom: BorderSide(width: 2, color: Color(0xff78909C)),
                       ),
-                    ],
-                  )),
+                    ),
+                    width: size.width * 0.15,
+                    height: size.height * 0.1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child:
+                              Text(dateTime?.formatTo('dd/MM/y') ?? 'วันเกิด'),
+                        ),
+                        Image.asset(
+                          "assets/icons/CalendarBlank.png",
+                          scale: 25,
+                        ),
+                      ],
+                    )),
+              ),
               SizedBox(
                 width: size.width * 0.025,
               ),
