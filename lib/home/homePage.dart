@@ -10,6 +10,7 @@ import 'package:possodexo/home/widgets/OpenSalesShift.dart';
 import 'package:possodexo/home/widgets/ShowOpenShift.dart';
 import 'package:possodexo/home/widgets/TablePromotion.dart';
 import 'package:possodexo/home/widgets/membership.dart';
+import '../payment/widgets/paymentCash.dart';
 import 'widgets/Addpointsela.dart';
 import 'widgets/GridProduct.dart';
 import 'widgets/Promotion.dart';
@@ -1125,11 +1126,12 @@ class _HomePageState extends State<HomePage> {
                               SizedBox(
                                 height: 6,
                               ),
-                              GestureDetector(
+                              InkWell(
                                 onTap: () {
-                                  if (selectedItem.isNotEmpty) {
-                                    inspect('object');
-                                  }
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => PaymentCash()));
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
