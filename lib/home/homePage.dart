@@ -308,7 +308,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-    
+
               //ส่วนแสดงสินค้า
               openShift == true
                   ? Container(
@@ -775,7 +775,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ],
                         ),
-    
+
                         /// โช สินค้า
                         // GestureDetector(
                         //   onTap: () async {
@@ -784,7 +784,7 @@ class _HomePageState extends State<HomePage> {
                         //         builder: (context) {
                         //           return GridCoffee();
                         //         });
-    
+
                         //     if (listItem2 != null) {
                         //       setState(() {});
                         //     }
@@ -841,7 +841,7 @@ class _HomePageState extends State<HomePage> {
                                                                   selectedItem[
                                                                           index]
                                                                       .qty!;
-    
+
                                                           selectedItem[index]
                                                               .priceQTY = price;
                                                         });
@@ -879,7 +879,7 @@ class _HomePageState extends State<HomePage> {
                                                                 selectedItem[
                                                                         index]
                                                                     .qty!;
-    
+
                                                         selectedItem[index]
                                                             .priceQTY = price;
                                                       });
@@ -1108,15 +1108,12 @@ class _HomePageState extends State<HomePage> {
                                               Border.all(color: Colors.black)),
                                       height: size.height * 0.05,
                                       width: size.width * 0.1,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text("สมัครสมาชิก"),
-                                          ],
-                                        ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text("สมัครสมาชิก"),
+                                        ],
                                       ),
                                     ),
                                   ),
