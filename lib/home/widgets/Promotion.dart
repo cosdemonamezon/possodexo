@@ -37,7 +37,7 @@ class _GridProMotionState extends State<GridProMotion> {
     return Container(
       decoration: BoxDecoration(color: Color(0xFF37474F)),
       child: Padding(
-        padding: EdgeInsets.only(left: 8, right: 8, top: 10, bottom: 5),
+        padding: EdgeInsets.only(left: 8, right: 8, top: 5, bottom: 5),
         child: GridView.builder(
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -55,46 +55,55 @@ class _GridProMotionState extends State<GridProMotion> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(
-                        GridProMotion[index]['image'],
-                        width: 55,
-                        fit: BoxFit.cover,
+                    Expanded(
+                      flex: 3,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.asset(
+                          GridProMotion[index]['image'],
+                          width: 55,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4, bottom: 4),
-                      child: DashedVerticalLine(),
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 4, bottom: 4),
+                        child: DashedVerticalLine(),
+                      ),
                     ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          GridProMotion[index]['Tiltle'],
-                          style: TextStyle(
-                              fontSize: 14,
+                    Expanded(
+                      flex: 6,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            GridProMotion[index]['Tiltle'],
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'IBMPlexSansThai',
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            GridProMotion[index]['Order1'],
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: ktextColr,
                               fontFamily: 'IBMPlexSansThai',
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          GridProMotion[index]['Order1'],
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: ktextColr,
-                            fontFamily: 'IBMPlexSansThai',
+                            ),
                           ),
-                        ),
-                        Text(
-                          GridProMotion[index]['Order2'],
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: ktextColr,
-                            fontFamily: 'IBMPlexSansThai',
+                          Text(
+                            GridProMotion[index]['Order2'],
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: ktextColr,
+                              fontFamily: 'IBMPlexSansThai',
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),

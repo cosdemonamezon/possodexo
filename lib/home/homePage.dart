@@ -308,7 +308,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-
+    
               //ส่วนแสดงสินค้า
               openShift == true
                   ? Container(
@@ -395,7 +395,7 @@ class _HomePageState extends State<HomePage> {
                             height: size.height * 0.01,
                           ),
                           Container(
-                            height: size.height * 0.1,
+                            height: size.height * 0.08,
                             width: double.infinity,
                             color: kTabColor,
                             child: Row(
@@ -453,11 +453,11 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                           ),
+                          // SizedBox(
+                          //   height: size.height * 0.01,
+                          // ),
                           SizedBox(
-                            height: size.height * 0.01,
-                          ),
-                          SizedBox(
-                            height: size.height * 0.58,
+                            height: size.height * 0.565,
                             child: SingleChildScrollView(
                               child: SizedBox(
                                 child: GridCoffee(
@@ -478,7 +478,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           SizedBox(
-                            height: size.height * 0.145,
+                            height: size.height * 0.140,
                             child: GridProMotion(),
                           )
                         ],
@@ -517,7 +517,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               Container(
-                height: size.height * 0.15,
+                height: size.height * 0.08,
                 color: Colors.black,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -614,7 +614,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Container(
                     color: Colors.white,
-                    height: size.height * 0.543,
+                    height: size.height * 0.55,
                     width: size.width * 1,
                     child: Column(
                       children: [
@@ -629,7 +629,7 @@ class _HomePageState extends State<HomePage> {
                               child: SizedBox(
                                 height: size.height * 0.12,
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.all(6.0),
                                   child: Container(
                                     decoration: BoxDecoration(
                                         border: Border(
@@ -671,7 +671,7 @@ class _HomePageState extends State<HomePage> {
                                                         child: Padding(
                                                           padding:
                                                               const EdgeInsets
-                                                                  .all(8.0),
+                                                                  .all(6.0),
                                                           child: Text(
                                                             item,
                                                             style:
@@ -703,7 +703,7 @@ class _HomePageState extends State<HomePage> {
                               child: SizedBox(
                                 height: size.height * 0.12,
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.all(6.0),
                                   child: Container(
                                     decoration: BoxDecoration(
                                         border: Border(
@@ -775,7 +775,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ],
                         ),
-
+    
                         /// โช สินค้า
                         // GestureDetector(
                         //   onTap: () async {
@@ -784,7 +784,7 @@ class _HomePageState extends State<HomePage> {
                         //         builder: (context) {
                         //           return GridCoffee();
                         //         });
-
+    
                         //     if (listItem2 != null) {
                         //       setState(() {});
                         //     }
@@ -793,7 +793,7 @@ class _HomePageState extends State<HomePage> {
                         selectedItem.isEmpty
                             ? SizedBox.shrink()
                             : SizedBox(
-                                height: size.height * 0.39,
+                                height: size.height * 0.40,
                                 child: ListView.builder(
                                   itemCount: selectedItem.length,
                                   itemBuilder: (context, index) {
@@ -841,7 +841,7 @@ class _HomePageState extends State<HomePage> {
                                                                   selectedItem[
                                                                           index]
                                                                       .qty!;
-
+    
                                                           selectedItem[index]
                                                               .priceQTY = price;
                                                         });
@@ -879,7 +879,7 @@ class _HomePageState extends State<HomePage> {
                                                                 selectedItem[
                                                                         index]
                                                                     .qty!;
-
+    
                                                         selectedItem[index]
                                                             .priceQTY = price;
                                                       });
@@ -957,7 +957,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Container(
                         color: Colors.white,
-                        height: size.height * 0.29,
+                        height: size.height * 0.30,
                         width: size.width * 1,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),

@@ -31,6 +31,7 @@ class _GridCoffeeState extends State<GridCoffee> {
       padding: const EdgeInsets.all(18.0),
       child: GridView.builder(
         shrinkWrap: true,
+        physics: ClampingScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4,
           crossAxisSpacing: 10,
