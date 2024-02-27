@@ -6,14 +6,14 @@ class OpenDialogProduct extends StatefulWidget {
   OpenDialogProduct({
     super.key,
     required this.gridCoffee,
-    required this.pressclose,
-    required this.pressaccept,
-    required this.presscancel,
+    // required this.pressclose,
+    // required this.pressaccept,
+    // required this.presscancel,
   });
   final Map<String, dynamic> gridCoffee;
-  final VoidCallback pressclose;
-  final VoidCallback pressaccept;
-  final VoidCallback presscancel;
+  // final VoidCallback pressclose;
+  // final VoidCallback pressaccept;
+  // final VoidCallback presscancel;
 
   @override
   State<OpenDialogProduct> createState() => _OpenDialogProductState();
@@ -45,7 +45,9 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                 ),
               ),
               InkWell(
-                onTap: widget.pressclose,
+                onTap: () {
+                  Navigator.pop(context);
+                },
                 child: Icon(
                   Icons.close,
                   color: Colors.grey,
@@ -258,7 +260,9 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             InkWell(
-              onTap: widget.presscancel,
+              onTap: () {
+                Navigator.pop(context);
+              },
               child: Container(
                   width: size.width * 0.08,
                   height: size.height * 0.05,
@@ -275,7 +279,13 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
               width: 20,
             ),
             InkWell(
-              onTap: widget.pressaccept,
+              onTap: () {
+                final out = {
+                  'item': widget.gridCoffee,
+                  'size': selectedIndex,
+                };
+                Navigator.pop(context, out);
+              },
               child: Container(
                   width: size.width * 0.08,
                   height: size.height * 0.05,

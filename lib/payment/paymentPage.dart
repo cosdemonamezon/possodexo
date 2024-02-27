@@ -16,7 +16,7 @@ class _PaymentPageState extends State<PaymentPage> {
     final size = MediaQuery.of(context).size;
     return Row(
       children: [
-        PaymentCash(),
+        // PaymentCash(),
       ],
     );
   }

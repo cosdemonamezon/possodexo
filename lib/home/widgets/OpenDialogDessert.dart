@@ -4,14 +4,14 @@ class OpenDialogDessert extends StatefulWidget {
   const OpenDialogDessert({
     super.key,
     required this.gridCoffee,
-    required this.pressclose,
-    required this.presscancel,
-    required this.pressaccept,
+    // required this.pressclose,
+    // required this.presscancel,
+    // required this.pressaccept,
   });
   final Map<String, dynamic> gridCoffee;
-  final VoidCallback pressclose;
-  final VoidCallback presscancel;
-  final VoidCallback pressaccept;
+  // final VoidCallback pressclose;
+  // final VoidCallback presscancel;
+  // final VoidCallback pressaccept;
 
   @override
   State<OpenDialogDessert> createState() => _OpenDialogDessertState();
@@ -44,7 +44,9 @@ class _OpenDialogDessertState extends State<OpenDialogDessert> {
                   ),
                 ),
                 InkWell(
-                  onTap: widget.pressclose,
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
                   child: Icon(
                     Icons.close,
                     color: Colors.grey,
@@ -172,7 +174,9 @@ class _OpenDialogDessertState extends State<OpenDialogDessert> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               InkWell(
-                onTap: widget.presscancel,
+                onTap: () {
+                  Navigator.pop(context);
+                },
                 child: Container(
                     width: size.width * 0.08,
                     height: size.height * 0.05,
@@ -189,7 +193,13 @@ class _OpenDialogDessertState extends State<OpenDialogDessert> {
                 width: 20,
               ),
               InkWell(
-                onTap: widget.pressaccept,
+                onTap: () {
+                  final out = {
+                    'item': widget.gridCoffee,
+                    'size': selectedIndex
+                  };
+                  Navigator.pop(context, out);
+                },
                 child: Container(
                     width: size.width * 0.08,
                     height: size.height * 0.05,

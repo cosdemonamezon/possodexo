@@ -47,17 +47,9 @@ class _GridCoffeeState extends State<GridCoffee> {
                     context: context,
                     builder: (context) => OpenDialogProduct(
                           gridCoffee: widget.gridCoffee[index],
-                          pressclose: () {
-                            Navigator.pop(context);
-                          },
-                          pressaccept: () {
-                            Navigator.pop(context, widget.gridCoffee[index]);
-                          },
-                          presscancel: () {
-                            Navigator.pop(context);
-                          },
                         ));
                 if (item != null) {
+                  inspect(item);
                   widget.onChange(item);
                 }
               } else {
@@ -65,17 +57,9 @@ class _GridCoffeeState extends State<GridCoffee> {
                     context: context,
                     builder: (context) => OpenDialogDessert(
                           gridCoffee: widget.gridCoffee[index],
-                          pressclose: () {
-                            Navigator.pop(context);
-                          },
-                          pressaccept: () {
-                            Navigator.pop(context, widget.gridCoffee[index]);
-                          },
-                          presscancel: () {
-                            Navigator.pop(context);
-                          },
                         ));
                 if (item != null) {
+                  inspect(item);
                   widget.onChange(item);
                 }
               }

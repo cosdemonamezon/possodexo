@@ -46,7 +46,6 @@ class _HomePageState extends State<HomePage> {
     {'name': 'ของหวาน', 'type': 'dessert'}
   ];
   String sclectedProduct = "ทั้งหมด";
-
   List<Map<String, dynamic>> gridCoffees = [];
   List<Map<String, dynamic>> gridCoffee = [
     {
@@ -465,11 +464,13 @@ class _HomePageState extends State<HomePage> {
                                   qty: qty,
                                   gridCoffee: gridCoffees,
                                   onChange: (value) {
+                                    inspect(value);
                                     final item = ItemSelect(
-                                      image: value['image'],
-                                      price: value['price'],
-                                      name: value['name'],
-                                      type: value['type'],
+                                      image: value['item']['image'],
+                                      price: value['item']['price'],
+                                      name: value['item']['name'],
+                                      type: value['item']['type'],
+                                      size: value['size'],
                                     );
                                     selectedItem.add(item);
                                     setState(() {});
@@ -900,8 +901,16 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                           Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text('ขนาด'),
+                                              Text(selectedItem[index].size == 0
+                                                  ? 'S'
+                                                  : selectedItem[index].size ==
+                                                          1
+                                                      ? 'M'
+                                                      : "L")
                                             ],
                                           ),
                                           Row(
@@ -914,9 +923,15 @@ class _HomePageState extends State<HomePage> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
-                                                selectedItem[index]
-                                                    .price!
-                                                    .toStringAsFixed(2),
+                                                selectedItem[index].size == 0
+                                                    ? selectedItem[index]
+                                                        .price!
+                                                        .toStringAsFixed(2)
+                                                    : selectedItem[index]
+                                                                .size ==
+                                                            1
+                                                        ? 'M'
+                                                        : "L",
                                               ),
                                               selectedItem[index].priceQTY == 0
                                                   ? Text(
@@ -1131,7 +1146,13 @@ class _HomePageState extends State<HomePage> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => PaymentCash()));
+                                          builder: (context) => PaymentCash(
+                                                selectedItem: selectedItem,
+                                                sumPrice: sumPrice(selectedItem)
+                                                    .toString(),
+                                                sumQTY: sumQTY(selectedItem)
+                                                    .toString(),
+                                              )));
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -1190,6 +1211,7 @@ class ItemSelect {
   String? image;
   int? price;
   int? priceQTY;
+  int? size;
   String? name;
   String? type;
   int? qty;
@@ -1198,6 +1220,7 @@ class ItemSelect {
     this.image,
     this.price,
     this.priceQTY = 0,
+    this.size,
     this.name,
     this.type,
     this.qty = 1,
