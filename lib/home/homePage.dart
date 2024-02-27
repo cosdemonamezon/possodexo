@@ -24,7 +24,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<String> filteredProducts = [];
-  List<String> nationality = ["ไทย", "พม๋า", "ลาว"];
+  List<String> nationality = ["ไทย", "พม่า", "ลาว"];
   String lang = "ไทย";
   List<ItemSelect> selectedItem = [];
   int selectedIndex = 0;
@@ -1109,15 +1109,12 @@ class _HomePageState extends State<HomePage> {
                                               Border.all(color: Colors.black)),
                                       height: size.height * 0.05,
                                       width: size.width * 0.1,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text("สมัครสมาชิก"),
-                                          ],
-                                        ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text("สมัครสมาชิก"),
+                                        ],
                                       ),
                                     ),
                                   ),

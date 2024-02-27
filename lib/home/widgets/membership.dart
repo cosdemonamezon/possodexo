@@ -204,9 +204,7 @@ class _MembershipState extends State<Membership> {
                           child: Row(
                             children: [
                               Text(dateTime.formatTo('dd/MM/y')),
-                              SizedBox(
-                                width: size.width * 0.078,
-                              ),
+                              SizedBox(width: size.width * 0.068),
                               Image.asset(
                                 "assets/icons/CalendarBlank.png",
                                 scale: 25,
@@ -218,7 +216,7 @@ class _MembershipState extends State<Membership> {
                     ],
                   )),
               SizedBox(
-                width: size.width * 0.009,
+                width: size.width * 0.025,
               ),
               Container(
                 decoration: BoxDecoration(
@@ -235,7 +233,9 @@ class _MembershipState extends State<Membership> {
                     Opacity(
                       opacity: 0.9,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 5, top: 3),
+                        padding: const EdgeInsets.only(
+                          left: 5,
+                        ),
                         child: Text(
                           'เพศ',
                           style: TextStyle(
@@ -281,9 +281,7 @@ class _MembershipState extends State<Membership> {
                   ],
                 ),
               ),
-              SizedBox(
-                width: size.width * 0.009,
-              ),
+              SizedBox(width: size.width * 0.02),
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -299,7 +297,7 @@ class _MembershipState extends State<Membership> {
                     Opacity(
                       opacity: 0.9,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 5, top: 3),
+                        padding: const EdgeInsets.only(left: 5),
                         child: Text(
                           'สัญชาติ',
                           style: TextStyle(
@@ -378,27 +376,29 @@ class _MembershipState extends State<Membership> {
               SizedBox(
                 width: size.width * 0.009,
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border(
-                    bottom: BorderSide(width: 2, color: Color(0xff78909C)),
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border(
+                      bottom: BorderSide(width: 2, color: Color(0xff78909C)),
+                    ),
                   ),
-                ),
-                width: size.width * 0.31,
-                height: size.height * 0.1,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "อีเมล",
-                      ),
-                      validator: (value) {
-                        if (value == '') {}
-                        return null;
-                      },
-                      keyboardType: TextInputType.emailAddress),
+                  width: size.width * 0.31,
+                  height: size.height * 0.1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "อีเมล",
+                        ),
+                        validator: (value) {
+                          if (value == '') {}
+                          return null;
+                        },
+                        keyboardType: TextInputType.emailAddress),
+                  ),
                 ),
               ),
             ],
@@ -464,6 +464,7 @@ class _MembershipState extends State<Membership> {
       ),
       actions: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             GestureDetector(
               onTap: () {
@@ -478,8 +479,8 @@ class _MembershipState extends State<Membership> {
 
                 child: Container(
                   color: Colors.white,
-                  width: size.width * 0.18,
-                  height: size.height * 0.06,
+                  width: size.width * 0.08,
+                  height: size.height * 0.05,
                   child: Center(
                       child: Text(
                     'ยกเลิก',
@@ -502,8 +503,8 @@ class _MembershipState extends State<Membership> {
                   borderRadius: BorderRadius.circular(5.0),
                 ),
                 child: Container(
-                  width: size.width * 0.18,
-                  height: size.height * 0.06,
+                  width: size.width * 0.08,
+                  height: size.height * 0.05,
                   child: Center(
                       child: Text(
                     'ยืนยัน',
