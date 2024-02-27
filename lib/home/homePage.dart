@@ -10,6 +10,7 @@ import 'package:possodexo/home/widgets/OpenSalesShift.dart';
 import 'package:possodexo/home/widgets/ShowOpenShift.dart';
 import 'package:possodexo/home/widgets/TablePromotion.dart';
 import 'package:possodexo/home/widgets/membership.dart';
+import '../payment/widgets/paymentCash.dart';
 import 'widgets/Addpointsela.dart';
 import 'widgets/GridProduct.dart';
 import 'widgets/Promotion.dart';
@@ -308,7 +309,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-    
+
               //ส่วนแสดงสินค้า
               openShift == true
                   ? Container(
@@ -775,7 +776,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ],
                         ),
-    
+
                         /// โช สินค้า
                         // GestureDetector(
                         //   onTap: () async {
@@ -784,7 +785,7 @@ class _HomePageState extends State<HomePage> {
                         //         builder: (context) {
                         //           return GridCoffee();
                         //         });
-    
+
                         //     if (listItem2 != null) {
                         //       setState(() {});
                         //     }
@@ -841,7 +842,7 @@ class _HomePageState extends State<HomePage> {
                                                                   selectedItem[
                                                                           index]
                                                                       .qty!;
-    
+
                                                           selectedItem[index]
                                                               .priceQTY = price;
                                                         });
@@ -879,7 +880,7 @@ class _HomePageState extends State<HomePage> {
                                                                 selectedItem[
                                                                         index]
                                                                     .qty!;
-    
+
                                                         selectedItem[index]
                                                             .priceQTY = price;
                                                       });
@@ -1125,32 +1126,42 @@ class _HomePageState extends State<HomePage> {
                               SizedBox(
                                 height: 6,
                               ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: Color.fromARGB(110, 185, 185, 185)),
-                                height: size.height * 0.05,
-                                width: size.width * 0.21,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Opacity(
-                                        opacity: 0.8,
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 5, top: 3),
-                                          child: Text(
-                                            'ชำระเงิน 0.00',
-                                            style: TextStyle(
-                                              fontSize: 12,
-                                              fontFamily: 'IBMPlexSansThai',
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => PaymentCash()));
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color:
+                                          Color.fromARGB(110, 185, 185, 185)),
+                                  height: size.height * 0.05,
+                                  width: size.width * 0.21,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Opacity(
+                                          opacity: 0.8,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 5, top: 3),
+                                            child: Text(
+                                              'ชำระเงิน 0.00',
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                fontFamily: 'IBMPlexSansThai',
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               )
