@@ -40,269 +40,252 @@ class _PaymentCashState extends State<PaymentCash> {
       child: Scaffold(
         body: Row(
           children: [
-            Expanded(
-              flex: 5,
-              child: SingleChildScrollView(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            Column(children: [
+              Container(
+                height: size.height * 0.08,
+                width: size.width * 0.25,
+                decoration: BoxDecoration(color: Colors.black),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Row(
                     children: [
-                      Container(
-                        height: size.height * 0.12,
-                        width: size.width * 0.25,
-                        decoration: BoxDecoration(color: Colors.black),
-                        child: InkWell(
-                          onTap: () {
+                      IconButton(
+                          icon: Icon(
+                            Icons.arrow_back_ios,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
                             Navigator.pop(context);
-                          },
-                          child: Row(
+                          }),
+                      Text(
+                        'กลับ',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'IBMPlexSansThai',
+                            fontSize: 16),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                  height: size.height * 0.46,
+                  width: size.width * 0.25,
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(color: Colors.white),
+                  child: ListView.builder(
+                    itemCount: widget.selectedItem.length,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        children: [
+                          Row(
                             children: [
-                              IconButton(
-                                  icon: Icon(
-                                    Icons.arrow_back_ios,
-                                    color: Colors.white,
-                                  ),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  }),
-                              Text(
-                                'กลับ',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'IBMPlexSansThai',
-                                    fontSize: 16),
-                              )
+                              Text("${widget.selectedItem[index].name}"),
+                              Text(" X ${widget.selectedItem[index].qty}"),
+                              SizedBox(
+                                width: 10,
+                              ),
                             ],
                           ),
-                        ),
-                      ),
-                      Container(
-                          height: size.height * 0.46,
-                          width: size.width * 0.25,
-                          padding: EdgeInsets.all(8),
-                          decoration: BoxDecoration(color: Colors.white),
-                          child: ListView.builder(
-                            itemCount: widget.selectedItem.length,
-                            itemBuilder: (context, index) {
-                              return Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                          "${widget.selectedItem[index].name}"),
-                                      Text(
-                                          " X ${widget.selectedItem[index].qty}"),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text('ขนาด'),
-                                      SizedBox(
-                                        width: size.width * 0.01,
-                                      ),
-                                      Text(widget.selectedItem[index].size == 0
-                                          ? 'S'
-                                          : widget.selectedItem[index].size == 1
-                                              ? 'M'
-                                              : "L")
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text('โปรโมชั่น'),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        widget.selectedItem[index].size == 0
-                                            ? widget.selectedItem[index].priceS!
-                                                .toStringAsFixed(2)
-                                            : widget.selectedItem[index].size ==
-                                                    1
-                                                ? widget
-                                                    .selectedItem[index].priceM!
-                                                    .toStringAsFixed(2)
-                                                : widget
-                                                    .selectedItem[index].priceL!
-                                                    .toStringAsFixed(2),
-                                      ),
-                                      widget.selectedItem[index].priceQTY == 0
-                                          ? Text(
-                                              widget.selectedItem[index].priceS!
-                                                  .toStringAsFixed(2),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold),
-                                            )
-                                          : Text(
-                                              widget
-                                                  .selectedItem[index].priceQTY!
-                                                  .toStringAsFixed(2),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                    ],
-                                  ),
-                                ],
-                              );
-                            },
-                          )),
-                      Container(
-                        color: Color.fromARGB(15, 0, 0, 0),
-                        height: size.height * 0.005,
-                        width: size.width * 0.25,
-                      ),
-                      Container(
-                        height: size.height * 0.05,
-                        width: size.width * 0.25,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border(
-                                bottom: BorderSide(
-                                    color:
-                                        Color.fromARGB(255, 228, 226, 226)))),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Image.asset(
-                                    "assets/icons/Frame.png",
-                                    scale: 20,
-                                  ),
-                                ),
-                                Text(
-                                  "ส่วนลด",
-                                  style: TextStyle(color: Color(0xff1264E3)),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Icon(
-                                Icons.arrow_forward_ios_outlined,
-                                size: 15,
-                                color: Color(0xff1264E3),
+                          Row(
+                            children: [
+                              Text('ขนาด'),
+                              SizedBox(
+                                width: size.width * 0.01,
                               ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Container(
-                        color: Color.fromARGB(15, 0, 0, 0),
-                        height: size.height * 0.005,
-                        width: size.width * 0.25,
-                      ),
-                      Container(
-                        height: size.height * 0.05,
-                        width: size.width * 0.25,
-                        decoration: BoxDecoration(
-                            color: Color(0xff1264E3),
-                            border: Border(
-                                bottom: BorderSide(
-                                    color:
-                                        Color.fromARGB(255, 228, 226, 226)))),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Image.asset(
-                                    "assets/icons/Barth.png",
-                                    scale: 20,
-                                  ),
-                                ),
-                                Text(
-                                  "ชำระเงิน",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Icon(
-                                Icons.arrow_forward_ios_outlined,
-                                size: 15,
-                                color: Colors.white,
+                              Text(widget.selectedItem[index].size == 0
+                                  ? 'S'
+                                  : widget.selectedItem[index].size == 1
+                                      ? 'M'
+                                      : "L")
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text('โปรโมชั่น'),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                widget.selectedItem[index].size == 0
+                                    ? widget.selectedItem[index].priceS!
+                                        .toStringAsFixed(2)
+                                    : widget.selectedItem[index].size == 1
+                                        ? widget.selectedItem[index].priceM!
+                                            .toStringAsFixed(2)
+                                        : widget.selectedItem[index].priceL!
+                                            .toStringAsFixed(2),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        color: Colors.white,
-                        height: size.height * 0.257,
-                        width: size.width * 0.25,
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text("จำนวนสินค้า"),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text("${widget.sumQTY}"),
-                                )
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text("รวม"),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text("${widget.sumPrice} ฿"),
-                                )
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text("ส่วนลด"),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text("0฿"),
-                                )
-                              ],
-                            ),
-                            Divider(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text("ชำระทั้งหมด"),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text("${widget.sumPrice}฿"),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      )
-                    ]),
+                              widget.selectedItem[index].priceQTY == 0
+                                  ? Text(
+                                      widget.selectedItem[index].priceS!
+                                          .toStringAsFixed(2),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    )
+                                  : Text(
+                                      widget.selectedItem[index].priceQTY!
+                                          .toStringAsFixed(2),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                            ],
+                          ),
+                        ],
+                      );
+                    },
+                  )),
+              Container(
+                color: Color.fromARGB(15, 0, 0, 0),
+                height: size.height * 0.005,
+                width: size.width * 0.25,
               ),
-            ),
+              Container(
+                height: size.height * 0.05,
+                width: size.width * 0.25,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border(
+                        bottom: BorderSide(
+                            color: Color.fromARGB(255, 228, 226, 226)))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset(
+                            "assets/icons/Frame.png",
+                            scale: 20,
+                          ),
+                        ),
+                        Text(
+                          "ส่วนลด",
+                          style: TextStyle(color: Color(0xff1264E3)),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.arrow_forward_ios_outlined,
+                        size: 15,
+                        color: Color(0xff1264E3),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                color: Color.fromARGB(15, 0, 0, 0),
+                height: size.height * 0.005,
+                width: size.width * 0.25,
+              ),
+              Container(
+                height: size.height * 0.05,
+                width: size.width * 0.25,
+                decoration: BoxDecoration(
+                    color: Color(0xff1264E3),
+                    border: Border(
+                        bottom: BorderSide(
+                            color: Color.fromARGB(255, 228, 226, 226)))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset(
+                            "assets/icons/Barth.png",
+                            scale: 20,
+                          ),
+                        ),
+                        Text(
+                          "ชำระเงิน",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.arrow_forward_ios_outlined,
+                        size: 15,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                color: Colors.white,
+                height: size.height * 0.257,
+                width: size.width * 0.25,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("จำนวนสินค้า"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("${widget.sumQTY}"),
+                        )
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("รวม"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("${widget.sumPrice} ฿"),
+                        )
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("ส่วนลด"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("0฿"),
+                        )
+                      ],
+                    ),
+                    Divider(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("ชำระทั้งหมด"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("${widget.sumPrice}฿"),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ]),
             Expanded(
               flex: 10,
               child: SingleChildScrollView(
@@ -805,11 +788,13 @@ class _PaymentCashState extends State<PaymentCash> {
                                     child: Padding(
                                       padding: const EdgeInsets.only(left: 10),
                                       child: TextFormField(
+                                        controller: ai,
+                                        readOnly: true,
                                         decoration: InputDecoration(
-                                            border: InputBorder.none,
-                                            hintText: "฿",
-                                            hintStyle: TextStyle(fontSize: 25),
-                                            suffixText: "0"),
+                                          border: InputBorder.none,
+                                          hintText: "฿",
+                                          hintStyle: TextStyle(fontSize: 25),
+                                        ),
                                         validator: (value) {
                                           if (value == '') {
                                             return "โปรดใส่ข้อความให้ครบถ้วน";
@@ -827,12 +812,17 @@ class _PaymentCashState extends State<PaymentCash> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
+                                        SizedBox(
+                                          height: size.height * 0.01,
+                                        ),
                                         Column(
                                           children: [
-                                            //const SizedBox(height: 40),
+                                            const SizedBox(height: 20),
+
                                             Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               // implement the number keys (from 0 to 9) with the NumberButton widget
                                               // the NumberButton widget is defined in the bottom of this file
                                               children: [
@@ -844,6 +834,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                                     size: 10,
                                                     color: Colors.white,
                                                     controller: ai,
+                                                    onPressed: () {
+                                                      ai.text += '7';
+                                                    },
                                                   ),
                                                 ),
                                                 SizedBox(
@@ -857,6 +850,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                                     size: 10,
                                                     color: Colors.white,
                                                     controller: ai,
+                                                    onPressed: () {
+                                                      ai.text += '8';
+                                                    },
                                                   ),
                                                 ),
                                                 SizedBox(
@@ -870,11 +866,14 @@ class _PaymentCashState extends State<PaymentCash> {
                                                     size: 10,
                                                     color: Colors.white,
                                                     controller: ai,
+                                                    onPressed: () {
+                                                      ai.text += '9';
+                                                    },
                                                   ),
                                                 ),
                                               ],
                                             ),
-                                            const SizedBox(height: 15),
+                                            const SizedBox(height: 20),
                                             Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceEvenly,
@@ -887,6 +886,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                                     size: 10,
                                                     color: Colors.white,
                                                     controller: ai,
+                                                    onPressed: () {
+                                                      ai.text += '4';
+                                                    },
                                                   ),
                                                 ),
                                                 SizedBox(
@@ -900,6 +902,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                                     size: 10,
                                                     color: Colors.white,
                                                     controller: ai,
+                                                    onPressed: () {
+                                                      ai.text += '5';
+                                                    },
                                                   ),
                                                 ),
                                                 SizedBox(
@@ -913,11 +918,14 @@ class _PaymentCashState extends State<PaymentCash> {
                                                     size: 10,
                                                     color: Colors.white,
                                                     controller: ai,
+                                                    onPressed: () {
+                                                      ai.text += '6';
+                                                    },
                                                   ),
                                                 ),
                                               ],
                                             ),
-                                            const SizedBox(height: 15),
+                                            const SizedBox(height: 20),
                                             Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceEvenly,
@@ -930,6 +938,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                                     size: 10,
                                                     color: Colors.white,
                                                     controller: ai,
+                                                    onPressed: () {
+                                                      ai.text += '1';
+                                                    },
                                                   ),
                                                 ),
                                                 SizedBox(
@@ -943,6 +954,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                                     size: 10,
                                                     color: Colors.white,
                                                     controller: ai,
+                                                    onPressed: () {
+                                                      ai.text += '2';
+                                                    },
                                                   ),
                                                 ),
                                                 SizedBox(
@@ -956,11 +970,14 @@ class _PaymentCashState extends State<PaymentCash> {
                                                     size: 10,
                                                     color: Colors.white,
                                                     controller: ai,
+                                                    onPressed: () {
+                                                      ai.text += '3';
+                                                    },
                                                   ),
                                                 ),
                                               ],
                                             ),
-                                            const SizedBox(height: 15),
+                                            const SizedBox(height: 20),
                                             Row(
                                               children: [
                                                 SizedBox(
@@ -971,6 +988,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                                     size: 10,
                                                     color: Colors.white,
                                                     controller: ai,
+                                                    onPressed: () {
+                                                      ai.text += '00';
+                                                    },
                                                   ),
                                                 ),
                                                 SizedBox(
@@ -984,6 +1004,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                                     size: 10,
                                                     color: Colors.white,
                                                     controller: ai,
+                                                    onPressed: () {
+                                                      ai.text += '0';
+                                                    },
                                                   ),
                                                 ),
                                                 SizedBox(
@@ -997,11 +1020,14 @@ class _PaymentCashState extends State<PaymentCash> {
                                                     size: 10,
                                                     color: Colors.white,
                                                     controller: ai,
+                                                    onPressed: () {
+                                                      ai.text += '.';
+                                                    },
                                                   ),
                                                 ),
                                               ],
                                             ),
-                                            const SizedBox(height: 15),
+                                            const SizedBox(height: 20),
                                             // Row(
                                             //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                             //   children: List.generate(itemUnitPrices.length, (index) => NumberButton1(
@@ -1028,7 +1054,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                             //             ),
                                             //           )),
                                             // ),
-                                            SizedBox(height: 10),
+                                            SizedBox(height: 4),
                                             // Row(
                                             //   mainAxisAlignment:
                                             //       MainAxisAlignment.center,
@@ -1038,7 +1064,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                             //       icon: Icon(
                                             //         Icons.delete,
                                             //         color: const Color.fromARGB(
-                                            //             255, 17, 17, 17),
+                                            //             255, 20, 20, 20),
                                             //       ),
                                             //       iconSize: 10,
                                             //     ),
@@ -1054,14 +1080,30 @@ class _PaymentCashState extends State<PaymentCash> {
                                             Padding(
                                               padding: const EdgeInsets.only(
                                                   bottom: 10),
-                                              child: SizedBox(
-                                                width: size.width * 0.08,
-                                                height: size.height * 0.2,
-                                                child: NumberButton(
-                                                  number: '<',
-                                                  size: 10,
-                                                  color: Colors.white,
-                                                  controller: ai,
+                                              child: InkWell(
+                                                onTap: () {
+                                                  // ตรวจสอบว่ามีตัวอักษรใน TextFormField หรือไม่
+                                                  ai.text = ai.text.substring(
+                                                      0,
+                                                      ai.text.length -
+                                                          1); // ลบตัวอักษรที่สุดท้ายออก
+                                                },
+                                                child: SizedBox(
+                                                  width: size.width * 0.08,
+                                                  height: size.height * 0.2,
+                                                  child: NumberButton(
+                                                    number: '<',
+                                                    size: 10,
+                                                    color: Colors.white,
+                                                    controller: ai,
+                                                    onPressed: () {
+                                                      ai.text = ai.text
+                                                          .substring(
+                                                              0,
+                                                              ai.text.length -
+                                                                  1);
+                                                    },
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -1073,6 +1115,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                                 size: 10,
                                                 color: Colors.white,
                                                 controller: ai,
+                                                onPressed: () {
+                                                  ai.text = '';
+                                                },
                                               ),
                                             ),
                                           ],
@@ -1091,9 +1136,117 @@ class _PaymentCashState extends State<PaymentCash> {
                 ),
               ),
             ),
-            Expanded(
-              flex: 5,
-              child: Column(),
+            Column(
+              children: [
+                Container(
+                  height: size.height * 0.08,
+                  width: size.width * 0.25,
+                  decoration: BoxDecoration(color: Color(0xfffECEFF1)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Text(
+                      "เงินสด",
+                      style: TextStyle(fontSize: 23),
+                    ),
+                  ),
+                ),
+                Container(
+                  height: size.height * 0.87,
+                  width: size.width * 0.25,
+                  padding: EdgeInsets.all(8),
+                  decoration:
+                      BoxDecoration(color: Color.fromARGB(255, 245, 245, 245)),
+                  child: Column(children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "รวม",
+                            style: TextStyle(
+                              fontFamily: 'IBMPlexSansThai',
+                            ),
+                          ),
+                          Text(
+                            '${widget.sumPrice} ฿',
+                            style: TextStyle(
+                              fontFamily: 'IBMPlexSansThai',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Divider(
+                      color: Color(0xfff78909C),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "ยอดชำระ",
+                            style: TextStyle(
+                              fontFamily: 'IBMPlexSansThai',
+                            ),
+                          ),
+                          Text(
+                            '${widget.sumPrice} ฿',
+                            style: TextStyle(
+                              fontFamily: 'IBMPlexSansThai',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "เงินทอน",
+                            style: TextStyle(
+                              fontFamily: 'IBMPlexSansThai',
+                            ),
+                          ),
+                          Text(
+                            '0.00 ฿',
+                            style: TextStyle(
+                              fontFamily: 'IBMPlexSansThai',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "รวม",
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontFamily: 'IBMPlexSansThai',
+                            ),
+                          ),
+                          Text(
+                            '${widget.sumPrice} ฿',
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontFamily: 'IBMPlexSansThai',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Divider(color: Color(0xfff78909C)),
+                    Container()
+                  ]),
+                ),
+              ],
             )
           ],
         ),
@@ -1107,6 +1260,7 @@ class NumberButton extends StatelessWidget {
   final double size;
   final Color color;
   final TextEditingController controller;
+  final Function() onPressed;
 
   const NumberButton({
     Key? key,
@@ -1114,6 +1268,7 @@ class NumberButton extends StatelessWidget {
     required this.size,
     required this.color,
     required this.controller,
+    required this.onPressed,
   }) : super(key: key);
 
   @override
@@ -1128,9 +1283,7 @@ class NumberButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(size / 2),
           ),
         ),
-        onPressed: () {
-          controller.text += number.toString();
-        },
+        onPressed: onPressed,
         child: Center(
           child: Text(
             number.toString(),

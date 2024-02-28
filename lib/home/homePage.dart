@@ -199,355 +199,359 @@ class _HomePageState extends State<HomePage> {
       children: [
         Expanded(
             flex: 15,
-            child: Column(children: [
-              Container(
-                decoration: BoxDecoration(color: Color(0xFFECEFF1)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(2),
-                      height: size.height * 0.08,
-                      width: size.width * 0.16,
-                      // color: Colors.grey,
-                      child: DropdownBranch(
-                        sizeValue: sizeValue,
-                        size: size,
-                        onSelected: (value) {
-                          setState(() {
-                            sizeValue = value!;
-                          });
-                        },
+            child: SingleChildScrollView(
+              child: Column(children: [
+                Container(
+                  decoration: BoxDecoration(color: Color(0xFFECEFF1)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(2),
+                        height: size.height * 0.08,
+                        width: size.width * 0.16,
+                        // color: Colors.grey,
+                        child: DropdownBranch(
+                          sizeValue: sizeValue,
+                          size: size,
+                          onSelected: (value) {
+                            setState(() {
+                              sizeValue = value!;
+                            });
+                          },
+                        ),
                       ),
-                    ),
-                    Container(
-                      height: size.height * 0.08,
-                      width: size.width * 0.38,
-                      //color: Colors.grey,
-                      child: Row(
-                        children: [
-                          OpenAndCloseSwitch(
-                            size: size,
-                            open: open,
-                            showTextOpen: 'เปิดเมนู',
-                            showTextClose: 'ปิดเมนู',
-                            onChanged: (value) {
-                              setState(() {
-                                open = value;
-                              });
-                            },
-                          ),
-                          OpenAndCloseSwitch(
-                            size: size,
-                            open: print,
-                            showTextOpen: 'พิมพ์ใบเสร็จ',
-                            showTextClose: 'พิมพ์ใบเสร็จ',
-                            onChanged: (value) async {
-                              setState(() {
-                                print = value;
-                              });
-                              if (value == true) {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) => OpenPrintDialog(
-                                    size: size,
-                                    pressOk: () {
-                                      Navigator.pop(context, true);
-                                    },
-                                    pressCancel: () {
-                                      Navigator.pop(context, false);
-                                    },
-                                  ),
-                                );
-                              } else {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) => ClosePrintDialog(
-                                    size: size,
-                                    pressOk: () {
-                                      Navigator.pop(context, true);
-                                    },
-                                    pressCancel: () {
-                                      Navigator.pop(context, false);
-                                    },
-                                  ),
-                                );
-                              }
-                            },
-                          ),
-                          SizedBox(
-                            height: size.height * 0.06,
-                            width: size.width * 0.04,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(color: Color(0xFF1264E3))),
-                              child: PopupMenuButton(
-                                color: Colors.white,
-                                surfaceTintColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.zero),
-                                icon: Icon(Icons.more_horiz),
-                                itemBuilder: (ctx) => [
-                                  PopupMenuItem(
-                                    child: Row(
-                                      children: [
-                                        Icon(Icons.sticky_note_2),
-                                        Text(
-                                          'พิมพ์ใบกำกับภาษี',
-                                          style: TextStyle(
-                                            fontFamily: 'IBMPlexSansThai',
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    onTap: () {},
-                                  ),
-                                  PopupMenuItem(
-                                    child: Row(
-                                      children: [
-                                        Icon(Icons.receipt),
-                                        Text(
-                                          'พิมพ์ใบเสร็จย้อนหลัง',
-                                          style: TextStyle(
-                                            fontFamily: 'IBMPlexSansThai',
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    onTap: () {},
-                                  ),
-                                ],
-                              ),
+                      Container(
+                        height: size.height * 0.08,
+                        width: size.width * 0.38,
+                        //color: Colors.grey,
+                        child: Row(
+                          children: [
+                            OpenAndCloseSwitch(
+                              size: size,
+                              open: open,
+                              showTextOpen: 'เปิดเมนู',
+                              showTextClose: 'ปิดเมนู',
+                              onChanged: (value) {
+                                setState(() {
+                                  open = value;
+                                });
+                              },
                             ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Color(0xFFECEFF1),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      spreadRadius: 2,
-                      blurRadius: 1,
-                      offset: Offset(0, 1),
-                    ),
-                  ],
-                ),
-              ),
-
-              //ส่วนแสดงสินค้า
-              openShift == true
-                  ? Container(
-                      color: Colors.white,
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Card(
-                                surfaceTintColor: Colors.white,
-                                elevation: 2,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                    side: BorderSide(color: kButtonColor)),
-                                child: SizedBox(
-                                  width: size.width * 0.1,
-                                  height: size.height * 0.06,
-                                  child: Center(
-                                      child: Text(
-                                    '1 - POS01',
-                                    style: TextStyle(
-                                        color: kButtonColor,
-                                        fontFamily: 'IBMPlexSansThai',
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold),
-                                  )),
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
+                            OpenAndCloseSwitch(
+                              size: size,
+                              open: print,
+                              showTextOpen: 'พิมพ์ใบเสร็จ',
+                              showTextClose: 'พิมพ์ใบเสร็จ',
+                              onChanged: (value) async {
+                                setState(() {
+                                  print = value;
+                                });
+                                if (value == true) {
                                   showDialog(
                                     context: context,
-                                    builder: (context) => Addpointsela(
+                                    builder: (context) => OpenPrintDialog(
                                       size: size,
-                                      pressCancel: () {
-                                        Navigator.pop(context, false);
-                                      },
                                       pressOk: () {
                                         Navigator.pop(context, true);
                                       },
-                                      pressClose: () {
+                                      pressCancel: () {
                                         Navigator.pop(context, false);
                                       },
                                     ),
                                   );
-                                },
-                                child: Card(
+                                } else {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => ClosePrintDialog(
+                                      size: size,
+                                      pressOk: () {
+                                        Navigator.pop(context, true);
+                                      },
+                                      pressCancel: () {
+                                        Navigator.pop(context, false);
+                                      },
+                                    ),
+                                  );
+                                }
+                              },
+                            ),
+                            SizedBox(
+                              height: size.height * 0.06,
+                              width: size.width * 0.04,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border:
+                                        Border.all(color: Color(0xFF1264E3))),
+                                child: PopupMenuButton(
+                                  color: Colors.white,
                                   surfaceTintColor: Colors.white,
-                                  elevation: 5,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.zero),
+                                  icon: Icon(Icons.more_horiz),
+                                  itemBuilder: (ctx) => [
+                                    PopupMenuItem(
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.sticky_note_2),
+                                          Text(
+                                            'พิมพ์ใบกำกับภาษี',
+                                            style: TextStyle(
+                                              fontFamily: 'IBMPlexSansThai',
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      onTap: () {},
+                                    ),
+                                    PopupMenuItem(
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.receipt),
+                                          Text(
+                                            'พิมพ์ใบเสร็จย้อนหลัง',
+                                            style: TextStyle(
+                                              fontFamily: 'IBMPlexSansThai',
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      onTap: () {},
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xFFECEFF1),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        spreadRadius: 2,
+                        blurRadius: 1,
+                        offset: Offset(0, 1),
+                      ),
+                    ],
+                  ),
+                ),
+
+                //ส่วนแสดงสินค้า
+                openShift == true
+                    ? Container(
+                        color: Colors.white,
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Card(
+                                  surfaceTintColor: Colors.white,
+                                  elevation: 2,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5.0),
                                       side: BorderSide(color: kButtonColor)),
-                                  color: Colors.white,
                                   child: SizedBox(
-                                    width: size.width * 0.07,
+                                    width: size.width * 0.1,
                                     height: size.height * 0.06,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          'assets/icons/add.png',
-                                          scale: 25,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          'เพิ่ม',
-                                          style: TextStyle(
-                                              color: kButtonColor,
-                                              fontFamily: 'IBMPlexSansThai',
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
+                                    child: Center(
+                                        child: Text(
+                                      '1 - POS01',
+                                      style: TextStyle(
+                                          color: kButtonColor,
+                                          fontFamily: 'IBMPlexSansThai',
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    )),
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => Addpointsela(
+                                        size: size,
+                                        pressCancel: () {
+                                          Navigator.pop(context, false);
+                                        },
+                                        pressOk: () {
+                                          Navigator.pop(context, true);
+                                        },
+                                        pressClose: () {
+                                          Navigator.pop(context, false);
+                                        },
+                                      ),
+                                    );
+                                  },
+                                  child: Card(
+                                    surfaceTintColor: Colors.white,
+                                    elevation: 5,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
+                                        side: BorderSide(color: kButtonColor)),
+                                    color: Colors.white,
+                                    child: SizedBox(
+                                      width: size.width * 0.07,
+                                      height: size.height * 0.06,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Image.asset(
+                                            'assets/icons/add.png',
+                                            scale: 25,
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            'เพิ่ม',
+                                            style: TextStyle(
+                                                color: kButtonColor,
+                                                fontFamily: 'IBMPlexSansThai',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: size.height * 0.01,
-                          ),
-                          Container(
-                            height: size.height * 0.1,
-                            width: double.infinity,
-                            color: kTabColor,
-                            child: Row(
-                              children: [
-                                SizedBox(
-                                  width: 20,
-                                ),
-                                DropdownButton<String>(
-                                  selectedItemBuilder: (e) =>
-                                      product.map<Widget>((item) {
-                                    return Center(
-                                      child: Text(
-                                        item['name']!,
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    );
-                                  }).toList(),
-                                  icon: Icon(
-                                    Icons.arrow_drop_down,
-                                    color: Colors.white,
-                                  ),
-                                  underline: SizedBox(),
-                                  items: product
-                                      .map<DropdownMenuItem<String>>((item) {
-                                    return DropdownMenuItem<String>(
-                                      value: item['name'],
-                                      child: Text(
-                                        item['name']!,
-                                        style: TextStyle(
-                                          fontFamily: 'IBMPlexSansThai',
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    );
-                                  }).toList(),
-                                  value: sclectedProduct,
-                                  onChanged: (v) {
-                                    setState(() {
-                                      sclectedProduct = v!;
-                                      gridCoffees = gridCoffee;
-                                      gridCoffees =
-                                          gridCoffees.where((product) {
-                                        if (v == 'ทั้งหมด') {
-                                          return true;
-                                        } else {
-                                          return product['type'] == v;
-                                        }
-                                      }).toList();
-                                    });
-                                  },
-                                ),
-                                Row(),
+                                )
                               ],
                             ),
-                          ),
-                          SizedBox(
-                            height: size.height * 0.01,
-                          ),
-                          SizedBox(
-                            height: size.height * 0.536,
-                            child: SingleChildScrollView(
-                              child: SizedBox(
-                                child: GridCoffee(
-                                  qty: qty,
-                                  gridCoffee: gridCoffees,
-                                  onChange: (value) {
-                                    inspect(value);
-                                    final item = ItemSelect(
-                                      image: value['item']['image'],
-                                      priceS: value['item']['priceS'],
-                                      priceM: value['item']['priceM'],
-                                      priceL: value['item']['priceL'],
-                                      name: value['item']['name'],
-                                      type: value['item']['type'],
-                                      size: value['size'],
-                                    );
-                                    selectedItem.add(item);
-                                    setState(() {});
-                                  },
+                            SizedBox(
+                              height: size.height * 0.01,
+                            ),
+                            Container(
+                              height: size.height * 0.1,
+                              width: double.infinity,
+                              color: kTabColor,
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  DropdownButton<String>(
+                                    selectedItemBuilder: (e) =>
+                                        product.map<Widget>((item) {
+                                      return Center(
+                                        child: Text(
+                                          item['name']!,
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      );
+                                    }).toList(),
+                                    icon: Icon(
+                                      Icons.arrow_drop_down,
+                                      color: Colors.white,
+                                    ),
+                                    underline: SizedBox(),
+                                    items: product
+                                        .map<DropdownMenuItem<String>>((item) {
+                                      return DropdownMenuItem<String>(
+                                        value: item['name'],
+                                        child: Text(
+                                          item['name']!,
+                                          style: TextStyle(
+                                            fontFamily: 'IBMPlexSansThai',
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      );
+                                    }).toList(),
+                                    value: sclectedProduct,
+                                    onChanged: (v) {
+                                      setState(() {
+                                        sclectedProduct = v!;
+                                        gridCoffees = gridCoffee;
+                                        gridCoffees =
+                                            gridCoffees.where((product) {
+                                          if (v == 'ทั้งหมด') {
+                                            return true;
+                                          } else {
+                                            return product['type'] == v;
+                                          }
+                                        }).toList();
+                                      });
+                                    },
+                                  ),
+                                  Row(),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: size.height * 0.01,
+                            ),
+                            SizedBox(
+                              height: size.height * 0.536,
+                              child: SingleChildScrollView(
+                                child: SizedBox(
+                                  child: GridCoffee(
+                                    qty: qty,
+                                    gridCoffee: gridCoffees,
+                                    onChange: (value) {
+                                      inspect(value);
+                                      final item = ItemSelect(
+                                        image: value['item']['image'],
+                                        priceS: value['item']['priceS'],
+                                        priceM: value['item']['priceM'],
+                                        priceL: value['item']['priceL'],
+                                        name: value['item']['name'],
+                                        type: value['item']['type'],
+                                        size: value['size'],
+                                      );
+                                      selectedItem.add(item);
+                                      setState(() {});
+                                    },
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: size.height * 0.14,
-                            child: GridProMotion(),
-                          )
-                        ],
+                            SizedBox(
+                              height: size.height * 0.14,
+                              child: GridProMotion(),
+                            )
+                          ],
+                        ),
+                      )
+                    : ShowOpenShift(
+                        size: size,
+                        press: () async {
+                          final ok = await showDialog(
+                            context: context,
+                            builder: (context) => OpenSalesShift(
+                              size: size,
+                              pressCancel: () {
+                                Navigator.pop(context, false);
+                              },
+                              pressOk: () {
+                                Navigator.pop(context, true);
+                              },
+                              pressClose: () {
+                                Navigator.pop(context, false);
+                              },
+                            ),
+                          );
+                          if (ok == true) {
+                            setState(() {
+                              openShift = true;
+                            });
+                          }
+                        },
                       ),
-                    )
-                  : ShowOpenShift(
-                      size: size,
-                      press: () async {
-                        final ok = await showDialog(
-                          context: context,
-                          builder: (context) => OpenSalesShift(
-                            size: size,
-                            pressCancel: () {
-                              Navigator.pop(context, false);
-                            },
-                            pressOk: () {
-                              Navigator.pop(context, true);
-                            },
-                            pressClose: () {
-                              Navigator.pop(context, false);
-                            },
-                          ),
-                        );
-                        if (ok == true) {
-                          setState(() {
-                            openShift = true;
-                          });
-                        }
-                      },
-                    ),
-            ])),
+              ]),
+            )),
         //Expanded(flex: 1, child: Container()),
         //ส่วนสำหรับแสดง รายการคิดเงิน
         Expanded(
@@ -1261,17 +1265,22 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => PaymentCash(
-                                                    selectedItem: selectedItem,
-                                                    sumPrice:
-                                                        sumPrice(selectedItem)
+                                      selectedItem.isNotEmpty
+                                          ? Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      PaymentCash(
+                                                        selectedItem:
+                                                            selectedItem,
+                                                        sumPrice: sumPrice(
+                                                                selectedItem)
                                                             .toString(),
-                                                    sumQTY: sumQTY(selectedItem)
-                                                        .toString(),
-                                                  )));
+                                                        sumQTY:
+                                                            sumQTY(selectedItem)
+                                                                .toString(),
+                                                      )))
+                                          : null;
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
