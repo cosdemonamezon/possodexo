@@ -335,41 +335,17 @@ class _PaymentCashState extends State<PaymentCash> {
                                 ),
                                 Row(
                                   children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Color(0xff1264E3)),
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                      height: size.height * 0.05,
-                                      width: size.width * 0.08,
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Color(0xff1264E3)),
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                      height: size.height * 0.05,
-                                      width: size.width * 0.08,
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Color(0xff1264E3)),
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                      height: size.height * 0.05,
-                                      width: size.width * 0.08,
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Color(0xff1264E3)),
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                      height: size.height * 0.05,
-                                      width: size.width * 0.08,
+                                    InkWell(
+                                      onTap: () {},
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Color(0xff1264E3)),
+                                            borderRadius:
+                                                BorderRadius.circular(8)),
+                                        height: size.height * 0.05,
+                                        width: size.width * 0.08,
+                                      ),
                                     ),
                                   ],
                                 )
