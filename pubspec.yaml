@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   phosphor_flutter: ^2.0.1
   dropdown_button2: ^2.3.9
+  chips_choice: ^3.0.1
+  item_count_number_button: ^1.9.2
   intl: ^0.18.1
  
 dev_dependencies:
