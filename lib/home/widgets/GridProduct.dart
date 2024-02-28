@@ -83,7 +83,7 @@ class _GridCoffeeState extends State<GridCoffee> {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(4)),
                           child: Text(
-                            widget.gridCoffee[index]['price'].toString(),
+                            widget.gridCoffee[index]['priceS'].toString(),
                             style: TextStyle(
                               fontFamily: 'IBMPlexSansThai',
                             ),

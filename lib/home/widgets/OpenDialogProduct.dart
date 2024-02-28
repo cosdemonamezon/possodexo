@@ -196,10 +196,15 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                         });
                       },
                       child: Container(
+                        height: 35,
+                        width: 35,
                         decoration: BoxDecoration(
-                            color: Color(0xFF9E9E9E),
+                            color: Color(0xFFCFD8DC),
                             borderRadius: BorderRadius.circular(6)),
-                        child: Icon(Icons.remove),
+                        child: Icon(
+                          Icons.remove,
+                          size: 15,
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -216,10 +221,15 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                         });
                       },
                       child: Container(
+                        height: 35,
+                        width: 35,
                         decoration: BoxDecoration(
-                            color: Color(0xFF9E9E9E),
+                            color: Color(0xFFCFD8DC),
                             borderRadius: BorderRadius.circular(6)),
-                        child: Icon(Icons.add),
+                        child: Icon(
+                          Icons.add,
+                          size: 15,
+                        ),
                       ),
                     ),
                   ],

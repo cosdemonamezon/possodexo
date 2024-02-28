@@ -50,79 +50,105 @@ class _HomePageState extends State<HomePage> {
   List<Map<String, dynamic>> gridCoffee = [
     {
       'image': 'assets/images/coffee2.png',
-      'price': 165,
+      'priceS': 165,
+      'priceM': 175,
+      'priceL': 185,
       'name': 'Matcha Latte',
       'type': 'เครื่องดื่ม'
     },
     {
       'image': 'assets/images/coffee3.png',
-      'price': 65,
+      'priceS': 65,
+      'priceM': 75,
+      'priceL': 85,
       'name': 'Americano',
       'type': 'เครื่องดื่ม'
     },
     {
       'image': 'assets/images/coffee4.png',
-      'price': 165,
+      'priceS': 165,
+      'priceM': 175,
+      'priceL': 185,
       'name': 'Matcha Latte',
       'type': 'เครื่องดื่ม'
     },
     {
       'image': 'assets/images/coffee5.png',
-      'price': 65,
+      'priceS': 65,
+      'priceM': 75,
+      'priceL': 85,
       'name': 'Americano',
       'type': 'เครื่องดื่ม'
     },
     {
       'image': 'assets/images/coffee6.png',
-      'price': 165,
+      'priceS': 165,
+      'priceM': 175,
+      'priceL': 185,
       'name': 'Americano',
       'type': 'เครื่องดื่ม'
     },
     {
       'image': 'assets/images/coffee7.png',
-      'price': 65,
+      'priceS': 65,
+      'priceM': 75,
+      'priceL': 85,
       'name': 'Matcha Latte',
       'type': 'เครื่องดื่ม'
     },
     {
       'image': 'assets/images/coffee8.png',
-      'price': 165,
+      'priceS': 165,
+      'priceM': 175,
+      'priceL': 185,
       'name': 'Americano',
       'type': 'เครื่องดื่ม'
     },
     {
       'image': 'assets/images/coffee9.png',
-      'price': 65,
+      'priceS': 65,
+      'priceM': 75,
+      'priceL': 85,
       'name': 'Matcha Latte',
       'type': 'เครื่องดื่ม'
     },
     {
       'image': 'assets/images/coddee10.png',
-      'price': 165,
+      'priceS': 165,
+      'priceM': 175,
+      'priceL': 185,
       'name': 'Americano',
       'type': 'เครื่องดื่ม'
     },
     {
       'image': 'assets/images/coffee9.png',
-      'price': 65,
+      'priceS': 65,
+      'priceM': 75,
+      'priceL': 85,
       'name': 'Matcha Latte',
       'type': 'เครื่องดื่ม'
     },
     {
       'image': 'assets/images/dessert3.jpg',
-      'price': 165,
+      'priceS': 165,
+      'priceM': 175,
+      'priceL': 185,
       'name': 'Mango Sticky Rice',
       'type': 'ของหวาน'
     },
     {
       'image': 'assets/images/dessert2.jpg',
-      'price': 65,
+      'priceS': 65,
+      'priceM': 75,
+      'priceL': 85,
       'name': 'Bingsu',
       'type': 'ของหวาน'
     },
     {
       'image': 'assets/images/dessert1.jpg',
-      'price': 165,
+      'priceS': 165,
+      'priceM': 175,
+      'priceL': 185,
       'name': 'waffle',
       'type': 'ของหวาน'
     },
@@ -138,8 +164,16 @@ class _HomePageState extends State<HomePage> {
     gridCoffees = gridCoffee;
   }
 
-  double newtotal(ItemSelect orders) =>
-      double.parse((orders.qty! * orders.price!).toString());
+  double newtotal(
+    ItemSelect orders,
+  ) {
+    return double.parse((orders.size! == 0
+            ? orders.priceS! * orders.qty!
+            : orders.size! == 1
+                ? orders.priceM! * orders.qty!
+                : orders.priceL! * orders.qty!)
+        .toString());
+  }
 
   double sumPrice(List<ItemSelect> productPrice) => productPrice.fold(
       0, (previousValue, element) => previousValue + newtotal(element));
@@ -467,7 +501,9 @@ class _HomePageState extends State<HomePage> {
                                     inspect(value);
                                     final item = ItemSelect(
                                       image: value['item']['image'],
-                                      price: value['item']['price'],
+                                      priceS: value['item']['priceS'],
+                                      priceM: value['item']['priceM'],
+                                      priceL: value['item']['priceL'],
                                       name: value['item']['name'],
                                       type: value['item']['type'],
                                       size: value['size'],
@@ -836,13 +872,31 @@ class _HomePageState extends State<HomePage> {
                                                                           index]
                                                                       .qty! -
                                                                   1;
-                                                          final price =
-                                                              selectedItem[
+                                                          final price = selectedItem[
                                                                           index]
-                                                                      .price! *
+                                                                      .size ==
+                                                                  0
+                                                              ? selectedItem[
+                                                                          index]
+                                                                      .priceS! *
                                                                   selectedItem[
                                                                           index]
-                                                                      .qty!;
+                                                                      .qty!
+                                                              : selectedItem[index]
+                                                                          .size ==
+                                                                      1
+                                                                  ? selectedItem[
+                                                                              index]
+                                                                          .priceM! *
+                                                                      selectedItem[
+                                                                              index]
+                                                                          .qty!
+                                                                  : selectedItem[
+                                                                              index]
+                                                                          .priceL! *
+                                                                      selectedItem[
+                                                                              index]
+                                                                          .qty!;
 
                                                           selectedItem[index]
                                                               .priceQTY = price;
@@ -875,13 +929,32 @@ class _HomePageState extends State<HomePage> {
                                                             selectedItem[index]
                                                                     .qty! +
                                                                 1;
-                                                        final price =
-                                                            selectedItem[index]
-                                                                    .price! *
+                                                        final price = selectedItem[
+                                                                        index]
+                                                                    .size ==
+                                                                0
+                                                            ? selectedItem[
+                                                                        index]
+                                                                    .priceS! *
                                                                 selectedItem[
                                                                         index]
-                                                                    .qty!;
-
+                                                                    .qty!
+                                                            : selectedItem[index]
+                                                                        .size ==
+                                                                    1
+                                                                ? selectedItem[
+                                                                            index]
+                                                                        .priceM! *
+                                                                    selectedItem[
+                                                                            index]
+                                                                        .qty!
+                                                                : selectedItem[
+                                                                            index]
+                                                                        .priceL! *
+                                                                    selectedItem[
+                                                                            index]
+                                                                        .qty!;
+                                                        inspect(price);
                                                         selectedItem[index]
                                                             .priceQTY = price;
                                                       });
@@ -901,10 +974,11 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                           Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text('ขนาด'),
+                                              SizedBox(
+                                                width: size.width * 0.01,
+                                              ),
                                               Text(selectedItem[index].size == 0
                                                   ? 'S'
                                                   : selectedItem[index].size ==
@@ -925,19 +999,40 @@ class _HomePageState extends State<HomePage> {
                                               Text(
                                                 selectedItem[index].size == 0
                                                     ? selectedItem[index]
-                                                        .price!
+                                                        .priceS!
                                                         .toStringAsFixed(2)
                                                     : selectedItem[index]
                                                                 .size ==
                                                             1
-                                                        ? 'M'
-                                                        : "L",
+                                                        ? selectedItem[index]
+                                                            .priceM!
+                                                            .toStringAsFixed(2)
+                                                        : selectedItem[index]
+                                                            .priceL!
+                                                            .toStringAsFixed(2),
                                               ),
                                               selectedItem[index].priceQTY == 0
                                                   ? Text(
                                                       selectedItem[index]
-                                                          .price!
-                                                          .toStringAsFixed(2),
+                                                                  .size ==
+                                                              0
+                                                          ? selectedItem[index]
+                                                              .priceS!
+                                                              .toStringAsFixed(
+                                                                  2)
+                                                          : selectedItem[index]
+                                                                      .size ==
+                                                                  1
+                                                              ? selectedItem[
+                                                                      index]
+                                                                  .priceM!
+                                                                  .toStringAsFixed(
+                                                                      2)
+                                                              : selectedItem[
+                                                                      index]
+                                                                  .priceL!
+                                                                  .toStringAsFixed(
+                                                                      2),
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -1209,7 +1304,10 @@ class _HomePageState extends State<HomePage> {
 
 class ItemSelect {
   String? image;
-  int? price;
+
+  int? priceS;
+  int? priceM;
+  int? priceL;
   int? priceQTY;
   int? size;
   String? name;
@@ -1218,7 +1316,9 @@ class ItemSelect {
 
   ItemSelect({
     this.image,
-    this.price,
+    this.priceS,
+    this.priceM,
+    this.priceL,
     this.priceQTY = 0,
     this.size,
     this.name,
