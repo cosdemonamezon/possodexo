@@ -41,7 +41,7 @@ class _FirstPageState extends State<FirstPage> {
         body: Row(
           children: [
             Container(
-              width: size.width * 0.1,
+              width: size.width * 0.08,
               height: size.height,
               padding: EdgeInsets.only(top: 24, right: 12, left: 12),
               child: Column(
@@ -134,7 +134,7 @@ class _FirstPageState extends State<FirstPage> {
                 ],
               ),
             ),
-      
+
             ///Show Page
             Expanded(
               child: Container(
@@ -142,7 +142,8 @@ class _FirstPageState extends State<FirstPage> {
                 padding: EdgeInsets.only(top: 0, right: 0, left: 0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(1), topRight: Radius.circular(1)),
+                      topLeft: Radius.circular(1),
+                      topRight: Radius.circular(1)),
                   color: Color.fromARGB(255, 229, 230, 240),
                 ),
                 child: _pageView(),

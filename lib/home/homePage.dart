@@ -555,7 +555,7 @@ class _HomePageState extends State<HomePage> {
         //Expanded(flex: 1, child: Container()),
         //ส่วนสำหรับแสดง รายการคิดเงิน
         Expanded(
-          flex: 5,
+          flex: 8,
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -1191,7 +1191,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       InkWell(
                                         onTap: () async {
@@ -1212,7 +1212,7 @@ class _HomePageState extends State<HomePage> {
                                               border: Border.all(
                                                   color: Colors.black)),
                                           height: size.height * 0.05,
-                                          width: size.width * 0.1,
+                                          width: size.width * 0.13,
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Row(
@@ -1256,7 +1256,7 @@ class _HomePageState extends State<HomePage> {
                                               border: Border.all(
                                                   color: Colors.black)),
                                           height: size.height * 0.05,
-                                          width: size.width * 0.1,
+                                          width: size.width * 0.13,
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
@@ -1299,7 +1299,7 @@ class _HomePageState extends State<HomePage> {
                                               : Color.fromARGB(
                                                   110, 185, 185, 185)),
                                       height: size.height * 0.05,
-                                      width: size.width * 0.21,
+                                      width: size.width * 0.28,
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Row(
