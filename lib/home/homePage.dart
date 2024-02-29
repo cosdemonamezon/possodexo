@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:possodexo/constants.dart';
 import 'package:possodexo/home/widgets/ClosePrintDialog.dart';
@@ -24,6 +25,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<String> filteredProducts = [];
+  final TextEditingController employeeNo = TextEditingController();
+  final TextEditingController remark = TextEditingController();
+  String? counter;
   List<String> nationality = ["ไทย", "พม่า", "ลาว"];
   String lang = "ไทย";
   List<ItemSelect> selectedItem = [];
@@ -153,6 +157,7 @@ class _HomePageState extends State<HomePage> {
       'type': 'ของหวาน'
     },
   ];
+  List<Widget> orders = [];
 
   void onTapProduct(int index) {
     setState(() {});
@@ -350,83 +355,108 @@ class _HomePageState extends State<HomePage> {
                     ? Container(
                         color: Colors.white,
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              children: [
-                                Card(
-                                  surfaceTintColor: Colors.white,
-                                  elevation: 2,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5.0),
-                                      side: BorderSide(color: kButtonColor)),
-                                  child: SizedBox(
-                                    width: size.width * 0.1,
-                                    height: size.height * 0.06,
-                                    child: Center(
-                                        child: Text(
-                                      '1 - POS01',
-                                      style: TextStyle(
-                                          color: kButtonColor,
-                                          fontFamily: 'IBMPlexSansThai',
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold),
-                                    )),
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) => Addpointsela(
-                                        size: size,
-                                        pressCancel: () {
-                                          Navigator.pop(context, false);
-                                        },
-                                        pressOk: () {
-                                          Navigator.pop(context, true);
-                                        },
-                                        pressClose: () {
-                                          Navigator.pop(context, false);
-                                        },
-                                      ),
-                                    );
-                                  },
-                                  child: Card(
-                                    surfaceTintColor: Colors.white,
-                                    elevation: 5,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(5.0),
-                                        side: BorderSide(color: kButtonColor)),
-                                    color: Colors.white,
-                                    child: SizedBox(
-                                      width: size.width * 0.07,
-                                      height: size.height * 0.06,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Image.asset(
-                                            'assets/icons/add.png',
-                                            scale: 25,
-                                          ),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Text(
-                                            'เพิ่ม',
-                                            style: TextStyle(
-                                                color: kButtonColor,
-                                                fontFamily: 'IBMPlexSansThai',
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ],
+                            SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              dragStartBehavior: DragStartBehavior.start,
+                              physics: AlwaysScrollableScrollPhysics(),
+                              child: Container(
+                                  child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  ...orders,
+                                  GestureDetector(
+                                    onTap: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) => Addpointsela(
+                                          size: size,
+                                          pressCancel: () {
+                                            Navigator.pop(context, false);
+                                          },
+                                          pressOk: () {
+                                            Navigator.pop(context, true);
+                                            orders.add(
+                                              Card(
+                                                surfaceTintColor: Colors.white,
+                                                elevation: 2,
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5.0),
+                                                    side: BorderSide(
+                                                        color: kButtonColor)),
+                                                child: SizedBox(
+                                                  width: size.width * 0.1,
+                                                  height: size.height * 0.06,
+                                                  child: Center(
+                                                      child: Text(
+                                                    '${counter ?? 'Error'} - POS${(orders.length + 1).toString().padLeft(2, '0')}',
+                                                    style: TextStyle(
+                                                        color: kButtonColor,
+                                                        fontFamily:
+                                                            'IBMPlexSansThai',
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  )),
+                                                ),
+                                              ),
+                                            );
+                                            setState(() {});
+                                          },
+                                          onValueChanged: (value) {
+                                            counter = value.toString();
+                                          },
+                                          pressClose: () {
+                                            Navigator.pop(context, false);
+                                          },
+                                          employeeNo: employeeNo,
+                                          remark: remark,
+                                          counter: {},
+                                        ),
+                                      );
+                                    },
+                                    child: Card(
+                                      surfaceTintColor: Colors.white,
+                                      elevation: 5,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
+                                          side:
+                                              BorderSide(color: kButtonColor)),
+                                      color: Colors.white,
+                                      child: SizedBox(
+                                        width: size.width * 0.07,
+                                        height: size.height * 0.06,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Image.asset(
+                                              'assets/icons/add.png',
+                                              scale: 25,
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                              'เพิ่ม',
+                                              style: TextStyle(
+                                                  color: kButtonColor,
+                                                  fontFamily: 'IBMPlexSansThai',
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                )
-                              ],
+                                  )
+                                ],
+                              )),
                             ),
                             SizedBox(
                               height: size.height * 0.01,

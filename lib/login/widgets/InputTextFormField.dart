@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class InputTextFormField extends StatelessWidget {
-  const InputTextFormField({
+  InputTextFormField({
     super.key,
     required this.size,
+    this.controller,
   });
 
   final Size size;
+  TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +16,7 @@ class InputTextFormField extends StatelessWidget {
         color: Color.fromARGB(255, 241, 241, 241),
         width: size.width * 0.35,
         child: TextFormField(
+          controller: controller,
           style: TextStyle(fontSize: 22),
           decoration: InputDecoration(
             hintText: 'รหัสพนักงาน',

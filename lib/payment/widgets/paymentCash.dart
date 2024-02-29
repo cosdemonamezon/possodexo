@@ -4,6 +4,8 @@ import 'package:possodexo/home/homePage.dart';
 import 'package:possodexo/home/widgets/OpenAndCloseSwitch.dart';
 import 'package:possodexo/payment/widgets/Discount.dart';
 import 'package:possodexo/payment/widgets/GiftVoucherwidgets.dart';
+import 'package:possodexo/payment/widgets/OtherDiscountsWidgets.dart';
+import 'package:possodexo/payment/widgets/Redeempointswidget.dart';
 
 class PaymentCash extends StatefulWidget {
   const PaymentCash(
@@ -945,9 +947,12 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                   TextAlign
                                                                       .center,
                                                               style: TextStyle(
-                                                                  fontSize: 20,
-                                                                  color: Color(
-                                                                      0xFF1264E3)),
+                                                                fontSize: 20,
+                                                                color: Color(
+                                                                    0xFF1264E3),
+                                                                fontFamily:
+                                                                    'IBMPlexSansThai',
+                                                              ),
                                                             ),
                                                           )
                                                         : Container(
@@ -966,9 +971,12 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                   TextAlign
                                                                       .center,
                                                               style: TextStyle(
-                                                                  fontSize: 20,
-                                                                  color: Color(
-                                                                      0xFF424242)),
+                                                                fontSize: 20,
+                                                                color: Color(
+                                                                    0xFF424242),
+                                                                fontFamily:
+                                                                    'IBMPlexSansThai',
+                                                              ),
                                                             ),
                                                           )),
                                                 InkWell(
@@ -991,9 +999,12 @@ class _PaymentCashState extends State<PaymentCash> {
                                                             textAlign: TextAlign
                                                                 .center,
                                                             style: TextStyle(
-                                                                fontSize: 20,
-                                                                color: Color(
-                                                                    0xFF1264E3)),
+                                                              fontSize: 20,
+                                                              color: Color(
+                                                                  0xFF1264E3),
+                                                              fontFamily:
+                                                                  'IBMPlexSansThai',
+                                                            ),
                                                           ),
                                                         )
                                                       : Container(
@@ -1011,9 +1022,12 @@ class _PaymentCashState extends State<PaymentCash> {
                                                             textAlign: TextAlign
                                                                 .center,
                                                             style: TextStyle(
-                                                                fontSize: 20,
-                                                                color: Color(
-                                                                    0xFF424242)),
+                                                              fontSize: 20,
+                                                              color: Color(
+                                                                  0xFF424242),
+                                                              fontFamily:
+                                                                  'IBMPlexSansThai',
+                                                            ),
                                                           ),
                                                         ),
                                                 ),
@@ -1028,18 +1042,22 @@ class _PaymentCashState extends State<PaymentCash> {
                                                           decoration:
                                                               BoxDecoration(
                                                             border: Border(
-                                                                bottom: BorderSide(
-                                                                    color: Color(
-                                                                        0xFF1264E3))),
+                                                              bottom: BorderSide(
+                                                                  color: Color(
+                                                                      0xFF1264E3)),
+                                                            ),
                                                           ),
                                                           child: Text(
                                                             'แลกคะแนน',
                                                             textAlign: TextAlign
                                                                 .center,
                                                             style: TextStyle(
-                                                                fontSize: 20,
-                                                                color: Color(
-                                                                    0xFF1264E3)),
+                                                              fontSize: 20,
+                                                              color: Color(
+                                                                  0xFF1264E3),
+                                                              fontFamily:
+                                                                  'IBMPlexSansThai',
+                                                            ),
                                                           ),
                                                         )
                                                       : Container(
@@ -1057,9 +1075,12 @@ class _PaymentCashState extends State<PaymentCash> {
                                                             textAlign: TextAlign
                                                                 .center,
                                                             style: TextStyle(
-                                                                fontSize: 20,
-                                                                color: Color(
-                                                                    0xFF424242)),
+                                                              fontSize: 20,
+                                                              color: Color(
+                                                                  0xFF424242),
+                                                              fontFamily:
+                                                                  'IBMPlexSansThai',
+                                                            ),
                                                           ),
                                                         ),
                                                 ),
@@ -1083,9 +1104,12 @@ class _PaymentCashState extends State<PaymentCash> {
                                                             textAlign: TextAlign
                                                                 .center,
                                                             style: TextStyle(
-                                                                fontSize: 20,
-                                                                color: Color(
-                                                                    0xFF1264E3)),
+                                                              fontSize: 20,
+                                                              color: Color(
+                                                                  0xFF1264E3),
+                                                              fontFamily:
+                                                                  'IBMPlexSansThai',
+                                                            ),
                                                           ),
                                                         )
                                                       : Container(
@@ -1103,24 +1127,26 @@ class _PaymentCashState extends State<PaymentCash> {
                                                             textAlign: TextAlign
                                                                 .center,
                                                             style: TextStyle(
-                                                                fontSize: 20,
-                                                                color: Color(
-                                                                    0xFF424242)),
+                                                              fontSize: 20,
+                                                              color: Color(
+                                                                  0xFF424242),
+                                                              fontFamily:
+                                                                  'IBMPlexSansThai',
+                                                            ),
                                                           ),
                                                         ),
                                                 ),
                                               ],
                                             ),
-                                            onItemTappeDiscount == 0
+                                            selectedDiscount == 0
                                                 ? DiscountWidgets()
-                                                : onItemTappeDiscount == 1
+                                                : selectedDiscount == 1
                                                     ? GiftVoucherwidgets()
-                                                    : onItemTappeDiscount == 2
-                                                        ? GiftVoucherwidgets()
-                                                        : onItemTappeDiscount ==
-                                                                3
-                                                            ? GiftVoucherwidgets()
-                                                            : SizedBox()
+                                                    : selectedDiscount == 2
+                                                        ? Redeempointswidget()
+                                                        : selectedDiscount == 3
+                                                            ? OtherDiscountsWidgets()
+                                                            : SizedBox(),
                                           ]),
                                   ),
                                   Container(

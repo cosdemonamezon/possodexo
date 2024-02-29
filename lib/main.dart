@@ -3,6 +3,8 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:possodexo/home/firstPage.dart';
 import 'package:possodexo/home/homePage.dart';
 import 'package:possodexo/login/loginPage.dart';
+import 'package:possodexo/payment/widgets/Discount.dart';
+import 'package:possodexo/payment/widgets/paymentCash.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +24,11 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: LoginPage(
+          // selectedItem: [],
+          // sumPrice: '',
+          // sumQTY: '',
+          ),
     );
   }
 }

@@ -4,9 +4,13 @@ class InputCounterDropDownFormField extends StatefulWidget {
   InputCounterDropDownFormField({
     Key? key,
     required this.size,
+    this.selected,
+    this.onValueChanged,
   }) : super(key: key);
 
   final Size size;
+  final Function(dynamic selected)? onValueChanged;
+  Map<String, dynamic>? selected;
 
   @override
   _InputCounterDropDownFormFieldState createState() =>
@@ -15,12 +19,21 @@ class InputCounterDropDownFormField extends StatefulWidget {
 
 class _InputCounterDropDownFormFieldState
     extends State<InputCounterDropDownFormField> {
-  List<String> counter = [
-    "เคาเตอร์ 1",
-    "เคาเตอร์ 2",
-    "เคาเตอร์ 3",
+  List<Map<String, dynamic>> counter = [
+    {
+      'name': 'เคาร์เตอร์ 1',
+      'id': 1,
+    },
+    {
+      'name': 'เคาร์เตอร์ 2',
+      'id': 2,
+    },
+    {
+      'name': 'เคาร์เตอร์ 3',
+      'id': 3,
+    },
   ];
-  String? selected;
+  Map<String, dynamic>? selected;
   void onTapProduct(int index) {
     setState(() {});
   }
@@ -32,30 +45,34 @@ class _InputCounterDropDownFormFieldState
         color: Color.fromARGB(255, 241, 241, 241),
       ),
       width: widget.size.width * 0.35,
-      child: DropdownButtonFormField<String>(
+      child: DropdownButtonFormField<Map<String, dynamic>>(
         isExpanded: true,
         items: counter
-            .map((String item) => DropdownMenuItem<String>(
-                  value: item,
+            .map(
+              (Map<String, dynamic> item) =>
+                  DropdownMenuItem<Map<String, dynamic>>(
+                value: item,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 1.0),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 1.0),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 8),
-                      child: Text(
-                        item,
-                        style: TextStyle(
-                          fontFamily: 'IBMPlexSansThai',
-                          fontSize: 22,
-                        ),
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Text(
+                      item['name'],
+                      style: TextStyle(
+                        fontFamily: 'IBMPlexSansThai',
+                        fontSize: 22,
                       ),
                     ),
                   ),
-                ))
+                ),
+              ),
+            )
             .toList(),
         value: selected,
         onChanged: (v) {
           setState(() {
             selected = v;
+            widget.onValueChanged!(v!['id']);
           });
         },
         hint: Padding(
