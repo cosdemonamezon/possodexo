@@ -34,88 +34,90 @@ class OpenSalesShift extends StatelessWidget {
           IconButton(onPressed: pressClose, icon: Icon(Icons.close)),
         ],
       ),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Divider(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                width: size.width * 0.2,
-                child: Text(
-                  'พนักงาน',
-                  style: TextStyle(fontSize: 16),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Divider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: size.width * 0.2,
+                  child: Text(
+                    'พนักงาน',
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
-              ),
-              InputTextFormField(size: size),
-            ],
-          ),
-          SizedBox(
-            height: size.height * 0.01,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                width: size.width * 0.2,
-                child: Text(
-                  'เคาเตอร์',
-                  style: TextStyle(fontSize: 16),
+                InputTextFormField(size: size),
+              ],
+            ),
+            SizedBox(
+              height: size.height * 0.01,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: size.width * 0.2,
+                  child: Text(
+                    'เคาเตอร์',
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
-              ),
-              InputCounterDropDownFormField(size: size),
-            ],
-          ),
-          SizedBox(
-            height: size.height * 0.01,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                width: size.width * 0.2,
-                child: Text(
-                  'เงินทอนเริ่มต้น (เงินสดยกมา)',
-                  style: TextStyle(fontSize: 16),
+                InputCounterDropDownFormField(size: size),
+              ],
+            ),
+            SizedBox(
+              height: size.height * 0.01,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: size.width * 0.2,
+                  child: Text(
+                    'เงินทอนเริ่มต้น (เงินสดยกมา)',
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
-              ),
-              InputChangeTextFormField(size: size),
-            ],
-          ),
-          SizedBox(
-            height: size.height * 0.01,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                width: size.width * 0.2,
-                child: Text(
-                  'ยอดนับเงินสด (Cash Drawer)',
-                  style: TextStyle(fontSize: 16),
+                InputChangeTextFormField(size: size),
+              ],
+            ),
+            SizedBox(
+              height: size.height * 0.01,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: size.width * 0.2,
+                  child: Text(
+                    'ยอดนับเงินสด (Cash Drawer)',
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
-              ),
-              InputChangeTextFormField(size: size),
-            ],
-          ),
-          SizedBox(
-            height: size.height * 0.01,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                width: size.width * 0.2,
-                child: Text(
-                  'หมายเหตุ',
-                  style: TextStyle(fontSize: 16),
+                InputChangeTextFormField(size: size),
+              ],
+            ),
+            SizedBox(
+              height: size.height * 0.01,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: size.width * 0.2,
+                  child: Text(
+                    'หมายเหตุ',
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
-              ),
-              InputAnnotationTextFormField(size: size),
-            ],
-          ),
-        ],
+                InputAnnotationTextFormField(size: size),
+              ],
+            ),
+          ],
+        ),
       ),
       actions: [
         Row(
