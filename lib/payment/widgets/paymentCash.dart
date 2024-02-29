@@ -1454,18 +1454,15 @@ class _PaymentCashState extends State<PaymentCash> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
                                 color: Color(0xff4CAF50)),
-                            height: size.height * 0.05,
-                            width: size.width * 0.21,
+                            height: size.height * 0.095,
+                            width: double.infinity,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "ยืนยันชำระเงิน",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ],
+                              child: Center(
+                                child: Text(
+                                  "ยืนยันชำระเงิน",
+                                  style: TextStyle(color: Colors.white),
+                                ),
                               ),
                             ),
                           ),
