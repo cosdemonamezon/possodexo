@@ -1218,7 +1218,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                             children: [
                                               Column(
                                                 children: [
-                                                  const SizedBox(height: 10),
+                                                  const SizedBox(height: ),
                                                   Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
