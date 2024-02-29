@@ -821,6 +821,17 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ],
                           ),
+                          Container(
+                              color: Color(0xffE8EAF6),
+                              width: size.width * 0.5,
+                              height: size.height * 0.04,
+                              child: InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      selectedItem.clear();
+                                    });
+                                  },
+                                  child: Icon(Icons.cancel))),
 
                           /// โช สินค้า
                           // GestureDetector(
@@ -836,6 +847,9 @@ class _HomePageState extends State<HomePage> {
                           //     }
                           //   },
                           // )
+                          SizedBox(
+                            height: size.height * 0.001,
+                          ),
                           selectedItem.isEmpty
                               ? SizedBox.shrink()
                               : SizedBox(
@@ -847,28 +861,14 @@ class _HomePageState extends State<HomePage> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: Column(
                                           children: [
+                                            SizedBox(
+                                              height: size.height * 0.01,
+                                            ),
                                             Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Row(
-                                                  children: [
-                                                    IconButton(
-                                                        onPressed: () {
-                                                          setState(() {
-                                                            selectedItem
-                                                                .removeAt(
-                                                                    index);
-                                                          });
-                                                        },
-                                                        icon:
-                                                            Icon(Icons.delete)),
-                                                    Text(selectedItem[index]
-                                                            .name ??
-                                                        ''),
-                                                  ],
-                                                ),
                                                 Row(
                                                   children: [
                                                     InkWell(
@@ -1074,11 +1074,12 @@ class _HomePageState extends State<HomePage> {
                                                       ),
                                               ],
                                             ),
+                                            Divider()
                                           ],
                                         ),
                                       );
                                     },
-                                  ))
+                                  )),
                         ],
                       ),
                     ),

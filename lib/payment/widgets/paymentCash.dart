@@ -19,6 +19,8 @@ class PaymentCash extends StatefulWidget {
 class _PaymentCashState extends State<PaymentCash> {
   TextEditingController ai = TextEditingController();
   bool _isSelected = false;
+  int selectedItem = 0;
+
   int selectedIndex = 0;
   void onItemTapped(int index) {
     setState(() {
@@ -795,11 +797,10 @@ class _PaymentCashState extends State<PaymentCash> {
                                           hintText: "฿",
                                           hintStyle: TextStyle(fontSize: 25),
                                         ),
-                                        validator: (value) {
-                                          if (value == '') {
+                                        validator: (selectedItem) {
+                                          if (selectedItem == '') {
                                             return "โปรดใส่ข้อความให้ครบถ้วน";
                                           }
-                                          return null;
                                         },
                                       ),
                                     ),
@@ -818,7 +819,6 @@ class _PaymentCashState extends State<PaymentCash> {
                                         Column(
                                           children: [
                                             const SizedBox(height: 20),
-
                                             Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment
@@ -1028,48 +1028,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                               ],
                                             ),
                                             const SizedBox(height: 20),
-                                            // Row(
-                                            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                            //   children: List.generate(itemUnitPrices.length, (index) => NumberButton1(
-                                            //       number: '${itemUnitPrices[index].value}',
-                                            //       size: 10,
-                                            //       color: Colors.black,
-                                            //       controller: ai,
-                                            //       name: '${itemUnitPrices[index].name}',
-                                            //       price: '${itemUnitPrices[index].price}',
-                                            //     ),),
-                                            // ),
-                                            //ส่วนที่โชว์ ปุ่ม สามปุ่ม
-                                            // Wrap(
-                                            //   alignment: WrapAlignment.start,
-                                            //   children: List.generate(
-                                            //       itemUnitPrices.length,
-                                            //       (index) => Padding(
-                                            //             padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                                            //             child: NumKeyShortcut(
-                                            //               number: itemUnitPrices[index].value.toString(),
-                                            //               price: itemUnitPrices[index].price.toString(),
-                                            //               name: itemUnitPrices[index].name.toString(),
-                                            //               controller: controller,
-                                            //             ),
-                                            //           )),
-                                            // ),
                                             SizedBox(height: 4),
-                                            // Row(
-                                            //   mainAxisAlignment:
-                                            //       MainAxisAlignment.center,
-                                            //   children: [
-                                            //     IconButton(
-                                            //       onPressed: () {},
-                                            //       icon: Icon(
-                                            //         Icons.delete,
-                                            //         color: const Color.fromARGB(
-                                            //             255, 20, 20, 20),
-                                            //       ),
-                                            //       iconSize: 10,
-                                            //     ),
-                                            //   ],
-                                            // ),
                                           ],
                                         ),
                                         SizedBox(
@@ -1243,7 +1202,28 @@ class _PaymentCashState extends State<PaymentCash> {
                       ),
                     ),
                     Divider(color: Color(0xfff78909C)),
-                    Container()
+                    SizedBox(
+                      height: size.height * 0.5,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Color(0xff4CAF50)),
+                      height: size.height * 0.05,
+                      width: size.width * 0.21,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "ยืนยันชำระเงิน",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ]),
                 ),
               ],
