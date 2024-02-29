@@ -432,7 +432,7 @@ class _HomePageState extends State<HomePage> {
                               height: size.height * 0.01,
                             ),
                             Container(
-                              height: size.height * 0.1,
+                              height: size.height * 0.08,
                               width: double.infinity,
                               color: kTabColor,
                               child: Row(
@@ -929,15 +929,20 @@ class _HomePageState extends State<HomePage> {
                                                         }
                                                       },
                                                       child: Container(
+                                                        width:
+                                                            size.width * 0.02,
+                                                        height: 30,
                                                         decoration: BoxDecoration(
                                                             color: Color(
-                                                                0xFF9E9E9E),
+                                                                0xFFCFD8DC),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
                                                                         6)),
-                                                        child:
-                                                            Icon(Icons.remove),
+                                                        child: Icon(
+                                                          Icons.remove,
+                                                          size: 15,
+                                                        ),
                                                       ),
                                                     ),
                                                     SizedBox(
@@ -988,14 +993,20 @@ class _HomePageState extends State<HomePage> {
                                                         });
                                                       },
                                                       child: Container(
+                                                        width:
+                                                            size.width * 0.02,
+                                                        height: 30,
                                                         decoration: BoxDecoration(
                                                             color: Color(
-                                                                0xFF9E9E9E),
+                                                                0xFFCFD8DC),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
                                                                         6)),
-                                                        child: Icon(Icons.add),
+                                                        child: Icon(
+                                                          Icons.add,
+                                                          size: 15,
+                                                        ),
                                                       ),
                                                     ),
                                                   ],
@@ -1006,26 +1017,49 @@ class _HomePageState extends State<HomePage> {
                                                     "เครื่องดื่ม"
                                                 ? Row(
                                                     children: [
-                                                      Text('ขนาด'),
+                                                      Text(
+                                                        'ขนาด',
+                                                        style: TextStyle(
+                                                            fontSize: 14,
+                                                            fontFamily:
+                                                                'IBMPlexSansThai',
+                                                            color: Color(
+                                                                0xFF455A64)),
+                                                      ),
                                                       SizedBox(
                                                         width:
                                                             size.width * 0.01,
                                                       ),
-                                                      Text(selectedItem[index]
-                                                                  .size ==
-                                                              0
-                                                          ? 'S'
-                                                          : selectedItem[index]
-                                                                      .size ==
-                                                                  1
-                                                              ? 'M'
-                                                              : "L")
+                                                      Text(
+                                                        selectedItem[index]
+                                                                    .size ==
+                                                                0
+                                                            ? 'S'
+                                                            : selectedItem[index]
+                                                                        .size ==
+                                                                    1
+                                                                ? 'M'
+                                                                : "L",
+                                                        style: TextStyle(
+                                                            fontSize: 14,
+                                                            fontFamily:
+                                                                'IBMPlexSansThai',
+                                                            color: Color(
+                                                                0xFF455A64)),
+                                                      )
                                                     ],
                                                   )
                                                 : SizedBox.shrink(),
                                             Row(
                                               children: [
-                                                Text('โปรโมชั่น'),
+                                                Text(
+                                                  'โปรโมชั่น',
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontFamily:
+                                                          'IBMPlexSansThai',
+                                                      color: Color(0xFF455A64)),
+                                                ),
                                               ],
                                             ),
                                             Row(
@@ -1129,8 +1163,8 @@ class _HomePageState extends State<HomePage> {
                                       Text(
                                         "จำนวนสินค้า",
                                         style: TextStyle(
-                                          fontFamily: 'IBMPlexSansThai',
-                                        ),
+                                            fontFamily: 'IBMPlexSansThai',
+                                            color: Color(0xFF424242)),
                                       ),
                                       Text(
                                         '${sumQTY(selectedItem)} ชิ้น',
@@ -1147,8 +1181,8 @@ class _HomePageState extends State<HomePage> {
                                       Text(
                                         "รวม",
                                         style: TextStyle(
-                                          fontFamily: 'IBMPlexSansThai',
-                                        ),
+                                            fontFamily: 'IBMPlexSansThai',
+                                            color: Color(0xFF424242)),
                                       ),
                                       Text(
                                         '${sumPrice(selectedItem)} ฿',
@@ -1165,8 +1199,8 @@ class _HomePageState extends State<HomePage> {
                                       Text(
                                         "ส่วนลด",
                                         style: TextStyle(
-                                          fontFamily: 'IBMPlexSansThai',
-                                        ),
+                                            fontFamily: 'IBMPlexSansThai',
+                                            color: Color(0xFF424242)),
                                       ),
                                       Text(
                                         '0 ฿',
@@ -1184,8 +1218,8 @@ class _HomePageState extends State<HomePage> {
                                       Text(
                                         "ชำระทั้งหมด",
                                         style: TextStyle(
-                                          fontFamily: 'IBMPlexSansThai',
-                                        ),
+                                            fontFamily: 'IBMPlexSansThai',
+                                            color: Color(0xFF424242)),
                                       ),
                                       Text(
                                         "${sumPrice(selectedItem)} ฿",
