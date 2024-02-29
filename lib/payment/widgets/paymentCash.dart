@@ -20,7 +20,13 @@ class _PaymentCashState extends State<PaymentCash> {
   bool checkNum = false;
   TextEditingController ai = TextEditingController();
   bool _isSelected = false;
+
   int selectedItem = 0;
+  void onItemTapped1(int index1) {
+    setState(() {
+      selectedItem = index1;
+    });
+  }
 
   int selectedIndex = 0;
   void onItemTapped(int index) {
@@ -147,41 +153,54 @@ class _PaymentCashState extends State<PaymentCash> {
                 height: size.height * 0.005,
                 width: size.width * 0.25,
               ),
-              Container(
-                height: size.height * 0.05,
-                width: size.width * 0.25,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border(
-                        bottom: BorderSide(
-                            color: Color.fromARGB(255, 228, 226, 226)))),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image.asset(
-                            "assets/icons/Frame.png",
-                            scale: 20,
+              InkWell(
+                onTap: () {
+                  onItemTapped1(0);
+                },
+                child: Container(
+                  height: size.height * 0.05,
+                  width: size.width * 0.25,
+                  decoration: BoxDecoration(
+                      color:
+                          selectedItem == 0 ? Color(0xff1264E3) : Colors.white,
+                      border: Border(
+                          bottom: BorderSide(
+                              color: Color.fromARGB(255, 228, 226, 226)))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: selectedItem == 0
+                                  ? Image.asset(
+                                      "assets/icons/Frame (2).png",
+                                      scale: 20,
+                                    )
+                                  : Image.asset(
+                                      "assets/icons/Frame.png",
+                                      scale: 20,
+                                    )),
+                          Text(
+                            "ส่วนลด",
+                            style: TextStyle(
+                                color: selectedItem == 0
+                                    ? Colors.white
+                                    : Color(0xff1264E3)),
                           ),
-                        ),
-                        Text(
-                          "ส่วนลด",
-                          style: TextStyle(color: Color(0xff1264E3)),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.arrow_forward_ios_outlined,
-                        size: 15,
-                        color: Color(0xff1264E3),
+                        ],
                       ),
-                    )
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(Icons.arrow_forward_ios_outlined,
+                            size: 15,
+                            color: selectedItem == 0
+                                ? Colors.white
+                                : Color(0xff1264E3)),
+                      )
+                    ],
+                  ),
                 ),
               ),
               Container(
@@ -189,41 +208,54 @@ class _PaymentCashState extends State<PaymentCash> {
                 height: size.height * 0.005,
                 width: size.width * 0.25,
               ),
-              Container(
-                height: size.height * 0.05,
-                width: size.width * 0.25,
-                decoration: BoxDecoration(
-                    color: Color(0xff1264E3),
-                    border: Border(
-                        bottom: BorderSide(
-                            color: Color.fromARGB(255, 228, 226, 226)))),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image.asset(
-                            "assets/icons/Barth.png",
-                            scale: 20,
+              InkWell(
+                onTap: () {
+                  onItemTapped1(1);
+                },
+                child: Container(
+                  height: size.height * 0.05,
+                  width: size.width * 0.25,
+                  decoration: BoxDecoration(
+                      color:
+                          selectedItem == 1 ? Color(0xff1264E3) : Colors.white,
+                      border: Border(
+                          bottom: BorderSide(
+                              color: Color.fromARGB(255, 228, 226, 226)))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: selectedItem == 1
+                                  ? Image.asset(
+                                      "assets/icons/Barth.png",
+                                      scale: 20,
+                                    )
+                                  : Image.asset(
+                                      "assets/icons/Frame (3).png",
+                                      scale: 20,
+                                    )),
+                          Text(
+                            "ชำระเงิน",
+                            style: TextStyle(
+                                color: selectedItem == 1
+                                    ? Colors.white
+                                    : Color(0xff1264E3)),
                           ),
-                        ),
-                        Text(
-                          "ชำระเงิน",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.arrow_forward_ios_outlined,
-                        size: 15,
-                        color: Colors.white,
+                        ],
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(Icons.arrow_forward_ios_outlined,
+                            size: 15,
+                            color: selectedItem == 1
+                                ? Colors.white
+                                : Color(0xff1264E3)),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Container(
@@ -304,12 +336,16 @@ class _PaymentCashState extends State<PaymentCash> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "ชำระเงิน",
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          ),
+                              padding: const EdgeInsets.all(8.0),
+                              child: selectedItem == 0
+                                  ? Text(
+                                      "ส่วนลด",
+                                      style: TextStyle(fontSize: 20),
+                                    )
+                                  : Text(
+                                      "ชำระเงิน",
+                                      style: TextStyle(fontSize: 20),
+                                    )),
                           Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
@@ -321,465 +357,581 @@ class _PaymentCashState extends State<PaymentCash> {
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text("เลือกวิธีการชำระเงิน"),
-                                      SizedBox(
-                                        width: size.width * 0.23,
-                                      ),
-                                      OpenAndCloseSwitch(
-                                        size: size,
-                                        open: open,
-                                        showTextOpen: 'เเบ่งจ่าย',
-                                        showTextClose: 'เเบ่งจ่าย',
-                                        onChanged: (value) {
-                                          setState(() {
-                                            open = value;
-                                          });
-                                        },
-                                      ),
-                                    ],
-                                  ),
+                                  SizedBox(
+                                      child: selectedItem == 1
+                                          ? Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text("เลือกวิธีการชำระเงิน"),
+                                                SizedBox(
+                                                  width: size.width * 0.23,
+                                                ),
+                                                OpenAndCloseSwitch(
+                                                  size: size,
+                                                  open: open,
+                                                  showTextOpen: 'เเบ่งจ่าย',
+                                                  showTextClose: 'เเบ่งจ่าย',
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      open = value;
+                                                    });
+                                                  },
+                                                ),
+                                              ],
+                                            )
+                                          : Row()),
                                   SizedBox(
                                     height: size.height * 0.01,
                                   ),
-                                  Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          InkWell(
-                                            onTap: () {
-                                              onItemTapped(0);
-                                            },
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                  color: selectedIndex == 0
-                                                      ? Color(0xfffE8EAF6)
-                                                      : Colors.white,
-                                                  border: Border.all(
-                                                      color: Color(0xff1264E3)),
-                                                  borderRadius:
-                                                      BorderRadius.circular(8)),
-                                              height: size.height * 0.05,
-                                              width: size.width * 0.11,
-                                              child: Row(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Image.asset(
-                                                        "assets/icons/cash.png",
-                                                        scale: 20),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Text("เงินสด"),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: size.width * 0.01,
-                                          ),
-                                          InkWell(
-                                            onTap: () {
-                                              onItemTapped(1);
-                                            },
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                  color: selectedIndex == 1
-                                                      ? Color(0xfffE8EAF6)
-                                                      : Colors.white,
-                                                  border: Border.all(
-                                                      color: Color(0xff1264E3)),
-                                                  borderRadius:
-                                                      BorderRadius.circular(8)),
-                                              height: size.height * 0.05,
-                                              width: size.width * 0.11,
-                                              child: Row(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 5),
-                                                    child: Image.asset(
-                                                        "assets/icons/Promptpay.png",
-                                                        scale: 20),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 5),
-                                                    child: Text("QR Promptpay"),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: size.width * 0.01,
-                                          ),
-                                          InkWell(
-                                            onTap: () {
-                                              onItemTapped(2);
-                                            },
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                  color: selectedIndex == 2
-                                                      ? Color(0xfffE8EAF6)
-                                                      : Colors.white,
-                                                  border: Border.all(
-                                                      color: Color(0xff1264E3)),
-                                                  borderRadius:
-                                                      BorderRadius.circular(8)),
-                                              height: size.height * 0.05,
-                                              width: size.width * 0.11,
-                                              child: Row(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Image.asset(
-                                                        "assets/icons/TrueMoney.png",
-                                                        scale: 20),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Text("True Money"),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: size.width * 0.01,
-                                          ),
-                                          InkWell(
-                                            onTap: () {
-                                              onItemTapped(3);
-                                            },
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                  color: selectedIndex == 3
-                                                      ? Color(0xfffE8EAF6)
-                                                      : Colors.white,
-                                                  border: Border.all(
-                                                      color: Color(0xff1264E3)),
-                                                  borderRadius:
-                                                      BorderRadius.circular(8)),
-                                              height: size.height * 0.05,
-                                              width: size.width * 0.11,
-                                              child: Row(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Image.asset(
-                                                        "assets/icons/MaeManee.png",
-                                                        scale: 20),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Text("แม่มณี"),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: size.height * 0.01,
-                                      ),
-                                      Row(
-                                        children: [
-                                          InkWell(
-                                            onTap: () {
-                                              onItemTapped(4);
-                                            },
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                  color: selectedIndex == 4
-                                                      ? Color(0xfffE8EAF6)
-                                                      : Colors.white,
-                                                  border: Border.all(
-                                                      color: Color(0xff1264E3)),
-                                                  borderRadius:
-                                                      BorderRadius.circular(8)),
-                                              height: size.height * 0.05,
-                                              width: size.width * 0.11,
-                                              child: Row(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Image.asset(
-                                                        "assets/icons/Linepay.png",
-                                                        scale: 20),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Text("LINE Pay"),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: size.width * 0.01,
-                                          ),
-                                          InkWell(
-                                            onTap: () {
-                                              onItemTapped(5);
-                                            },
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                  color: selectedIndex == 5
-                                                      ? Color(0xfffE8EAF6)
-                                                      : Colors.white,
-                                                  border: Border.all(
-                                                      color: Color(0xff1264E3)),
-                                                  borderRadius:
-                                                      BorderRadius.circular(8)),
-                                              height: size.height * 0.05,
-                                              width: size.width * 0.11,
-                                              child: Row(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 5),
-                                                    child: Image.asset(
-                                                        "assets/icons/moneyCard.png",
-                                                        scale: 20),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 5),
-                                                    child: Text(
-                                                        "บัตรเครดิต/เดบิต"),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: size.width * 0.01,
-                                          ),
-                                          InkWell(
-                                            onTap: () {
-                                              onItemTapped(6);
-                                            },
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                  color: selectedIndex == 6
-                                                      ? Color(0xfffE8EAF6)
-                                                      : Colors.white,
-                                                  border: Border.all(
-                                                      color: Color(0xff1264E3)),
-                                                  borderRadius:
-                                                      BorderRadius.circular(8)),
-                                              height: size.height * 0.05,
-                                              width: size.width * 0.11,
-                                              child: Row(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Image.asset(
-                                                        "assets/icons/MaeManee.png",
-                                                        scale: 20),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Text("แม่มณี"),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: size.width * 0.01,
-                                          ),
-                                          InkWell(
-                                            onTap: () {
-                                              onItemTapped(7);
-                                            },
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                  color: selectedIndex == 7
-                                                      ? Color(0xfffE8EAF6)
-                                                      : Colors.white,
-                                                  border: Border.all(
-                                                      color: Color(0xff1264E3)),
-                                                  borderRadius:
-                                                      BorderRadius.circular(8)),
-                                              height: size.height * 0.05,
-                                              width: size.width * 0.11,
-                                              child: Row(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Image.asset(
-                                                        "assets/icons/EmCard.png",
-                                                        scale: 20),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Text("บัตรพนักงาน"),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: size.height * 0.01,
-                                      ),
-                                      Row(
-                                        children: [
-                                          InkWell(
-                                            onTap: () {
-                                              onItemTapped(8);
-                                            },
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                  color: selectedIndex == 8
-                                                      ? Color(0xfffE8EAF6)
-                                                      : Colors.white,
-                                                  border: Border.all(
-                                                      color: Color(0xff1264E3)),
-                                                  borderRadius:
-                                                      BorderRadius.circular(8)),
-                                              height: size.height * 0.05,
-                                              width: size.width * 0.11,
-                                              child: Row(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Image.asset(
-                                                        "assets/icons/Wechart.png",
-                                                        scale: 20),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Text("We Chart"),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: size.width * 0.01,
-                                          ),
-                                          InkWell(
-                                            onTap: () {
-                                              onItemTapped(9);
-                                            },
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                  color: selectedIndex == 9
-                                                      ? Color(0xfffE8EAF6)
-                                                      : Colors.white,
-                                                  border: Border.all(
-                                                      color: Color(0xff1264E3)),
-                                                  borderRadius:
-                                                      BorderRadius.circular(8)),
-                                              height: size.height * 0.05,
-                                              width: size.width * 0.11,
-                                              child: Row(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 5),
-                                                    child: Image.asset(
-                                                        "assets/icons/Alipay.png",
-                                                        scale: 20),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 5),
-                                                    child: Text("Alipay"),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: size.width * 0.01,
-                                          ),
-                                          InkWell(
-                                            onTap: () {
-                                              onItemTapped(10);
-                                            },
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                  color: selectedIndex == 10
-                                                      ? Color(0xfffE8EAF6)
-                                                      : Colors.white,
-                                                  border: Border.all(
-                                                      color: Color(0xff1264E3)),
-                                                  borderRadius:
-                                                      BorderRadius.circular(8)),
-                                              height: size.height * 0.05,
-                                              width: size.width * 0.11,
-                                              child: Row(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Image.asset(
-                                                        "assets/icons/Wallet.png",
-                                                        scale: 20),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Text("อื่นๆ"),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: size.height * 0.01,
-                                      ),
-                                    ],
-                                  ),
+                                  SizedBox(
+                                      child: selectedItem == 1
+                                          ? Column(
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    InkWell(
+                                                      onTap: () {
+                                                        onItemTapped(0);
+                                                      },
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                            color: selectedIndex ==
+                                                                    0
+                                                                ? Color(
+                                                                    0xfffE8EAF6)
+                                                                : Colors.white,
+                                                            border: Border.all(
+                                                                color: Color(
+                                                                    0xff1264E3)),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8)),
+                                                        height:
+                                                            size.height * 0.05,
+                                                        width:
+                                                            size.width * 0.11,
+                                                        child: Row(
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 10),
+                                                              child: Image.asset(
+                                                                  "assets/icons/cash.png",
+                                                                  scale: 20),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 10),
+                                                              child: Text(
+                                                                  "เงินสด"),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: size.width * 0.01,
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        onItemTapped(1);
+                                                      },
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                            color: selectedIndex ==
+                                                                    1
+                                                                ? Color(
+                                                                    0xfffE8EAF6)
+                                                                : Colors.white,
+                                                            border: Border.all(
+                                                                color: Color(
+                                                                    0xff1264E3)),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8)),
+                                                        height:
+                                                            size.height * 0.05,
+                                                        width:
+                                                            size.width * 0.11,
+                                                        child: Row(
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 5),
+                                                              child: Image.asset(
+                                                                  "assets/icons/Promptpay.png",
+                                                                  scale: 20),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 5),
+                                                              child: Text(
+                                                                  "QR Promptpay"),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: size.width * 0.01,
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        onItemTapped(2);
+                                                      },
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                            color: selectedIndex ==
+                                                                    2
+                                                                ? Color(
+                                                                    0xfffE8EAF6)
+                                                                : Colors.white,
+                                                            border: Border.all(
+                                                                color: Color(
+                                                                    0xff1264E3)),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8)),
+                                                        height:
+                                                            size.height * 0.05,
+                                                        width:
+                                                            size.width * 0.11,
+                                                        child: Row(
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 10),
+                                                              child: Image.asset(
+                                                                  "assets/icons/TrueMoney.png",
+                                                                  scale: 20),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 10),
+                                                              child: Text(
+                                                                  "True Money"),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: size.width * 0.01,
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        onItemTapped(3);
+                                                      },
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                            color: selectedIndex ==
+                                                                    3
+                                                                ? Color(
+                                                                    0xfffE8EAF6)
+                                                                : Colors.white,
+                                                            border: Border.all(
+                                                                color: Color(
+                                                                    0xff1264E3)),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8)),
+                                                        height:
+                                                            size.height * 0.05,
+                                                        width:
+                                                            size.width * 0.11,
+                                                        child: Row(
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 10),
+                                                              child: Image.asset(
+                                                                  "assets/icons/MaeManee.png",
+                                                                  scale: 20),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 10),
+                                                              child: Text(
+                                                                  "แม่มณี"),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: size.height * 0.01,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    InkWell(
+                                                      onTap: () {
+                                                        onItemTapped(4);
+                                                      },
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                            color: selectedIndex ==
+                                                                    4
+                                                                ? Color(
+                                                                    0xfffE8EAF6)
+                                                                : Colors.white,
+                                                            border: Border.all(
+                                                                color: Color(
+                                                                    0xff1264E3)),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8)),
+                                                        height:
+                                                            size.height * 0.05,
+                                                        width:
+                                                            size.width * 0.11,
+                                                        child: Row(
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 10),
+                                                              child: Image.asset(
+                                                                  "assets/icons/Linepay.png",
+                                                                  scale: 20),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 10),
+                                                              child: Text(
+                                                                  "LINE Pay"),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: size.width * 0.01,
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        onItemTapped(5);
+                                                      },
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                            color: selectedIndex ==
+                                                                    5
+                                                                ? Color(
+                                                                    0xfffE8EAF6)
+                                                                : Colors.white,
+                                                            border: Border.all(
+                                                                color: Color(
+                                                                    0xff1264E3)),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8)),
+                                                        height:
+                                                            size.height * 0.05,
+                                                        width:
+                                                            size.width * 0.11,
+                                                        child: Row(
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 5),
+                                                              child: Image.asset(
+                                                                  "assets/icons/moneyCard.png",
+                                                                  scale: 20),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 5),
+                                                              child: Text(
+                                                                  "บัตรเครดิต/เดบิต"),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: size.width * 0.01,
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        onItemTapped(6);
+                                                      },
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                            color: selectedIndex ==
+                                                                    6
+                                                                ? Color(
+                                                                    0xfffE8EAF6)
+                                                                : Colors.white,
+                                                            border: Border.all(
+                                                                color: Color(
+                                                                    0xff1264E3)),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8)),
+                                                        height:
+                                                            size.height * 0.05,
+                                                        width:
+                                                            size.width * 0.11,
+                                                        child: Row(
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 10),
+                                                              child: Image.asset(
+                                                                  "assets/icons/MaeManee.png",
+                                                                  scale: 20),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 10),
+                                                              child: Text(
+                                                                  "แม่มณี"),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: size.width * 0.01,
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        onItemTapped(7);
+                                                      },
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                            color: selectedIndex ==
+                                                                    7
+                                                                ? Color(
+                                                                    0xfffE8EAF6)
+                                                                : Colors.white,
+                                                            border: Border.all(
+                                                                color: Color(
+                                                                    0xff1264E3)),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8)),
+                                                        height:
+                                                            size.height * 0.05,
+                                                        width:
+                                                            size.width * 0.11,
+                                                        child: Row(
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 10),
+                                                              child: Image.asset(
+                                                                  "assets/icons/EmCard.png",
+                                                                  scale: 20),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 10),
+                                                              child: Text(
+                                                                  "บัตรพนักงาน"),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: size.height * 0.01,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    InkWell(
+                                                      onTap: () {
+                                                        onItemTapped(8);
+                                                      },
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                            color: selectedIndex ==
+                                                                    8
+                                                                ? Color(
+                                                                    0xfffE8EAF6)
+                                                                : Colors.white,
+                                                            border: Border.all(
+                                                                color: Color(
+                                                                    0xff1264E3)),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8)),
+                                                        height:
+                                                            size.height * 0.05,
+                                                        width:
+                                                            size.width * 0.11,
+                                                        child: Row(
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 10),
+                                                              child: Image.asset(
+                                                                  "assets/icons/Wechart.png",
+                                                                  scale: 20),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 10),
+                                                              child: Text(
+                                                                  "We Chart"),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: size.width * 0.01,
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        onItemTapped(9);
+                                                      },
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                            color: selectedIndex ==
+                                                                    9
+                                                                ? Color(
+                                                                    0xfffE8EAF6)
+                                                                : Colors.white,
+                                                            border: Border.all(
+                                                                color: Color(
+                                                                    0xff1264E3)),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8)),
+                                                        height:
+                                                            size.height * 0.05,
+                                                        width:
+                                                            size.width * 0.11,
+                                                        child: Row(
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 5),
+                                                              child: Image.asset(
+                                                                  "assets/icons/Alipay.png",
+                                                                  scale: 20),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 5),
+                                                              child: Text(
+                                                                  "Alipay"),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: size.width * 0.01,
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        onItemTapped(10);
+                                                      },
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                            color: selectedIndex ==
+                                                                    10
+                                                                ? Color(
+                                                                    0xfffE8EAF6)
+                                                                : Colors.white,
+                                                            border: Border.all(
+                                                                color: Color(
+                                                                    0xff1264E3)),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8)),
+                                                        height:
+                                                            size.height * 0.05,
+                                                        width:
+                                                            size.width * 0.11,
+                                                        child: Row(
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 10),
+                                                              child: Image.asset(
+                                                                  "assets/icons/Wallet.png",
+                                                                  scale: 20),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 10),
+                                                              child:
+                                                                  Text("อื่นๆ"),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: size.height * 0.01,
+                                                ),
+                                              ],
+                                            )
+                                          : Column()),
                                   Container(
                                     decoration: BoxDecoration(
                                       color: Colors.white,

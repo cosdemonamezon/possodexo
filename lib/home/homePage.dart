@@ -560,7 +560,8 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: [
                 Container(
-                  height: size.height * 0.15,
+                  height: size.height * 0.08,
+                  width: size.width * 0.38,
                   color: Colors.black,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -658,7 +659,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Container(
                       color: Colors.white,
-                      height: size.height * 0.486,
+                      height: size.height * 0.56,
                       width: size.width * 1,
                       child: Column(
                         children: [
@@ -824,7 +825,7 @@ class _HomePageState extends State<HomePage> {
                           Container(
                               color: Color(0xffE8EAF6),
                               width: size.width * 0.5,
-                              height: size.height * 0.04,
+                              height: size.height * 0.06,
                               child: InkWell(
                                   onTap: () {
                                     setState(() {
@@ -832,9 +833,17 @@ class _HomePageState extends State<HomePage> {
                                     });
                                   },
                                   child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text("Order #20240214001"),
-                                      Icon(Icons.cancel),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text("Order #20240214001"),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Icon(Icons.cancel),
+                                      ),
                                     ],
                                   ))),
 
