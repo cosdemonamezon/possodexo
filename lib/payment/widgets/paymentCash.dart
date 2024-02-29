@@ -42,6 +42,12 @@ class _PaymentCashState extends State<PaymentCash> {
     print(widget.selectedItem);
   }
 
+  void onItemTappeDiscount(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -931,7 +937,90 @@ class _PaymentCashState extends State<PaymentCash> {
                                                 ),
                                               ],
                                             )
-                                          : Column()),
+                                          : Column(
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    InkWell(
+                                                        onTap: () {
+                                                          onItemTappeDiscount(
+                                                              0);
+                                                        },
+                                                        child:
+                                                            selectedIndex == 0
+                                                                ? Text(
+                                                                    'ส่วนลด',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            20,
+                                                                        color: Color(
+                                                                            0xFF1264E3)),
+                                                                  )
+                                                                : Text(
+                                                                    'ส่วนลด',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            20,
+                                                                        color: Color(
+                                                                            0xFF424242)),
+                                                                  )),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        onItemTappeDiscount(1);
+                                                      },
+                                                      child: selectedIndex == 1
+                                                          ? Text(
+                                                              'Gift Voucher',
+                                                              style: TextStyle(
+                                                                  fontSize: 20,
+                                                                  color: Color(
+                                                                      0xFF1264E3)),
+                                                            )
+                                                          : Text(
+                                                              'Gift Voucher',
+                                                              style: TextStyle(
+                                                                  fontSize: 20,
+                                                                  color: Color(
+                                                                      0xFF424242)),
+                                                            ),
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        onItemTappeDiscount(2);
+                                                      },
+                                                      child: Text(
+                                                        'แลกคะแนน',
+                                                        style: TextStyle(
+                                                            fontSize: 20,
+                                                            color: Color(
+                                                                0xFF424242)),
+                                                      ),
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        onItemTappeDiscount(3);
+                                                      },
+                                                      child: Text(
+                                                        'ส่วนลดอื่นๆ',
+                                                        style: TextStyle(
+                                                            fontSize: 20,
+                                                            color: Color(
+                                                                0xFF424242)),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                              ],
+                                            )),
                                   Container(
                                     decoration: BoxDecoration(
                                       color: Colors.white,
