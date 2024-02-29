@@ -17,6 +17,7 @@ class PaymentCash extends StatefulWidget {
 }
 
 class _PaymentCashState extends State<PaymentCash> {
+  bool checkNum = false;
   TextEditingController ai = TextEditingController();
   bool _isSelected = false;
   int selectedItem = 0;

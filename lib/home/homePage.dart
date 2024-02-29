@@ -831,7 +831,12 @@ class _HomePageState extends State<HomePage> {
                                       selectedItem.clear();
                                     });
                                   },
-                                  child: Icon(Icons.cancel))),
+                                  child: Row(
+                                    children: [
+                                      Text("Order #20240214001"),
+                                      Icon(Icons.cancel),
+                                    ],
+                                  ))),
 
                           /// โช สินค้า
                           // GestureDetector(
@@ -869,6 +874,8 @@ class _HomePageState extends State<HomePage> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
+                                                Text(selectedItem[index].name ??
+                                                    ''),
                                                 Row(
                                                   children: [
                                                     InkWell(
