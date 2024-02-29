@@ -352,1091 +352,1171 @@ class _PaymentCashState extends State<PaymentCash> {
                                       "ชำระเงิน",
                                       style: TextStyle(fontSize: 20),
                                     )),
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: Colors.white,
-                            ),
-                            height: size.height * 0.85,
-                            width: size.width * 0.5,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                      child: selectedItem == 1
-                                          ? Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text("เลือกวิธีการชำระเงิน"),
-                                                SizedBox(
-                                                  width: size.width * 0.23,
-                                                ),
-                                                OpenAndCloseSwitch(
-                                                  size: size,
-                                                  open: open,
-                                                  showTextOpen: 'เเบ่งจ่าย',
-                                                  showTextClose: 'เเบ่งจ่าย',
-                                                  onChanged: (value) {
-                                                    setState(() {
-                                                      open = value;
-                                                    });
-                                                  },
-                                                ),
-                                              ],
-                                            )
-                                          : Row()),
-                                  SizedBox(
-                                    height: size.height * 0.01,
+                          SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: Colors.white,
                                   ),
-                                  SizedBox(
-                                      child: selectedItem == 1
-                                          ? Column(
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    InkWell(
-                                                      onTap: () {
-                                                        onItemTapped(0);
-                                                      },
-                                                      child: Container(
-                                                        decoration: BoxDecoration(
-                                                            color: selectedIndex ==
-                                                                    0
-                                                                ? Color(
-                                                                    0xfffE8EAF6)
-                                                                : Colors.white,
-                                                            border: Border.all(
-                                                                color: Color(
-                                                                    0xff1264E3)),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8)),
-                                                        height:
-                                                            size.height * 0.05,
-                                                        width:
-                                                            size.width * 0.11,
-                                                        child: Row(
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 10),
-                                                              child: Image.asset(
-                                                                  "assets/icons/cash.png",
-                                                                  scale: 20),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 10),
-                                                              child: Text(
-                                                                  "เงินสด"),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: size.width * 0.01,
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        onItemTapped(1);
-                                                      },
-                                                      child: Container(
-                                                        decoration: BoxDecoration(
-                                                            color: selectedIndex ==
-                                                                    1
-                                                                ? Color(
-                                                                    0xfffE8EAF6)
-                                                                : Colors.white,
-                                                            border: Border.all(
-                                                                color: Color(
-                                                                    0xff1264E3)),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8)),
-                                                        height:
-                                                            size.height * 0.05,
-                                                        width:
-                                                            size.width * 0.11,
-                                                        child: Row(
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 5),
-                                                              child: Image.asset(
-                                                                  "assets/icons/Promptpay.png",
-                                                                  scale: 20),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 5),
-                                                              child: Text(
-                                                                  "QR Promptpay"),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: size.width * 0.01,
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        onItemTapped(2);
-                                                      },
-                                                      child: Container(
-                                                        decoration: BoxDecoration(
-                                                            color: selectedIndex ==
-                                                                    2
-                                                                ? Color(
-                                                                    0xfffE8EAF6)
-                                                                : Colors.white,
-                                                            border: Border.all(
-                                                                color: Color(
-                                                                    0xff1264E3)),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8)),
-                                                        height:
-                                                            size.height * 0.05,
-                                                        width:
-                                                            size.width * 0.11,
-                                                        child: Row(
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 10),
-                                                              child: Image.asset(
-                                                                  "assets/icons/TrueMoney.png",
-                                                                  scale: 20),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 10),
-                                                              child: Text(
-                                                                  "True Money"),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: size.width * 0.01,
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        onItemTapped(3);
-                                                      },
-                                                      child: Container(
-                                                        decoration: BoxDecoration(
-                                                            color: selectedIndex ==
-                                                                    3
-                                                                ? Color(
-                                                                    0xfffE8EAF6)
-                                                                : Colors.white,
-                                                            border: Border.all(
-                                                                color: Color(
-                                                                    0xff1264E3)),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8)),
-                                                        height:
-                                                            size.height * 0.05,
-                                                        width:
-                                                            size.width * 0.11,
-                                                        child: Row(
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 10),
-                                                              child: Image.asset(
-                                                                  "assets/icons/MaeManee.png",
-                                                                  scale: 20),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 10),
-                                                              child: Text(
-                                                                  "แม่มณี"),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: size.height * 0.01,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    InkWell(
-                                                      onTap: () {
-                                                        onItemTapped(4);
-                                                      },
-                                                      child: Container(
-                                                        decoration: BoxDecoration(
-                                                            color: selectedIndex ==
-                                                                    4
-                                                                ? Color(
-                                                                    0xfffE8EAF6)
-                                                                : Colors.white,
-                                                            border: Border.all(
-                                                                color: Color(
-                                                                    0xff1264E3)),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8)),
-                                                        height:
-                                                            size.height * 0.05,
-                                                        width:
-                                                            size.width * 0.11,
-                                                        child: Row(
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 10),
-                                                              child: Image.asset(
-                                                                  "assets/icons/Linepay.png",
-                                                                  scale: 20),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 10),
-                                                              child: Text(
-                                                                  "LINE Pay"),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: size.width * 0.01,
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        onItemTapped(5);
-                                                      },
-                                                      child: Container(
-                                                        decoration: BoxDecoration(
-                                                            color: selectedIndex ==
-                                                                    5
-                                                                ? Color(
-                                                                    0xfffE8EAF6)
-                                                                : Colors.white,
-                                                            border: Border.all(
-                                                                color: Color(
-                                                                    0xff1264E3)),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8)),
-                                                        height:
-                                                            size.height * 0.05,
-                                                        width:
-                                                            size.width * 0.11,
-                                                        child: Row(
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 5),
-                                                              child: Image.asset(
-                                                                  "assets/icons/moneyCard.png",
-                                                                  scale: 20),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 5),
-                                                              child: Text(
-                                                                  "บัตรเครดิต/เดบิต"),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: size.width * 0.01,
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        onItemTapped(6);
-                                                      },
-                                                      child: Container(
-                                                        decoration: BoxDecoration(
-                                                            color: selectedIndex ==
-                                                                    6
-                                                                ? Color(
-                                                                    0xfffE8EAF6)
-                                                                : Colors.white,
-                                                            border: Border.all(
-                                                                color: Color(
-                                                                    0xff1264E3)),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8)),
-                                                        height:
-                                                            size.height * 0.05,
-                                                        width:
-                                                            size.width * 0.11,
-                                                        child: Row(
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 10),
-                                                              child: Image.asset(
-                                                                  "assets/icons/MaeManee.png",
-                                                                  scale: 20),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 10),
-                                                              child: Text(
-                                                                  "แม่มณี"),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: size.width * 0.01,
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        onItemTapped(7);
-                                                      },
-                                                      child: Container(
-                                                        decoration: BoxDecoration(
-                                                            color: selectedIndex ==
-                                                                    7
-                                                                ? Color(
-                                                                    0xfffE8EAF6)
-                                                                : Colors.white,
-                                                            border: Border.all(
-                                                                color: Color(
-                                                                    0xff1264E3)),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8)),
-                                                        height:
-                                                            size.height * 0.05,
-                                                        width:
-                                                            size.width * 0.11,
-                                                        child: Row(
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 10),
-                                                              child: Image.asset(
-                                                                  "assets/icons/EmCard.png",
-                                                                  scale: 20),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 10),
-                                                              child: Text(
-                                                                  "บัตรพนักงาน"),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: size.height * 0.01,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    InkWell(
-                                                      onTap: () {
-                                                        onItemTapped(8);
-                                                      },
-                                                      child: Container(
-                                                        decoration: BoxDecoration(
-                                                            color: selectedIndex ==
-                                                                    8
-                                                                ? Color(
-                                                                    0xfffE8EAF6)
-                                                                : Colors.white,
-                                                            border: Border.all(
-                                                                color: Color(
-                                                                    0xff1264E3)),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8)),
-                                                        height:
-                                                            size.height * 0.05,
-                                                        width:
-                                                            size.width * 0.11,
-                                                        child: Row(
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 10),
-                                                              child: Image.asset(
-                                                                  "assets/icons/Wechart.png",
-                                                                  scale: 20),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 10),
-                                                              child: Text(
-                                                                  "We Chart"),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: size.width * 0.01,
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        onItemTapped(9);
-                                                      },
-                                                      child: Container(
-                                                        decoration: BoxDecoration(
-                                                            color: selectedIndex ==
-                                                                    9
-                                                                ? Color(
-                                                                    0xfffE8EAF6)
-                                                                : Colors.white,
-                                                            border: Border.all(
-                                                                color: Color(
-                                                                    0xff1264E3)),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8)),
-                                                        height:
-                                                            size.height * 0.05,
-                                                        width:
-                                                            size.width * 0.11,
-                                                        child: Row(
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 5),
-                                                              child: Image.asset(
-                                                                  "assets/icons/Alipay.png",
-                                                                  scale: 20),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 5),
-                                                              child: Text(
-                                                                  "Alipay"),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: size.width * 0.01,
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        onItemTapped(10);
-                                                      },
-                                                      child: Container(
-                                                        decoration: BoxDecoration(
-                                                            color: selectedIndex ==
-                                                                    10
-                                                                ? Color(
-                                                                    0xfffE8EAF6)
-                                                                : Colors.white,
-                                                            border: Border.all(
-                                                                color: Color(
-                                                                    0xff1264E3)),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8)),
-                                                        height:
-                                                            size.height * 0.05,
-                                                        width:
-                                                            size.width * 0.11,
-                                                        child: Row(
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 10),
-                                                              child: Image.asset(
-                                                                  "assets/icons/Wallet.png",
-                                                                  scale: 20),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left: 10),
-                                                              child:
-                                                                  Text("อื่นๆ"),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: size.height * 0.01,
-                                                ),
-                                              ],
-                                            )
-                                          : Column(
-                                              children: [
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
-                                                  children: [
-                                                    InkWell(
-                                                        onTap: () {
-                                                          onItemTappeDiscount(
-                                                              0);
-                                                        },
-                                                        child:
-                                                            selectedIndex == 0
-                                                                ? Container(
-                                                                    width:
-                                                                        size.width *
-                                                                            0.1,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      border: Border(
-                                                                          bottom:
-                                                                              BorderSide(color: Color(0xFF1264E3))),
-                                                                    ),
-                                                                    child: Text(
-                                                                      'ส่วนลด',
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .center,
-                                                                      style: TextStyle(
-                                                                          fontSize:
-                                                                              20,
-                                                                          color:
-                                                                              Color(0xFF1264E3)),
-                                                                    ),
-                                                                  )
-                                                                : Container(
-                                                                    width:
-                                                                        size.width *
-                                                                            0.1,
-                                                                    child: Text(
-                                                                      'ส่วนลด',
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .center,
-                                                                      style: TextStyle(
-                                                                          fontSize:
-                                                                              20,
-                                                                          color:
-                                                                              Color(0xFF424242)),
-                                                                    ),
-                                                                  )),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        onItemTappeDiscount(1);
-                                                      },
-                                                      child: selectedIndex == 1
-                                                          ? Container(
-                                                              width:
-                                                                  size.width *
-                                                                      0.1,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                border: Border(
-                                                                    bottom: BorderSide(
-                                                                        color: Color(
-                                                                            0xFF1264E3))),
-                                                              ),
-                                                              child: Text(
-                                                                'Gift Voucher',
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        20,
-                                                                    color: Color(
-                                                                        0xFF1264E3)),
-                                                              ),
-                                                            )
-                                                          : Container(
-                                                              width:
-                                                                  size.width *
-                                                                      0.1,
-                                                              child: Text(
-                                                                'Gift Voucher',
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        20,
-                                                                    color: Color(
-                                                                        0xFF424242)),
-                                                              ),
-                                                            ),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        onItemTappeDiscount(2);
-                                                      },
-                                                      child: selectedIndex == 2
-                                                          ? Container(
-                                                              width:
-                                                                  size.width *
-                                                                      0.1,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                border: Border(
-                                                                    bottom: BorderSide(
-                                                                        color: Color(
-                                                                            0xFF1264E3))),
-                                                              ),
-                                                              child: Text(
-                                                                'แลกคะแนน',
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        20,
-                                                                    color: Color(
-                                                                        0xFF1264E3)),
-                                                              ),
-                                                            )
-                                                          : Container(
-                                                              width:
-                                                                  size.width *
-                                                                      0.1,
-                                                              child: Text(
-                                                                'แลกคะแนน',
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        20,
-                                                                    color: Color(
-                                                                        0xFF424242)),
-                                                              ),
-                                                            ),
-                                                    ),
-                                                    InkWell(
-                                                        onTap: () {
-                                                          onItemTappeDiscount(
-                                                              3);
-                                                        },
-                                                        child:
-                                                            selectedIndex == 3
-                                                                ? Container(
-                                                                    width:
-                                                                        size.width *
-                                                                            0.1,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      border: Border(
-                                                                          bottom:
-                                                                              BorderSide(color: Color(0xFF1264E3))),
-                                                                    ),
-                                                                    child: Text(
-                                                                      'ส่วนลดอื่นๆ',
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .center,
-                                                                      style: TextStyle(
-                                                                          fontSize:
-                                                                              20,
-                                                                          color:
-                                                                              Color(0xFF1264E3)),
-                                                                    ),
-                                                                  )
-                                                                : Container(
-                                                                    width:
-                                                                        size.width *
-                                                                            0.1,
-                                                                    child: Text(
-                                                                      'ส่วนลดอื่นๆ',
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .center,
-                                                                      style: TextStyle(
-                                                                          fontSize:
-                                                                              20,
-                                                                          color:
-                                                                              Color(0xFF424242)),
-                                                                    ),
-                                                                  )),
-                                                  ],
-                                                )
-                                              ],
-                                            )),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border:
-                                          Border.all(color: Color(0xfffB0BEC5)),
-                                    ),
-                                    width: double.infinity,
-                                    height: size.height * 0.09,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 10),
-                                      child: TextFormField(
-                                        controller: ai,
-                                        readOnly: true,
-                                        decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          hintText: "฿",
-                                          hintStyle: TextStyle(fontSize: 25),
-                                        ),
-                                        validator: (selectedItem) {
-                                          if (selectedItem == '') {
-                                            return "โปรดใส่ข้อความให้ครบถ้วน";
-                                          }
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: size.height * 0.01),
-                                  Container(
-                                    margin: const EdgeInsets.only(
-                                        left: 1, right: 1),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                  height: size.height * 0.84,
+                                  width: size.width * 0.5,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
                                       children: [
+                                        SizedBox(
+                                            child: selectedItem == 1
+                                                ? Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                          "เลือกวิธีการชำระเงิน"),
+                                                      SizedBox(
+                                                        width:
+                                                            size.width * 0.23,
+                                                      ),
+                                                      OpenAndCloseSwitch(
+                                                        size: size,
+                                                        open: open,
+                                                        showTextOpen:
+                                                            'เเบ่งจ่าย',
+                                                        showTextClose:
+                                                            'เเบ่งจ่าย',
+                                                        onChanged: (value) {
+                                                          setState(() {
+                                                            open = value;
+                                                          });
+                                                        },
+                                                      ),
+                                                    ],
+                                                  )
+                                                : Row()),
+                                        Divider(),
                                         SizedBox(
                                           height: size.height * 0.01,
                                         ),
-                                        Column(
-                                          children: [
-                                            const SizedBox(height: 20),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              // implement the number keys (from 0 to 9) with the NumberButton widget
-                                              // the NumberButton widget is defined in the bottom of this file
-                                              children: [
-                                                SizedBox(
-                                                  width: size.width * 0.1,
-                                                  height: size.height * 0.08,
-                                                  child: NumberButton(
-                                                    number: '7',
-                                                    size: 10,
-                                                    color: Colors.white,
-                                                    controller: ai,
-                                                    onPressed: () {
-                                                      ai.text += '7';
-                                                    },
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: size.width * 0.01,
-                                                ),
-                                                SizedBox(
-                                                  width: size.width * 0.1,
-                                                  height: size.height * 0.08,
-                                                  child: NumberButton(
-                                                    number: '8',
-                                                    size: 10,
-                                                    color: Colors.white,
-                                                    controller: ai,
-                                                    onPressed: () {
-                                                      ai.text += '8';
-                                                    },
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: size.width * 0.01,
-                                                ),
-                                                SizedBox(
-                                                  width: size.width * 0.1,
-                                                  height: size.height * 0.08,
-                                                  child: NumberButton(
-                                                    number: '9',
-                                                    size: 10,
-                                                    color: Colors.white,
-                                                    controller: ai,
-                                                    onPressed: () {
-                                                      ai.text += '9';
-                                                    },
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            const SizedBox(height: 20),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                SizedBox(
-                                                  width: size.width * 0.1,
-                                                  height: size.height * 0.08,
-                                                  child: NumberButton(
-                                                    number: '4',
-                                                    size: 10,
-                                                    color: Colors.white,
-                                                    controller: ai,
-                                                    onPressed: () {
-                                                      ai.text += '4';
-                                                    },
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: size.width * 0.01,
-                                                ),
-                                                SizedBox(
-                                                  width: size.width * 0.1,
-                                                  height: size.height * 0.08,
-                                                  child: NumberButton(
-                                                    number: '5',
-                                                    size: 10,
-                                                    color: Colors.white,
-                                                    controller: ai,
-                                                    onPressed: () {
-                                                      ai.text += '5';
-                                                    },
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: size.width * 0.01,
-                                                ),
-                                                SizedBox(
-                                                  width: size.width * 0.1,
-                                                  height: size.height * 0.08,
-                                                  child: NumberButton(
-                                                    number: '6',
-                                                    size: 10,
-                                                    color: Colors.white,
-                                                    controller: ai,
-                                                    onPressed: () {
-                                                      ai.text += '6';
-                                                    },
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            const SizedBox(height: 20),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                SizedBox(
-                                                  width: size.width * 0.1,
-                                                  height: size.height * 0.08,
-                                                  child: NumberButton(
-                                                    number: '1',
-                                                    size: 10,
-                                                    color: Colors.white,
-                                                    controller: ai,
-                                                    onPressed: () {
-                                                      ai.text += '1';
-                                                    },
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: size.width * 0.01,
-                                                ),
-                                                SizedBox(
-                                                  width: size.width * 0.1,
-                                                  height: size.height * 0.08,
-                                                  child: NumberButton(
-                                                    number: '2',
-                                                    size: 10,
-                                                    color: Colors.white,
-                                                    controller: ai,
-                                                    onPressed: () {
-                                                      ai.text += '2';
-                                                    },
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: size.width * 0.01,
-                                                ),
-                                                SizedBox(
-                                                  width: size.width * 0.1,
-                                                  height: size.height * 0.08,
-                                                  child: NumberButton(
-                                                    number: '3',
-                                                    size: 10,
-                                                    color: Colors.white,
-                                                    controller: ai,
-                                                    onPressed: () {
-                                                      ai.text += '3';
-                                                    },
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            const SizedBox(height: 20),
-                                            Row(
-                                              children: [
-                                                SizedBox(
-                                                  width: size.width * 0.1,
-                                                  height: size.height * 0.08,
-                                                  child: NumberButton(
-                                                    number: '00',
-                                                    size: 10,
-                                                    color: Colors.white,
-                                                    controller: ai,
-                                                    onPressed: () {
-                                                      ai.text += '00';
-                                                    },
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: size.width * 0.01,
-                                                ),
-                                                SizedBox(
-                                                  width: size.width * 0.1,
-                                                  height: size.height * 0.08,
-                                                  child: NumberButton(
-                                                    number: '0',
-                                                    size: 10,
-                                                    color: Colors.white,
-                                                    controller: ai,
-                                                    onPressed: () {
-                                                      ai.text += '0';
-                                                    },
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: size.width * 0.01,
-                                                ),
-                                                SizedBox(
-                                                  width: size.width * 0.1,
-                                                  height: size.height * 0.08,
-                                                  child: NumberButton(
-                                                    number: '.',
-                                                    size: 10,
-                                                    color: Colors.white,
-                                                    controller: ai,
-                                                    onPressed: () {
-                                                      ai.text += '.';
-                                                    },
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            const SizedBox(height: 20),
-                                            SizedBox(height: 4),
-                                          ],
-                                        ),
                                         SizedBox(
-                                          width: size.width * 0.01,
+                                            child: selectedItem == 1
+                                                ? Column(
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          InkWell(
+                                                            onTap: () {
+                                                              onItemTapped(0);
+                                                            },
+                                                            child: Container(
+                                                              decoration: BoxDecoration(
+                                                                  color: selectedIndex ==
+                                                                          0
+                                                                      ? Color(
+                                                                          0xfffE8EAF6)
+                                                                      : Colors
+                                                                          .white,
+                                                                  border: Border.all(
+                                                                      color: Color(
+                                                                          0xff1264E3)),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8)),
+                                                              height:
+                                                                  size.height *
+                                                                      0.05,
+                                                              width:
+                                                                  size.width *
+                                                                      0.11,
+                                                              child: Row(
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            10),
+                                                                    child: Image.asset(
+                                                                        "assets/icons/cash.png",
+                                                                        scale:
+                                                                            20),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            10),
+                                                                    child: Text(
+                                                                        "เงินสด"),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width: size.width *
+                                                                0.01,
+                                                          ),
+                                                          InkWell(
+                                                            onTap: () {
+                                                              onItemTapped(1);
+                                                            },
+                                                            child: Container(
+                                                              decoration: BoxDecoration(
+                                                                  color: selectedIndex ==
+                                                                          1
+                                                                      ? Color(
+                                                                          0xfffE8EAF6)
+                                                                      : Colors
+                                                                          .white,
+                                                                  border: Border.all(
+                                                                      color: Color(
+                                                                          0xff1264E3)),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8)),
+                                                              height:
+                                                                  size.height *
+                                                                      0.05,
+                                                              width:
+                                                                  size.width *
+                                                                      0.11,
+                                                              child: Row(
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            5),
+                                                                    child: Image.asset(
+                                                                        "assets/icons/Promptpay.png",
+                                                                        scale:
+                                                                            20),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            5),
+                                                                    child: Text(
+                                                                        "QR Promptpay"),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width: size.width *
+                                                                0.01,
+                                                          ),
+                                                          InkWell(
+                                                            onTap: () {
+                                                              onItemTapped(2);
+                                                            },
+                                                            child: Container(
+                                                              decoration: BoxDecoration(
+                                                                  color: selectedIndex ==
+                                                                          2
+                                                                      ? Color(
+                                                                          0xfffE8EAF6)
+                                                                      : Colors
+                                                                          .white,
+                                                                  border: Border.all(
+                                                                      color: Color(
+                                                                          0xff1264E3)),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8)),
+                                                              height:
+                                                                  size.height *
+                                                                      0.05,
+                                                              width:
+                                                                  size.width *
+                                                                      0.11,
+                                                              child: Row(
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            10),
+                                                                    child: Image.asset(
+                                                                        "assets/icons/TrueMoney.png",
+                                                                        scale:
+                                                                            20),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            10),
+                                                                    child: Text(
+                                                                        "True Money"),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width: size.width *
+                                                                0.01,
+                                                          ),
+                                                          InkWell(
+                                                            onTap: () {
+                                                              onItemTapped(3);
+                                                            },
+                                                            child: Container(
+                                                              decoration: BoxDecoration(
+                                                                  color: selectedIndex ==
+                                                                          3
+                                                                      ? Color(
+                                                                          0xfffE8EAF6)
+                                                                      : Colors
+                                                                          .white,
+                                                                  border: Border.all(
+                                                                      color: Color(
+                                                                          0xff1264E3)),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8)),
+                                                              height:
+                                                                  size.height *
+                                                                      0.05,
+                                                              width:
+                                                                  size.width *
+                                                                      0.11,
+                                                              child: Row(
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            10),
+                                                                    child: Image.asset(
+                                                                        "assets/icons/MaeManee.png",
+                                                                        scale:
+                                                                            20),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            10),
+                                                                    child: Text(
+                                                                        "แม่มณี"),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                            size.height * 0.01,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          InkWell(
+                                                            onTap: () {
+                                                              onItemTapped(4);
+                                                            },
+                                                            child: Container(
+                                                              decoration: BoxDecoration(
+                                                                  color: selectedIndex ==
+                                                                          4
+                                                                      ? Color(
+                                                                          0xfffE8EAF6)
+                                                                      : Colors
+                                                                          .white,
+                                                                  border: Border.all(
+                                                                      color: Color(
+                                                                          0xff1264E3)),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8)),
+                                                              height:
+                                                                  size.height *
+                                                                      0.05,
+                                                              width:
+                                                                  size.width *
+                                                                      0.11,
+                                                              child: Row(
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            10),
+                                                                    child: Image.asset(
+                                                                        "assets/icons/Linepay.png",
+                                                                        scale:
+                                                                            20),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            10),
+                                                                    child: Text(
+                                                                        "LINE Pay"),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width: size.width *
+                                                                0.01,
+                                                          ),
+                                                          InkWell(
+                                                            onTap: () {
+                                                              onItemTapped(5);
+                                                            },
+                                                            child: Container(
+                                                              decoration: BoxDecoration(
+                                                                  color: selectedIndex ==
+                                                                          5
+                                                                      ? Color(
+                                                                          0xfffE8EAF6)
+                                                                      : Colors
+                                                                          .white,
+                                                                  border: Border.all(
+                                                                      color: Color(
+                                                                          0xff1264E3)),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8)),
+                                                              height:
+                                                                  size.height *
+                                                                      0.05,
+                                                              width:
+                                                                  size.width *
+                                                                      0.11,
+                                                              child: Row(
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            5),
+                                                                    child: Image.asset(
+                                                                        "assets/icons/moneyCard.png",
+                                                                        scale:
+                                                                            20),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            5),
+                                                                    child: Text(
+                                                                        "บัตรเครดิต/เดบิต"),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width: size.width *
+                                                                0.01,
+                                                          ),
+                                                          InkWell(
+                                                            onTap: () {
+                                                              onItemTapped(6);
+                                                            },
+                                                            child: Container(
+                                                              decoration: BoxDecoration(
+                                                                  color: selectedIndex ==
+                                                                          6
+                                                                      ? Color(
+                                                                          0xfffE8EAF6)
+                                                                      : Colors
+                                                                          .white,
+                                                                  border: Border.all(
+                                                                      color: Color(
+                                                                          0xff1264E3)),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8)),
+                                                              height:
+                                                                  size.height *
+                                                                      0.05,
+                                                              width:
+                                                                  size.width *
+                                                                      0.11,
+                                                              child: Row(
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            10),
+                                                                    child: Image.asset(
+                                                                        "assets/icons/MaeManee.png",
+                                                                        scale:
+                                                                            20),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            10),
+                                                                    child: Text(
+                                                                        "แม่มณี"),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width: size.width *
+                                                                0.01,
+                                                          ),
+                                                          InkWell(
+                                                            onTap: () {
+                                                              onItemTapped(7);
+                                                            },
+                                                            child: Container(
+                                                              decoration: BoxDecoration(
+                                                                  color: selectedIndex ==
+                                                                          7
+                                                                      ? Color(
+                                                                          0xfffE8EAF6)
+                                                                      : Colors
+                                                                          .white,
+                                                                  border: Border.all(
+                                                                      color: Color(
+                                                                          0xff1264E3)),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8)),
+                                                              height:
+                                                                  size.height *
+                                                                      0.05,
+                                                              width:
+                                                                  size.width *
+                                                                      0.11,
+                                                              child: Row(
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            10),
+                                                                    child: Image.asset(
+                                                                        "assets/icons/EmCard.png",
+                                                                        scale:
+                                                                            20),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            10),
+                                                                    child: Text(
+                                                                        "บัตรพนักงาน"),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                            size.height * 0.01,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          InkWell(
+                                                            onTap: () {
+                                                              onItemTapped(8);
+                                                            },
+                                                            child: Container(
+                                                              decoration: BoxDecoration(
+                                                                  color: selectedIndex ==
+                                                                          8
+                                                                      ? Color(
+                                                                          0xfffE8EAF6)
+                                                                      : Colors
+                                                                          .white,
+                                                                  border: Border.all(
+                                                                      color: Color(
+                                                                          0xff1264E3)),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8)),
+                                                              height:
+                                                                  size.height *
+                                                                      0.05,
+                                                              width:
+                                                                  size.width *
+                                                                      0.11,
+                                                              child: Row(
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            10),
+                                                                    child: Image.asset(
+                                                                        "assets/icons/Wechart.png",
+                                                                        scale:
+                                                                            20),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            10),
+                                                                    child: Text(
+                                                                        "We Chart"),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width: size.width *
+                                                                0.01,
+                                                          ),
+                                                          InkWell(
+                                                            onTap: () {
+                                                              onItemTapped(9);
+                                                            },
+                                                            child: Container(
+                                                              decoration: BoxDecoration(
+                                                                  color: selectedIndex ==
+                                                                          9
+                                                                      ? Color(
+                                                                          0xfffE8EAF6)
+                                                                      : Colors
+                                                                          .white,
+                                                                  border: Border.all(
+                                                                      color: Color(
+                                                                          0xff1264E3)),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8)),
+                                                              height:
+                                                                  size.height *
+                                                                      0.05,
+                                                              width:
+                                                                  size.width *
+                                                                      0.11,
+                                                              child: Row(
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            5),
+                                                                    child: Image.asset(
+                                                                        "assets/icons/Alipay.png",
+                                                                        scale:
+                                                                            20),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            5),
+                                                                    child: Text(
+                                                                        "Alipay"),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width: size.width *
+                                                                0.01,
+                                                          ),
+                                                          InkWell(
+                                                            onTap: () {
+                                                              onItemTapped(10);
+                                                            },
+                                                            child: Container(
+                                                              decoration: BoxDecoration(
+                                                                  color: selectedIndex ==
+                                                                          10
+                                                                      ? Color(
+                                                                          0xfffE8EAF6)
+                                                                      : Colors
+                                                                          .white,
+                                                                  border: Border.all(
+                                                                      color: Color(
+                                                                          0xff1264E3)),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8)),
+                                                              height:
+                                                                  size.height *
+                                                                      0.05,
+                                                              width:
+                                                                  size.width *
+                                                                      0.11,
+                                                              child: Row(
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            10),
+                                                                    child: Image.asset(
+                                                                        "assets/icons/Wallet.png",
+                                                                        scale:
+                                                                            20),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            10),
+                                                                    child: Text(
+                                                                        "อื่นๆ"),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                            size.height * 0.01,
+                                                      ),
+                                                    ],
+                                                  )
+                                                : Column(
+                                                    children: [
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceAround,
+                                                        children: [
+                                                          InkWell(
+                                                              onTap: () {
+                                                                onItemTappeDiscount(
+                                                                    0);
+                                                              },
+                                                              child: selectedIndex ==
+                                                                      0
+                                                                  ? Container(
+                                                                      width: size
+                                                                              .width *
+                                                                          0.1,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        border: Border(
+                                                                            bottom:
+                                                                                BorderSide(color: Color(0xFF1264E3))),
+                                                                      ),
+                                                                      child:
+                                                                          Text(
+                                                                        'ส่วนลด',
+                                                                        textAlign:
+                                                                            TextAlign.center,
+                                                                        style: TextStyle(
+                                                                            fontSize:
+                                                                                20,
+                                                                            color:
+                                                                                Color(0xFF1264E3)),
+                                                                      ),
+                                                                    )
+                                                                  : Container(
+                                                                      width: size
+                                                                              .width *
+                                                                          0.1,
+                                                                      child:
+                                                                          Text(
+                                                                        'ส่วนลด',
+                                                                        textAlign:
+                                                                            TextAlign.center,
+                                                                        style: TextStyle(
+                                                                            fontSize:
+                                                                                20,
+                                                                            color:
+                                                                                Color(0xFF424242)),
+                                                                      ),
+                                                                    )),
+                                                          InkWell(
+                                                            onTap: () {
+                                                              onItemTappeDiscount(
+                                                                  1);
+                                                            },
+                                                            child:
+                                                                selectedIndex ==
+                                                                        1
+                                                                    ? Container(
+                                                                        width: size.width *
+                                                                            0.1,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          border:
+                                                                              Border(bottom: BorderSide(color: Color(0xFF1264E3))),
+                                                                        ),
+                                                                        child:
+                                                                            Text(
+                                                                          'Gift Voucher',
+                                                                          textAlign:
+                                                                              TextAlign.center,
+                                                                          style: TextStyle(
+                                                                              fontSize: 20,
+                                                                              color: Color(0xFF1264E3)),
+                                                                        ),
+                                                                      )
+                                                                    : Container(
+                                                                        width: size.width *
+                                                                            0.1,
+                                                                        child:
+                                                                            Text(
+                                                                          'Gift Voucher',
+                                                                          textAlign:
+                                                                              TextAlign.center,
+                                                                          style: TextStyle(
+                                                                              fontSize: 20,
+                                                                              color: Color(0xFF424242)),
+                                                                        ),
+                                                                      ),
+                                                          ),
+                                                          InkWell(
+                                                            onTap: () {
+                                                              onItemTappeDiscount(
+                                                                  2);
+                                                            },
+                                                            child:
+                                                                selectedIndex ==
+                                                                        2
+                                                                    ? Container(
+                                                                        width: size.width *
+                                                                            0.1,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          border:
+                                                                              Border(bottom: BorderSide(color: Color(0xFF1264E3))),
+                                                                        ),
+                                                                        child:
+                                                                            Text(
+                                                                          'แลกคะแนน',
+                                                                          textAlign:
+                                                                              TextAlign.center,
+                                                                          style: TextStyle(
+                                                                              fontSize: 20,
+                                                                              color: Color(0xFF1264E3)),
+                                                                        ),
+                                                                      )
+                                                                    : Container(
+                                                                        width: size.width *
+                                                                            0.1,
+                                                                        child:
+                                                                            Text(
+                                                                          'แลกคะแนน',
+                                                                          textAlign:
+                                                                              TextAlign.center,
+                                                                          style: TextStyle(
+                                                                              fontSize: 20,
+                                                                              color: Color(0xFF424242)),
+                                                                        ),
+                                                                      ),
+                                                          ),
+                                                          InkWell(
+                                                              onTap: () {
+                                                                onItemTappeDiscount(
+                                                                    3);
+                                                              },
+                                                              child: selectedIndex ==
+                                                                      3
+                                                                  ? Container(
+                                                                      width: size
+                                                                              .width *
+                                                                          0.1,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        border: Border(
+                                                                            bottom:
+                                                                                BorderSide(color: Color(0xFF1264E3))),
+                                                                      ),
+                                                                      child:
+                                                                          Text(
+                                                                        'ส่วนลดอื่นๆ',
+                                                                        textAlign:
+                                                                            TextAlign.center,
+                                                                        style: TextStyle(
+                                                                            fontSize:
+                                                                                20,
+                                                                            color:
+                                                                                Color(0xFF1264E3)),
+                                                                      ),
+                                                                    )
+                                                                  : Container(
+                                                                      width: size
+                                                                              .width *
+                                                                          0.1,
+                                                                      child:
+                                                                          Text(
+                                                                        'ส่วนลดอื่นๆ',
+                                                                        textAlign:
+                                                                            TextAlign.center,
+                                                                        style: TextStyle(
+                                                                            fontSize:
+                                                                                20,
+                                                                            color:
+                                                                                Color(0xFF424242)),
+                                                                      ),
+                                                                    )),
+                                                        ],
+                                                      )
+                                                    ],
+                                                  )),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            border: Border.all(
+                                                color: Color(0xfffB0BEC5)),
+                                          ),
+                                          width: double.infinity,
+                                          height: size.height * 0.09,
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 10),
+                                            child: TextFormField(
+                                              controller: ai,
+                                              readOnly: true,
+                                              decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                hintText: "฿",
+                                                hintStyle:
+                                                    TextStyle(fontSize: 25),
+                                              ),
+                                              validator: (selectedItem) {
+                                                if (selectedItem == '') {
+                                                  return "โปรดใส่ข้อความให้ครบถ้วน";
+                                                }
+                                              },
+                                            ),
+                                          ),
                                         ),
-                                        Column(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 10),
-                                              child: InkWell(
-                                                onTap: () {
-                                                  // ตรวจสอบว่ามีตัวอักษรใน TextFormField หรือไม่
-                                                  ai.text = ai.text.substring(
-                                                      0,
-                                                      ai.text.length -
-                                                          1); // ลบตัวอักษรที่สุดท้ายออก
-                                                },
-                                                child: SizedBox(
-                                                  width: size.width * 0.08,
-                                                  height: size.height * 0.2,
-                                                  child: NumberButton(
-                                                    number: '<',
-                                                    size: 10,
-                                                    color: Colors.white,
-                                                    controller: ai,
-                                                    onPressed: () {
-                                                      if (ai.text.isNotEmpty) {
-                                                        ai.text = ai.text
-                                                            .substring(
-                                                                0,
-                                                                ai.text.length -
-                                                                    1);
-                                                      }
-                                                    },
+                                        Container(
+                                          margin: const EdgeInsets.only(
+                                              left: 1, right: 1),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Column(
+                                                children: [
+                                                  const SizedBox(height: 10),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    // implement the number keys (from 0 to 9) with the NumberButton widget
+                                                    // the NumberButton widget is defined in the bottom of this file
+                                                    children: [
+                                                      SizedBox(
+                                                        width: size.width * 0.1,
+                                                        height:
+                                                            size.height * 0.08,
+                                                        child: NumberButton(
+                                                          number: '7',
+                                                          size: 10,
+                                                          color: Colors.white,
+                                                          controller: ai,
+                                                          onPressed: () {
+                                                            ai.text += '7';
+                                                          },
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width:
+                                                            size.width * 0.01,
+                                                      ),
+                                                      SizedBox(
+                                                        width: size.width * 0.1,
+                                                        height:
+                                                            size.height * 0.08,
+                                                        child: NumberButton(
+                                                          number: '8',
+                                                          size: 10,
+                                                          color: Colors.white,
+                                                          controller: ai,
+                                                          onPressed: () {
+                                                            ai.text += '8';
+                                                          },
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width:
+                                                            size.width * 0.01,
+                                                      ),
+                                                      SizedBox(
+                                                        width: size.width * 0.1,
+                                                        height:
+                                                            size.height * 0.08,
+                                                        child: NumberButton(
+                                                          number: '9',
+                                                          size: 10,
+                                                          color: Colors.white,
+                                                          controller: ai,
+                                                          onPressed: () {
+                                                            ai.text += '9';
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
-                                                ),
+                                                  const SizedBox(height: 20),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      SizedBox(
+                                                        width: size.width * 0.1,
+                                                        height:
+                                                            size.height * 0.08,
+                                                        child: NumberButton(
+                                                          number: '4',
+                                                          size: 10,
+                                                          color: Colors.white,
+                                                          controller: ai,
+                                                          onPressed: () {
+                                                            ai.text += '4';
+                                                          },
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width:
+                                                            size.width * 0.01,
+                                                      ),
+                                                      SizedBox(
+                                                        width: size.width * 0.1,
+                                                        height:
+                                                            size.height * 0.08,
+                                                        child: NumberButton(
+                                                          number: '5',
+                                                          size: 10,
+                                                          color: Colors.white,
+                                                          controller: ai,
+                                                          onPressed: () {
+                                                            ai.text += '5';
+                                                          },
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width:
+                                                            size.width * 0.01,
+                                                      ),
+                                                      SizedBox(
+                                                        width: size.width * 0.1,
+                                                        height:
+                                                            size.height * 0.08,
+                                                        child: NumberButton(
+                                                          number: '6',
+                                                          size: 10,
+                                                          color: Colors.white,
+                                                          controller: ai,
+                                                          onPressed: () {
+                                                            ai.text += '6';
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const SizedBox(height: 20),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      SizedBox(
+                                                        width: size.width * 0.1,
+                                                        height:
+                                                            size.height * 0.08,
+                                                        child: NumberButton(
+                                                          number: '1',
+                                                          size: 10,
+                                                          color: Colors.white,
+                                                          controller: ai,
+                                                          onPressed: () {
+                                                            ai.text += '1';
+                                                          },
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width:
+                                                            size.width * 0.01,
+                                                      ),
+                                                      SizedBox(
+                                                        width: size.width * 0.1,
+                                                        height:
+                                                            size.height * 0.08,
+                                                        child: NumberButton(
+                                                          number: '2',
+                                                          size: 10,
+                                                          color: Colors.white,
+                                                          controller: ai,
+                                                          onPressed: () {
+                                                            ai.text += '2';
+                                                          },
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width:
+                                                            size.width * 0.01,
+                                                      ),
+                                                      SizedBox(
+                                                        width: size.width * 0.1,
+                                                        height:
+                                                            size.height * 0.08,
+                                                        child: NumberButton(
+                                                          number: '3',
+                                                          size: 10,
+                                                          color: Colors.white,
+                                                          controller: ai,
+                                                          onPressed: () {
+                                                            ai.text += '3';
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const SizedBox(height: 20),
+                                                  Row(
+                                                    children: [
+                                                      SizedBox(
+                                                        width: size.width * 0.1,
+                                                        height:
+                                                            size.height * 0.08,
+                                                        child: NumberButton(
+                                                          number: '00',
+                                                          size: 10,
+                                                          color: Colors.white,
+                                                          controller: ai,
+                                                          onPressed: () {
+                                                            ai.text += '00';
+                                                          },
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width:
+                                                            size.width * 0.01,
+                                                      ),
+                                                      SizedBox(
+                                                        width: size.width * 0.1,
+                                                        height:
+                                                            size.height * 0.08,
+                                                        child: NumberButton(
+                                                          number: '0',
+                                                          size: 10,
+                                                          color: Colors.white,
+                                                          controller: ai,
+                                                          onPressed: () {
+                                                            ai.text += '0';
+                                                          },
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width:
+                                                            size.width * 0.01,
+                                                      ),
+                                                      SizedBox(
+                                                        width: size.width * 0.1,
+                                                        height:
+                                                            size.height * 0.08,
+                                                        child: NumberButton(
+                                                          number: '.',
+                                                          size: 10,
+                                                          color: Colors.white,
+                                                          controller: ai,
+                                                          onPressed: () {
+                                                            ai.text += '.';
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const SizedBox(height: 20),
+                                                  SizedBox(height: 4),
+                                                ],
                                               ),
-                                            ),
-                                            SizedBox(
-                                              width: size.width * 0.08,
-                                              height: size.height * 0.2,
-                                              child: NumberButton(
-                                                number: 'C',
-                                                size: 10,
-                                                color: Colors.white,
-                                                controller: ai,
-                                                onPressed: () {
-                                                  ai.text = '';
-                                                },
+                                              SizedBox(
+                                                width: size.width * 0.01,
                                               ),
-                                            ),
-                                          ],
-                                        ),
+                                              Column(
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            bottom: 10),
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        // ตรวจสอบว่ามีตัวอักษรใน TextFormField หรือไม่
+                                                        ai.text = ai.text.substring(
+                                                            0,
+                                                            ai.text.length -
+                                                                1); // ลบตัวอักษรที่สุดท้ายออก
+                                                      },
+                                                      child: SizedBox(
+                                                        width:
+                                                            size.width * 0.08,
+                                                        height:
+                                                            size.height * 0.2,
+                                                        child: NumberButton(
+                                                          number: '<',
+                                                          size: 10,
+                                                          color: Colors.white,
+                                                          controller: ai,
+                                                          onPressed: () {
+                                                            if (ai.text
+                                                                .isNotEmpty) {
+                                                              ai.text = ai.text
+                                                                  .substring(
+                                                                      0,
+                                                                      ai.text.length -
+                                                                          1);
+                                                            }
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    width: size.width * 0.08,
+                                                    height: size.height * 0.2,
+                                                    child: NumberButton(
+                                                      number: 'C',
+                                                      size: 10,
+                                                      color: Colors.white,
+                                                      controller: ai,
+                                                      onPressed: () {
+                                                        ai.text = '';
+                                                      },
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        )
                                       ],
                                     ),
-                                  )
-                                ],
-                              ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
