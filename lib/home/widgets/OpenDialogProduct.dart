@@ -183,8 +183,8 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                 ),
               ),
               Container(
-                width: size.width * 0.25,
-                height: size.height * 0.04,
+                height: 40,
+                // height: size.height * 0.036,
                 child: Row(
                   children: [
                     InkWell(
@@ -196,8 +196,8 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                         });
                       },
                       child: Container(
-                        height: 35,
-                        width: 35,
+                        width: size.width * 0.02,
+                        height: 30,
                         decoration: BoxDecoration(
                             color: Color(0xFFCFD8DC),
                             borderRadius: BorderRadius.circular(6)),
@@ -221,8 +221,8 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                         });
                       },
                       child: Container(
-                        height: 35,
-                        width: 35,
+                        width: size.width * 0.02,
+                        height: 30,
                         decoration: BoxDecoration(
                             color: Color(0xFFCFD8DC),
                             borderRadius: BorderRadius.circular(6)),

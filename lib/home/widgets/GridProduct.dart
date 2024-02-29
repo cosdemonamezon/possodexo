@@ -35,7 +35,7 @@ class _GridCoffeeState extends State<GridCoffee> {
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4,
           crossAxisSpacing: 10,
-          mainAxisExtent: 180,
+          mainAxisExtent: 150,
           mainAxisSpacing: 10,
         ),
         itemCount: widget.gridCoffee.length,
@@ -71,8 +71,8 @@ class _GridCoffeeState extends State<GridCoffee> {
                     children: [
                       Image.asset(
                         widget.gridCoffee[index]['image'],
-                        width: size.width * 0.25,
-                        height: size.height * 0.26,
+                        width: size.width * 0.22,
+                        height: size.height * 0.22,
                         fit: BoxFit.cover,
                       ),
                       Padding(
@@ -96,7 +96,7 @@ class _GridCoffeeState extends State<GridCoffee> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Container(
-                              height: size.height * 0.1,
+                              height: size.height * 0.06,
                               width: double.maxFinite,
                               color: Color.fromARGB(60, 0, 0, 0),
                               child: Center(
