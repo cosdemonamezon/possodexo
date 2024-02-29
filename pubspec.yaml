@@ -39,6 +39,7 @@ dependencies:
   dropdown_button2: ^2.3.9
   chips_choice: ^3.0.1
   item_count_number_button: ^1.9.2
+  flutter_slidable: ^3.0.1
   intl: ^0.18.1
  
 dev_dependencies:
