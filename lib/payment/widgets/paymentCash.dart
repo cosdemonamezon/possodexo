@@ -942,7 +942,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                                 Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
-                                                          .spaceBetween,
+                                                          .spaceAround,
                                                   children: [
                                                     InkWell(
                                                         onTap: () {
@@ -951,72 +951,179 @@ class _PaymentCashState extends State<PaymentCash> {
                                                         },
                                                         child:
                                                             selectedIndex == 0
-                                                                ? Text(
-                                                                    'ส่วนลด',
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .center,
-                                                                    style: TextStyle(
-                                                                        fontSize:
-                                                                            20,
-                                                                        color: Color(
-                                                                            0xFF1264E3)),
+                                                                ? Container(
+                                                                    width:
+                                                                        size.width *
+                                                                            0.1,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      border: Border(
+                                                                          bottom:
+                                                                              BorderSide(color: Color(0xFF1264E3))),
+                                                                    ),
+                                                                    child: Text(
+                                                                      'ส่วนลด',
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              20,
+                                                                          color:
+                                                                              Color(0xFF1264E3)),
+                                                                    ),
                                                                   )
-                                                                : Text(
-                                                                    'ส่วนลด',
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .center,
-                                                                    style: TextStyle(
-                                                                        fontSize:
-                                                                            20,
-                                                                        color: Color(
-                                                                            0xFF424242)),
+                                                                : Container(
+                                                                    width:
+                                                                        size.width *
+                                                                            0.1,
+                                                                    child: Text(
+                                                                      'ส่วนลด',
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              20,
+                                                                          color:
+                                                                              Color(0xFF424242)),
+                                                                    ),
                                                                   )),
                                                     InkWell(
                                                       onTap: () {
                                                         onItemTappeDiscount(1);
                                                       },
                                                       child: selectedIndex == 1
-                                                          ? Text(
-                                                              'Gift Voucher',
-                                                              style: TextStyle(
-                                                                  fontSize: 20,
-                                                                  color: Color(
-                                                                      0xFF1264E3)),
+                                                          ? Container(
+                                                              width:
+                                                                  size.width *
+                                                                      0.1,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                border: Border(
+                                                                    bottom: BorderSide(
+                                                                        color: Color(
+                                                                            0xFF1264E3))),
+                                                              ),
+                                                              child: Text(
+                                                                'Gift Voucher',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        20,
+                                                                    color: Color(
+                                                                        0xFF1264E3)),
+                                                              ),
                                                             )
-                                                          : Text(
-                                                              'Gift Voucher',
-                                                              style: TextStyle(
-                                                                  fontSize: 20,
-                                                                  color: Color(
-                                                                      0xFF424242)),
+                                                          : Container(
+                                                              width:
+                                                                  size.width *
+                                                                      0.1,
+                                                              child: Text(
+                                                                'Gift Voucher',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        20,
+                                                                    color: Color(
+                                                                        0xFF424242)),
+                                                              ),
                                                             ),
                                                     ),
                                                     InkWell(
                                                       onTap: () {
                                                         onItemTappeDiscount(2);
                                                       },
-                                                      child: Text(
-                                                        'แลกคะแนน',
-                                                        style: TextStyle(
-                                                            fontSize: 20,
-                                                            color: Color(
-                                                                0xFF424242)),
-                                                      ),
+                                                      child: selectedIndex == 2
+                                                          ? Container(
+                                                              width:
+                                                                  size.width *
+                                                                      0.1,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                border: Border(
+                                                                    bottom: BorderSide(
+                                                                        color: Color(
+                                                                            0xFF1264E3))),
+                                                              ),
+                                                              child: Text(
+                                                                'แลกคะแนน',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        20,
+                                                                    color: Color(
+                                                                        0xFF1264E3)),
+                                                              ),
+                                                            )
+                                                          : Container(
+                                                              width:
+                                                                  size.width *
+                                                                      0.1,
+                                                              child: Text(
+                                                                'แลกคะแนน',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        20,
+                                                                    color: Color(
+                                                                        0xFF424242)),
+                                                              ),
+                                                            ),
                                                     ),
                                                     InkWell(
-                                                      onTap: () {
-                                                        onItemTappeDiscount(3);
-                                                      },
-                                                      child: Text(
-                                                        'ส่วนลดอื่นๆ',
-                                                        style: TextStyle(
-                                                            fontSize: 20,
-                                                            color: Color(
-                                                                0xFF424242)),
-                                                      ),
-                                                    ),
+                                                        onTap: () {
+                                                          onItemTappeDiscount(
+                                                              3);
+                                                        },
+                                                        child:
+                                                            selectedIndex == 3
+                                                                ? Container(
+                                                                    width:
+                                                                        size.width *
+                                                                            0.1,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      border: Border(
+                                                                          bottom:
+                                                                              BorderSide(color: Color(0xFF1264E3))),
+                                                                    ),
+                                                                    child: Text(
+                                                                      'ส่วนลดอื่นๆ',
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              20,
+                                                                          color:
+                                                                              Color(0xFF1264E3)),
+                                                                    ),
+                                                                  )
+                                                                : Container(
+                                                                    width:
+                                                                        size.width *
+                                                                            0.1,
+                                                                    child: Text(
+                                                                      'ส่วนลดอื่นๆ',
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              20,
+                                                                          color:
+                                                                              Color(0xFF424242)),
+                                                                    ),
+                                                                  )),
                                                   ],
                                                 )
                                               ],
