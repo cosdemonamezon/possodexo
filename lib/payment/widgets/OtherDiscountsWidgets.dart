@@ -10,6 +10,9 @@ class OtherDiscountsWidgets extends StatefulWidget {
 class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
   List<String> payment = ["จำนวนเงิน", "เปอร์เซ็นต์"];
   String? _selectedpaymet;
+
+  List<String> point = ["ส่วนลด The 1", "คูปองห้าง"];
+  String? _selectedponit;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -47,56 +50,160 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 30, right: 30),
-            child: Container(
-              height: size.height * 0.08,
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    color: Color(0xFF78909C),
-                  ),
-                ),
-                color: Color(0xFFFAFAFA),
-              ),
-              child: DropdownButtonHideUnderline(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10, top: 4),
-                      child: Text(
-                        'รูปแบบ',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Color(0xFF424242),
-                          fontFamily: 'IBMPlexSansThai',
+            child: SizedBox(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    height: size.height * 0.08,
+                    width: size.width * 0.1,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Color(0xFF78909C),
                         ),
                       ),
+                      color: Color(0xFFFAFAFA),
                     ),
-                    DropdownButton<String>(
-                      isExpanded: true,
-                      items: payment
-                          .map((String item) => DropdownMenuItem<String>(
-                                value: item,
-                                child: Text(
-                                  item,
-                                  style: const TextStyle(
+                    child: DropdownButtonHideUnderline(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10, top: 4),
+                            child: Text(
+                              'รูปแบบ',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Color(0xFF424242),
+                                fontFamily: 'IBMPlexSansThai',
+                              ),
+                            ),
+                          ),
+                          DropdownButton<String>(
+                            isExpanded: true,
+                            items: payment
+                                .map((String item) => DropdownMenuItem<String>(
+                                      value: item,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        child: Text(
+                                          item,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            fontFamily: 'IBMPlexSansThai',
+                                          ),
+                                        ),
+                                      ),
+                                    ))
+                                .toList(),
+                            value: _selectedpaymet,
+                            onChanged: (v) {
+                              setState(() {
+                                _selectedpaymet = v ?? '';
+                              });
+                            },
+                            underline: SizedBox(),
+                            dropdownColor: Color.fromARGB(255, 255, 255, 255),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: size.height * 0.08,
+                    width: size.width * 0.2,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Color(0xFF78909C),
+                        ),
+                      ),
+                      color: Color(0xFFFAFAFA),
+                    ),
+                    child: DropdownButtonHideUnderline(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10, top: 4),
+                            child: Text(
+                              'รูปแบบ',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Color(0xFF424242),
+                                fontFamily: 'IBMPlexSansThai',
+                              ),
+                            ),
+                          ),
+                          DropdownButton<String>(
+                            isExpanded: true,
+                            items: point
+                                .map((String item) => DropdownMenuItem<String>(
+                                      value: item,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        child: Text(
+                                          item,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            fontFamily: 'IBMPlexSansThai',
+                                          ),
+                                        ),
+                                      ),
+                                    ))
+                                .toList(),
+                            value: _selectedponit,
+                            onChanged: (v) {
+                              setState(() {
+                                _selectedponit = v ?? '';
+                              });
+                            },
+                            underline: SizedBox(),
+                            dropdownColor: Color.fromARGB(255, 255, 255, 255),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                      height: size.height * 0.08,
+                      width: size.width * 0.12,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFFAFAFA),
+                      ),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10, top: 4),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'บาท',
+                                  style: TextStyle(
                                     fontSize: 16,
+                                    color: Color(0xFF424242),
                                     fontFamily: 'IBMPlexSansThai',
                                   ),
                                 ),
-                              ))
-                          .toList(),
-                      value: _selectedpaymet,
-                      onChanged: (v) {
-                        setState(() {
-                          _selectedpaymet = v ?? '';
-                        });
-                      },
-                      underline: SizedBox(),
-                      dropdownColor: Color.fromARGB(255, 255, 255, 255),
-                    ),
-                  ],
-                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                              width: size.width * 0.2,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: TextFormField(
+                                  decoration: InputDecoration(
+                                    hintText: 'จำนานเงิน',
+                                  ),
+                                ),
+                              )),
+                        ],
+                      )),
+                ],
               ),
             ),
           ),

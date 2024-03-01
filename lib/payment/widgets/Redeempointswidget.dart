@@ -60,7 +60,7 @@ class _RedeempointswidgetState extends State<Redeempointswidget> {
           Padding(
             padding: const EdgeInsets.only(left: 30, right: 30),
             child: Container(
-              height: size.height * 0.07,
+              height: size.height * 0.08,
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
@@ -89,11 +89,14 @@ class _RedeempointswidgetState extends State<Redeempointswidget> {
                       items: point
                           .map((String item) => DropdownMenuItem<String>(
                                 value: item,
-                                child: Text(
-                                  item,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'IBMPlexSansThai',
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Text(
+                                    item,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: 'IBMPlexSansThai',
+                                    ),
                                   ),
                                 ),
                               ))
