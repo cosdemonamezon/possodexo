@@ -24,7 +24,7 @@ class _DiscountWidgetsState extends State<DiscountWidgets> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 30, bottom: 10, top: 20),
+            padding: const EdgeInsets.only(left: 30, bottom: 30, top: 20),
             child: Row(
               children: [
                 Text(
