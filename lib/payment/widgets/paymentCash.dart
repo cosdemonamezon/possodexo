@@ -400,7 +400,6 @@ class _PaymentCashState extends State<PaymentCash> {
                                                     ],
                                                   )
                                                 : Row()),
-                                        Divider(),
                                         SizedBox(
                                           height: size.height * 0.01,
                                         ),
@@ -851,7 +850,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                                       Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
-                                                                .spaceAround,
+                                                                .center,
                                                         children: [
                                                           InkWell(
                                                               onTap: () {
@@ -863,7 +862,10 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                   ? Container(
                                                                       width: size
                                                                               .width *
-                                                                          0.1,
+                                                                          0.12,
+                                                                      height: size
+                                                                              .height *
+                                                                          0.05,
                                                                       decoration:
                                                                           BoxDecoration(
                                                                         border: Border(
@@ -885,7 +887,16 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                   : Container(
                                                                       width: size
                                                                               .width *
-                                                                          0.1,
+                                                                          0.12,
+                                                                      height: size
+                                                                              .height *
+                                                                          0.05,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        border: Border(
+                                                                            bottom:
+                                                                                BorderSide(color: Color(0xFFB0BEC5))),
+                                                                      ),
                                                                       child:
                                                                           Text(
                                                                         'ส่วนลด',
@@ -908,7 +919,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                         1
                                                                     ? Container(
                                                                         width: size.width *
-                                                                            0.1,
+                                                                            0.12,
+                                                                        height: size.height *
+                                                                            0.05,
                                                                         decoration:
                                                                             BoxDecoration(
                                                                           border:
@@ -926,7 +939,14 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                       )
                                                                     : Container(
                                                                         width: size.width *
-                                                                            0.1,
+                                                                            0.12,
+                                                                        height: size.height *
+                                                                            0.05,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          border:
+                                                                              Border(bottom: BorderSide(color: Color(0xFFB0BEC5))),
+                                                                        ),
                                                                         child:
                                                                             Text(
                                                                           'Gift Voucher',
@@ -948,7 +968,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                         2
                                                                     ? Container(
                                                                         width: size.width *
-                                                                            0.1,
+                                                                            0.12,
+                                                                        height: size.height *
+                                                                            0.05,
                                                                         decoration:
                                                                             BoxDecoration(
                                                                           border:
@@ -966,7 +988,14 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                       )
                                                                     : Container(
                                                                         width: size.width *
-                                                                            0.1,
+                                                                            0.12,
+                                                                        height: size.height *
+                                                                            0.05,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          border:
+                                                                              Border(bottom: BorderSide(color: Color(0xFFB0BEC5))),
+                                                                        ),
                                                                         child:
                                                                             Text(
                                                                           'แลกคะแนน',
@@ -988,7 +1017,10 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                   ? Container(
                                                                       width: size
                                                                               .width *
-                                                                          0.1,
+                                                                          0.12,
+                                                                      height: size
+                                                                              .height *
+                                                                          0.05,
                                                                       decoration:
                                                                           BoxDecoration(
                                                                         border: Border(
@@ -1010,7 +1042,16 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                   : Container(
                                                                       width: size
                                                                               .width *
-                                                                          0.1,
+                                                                          0.12,
+                                                                      height: size
+                                                                              .height *
+                                                                          0.05,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        border: Border(
+                                                                            bottom:
+                                                                                BorderSide(color: Color(0xFFB0BEC5))),
+                                                                      ),
                                                                       child:
                                                                           Text(
                                                                         'ส่วนลดอื่นๆ',
