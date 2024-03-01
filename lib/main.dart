@@ -17,10 +17,6 @@ Future main() async {
   SystemChrome.setEnabledSystemUIMode(
     SystemUiMode.leanBack,
   );
-<<<<<<< HEAD
-=======
-
->>>>>>> Atom
   await SystemChrome.setSystemUIChangeCallback(
       (systemOverlaysAreVisible) async {
     print("Chand:$systemOverlaysAreVisible");
@@ -36,7 +32,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     initializeDateFormatting('th');
-<<<<<<< HEAD
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ProductController()),
@@ -54,20 +49,6 @@ class MyApp extends StatelessWidget {
             // sumQTY: '',
             ),
       ),
-=======
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: LoginPage(
-          // selectedItem: [],
-          // sumPrice: '',
-          // sumQTY: '',
-          ),
->>>>>>> Atom
     );
   }
 }
