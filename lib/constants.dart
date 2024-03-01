@@ -10,3 +10,4 @@ List<String> sizeDepartment = [
   "สาขาพระราม 9",
   "สาขาเซ็นทรัล",
 ];
+const String publicUrl = 'upos-api.dev-asha.com';
