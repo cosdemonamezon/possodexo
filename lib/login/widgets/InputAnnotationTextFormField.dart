@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class InputAnnotationTextFormField extends StatelessWidget {
-  const InputAnnotationTextFormField({
+  InputAnnotationTextFormField({
     super.key,
     required this.size,
+    this.controller,
   });
 
   final Size size;
+  TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +17,7 @@ class InputAnnotationTextFormField extends StatelessWidget {
         width: size.width * 0.35,
         child: TextFormField(
           style: TextStyle(fontSize: 22),
+          controller: controller,
           decoration: InputDecoration(
             contentPadding: EdgeInsets.only(left: 10),
             hintText: 'หมายเหตุ',

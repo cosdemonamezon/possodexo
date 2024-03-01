@@ -8,6 +8,8 @@ import 'package:possodexo/home/service/productController.dart';
 import 'package:possodexo/login/loginPage.dart';
 import 'package:possodexo/payment/widgets/paymentCash.dart';
 import 'package:provider/provider.dart';
+import 'package:possodexo/payment/widgets/Discount.dart';
+import 'package:possodexo/payment/widgets/paymentCash.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();

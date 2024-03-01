@@ -6,17 +6,25 @@ import 'package:possodexo/login/widgets/InputTextFormField.dart';
 import '../../constants.dart';
 
 class Addpointsela extends StatelessWidget {
-  const Addpointsela({
+  Addpointsela({
     super.key,
     required this.size,
     required this.pressOk,
     required this.pressCancel,
     required this.pressClose,
+    this.onValueChanged,
+    this.employeeNo,
+    this.remark,
+    this.counter,
   });
   final Size size;
   final VoidCallback pressOk;
   final VoidCallback pressCancel;
   final VoidCallback pressClose;
+  final Function(dynamic selected)? onValueChanged;
+  TextEditingController? employeeNo;
+  TextEditingController? remark;
+  Map<String, dynamic>? counter;
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -57,7 +65,10 @@ class Addpointsela extends StatelessWidget {
                   style: TextStyle(fontSize: 16),
                 ),
               ),
-              InputTextFormField(size: size),
+              InputTextFormField(
+                size: size,
+                controller: employeeNo,
+              ),
             ],
           ),
           SizedBox(height: size.height * 0.023),
@@ -71,7 +82,10 @@ class Addpointsela extends StatelessWidget {
                   style: TextStyle(fontSize: 16),
                 ),
               ),
-              InputCounterDropDownFormField(size: size),
+              InputCounterDropDownFormField(
+                  selected: counter,
+                  size: size,
+                  onValueChanged: onValueChanged),
             ],
           ),
           SizedBox(height: size.height * 0.023),
@@ -85,7 +99,10 @@ class Addpointsela extends StatelessWidget {
                   style: TextStyle(fontSize: 16),
                 ),
               ),
-              InputAnnotationTextFormField(size: size),
+              InputAnnotationTextFormField(
+                controller: remark,
+                size: size,
+              ),
             ],
           ),
         ],
