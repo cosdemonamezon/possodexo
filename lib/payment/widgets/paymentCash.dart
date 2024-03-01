@@ -4,14 +4,15 @@ import 'package:possodexo/home/homePage.dart';
 import 'package:possodexo/home/widgets/OpenAndCloseSwitch.dart';
 
 class PaymentCash extends StatefulWidget {
-  PaymentCash(
-      {super.key,
-      required this.selectedItem,
-      required this.sumPrice,
-      required this.sumQTY});
+  PaymentCash({
+    super.key,
+    required this.selectedItem,
+    // required this.sumPrice,
+    // required this.sumQTY
+  });
   final List<ItemSelect> selectedItem;
-  final String sumPrice;
-  final String sumQTY;
+  // final String sumPrice;
+  // final String sumQTY;
   String? money;
   @override
   State<PaymentCash> createState() => _PaymentCashState();
@@ -281,7 +282,7 @@ class _PaymentCashState extends State<PaymentCash> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text("${widget.sumQTY}"),
+                          // child: Text("${widget.sumQTY}"),
                         )
                       ],
                     ),
@@ -294,7 +295,7 @@ class _PaymentCashState extends State<PaymentCash> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text("${widget.sumPrice} ฿"),
+                          // child: Text("${widget.sumPrice} ฿"),
                         )
                       ],
                     ),
@@ -321,7 +322,7 @@ class _PaymentCashState extends State<PaymentCash> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text("${widget.sumPrice}฿"),
+                          // child: Text("${widget.sumPrice}฿"),
                         )
                       ],
                     ),
@@ -1424,12 +1425,12 @@ class _PaymentCashState extends State<PaymentCash> {
                                     fontFamily: 'IBMPlexSansThai',
                                   ),
                                 ),
-                                Text(
-                                  '${widget.sumPrice} ฿',
-                                  style: TextStyle(
-                                    fontFamily: 'IBMPlexSansThai',
-                                  ),
-                                ),
+                                // Text(
+                                //   '${widget.sumPrice} ฿',
+                                //   style: TextStyle(
+                                //     fontFamily: 'IBMPlexSansThai',
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),
@@ -1447,12 +1448,12 @@ class _PaymentCashState extends State<PaymentCash> {
                                     fontFamily: 'IBMPlexSansThai',
                                   ),
                                 ),
-                                Text(
-                                  '${widget.sumPrice} ฿',
-                                  style: TextStyle(
-                                    fontFamily: 'IBMPlexSansThai',
-                                  ),
-                                ),
+                                // Text(
+                                //   '${widget.sumPrice} ฿',
+                                //   style: TextStyle(
+                                //     fontFamily: 'IBMPlexSansThai',
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),
@@ -1488,13 +1489,13 @@ class _PaymentCashState extends State<PaymentCash> {
                                     fontFamily: 'IBMPlexSansThai',
                                   ),
                                 ),
-                                Text(
-                                  '${widget.sumPrice} ฿',
-                                  style: TextStyle(
-                                    color: Colors.red,
-                                    fontFamily: 'IBMPlexSansThai',
-                                  ),
-                                ),
+                                // Text(
+                                //   '${widget.sumPrice} ฿',
+                                //   style: TextStyle(
+                                //     color: Colors.red,
+                                //     fontFamily: 'IBMPlexSansThai',
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),
