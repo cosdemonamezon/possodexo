@@ -17,6 +17,44 @@ class _NumbercelState extends State<Numbercel> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Color(0xfffB0BEC5)),
+            ),
+            width: double.infinity,
+            height: size.height * 0.09,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "฿",
+                    style: TextStyle(fontSize: 25),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5),
+                    child: SizedBox(
+                      width: size.width * 0.45,
+                      child: TextFormField(
+                        controller: ai,
+                        readOnly: true,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                        ),
+                        validator: (selectedItem) {
+                          if (selectedItem == '') {
+                            return "โปรดใส่ข้อความให้ครบถ้วน";
+                          }
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
           Column(
             children: [
               const SizedBox(height: 10),
