@@ -1791,6 +1791,32 @@ class _SplitPaymentState extends State<SplitPayment> {
         SizedBox(
           height: size.height * 0.02,
         ),
+        Row(
+          children: [
+            ElevatedButton(
+              onPressed: () {},
+              child: Text(
+                'ล้างข้อมูล',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFF424242),
+                  fontFamily: 'IBMPlexSansThai',
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text(
+                'ล้างข้อมูล',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFF424242),
+                  fontFamily: 'IBMPlexSansThai',
+                ),
+              ),
+            )
+          ],
+        ),
       ],
     );
   }
