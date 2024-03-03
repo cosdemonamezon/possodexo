@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:possodexo/payment/widgets/numbercel.dart';
 
 class DiscountWidgets extends StatefulWidget {
   const DiscountWidgets({super.key});
@@ -8,6 +9,7 @@ class DiscountWidgets extends StatefulWidget {
 }
 
 class _DiscountWidgetsState extends State<DiscountWidgets> {
+  TextEditingController ai = TextEditingController();
   int selectedIndex = 0;
   void onItemTapped(int index) {
     setState(() {
@@ -19,7 +21,7 @@ class _DiscountWidgetsState extends State<DiscountWidgets> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.2,
+      height: size.height * 0.75,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -158,7 +160,11 @@ class _DiscountWidgetsState extends State<DiscountWidgets> {
                           )),
               ],
             ),
-          )
+          ),
+          SizedBox(
+            height: 25,
+          ),
+          Numbercel(),
         ],
       ),
     );

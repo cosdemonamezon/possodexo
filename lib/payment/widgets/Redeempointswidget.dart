@@ -10,21 +10,21 @@ class Redeempointswidget extends StatefulWidget {
 class _RedeempointswidgetState extends State<Redeempointswidget> {
   List<String> point = [
     "200 คะแนน จะได้รับสิทธิแลกซื้อสินค้ามูลค่า 500 บาท",
-    "400 คะแนน จะได้รับสิทธิแลกซื้อสินค้ามูลค่า 1,0s00 บาท"
+    "400 คะแนน จะได้รับสิทธิแลกซื้อสินค้ามูลค่า 1,000 บาท"
   ];
   String? _selectedponit;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.2,
+      height: size.height * 0.75,
       child: Column(
         children: [
           Padding(
             padding:
-                const EdgeInsets.only(left: 30, bottom: 15, top: 20, right: 30),
+                const EdgeInsets.only(left: 30, bottom: 30, top: 20, right: 30),
             child: Container(
-              height: size.height * 0.07,
+              height: size.height * 0.1,
               decoration: BoxDecoration(
                   color: Color(0xFFE8EAF6),
                   borderRadius: BorderRadius.circular(8)),
@@ -60,7 +60,7 @@ class _RedeempointswidgetState extends State<Redeempointswidget> {
           Padding(
             padding: const EdgeInsets.only(left: 30, right: 30),
             child: Container(
-              height: size.height * 0.08,
+              height: size.height * 0.103,
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
