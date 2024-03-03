@@ -17,7 +17,7 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.2,
+      height: size.height * 0.75,
       child: Column(
         children: [
           Padding(

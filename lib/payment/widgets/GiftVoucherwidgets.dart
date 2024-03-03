@@ -19,7 +19,7 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.2,
+      height: size.height * 0.75,
       child: Column(
         children: [
           Padding(
@@ -118,6 +118,51 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
                   ))
             ],
           ),
+          SizedBox(
+            height: 25,
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Color(0xfffB0BEC5)),
+            ),
+            width: double.infinity,
+            height: size.height * 0.09,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "฿",
+                    style: TextStyle(fontSize: 25),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5),
+                    child: SizedBox(
+                      width: size.width * 0.45,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text(
+              'ล้างข้อมูล',
+              style: TextStyle(
+                fontSize: 16,
+                color: Color(0xFF424242),
+                fontFamily: 'IBMPlexSansThai',
+              ),
+            ),
+          )
         ],
       ),
     );
