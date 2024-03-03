@@ -55,7 +55,7 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    height: size.height * 0.08,
+                    height: size.height * 0.11,
                     width: size.width * 0.1,
                     decoration: BoxDecoration(
                       border: Border(
@@ -112,7 +112,7 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                     ),
                   ),
                   Container(
-                    height: size.height * 0.08,
+                    height: size.height * 0.11,
                     width: size.width * 0.2,
                     decoration: BoxDecoration(
                       border: Border(
@@ -169,9 +169,14 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                     ),
                   ),
                   Container(
-                      height: size.height * 0.08,
+                      height: size.height * 0.11,
                       width: size.width * 0.12,
                       decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Color(0xFF78909C),
+                          ),
+                        ),
                         color: Color(0xFFFAFAFA),
                       ),
                       child: Column(
@@ -198,6 +203,7 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                                 child: TextFormField(
                                   decoration: InputDecoration(
                                     hintText: 'จำนานเงิน',
+                                    border: InputBorder.none,
                                   ),
                                 ),
                               )),
@@ -205,6 +211,67 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                       )),
                 ],
               ),
+            ),
+          ),
+          SizedBox(
+            height: 25,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 40, right: 40),
+            child: Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      surfaceTintColor: Colors.white,
+                      foregroundColor: Colors.red,
+                      backgroundColor: Colors.white,
+                      fixedSize: Size.fromHeight(60),
+                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        side: BorderSide(color: Colors.red),
+                      ),
+                    ),
+                    child: Text(
+                      'ล้างข้อมูล',
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Colors.red,
+                        fontFamily: 'IBMPlexSansThai',
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 50,
+                ),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      surfaceTintColor: Color(0xFF4CAF50),
+                      foregroundColor: Color(0xFF4CAF50),
+                      backgroundColor: Color(0xFF4CAF50),
+                      fixedSize: Size.fromHeight(60),
+                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        // side: BorderSide(color: Colors.red),
+                      ),
+                    ),
+                    child: Text(
+                      'บันทึก',
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Color(0xFFFFFFFF),
+                        fontFamily: 'IBMPlexSansThai',
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
         ],

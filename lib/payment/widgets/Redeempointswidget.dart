@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Redeempointswidget extends StatefulWidget {
@@ -60,7 +61,7 @@ class _RedeempointswidgetState extends State<Redeempointswidget> {
           Padding(
             padding: const EdgeInsets.only(left: 30, right: 30),
             child: Container(
-              height: size.height * 0.103,
+              height: size.height * 0.108,
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
@@ -107,7 +108,6 @@ class _RedeempointswidgetState extends State<Redeempointswidget> {
                           _selectedponit = v ?? '';
                         });
                       },
-                      underline: SizedBox(),
                       dropdownColor: Color.fromARGB(255, 255, 255, 255),
                     ),
                   ],
@@ -115,6 +115,145 @@ class _RedeempointswidgetState extends State<Redeempointswidget> {
               ),
             ),
           ),
+          SizedBox(
+            height: 25,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 40, right: 40),
+            child: Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      surfaceTintColor: Colors.white,
+                      foregroundColor: Colors.red,
+                      backgroundColor: Colors.white,
+                      fixedSize: Size.fromHeight(60),
+                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        side: BorderSide(color: Colors.red),
+                      ),
+                    ),
+                    child: Text(
+                      'ล้างข้อมูล',
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Colors.red,
+                        fontFamily: 'IBMPlexSansThai',
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 50,
+                ),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      surfaceTintColor: Color(0xFF4CAF50),
+                      foregroundColor: Color(0xFF4CAF50),
+                      backgroundColor: Color(0xFF4CAF50),
+                      fixedSize: Size.fromHeight(60),
+                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        // side: BorderSide(color: Colors.red),
+                      ),
+                    ),
+                    child: Text(
+                      'บันทึก',
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Color(0xFFFFFFFF),
+                        fontFamily: 'IBMPlexSansThai',
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 180,
+          ),
+          SizedBox(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: Color(0xFFFFECB3),
+                      borderRadius: BorderRadius.circular(8)),
+                  width: size.width * 0.22,
+                  height: size.height * 0.11,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Text(
+                          'แลกคะแนน',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xFF424242),
+                            fontFamily: 'IBMPlexSansThai',
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Text(
+                          '200',
+                          style: TextStyle(
+                            fontSize: 32,
+                            color: Color(0xFF424242),
+                            fontFamily: 'IBMPlexSansThai',
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      color: Color(0xFFE8EAF6),
+                      borderRadius: BorderRadius.circular(8)),
+                  width: size.width * 0.22,
+                  height: size.height * 0.11,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Text(
+                          'คงเหลือ',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xFF424242),
+                            fontFamily: 'IBMPlexSansThai',
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Text(
+                          '100,100',
+                          style: TextStyle(
+                            fontSize: 32,
+                            color: Color(0xFF424242),
+                            fontFamily: 'IBMPlexSansThai',
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          )
         ],
       ),
     );

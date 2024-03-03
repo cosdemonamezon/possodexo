@@ -157,60 +157,63 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
           SizedBox(
             height: 25,
           ),
-          Row(
-            children: [
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    surfaceTintColor: Colors.white,
-                    foregroundColor: Colors.red,
-                    backgroundColor: Colors.white,
-                    fixedSize: Size.fromHeight(80),
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                      side: BorderSide(color: Colors.red),
+          Padding(
+            padding: const EdgeInsets.only(left: 40, right: 40),
+            child: Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      surfaceTintColor: Colors.white,
+                      foregroundColor: Colors.red,
+                      backgroundColor: Colors.white,
+                      fixedSize: Size.fromHeight(60),
+                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        side: BorderSide(color: Colors.red),
+                      ),
                     ),
-                  ),
-                  child: Text(
-                    'ล้างข้อมูล',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.red,
-                      fontFamily: 'IBMPlexSansThai',
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    surfaceTintColor: Colors.white,
-                    foregroundColor: Colors.red,
-                    backgroundColor: Colors.white,
-                    fixedSize: Size.fromHeight(80),
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                      side: BorderSide(color: Colors.red),
-                    ),
-                  ),
-                  child: Text(
-                    'ล้างข้อมูล',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.red,
-                      fontFamily: 'IBMPlexSansThai',
+                    child: Text(
+                      'ล้างข้อมูล',
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Colors.red,
+                        fontFamily: 'IBMPlexSansThai',
+                      ),
                     ),
                   ),
                 ),
-              )
-            ],
+                SizedBox(
+                  width: 50,
+                ),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      surfaceTintColor: Color(0xFF4CAF50),
+                      foregroundColor: Color(0xFF4CAF50),
+                      backgroundColor: Color(0xFF4CAF50),
+                      fixedSize: Size.fromHeight(60),
+                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        // side: BorderSide(color: Colors.red),
+                      ),
+                    ),
+                    child: Text(
+                      'บันทึก',
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Color(0xFFFFFFFF),
+                        fontFamily: 'IBMPlexSansThai',
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ],
       ),
