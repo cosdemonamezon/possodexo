@@ -1,5 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:possodexo/constants.dart';
 
 class GiftVoucherwidgets extends StatefulWidget {
@@ -152,17 +154,64 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
               ),
             ),
           ),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text(
-              'ล้างข้อมูล',
-              style: TextStyle(
-                fontSize: 16,
-                color: Color(0xFF424242),
-                fontFamily: 'IBMPlexSansThai',
+          SizedBox(
+            height: 25,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    surfaceTintColor: Colors.white,
+                    foregroundColor: Colors.red,
+                    backgroundColor: Colors.white,
+                    fixedSize: Size.fromHeight(80),
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      side: BorderSide(color: Colors.red),
+                    ),
+                  ),
+                  child: Text(
+                    'ล้างข้อมูล',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.red,
+                      fontFamily: 'IBMPlexSansThai',
+                    ),
+                  ),
+                ),
               ),
-            ),
-          )
+              SizedBox(
+                width: 20,
+              ),
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    surfaceTintColor: Colors.white,
+                    foregroundColor: Colors.red,
+                    backgroundColor: Colors.white,
+                    fixedSize: Size.fromHeight(80),
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      side: BorderSide(color: Colors.red),
+                    ),
+                  ),
+                  child: Text(
+                    'ล้างข้อมูล',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.red,
+                      fontFamily: 'IBMPlexSansThai',
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ],
       ),
     );
