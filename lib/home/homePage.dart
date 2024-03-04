@@ -171,13 +171,35 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => getlistproduct());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      getlistproduct();
+      getlistCategory();
+      getlistBranch();
+    });
     gridCoffees = gridCoffee;
   }
 
   Future<void> getlistproduct() async {
     try {
       await context.read<ProductController>().getProduct();
+    } on Exception catch (e) {
+      inspect(e);
+    }
+  }
+
+  //ดึงข้อมูล Category
+  Future<void> getlistCategory() async {
+    try {
+      await context.read<ProductController>().getListCategory();
+    } on Exception catch (e) {
+      inspect(e);
+    }
+  }
+
+  //ดึงข้อมูล Branch
+  Future<void> getlistBranch() async {
+    try {
+      await context.read<ProductController>().getListBranch();
     } on Exception catch (e) {
       inspect(e);
     }
