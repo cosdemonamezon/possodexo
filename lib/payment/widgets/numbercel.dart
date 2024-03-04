@@ -30,22 +30,19 @@ class _NumbercelState extends State<Numbercel> {
                   "฿",
                   style: TextStyle(fontSize: 25),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 5),
-                  child: SizedBox(
-                    width: size.width * 0.45,
-                    child: TextFormField(
-                      controller: ai,
-                      readOnly: true,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                      ),
-                      validator: (selectedItem) {
-                        if (selectedItem == '') {
-                          return "โปรดใส่ข้อความให้ครบถ้วน";
-                        }
-                      },
+                SizedBox(
+                  width: size.width * 0.45,
+                  child: TextFormField(
+                    controller: ai,
+                    readOnly: true,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
                     ),
+                    validator: (selectedItem) {
+                      if (selectedItem == '') {
+                        return "โปรดใส่ข้อความให้ครบถ้วน";
+                      }
+                    },
                   ),
                 ),
               ],
