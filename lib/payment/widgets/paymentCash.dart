@@ -1515,7 +1515,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                       child: NumberButton(
                         number: '7',
                         size: 10,
-                        color: Colors.white,
+                        color: Color(0xFFCFD8DC),
                         controller: ai,
                         onPressed: () {
                           ai.text += '7';
@@ -1531,7 +1531,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                       child: NumberButton(
                         number: '8',
                         size: 10,
-                        color: Colors.white,
+                        color: Color(0xFFCFD8DC),
                         controller: ai,
                         onPressed: () {
                           ai.text += '8';
@@ -1547,7 +1547,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                       child: NumberButton(
                         number: '9',
                         size: 10,
-                        color: Colors.white,
+                        color: Color(0xFFCFD8DC),
                         controller: ai,
                         onPressed: () {
                           ai.text += '9';
@@ -1566,7 +1566,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                       child: NumberButton(
                         number: '4',
                         size: 10,
-                        color: Colors.white,
+                        color: Color(0xFFCFD8DC),
                         controller: ai,
                         onPressed: () {
                           ai.text += '4';
@@ -1582,7 +1582,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                       child: NumberButton(
                         number: '5',
                         size: 10,
-                        color: Colors.white,
+                        color: Color(0xFFCFD8DC),
                         controller: ai,
                         onPressed: () {
                           ai.text += '5';
@@ -1598,7 +1598,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                       child: NumberButton(
                         number: '6',
                         size: 10,
-                        color: Colors.white,
+                        color: Color(0xFFCFD8DC),
                         controller: ai,
                         onPressed: () {
                           ai.text += '6';
@@ -1617,7 +1617,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                       child: NumberButton(
                         number: '1',
                         size: 10,
-                        color: Colors.white,
+                        color: Color(0xFFCFD8DC),
                         controller: ai,
                         onPressed: () {
                           ai.text += '1';
@@ -1633,7 +1633,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                       child: NumberButton(
                         number: '2',
                         size: 10,
-                        color: Colors.white,
+                        color: Color(0xFFCFD8DC),
                         controller: ai,
                         onPressed: () {
                           ai.text += '2';
@@ -1649,7 +1649,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                       child: NumberButton(
                         number: '3',
                         size: 10,
-                        color: Colors.white,
+                        color: Color(0xFFCFD8DC),
                         controller: ai,
                         onPressed: () {
                           ai.text += '3';
@@ -1667,7 +1667,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                       child: NumberButton(
                         number: '00',
                         size: 10,
-                        color: Colors.white,
+                        color: Color(0xFFCFD8DC),
                         controller: ai,
                         onPressed: () {
                           ai.text += '00';
@@ -1683,7 +1683,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                       child: NumberButton(
                         number: '0',
                         size: 10,
-                        color: Colors.white,
+                        color: Color(0xFFCFD8DC),
                         controller: ai,
                         onPressed: () {
                           ai.text += '0';
@@ -1699,7 +1699,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                       child: NumberButton(
                         number: '.',
                         size: 10,
-                        color: Colors.white,
+                        color: Color(0xFFCFD8DC),
                         controller: ai,
                         onPressed: () {
                           ai.text += '.';
@@ -1731,7 +1731,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                       child: NumberButton(
                         number: '<',
                         size: 10,
-                        color: Colors.white,
+                        color: Color(0xFFCFD8DC),
                         controller: ai,
                         onPressed: () {
                           if (ai.text.isNotEmpty) {
@@ -1748,7 +1748,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                   child: NumberButton(
                     number: 'C',
                     size: 10,
-                    color: Colors.white,
+                    color: Color(0xFFCFD8DC),
                     controller: ai,
                     onPressed: () {
                       ai.text = '';

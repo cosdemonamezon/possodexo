@@ -196,7 +196,7 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
     final size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Container(
-        height: size.height * 0.7,
+        height: size.height * 0.75,
         child: Column(
           children: [
             Padding(
@@ -231,7 +231,7 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
               ),
             ),
             SizedBox(
-              height: size.height * 0.47,
+              height: size.height * 0.48,
               child: ListView.separated(
                 shrinkWrap: true,
                 itemCount: rowdiscount.length,
