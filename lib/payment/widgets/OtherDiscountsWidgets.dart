@@ -23,7 +23,7 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
     setState(() {
       rowdiscount.add(
         Padding(
-          padding: const EdgeInsets.only(left: 30, right: 30),
+          padding: const EdgeInsets.only(left: 10, right: 10),
           child: SizedBox(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -183,6 +183,16 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                     ],
                   ),
                 ),
+                IconButton(
+                    onPressed: () {
+                      setState(() {
+                        rowdiscount.removeLast();
+                      });
+                    },
+                    icon: Icon(
+                      Icons.highlight_remove_sharp,
+                      color: Color(0xFF616161),
+                    )),
               ],
             ),
           ),
@@ -214,7 +224,7 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                     ),
                   ),
                   Container(
-                    width: size.width * 0.02,
+                    width: size.width * 0.023,
                     height: 30,
                     decoration: BoxDecoration(
                       color: Color(0xFFCFD8DC),
