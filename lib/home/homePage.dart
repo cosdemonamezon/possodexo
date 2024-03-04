@@ -372,6 +372,8 @@ class _HomePageState extends State<HomePage> {
                       ? Container(
                           color: Colors.white,
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
