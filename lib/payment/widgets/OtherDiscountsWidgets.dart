@@ -15,6 +15,7 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
   String? _selectedpayment;
 
   List<String> point = ["ส่วนลด The 1", "คูปองห้าง"];
+  String point1 = 'จำนวนเงิน';
   String? _selectedpoint;
 
   List<Map<String, String>> rowData = [];
@@ -107,6 +108,7 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                     onChangedPoint: (String? newValue) {
                       setState(() {
                         rowData[index]['point'] = newValue ?? '';
+                        point1 = newValue!;
                       });
                     },
                     onChangedAmount: (String newValue) {

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:chips_choice/chips_choice.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:possodexo/home/homePage.dart';
@@ -1388,9 +1389,9 @@ class SplitPayment extends StatefulWidget {
 }
 
 class _SplitPaymentState extends State<SplitPayment> {
+  List<Widget> payment = [];
   @override
   Widget build(BuildContext context) {
-    List<Widget> payment = [];
     String money = "เงินสด";
     List<String> general2 = [
       "เงินสด",
@@ -1409,6 +1410,9 @@ class _SplitPaymentState extends State<SplitPayment> {
       setState(() {
         payment.add(
           Container(
+            color: Colors.black,
+            width: 200,
+            height: 100,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -1588,7 +1592,6 @@ class _SplitPaymentState extends State<SplitPayment> {
             ),
           ),
         );
-        inspect(payment);
       });
     }
 
@@ -1644,6 +1647,7 @@ class _SplitPaymentState extends State<SplitPayment> {
               onTap: () {
                 addModtodpayment();
                 //setState(() {});
+                print(payment);
               },
               child: Container(
                 decoration: BoxDecoration(
