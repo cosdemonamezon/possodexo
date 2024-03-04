@@ -230,7 +230,6 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                 ],
               ),
             ),
-            // ...rowdiscount,
             SizedBox(
               height: size.height * 0.47,
               child: ListView.separated(
