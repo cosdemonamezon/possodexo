@@ -6,6 +6,7 @@ import 'package:possodexo/payment/widgets/Discount.dart';
 import 'package:possodexo/payment/widgets/GiftVoucherwidgets.dart';
 import 'package:possodexo/payment/widgets/OtherDiscountsWidgets.dart';
 import 'package:possodexo/payment/widgets/Redeempointswidget.dart';
+import 'package:possodexo/payment/widgets/moneyDropdrown.dart';
 import 'package:possodexo/payment/widgets/numbercel.dart';
 
 class PaymentCash extends StatefulWidget {
@@ -844,6 +845,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                       size.height *
                                                                           0.01,
                                                                 ),
+                                                                Numbercel(),
                                                               ],
                                                             ),
                                                     ],
@@ -1082,358 +1084,6 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                       : SizedBox(),
                                                     ],
                                                   )),
-                                        // Container(
-                                        //   decoration: BoxDecoration(
-                                        //     color: Colors.white,
-                                        //     border: Border.all(
-                                        //         color: Color(0xfffB0BEC5)),
-                                        //   ),
-                                        //   width: double.infinity,
-                                        //   height: size.height * 0.09,
-                                        //   child: Padding(
-                                        //     padding:
-                                        //         const EdgeInsets.only(left: 10),
-                                        //     child: Row(
-                                        //       mainAxisAlignment:
-                                        //           MainAxisAlignment
-                                        //               .spaceBetween,
-                                        //       children: [
-                                        //         Text(
-                                        //           "฿",
-                                        //           style:
-                                        //               TextStyle(fontSize: 25),
-                                        //         ),
-                                        //         Padding(
-                                        //           padding:
-                                        //               const EdgeInsets.only(
-                                        //                   top: 5),
-                                        //           child: SizedBox(
-                                        //             width: size.width * 0.45,
-                                        //             child: TextFormField(
-                                        //               controller: ai,
-                                        //               readOnly: true,
-                                        //               decoration:
-                                        //                   InputDecoration(
-                                        //                 border:
-                                        //                     InputBorder.none,
-                                        //               ),
-                                        //               validator:
-                                        //                   (selectedItem) {
-                                        //                 if (selectedItem ==
-                                        //                     '') {
-                                        //                   return "โปรดใส่ข้อความให้ครบถ้วน";
-                                        //                 }
-                                        //               },
-                                        //             ),
-                                        //           ),
-                                        //         ),
-                                        //       ],
-                                        //     ),
-                                        //   ),
-                                        // ),
-                                        // Container(
-                                        //   margin: const EdgeInsets.only(
-                                        //       left: 1, right: 1),
-                                        //   child: Row(
-                                        //     mainAxisAlignment:
-                                        //         MainAxisAlignment.center,
-                                        //     children: [
-                                        //       Column(
-                                        //         children: [
-                                        //           const SizedBox(height: 10),
-                                        //           Row(
-                                        //             mainAxisAlignment:
-                                        //                 MainAxisAlignment
-                                        //                     .spaceBetween,
-                                        //             // implement the number keys (from 0 to 9) with the NumberButton widget
-                                        //             // the NumberButton widget is defined in the bottom of this file
-                                        //             children: [
-                                        //               SizedBox(
-                                        //                 width: size.width * 0.1,
-                                        //                 height:
-                                        //                     size.height * 0.08,
-                                        //                 child: NumberButton(
-                                        //                   number: '7',
-                                        //                   size: 10,
-                                        //                   color: Colors.white,
-                                        //                   controller: ai,
-                                        //                   onPressed: () {
-                                        //                     ai.text += '7';
-                                        //                   },
-                                        //                 ),
-                                        //               ),
-                                        //               SizedBox(
-                                        //                 width:
-                                        //                     size.width * 0.01,
-                                        //               ),
-                                        //               SizedBox(
-                                        //                 width: size.width * 0.1,
-                                        //                 height:
-                                        //                     size.height * 0.08,
-                                        //                 child: NumberButton(
-                                        //                   number: '8',
-                                        //                   size: 10,
-                                        //                   color: Colors.white,
-                                        //                   controller: ai,
-                                        //                   onPressed: () {
-                                        //                     ai.text += '8';
-                                        //                   },
-                                        //                 ),
-                                        //               ),
-                                        //               SizedBox(
-                                        //                 width:
-                                        //                     size.width * 0.01,
-                                        //               ),
-                                        //               SizedBox(
-                                        //                 width: size.width * 0.1,
-                                        //                 height:
-                                        //                     size.height * 0.08,
-                                        //                 child: NumberButton(
-                                        //                   number: '9',
-                                        //                   size: 10,
-                                        //                   color: Colors.white,
-                                        //                   controller: ai,
-                                        //                   onPressed: () {
-                                        //                     ai.text += '9';
-                                        //                   },
-                                        //                 ),
-                                        //               ),
-                                        //             ],
-                                        //           ),
-                                        //           const SizedBox(height: 20),
-                                        //           Row(
-                                        //             mainAxisAlignment:
-                                        //                 MainAxisAlignment
-                                        //                     .spaceEvenly,
-                                        //             children: [
-                                        //               SizedBox(
-                                        //                 width: size.width * 0.1,
-                                        //                 height:
-                                        //                     size.height * 0.08,
-                                        //                 child: NumberButton(
-                                        //                   number: '4',
-                                        //                   size: 10,
-                                        //                   color: Colors.white,
-                                        //                   controller: ai,
-                                        //                   onPressed: () {
-                                        //                     ai.text += '4';
-                                        //                   },
-                                        //                 ),
-                                        //               ),
-                                        //               SizedBox(
-                                        //                 width:
-                                        //                     size.width * 0.01,
-                                        //               ),
-                                        //               SizedBox(
-                                        //                 width: size.width * 0.1,
-                                        //                 height:
-                                        //                     size.height * 0.08,
-                                        //                 child: NumberButton(
-                                        //                   number: '5',
-                                        //                   size: 10,
-                                        //                   color: Colors.white,
-                                        //                   controller: ai,
-                                        //                   onPressed: () {
-                                        //                     ai.text += '5';
-                                        //                   },
-                                        //                 ),
-                                        //               ),
-                                        //               SizedBox(
-                                        //                 width:
-                                        //                     size.width * 0.01,
-                                        //               ),
-                                        //               SizedBox(
-                                        //                 width: size.width * 0.1,
-                                        //                 height:
-                                        //                     size.height * 0.08,
-                                        //                 child: NumberButton(
-                                        //                   number: '6',
-                                        //                   size: 10,
-                                        //                   color: Colors.white,
-                                        //                   controller: ai,
-                                        //                   onPressed: () {
-                                        //                     ai.text += '6';
-                                        //                   },
-                                        //                 ),
-                                        //               ),
-                                        //             ],
-                                        //           ),
-                                        //           const SizedBox(height: 20),
-                                        //           Row(
-                                        //             mainAxisAlignment:
-                                        //                 MainAxisAlignment
-                                        //                     .spaceEvenly,
-                                        //             children: [
-                                        //               SizedBox(
-                                        //                 width: size.width * 0.1,
-                                        //                 height:
-                                        //                     size.height * 0.08,
-                                        //                 child: NumberButton(
-                                        //                   number: '1',
-                                        //                   size: 10,
-                                        //                   color: Colors.white,
-                                        //                   controller: ai,
-                                        //                   onPressed: () {
-                                        //                     ai.text += '1';
-                                        //                   },
-                                        //                 ),
-                                        //               ),
-                                        //               SizedBox(
-                                        //                 width:
-                                        //                     size.width * 0.01,
-                                        //               ),
-                                        //               SizedBox(
-                                        //                 width: size.width * 0.1,
-                                        //                 height:
-                                        //                     size.height * 0.08,
-                                        //                 child: NumberButton(
-                                        //                   number: '2',
-                                        //                   size: 10,
-                                        //                   color: Colors.white,
-                                        //                   controller: ai,
-                                        //                   onPressed: () {
-                                        //                     ai.text += '2';
-                                        //                   },
-                                        //                 ),
-                                        //               ),
-                                        //               SizedBox(
-                                        //                 width:
-                                        //                     size.width * 0.01,
-                                        //               ),
-                                        //               SizedBox(
-                                        //                 width: size.width * 0.1,
-                                        //                 height:
-                                        //                     size.height * 0.08,
-                                        //                 child: NumberButton(
-                                        //                   number: '3',
-                                        //                   size: 10,
-                                        //                   color: Colors.white,
-                                        //                   controller: ai,
-                                        //                   onPressed: () {
-                                        //                     ai.text += '3';
-                                        //                   },
-                                        //                 ),
-                                        //               ),
-                                        //             ],
-                                        //           ),
-                                        //           const SizedBox(height: 20),
-                                        //           Row(
-                                        //             children: [
-                                        //               SizedBox(
-                                        //                 width: size.width * 0.1,
-                                        //                 height:
-                                        //                     size.height * 0.08,
-                                        //                 child: NumberButton(
-                                        //                   number: '00',
-                                        //                   size: 10,
-                                        //                   color: Colors.white,
-                                        //                   controller: ai,
-                                        //                   onPressed: () {
-                                        //                     ai.text += '00';
-                                        //                   },
-                                        //                 ),
-                                        //               ),
-                                        //               SizedBox(
-                                        //                 width:
-                                        //                     size.width * 0.01,
-                                        //               ),
-                                        //               SizedBox(
-                                        //                 width: size.width * 0.1,
-                                        //                 height:
-                                        //                     size.height * 0.08,
-                                        //                 child: NumberButton(
-                                        //                   number: '0',
-                                        //                   size: 10,
-                                        //                   color: Colors.white,
-                                        //                   controller: ai,
-                                        //                   onPressed: () {
-                                        //                     ai.text += '0';
-                                        //                   },
-                                        //                 ),
-                                        //               ),
-                                        //               SizedBox(
-                                        //                 width:
-                                        //                     size.width * 0.01,
-                                        //               ),
-                                        //               SizedBox(
-                                        //                 width: size.width * 0.1,
-                                        //                 height:
-                                        //                     size.height * 0.08,
-                                        //                 child: NumberButton(
-                                        //                   number: '.',
-                                        //                   size: 10,
-                                        //                   color: Colors.white,
-                                        //                   controller: ai,
-                                        //                   onPressed: () {
-                                        //                     ai.text += '.';
-                                        //                   },
-                                        //                 ),
-                                        //               ),
-                                        //             ],
-                                        //           ),
-                                        //           const SizedBox(height: 20),
-                                        //           SizedBox(height: 4),
-                                        //         ],
-                                        //       ),
-                                        //       SizedBox(
-                                        //         width: size.width * 0.01,
-                                        //       ),
-                                        //       Column(
-                                        //         children: [
-                                        //           Padding(
-                                        //             padding:
-                                        //                 const EdgeInsets.only(
-                                        //                     bottom: 10),
-                                        //             child: InkWell(
-                                        //               onTap: () {
-                                        //                 // ตรวจสอบว่ามีตัวอักษรใน TextFormField หรือไม่
-                                        //                 ai.text = ai.text.substring(
-                                        //                     0,
-                                        //                     ai.text.length -
-                                        //                         1); // ลบตัวอักษรที่สุดท้ายออก
-                                        //               },
-                                        //               child: SizedBox(
-                                        //                 width:
-                                        //                     size.width * 0.08,
-                                        //                 height:
-                                        //                     size.height * 0.2,
-                                        //                 child: NumberButton(
-                                        //                   number: '<',
-                                        //                   size: 10,
-                                        //                   color: Colors.white,
-                                        //                   controller: ai,
-                                        //                   onPressed: () {
-                                        //                     if (ai.text
-                                        //                         .isNotEmpty) {
-                                        //                       ai.text = ai.text
-                                        //                           .substring(
-                                        //                               0,
-                                        //                               ai.text.length -
-                                        //                                   1);
-                                        //                     }
-                                        //                   },
-                                        //                 ),
-                                        //               ),
-                                        //             ),
-                                        //           ),
-                                        //           SizedBox(
-                                        //             width: size.width * 0.08,
-                                        //             height: size.height * 0.2,
-                                        //             child: NumberButton(
-                                        //               number: 'C',
-                                        //               size: 10,
-                                        //               color: Colors.white,
-                                        //               controller: ai,
-                                        //               onPressed: () {
-                                        //                 ai.text = '';
-                                        //               },
-                                        //             ),
-                                        //           ),
-                                        //         ],
-                                        //       ),
-                                        //     ],
-                                        //   ),
-                                        // )
                                       ],
                                     ),
                                   ),
@@ -1614,211 +1264,503 @@ class _SplitPaymentState extends State<SplitPayment> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
-    return Column(
-      children: [
-        SizedBox(
-          height: size.height * 0.001,
-        ),
-        SizedBox(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                height: size.height * 0.1,
-                width: size.width * 0.13,
-                decoration: BoxDecoration(
-                    border: Border(bottom: BorderSide(color: Colors.grey)),
-                    borderRadius: BorderRadius.circular(2),
-                    color: Color(0xFFFFFAFAFA)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Opacity(
-                      opacity: 0.5,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 5, top: 3),
-                        child: Text(
-                          'วิธีการชำระเงิน',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontFamily: 'IBMPlexSansThai',
-                          ),
+    TextEditingController ai = TextEditingController();
+    return Column(children: [
+      SizedBox(
+        height: size.height * 0.001,
+      ),
+      SizedBox(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Container(
+              height: size.height * 0.1,
+              width: size.width * 0.13,
+              decoration: BoxDecoration(
+                  border: Border(bottom: BorderSide(color: Colors.grey)),
+                  borderRadius: BorderRadius.circular(2),
+                  color: Color(0xFFFFFAFAFA)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Opacity(
+                    opacity: 0.5,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 5, top: 3),
+                      child: Text(
+                        'วิธีการชำระเงิน',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontFamily: 'IBMPlexSansThai',
                         ),
                       ),
                     ),
-                    DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                        isExpanded: true,
-                        items: general2
-                            .map((String item) => DropdownMenuItem<String>(
-                                  value: item,
+                  ),
+                  DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      isExpanded: true,
+                      items: general2
+                          .map((String item) => DropdownMenuItem<String>(
+                                value: item,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 1.0),
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 1.0),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        item,
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                        ),
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      item,
+                                      style: const TextStyle(
+                                        fontSize: 16,
                                       ),
                                     ),
                                   ),
-                                ))
-                            .toList(),
-                        value: money,
-                        onChanged: (v) {
-                          setState(() {
-                            money = v!;
-                          });
-                        },
-                        underline: SizedBox(),
-                        dropdownColor: Colors.white,
+                                ),
+                              ))
+                          .toList(),
+                      value: money,
+                      onChanged: (v) {
+                        setState(() {
+                          money = v!;
+                        });
+                      },
+                      underline: SizedBox(),
+                      dropdownColor: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              height: size.height * 0.1,
+              width: size.width * 0.13,
+              decoration: BoxDecoration(
+                  border: Border(bottom: BorderSide(color: Colors.grey)),
+                  borderRadius: BorderRadius.circular(2),
+                  color: Color(0xFFFFFAFAFA)),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Opacity(
+                          opacity: 0.5,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 3),
+                            child: Text(
+                              'วิธีการชำระเงิน',
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontFamily: 'IBMPlexSansThai',
+                              ),
+                            ),
+                          ),
+                        ),
+                        Text(
+                          "฿",
+                          style: TextStyle(fontSize: 25),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: SizedBox(
+                        width: 0.01,
+                        child: TextFormField(
+                          controller: ai,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                          ),
+                          validator: (selectedItem) {
+                            if (selectedItem == '') {}
+                          },
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
-              Container(
-                height: size.height * 0.1,
-                width: size.width * 0.13,
-                decoration: BoxDecoration(
-                    border: Border(bottom: BorderSide(color: Colors.grey)),
-                    borderRadius: BorderRadius.circular(2),
-                    color: Color(0xFFFFFAFAFA)),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Opacity(
-                            opacity: 0.5,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 3),
-                              child: Text(
-                                'วิธีการชำระเงิน',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontFamily: 'IBMPlexSansThai',
-                                ),
+            ),
+            Container(
+              height: size.height * 0.1,
+              width: size.width * 0.13,
+              decoration: BoxDecoration(
+                  border: Border(bottom: BorderSide(color: Colors.grey)),
+                  borderRadius: BorderRadius.circular(2),
+                  color: Color(0xFFFFFAFAFA)),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Opacity(
+                          opacity: 0.5,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 3),
+                            child: Text(
+                              'หมายเหตุ',
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontFamily: 'IBMPlexSansThai',
                               ),
                             ),
                           ),
-                          Text(
-                            "฿",
-                            style: TextStyle(fontSize: 25),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: SizedBox(
+                        width: size.width * 0.01,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
                           ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5),
-                        child: SizedBox(
-                          width: size.width * 0.01,
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                            ),
-                            validator: (selectedItem) {
-                              if (selectedItem == '') {
-                                return "โปรดใส่ข้อความให้ครบถ้วน";
-                              }
-                            },
-                          ),
+                          validator: (selectedItem) {
+                            if (selectedItem == '') {}
+                          },
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                height: size.height * 0.1,
-                width: size.width * 0.13,
-                decoration: BoxDecoration(
-                    border: Border(bottom: BorderSide(color: Colors.grey)),
-                    borderRadius: BorderRadius.circular(2),
-                    color: Color(0xFFFFFAFAFA)),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Opacity(
-                            opacity: 0.5,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 3),
-                              child: Text(
-                                'หมายเหตุ',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontFamily: 'IBMPlexSansThai',
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5),
-                        child: SizedBox(
-                          width: size.width * 0.01,
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                            ),
-                            validator: (selectedItem) {
-                              if (selectedItem == '') {
-                                return "โปรดใส่ข้อความให้ครบถ้วน";
-                              }
-                            },
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: size.height * 0.02,
-        ),
-        Row(
-          children: [
-            ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                'ล้างข้อมูล',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Color(0xFF424242),
-                  fontFamily: 'IBMPlexSansThai',
+                    ),
+                  ],
                 ),
               ),
             ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                'ล้างข้อมูล',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Color(0xFF424242),
-                  fontFamily: 'IBMPlexSansThai',
-                ),
-              ),
-            )
           ],
         ),
-      ],
-    );
+      ),
+      SizedBox(
+        height: size.height * 0.02,
+      ),
+      Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Container(
+              decoration: BoxDecoration(
+                  border: Border.all(color: Color(0xff1264E3)),
+                  borderRadius: BorderRadius.circular(8)),
+              height: size.height * 0.05,
+              width: size.width * 0.1,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 25, top: 5),
+                child: Text(
+                  "ชำระทั้งหมด",
+                  style: TextStyle(color: Color(0xff1264E3)),
+                ),
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              MoneyDropDown();
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(color: Color(0xff1264E3)),
+                    borderRadius: BorderRadius.circular(8)),
+                height: size.height * 0.05,
+                width: size.width * 0.14,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: 15,
+                  ),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        "assets/icons/PlusCircle.png",
+                        scale: 20,
+                      ),
+                      SizedBox(
+                        width: size.width * 0.01,
+                      ),
+                      Text(
+                        "เพิ่มวิธีการชำระเงิน",
+                        style: TextStyle(color: Color(0xff1264E3)),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+      SizedBox(
+        height: 10,
+      ),
+      Container(
+        margin: const EdgeInsets.only(left: 1, right: 1),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              children: [
+                const SizedBox(height: 15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // implement the number keys (from 0 to 9) with the NumberButton widget
+                  // the NumberButton widget is defined in the bottom of this file
+                  children: [
+                    SizedBox(
+                      width: size.width * 0.1,
+                      height: size.height * 0.08,
+                      child: NumberButton(
+                        number: '7',
+                        size: 10,
+                        color: Colors.white,
+                        controller: ai,
+                        onPressed: () {
+                          ai.text += '7';
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: size.width * 0.01,
+                    ),
+                    SizedBox(
+                      width: size.width * 0.1,
+                      height: size.height * 0.08,
+                      child: NumberButton(
+                        number: '8',
+                        size: 10,
+                        color: Colors.white,
+                        controller: ai,
+                        onPressed: () {
+                          ai.text += '8';
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: size.width * 0.01,
+                    ),
+                    SizedBox(
+                      width: size.width * 0.1,
+                      height: size.height * 0.08,
+                      child: NumberButton(
+                        number: '9',
+                        size: 10,
+                        color: Colors.white,
+                        controller: ai,
+                        onPressed: () {
+                          ai.text += '9';
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      width: size.width * 0.1,
+                      height: size.height * 0.08,
+                      child: NumberButton(
+                        number: '4',
+                        size: 10,
+                        color: Colors.white,
+                        controller: ai,
+                        onPressed: () {
+                          ai.text += '4';
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: size.width * 0.01,
+                    ),
+                    SizedBox(
+                      width: size.width * 0.1,
+                      height: size.height * 0.08,
+                      child: NumberButton(
+                        number: '5',
+                        size: 10,
+                        color: Colors.white,
+                        controller: ai,
+                        onPressed: () {
+                          ai.text += '5';
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: size.width * 0.01,
+                    ),
+                    SizedBox(
+                      width: size.width * 0.1,
+                      height: size.height * 0.08,
+                      child: NumberButton(
+                        number: '6',
+                        size: 10,
+                        color: Colors.white,
+                        controller: ai,
+                        onPressed: () {
+                          ai.text += '6';
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      width: size.width * 0.1,
+                      height: size.height * 0.08,
+                      child: NumberButton(
+                        number: '1',
+                        size: 10,
+                        color: Colors.white,
+                        controller: ai,
+                        onPressed: () {
+                          ai.text += '1';
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: size.width * 0.01,
+                    ),
+                    SizedBox(
+                      width: size.width * 0.1,
+                      height: size.height * 0.08,
+                      child: NumberButton(
+                        number: '2',
+                        size: 10,
+                        color: Colors.white,
+                        controller: ai,
+                        onPressed: () {
+                          ai.text += '2';
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: size.width * 0.01,
+                    ),
+                    SizedBox(
+                      width: size.width * 0.1,
+                      height: size.height * 0.08,
+                      child: NumberButton(
+                        number: '3',
+                        size: 10,
+                        color: Colors.white,
+                        controller: ai,
+                        onPressed: () {
+                          ai.text += '3';
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: size.width * 0.1,
+                      height: size.height * 0.08,
+                      child: NumberButton(
+                        number: '00',
+                        size: 10,
+                        color: Colors.white,
+                        controller: ai,
+                        onPressed: () {
+                          ai.text += '00';
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: size.width * 0.01,
+                    ),
+                    SizedBox(
+                      width: size.width * 0.1,
+                      height: size.height * 0.08,
+                      child: NumberButton(
+                        number: '0',
+                        size: 10,
+                        color: Colors.white,
+                        controller: ai,
+                        onPressed: () {
+                          ai.text += '0';
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: size.width * 0.01,
+                    ),
+                    SizedBox(
+                      width: size.width * 0.1,
+                      height: size.height * 0.08,
+                      child: NumberButton(
+                        number: '.',
+                        size: 10,
+                        color: Colors.white,
+                        controller: ai,
+                        onPressed: () {
+                          ai.text += '.';
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                SizedBox(height: 4),
+              ],
+            ),
+            SizedBox(
+              width: size.width * 0.01,
+            ),
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: InkWell(
+                    onTap: () {
+                      // ตรวจสอบว่ามีตัวอักษรใน TextFormField หรือไม่
+                      ai.text = ai.text.substring(
+                          0, ai.text.length - 1); // ลบตัวอักษรที่สุดท้ายออก
+                    },
+                    child: SizedBox(
+                      width: size.width * 0.08,
+                      height: size.height * 0.2,
+                      child: NumberButton(
+                        number: '<',
+                        size: 10,
+                        color: Colors.white,
+                        controller: ai,
+                        onPressed: () {
+                          if (ai.text.isNotEmpty) {
+                            ai.text = ai.text.substring(0, ai.text.length - 1);
+                          }
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: size.width * 0.08,
+                  height: size.height * 0.2,
+                  child: NumberButton(
+                    number: 'C',
+                    size: 10,
+                    color: Colors.white,
+                    controller: ai,
+                    onPressed: () {
+                      ai.text = '';
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    ]);
   }
 }
 

@@ -15,12 +15,12 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setEnabledSystemUIMode(
-    SystemUiMode.leanBack,
+    SystemUiMode.immersiveSticky,
   );
-  await SystemChrome.setSystemUIChangeCallback(
-      (systemOverlaysAreVisible) async {
-    print("Chand:$systemOverlaysAreVisible");
-  });
+  // await SystemChrome.setSystemUIChangeCallback(
+  //     (systemOverlaysAreVisible) async {
+  //   print("Chand:$systemOverlaysAreVisible");
+  // });
 
   runApp(MyApp());
 }
@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     initializeDateFormatting('th');
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ProductController()),
@@ -43,9 +44,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         debugShowCheckedModeBanner: false,
-        home: PaymentCash(
-          selectedItem: [],
-        ),
+        home: LoginPage(),
       ),
     );
   }
