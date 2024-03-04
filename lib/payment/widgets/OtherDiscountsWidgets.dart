@@ -231,14 +231,13 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
               ),
             ),
             // ...rowdiscount,
-            SingleChildScrollView(
+            SizedBox(
+              height: size.height * 0.47,
               child: ListView.separated(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
                 itemCount: rowdiscount.length,
                 separatorBuilder: (BuildContext context, int index) {
-                  return SizedBox(
-                      height: 10); // กำหนดระยะห่างระหว่าง Widget ใน List
+                  return SizedBox(height: 10);
                 },
                 itemBuilder: (BuildContext context, int index) {
                   return rowdiscount[index];
