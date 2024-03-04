@@ -380,6 +380,7 @@ class _HomePageState extends State<HomePage> {
                                 child: Container(
                                     child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     ...orders,
                                     GestureDetector(

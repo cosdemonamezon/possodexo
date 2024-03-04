@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class OtherDiscountsWidgets extends StatefulWidget {
-  OtherDiscountsWidgets({super.key});
+  OtherDiscountsWidgets({Key? key});
 
   @override
   State<OtherDiscountsWidgets> createState() => _OtherDiscountsWidgetsState();
@@ -16,188 +16,26 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
   List<String> point = ["ส่วนลด The 1", "คูปองห้าง"];
   String? _selectedpoint;
 
-  List<Widget> rowdiscount = [];
+  List<Map<String, String>> rowData = [];
 
   void addPaddingAndRow() {
-    final size = MediaQuery.of(context).size;
     setState(() {
-      rowdiscount.add(
-        Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: SizedBox(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  height: size.height * 0.11,
-                  width: size.width * 0.1,
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Color(0xFF78909C),
-                      ),
-                    ),
-                    color: Color(0xFFFAFAFA),
-                  ),
-                  child: DropdownButtonHideUnderline(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, top: 4),
-                          child: Text(
-                            'รูปแบบ',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xFF424242),
-                              fontFamily: 'IBMPlexSansThai',
-                            ),
-                          ),
-                        ),
-                        DropdownButton<String>(
-                          isExpanded: true,
-                          items: payment
-                              .map((String item) => DropdownMenuItem<String>(
-                                    value: item,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 10),
-                                      child: Text(
-                                        item,
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          fontFamily: 'IBMPlexSansThai',
-                                        ),
-                                      ),
-                                    ),
-                                  ))
-                              .toList(),
-                          value: _selectedpayment,
-                          onChanged: (v) {
-                            setState(() {
-                              _selectedpayment = v ?? '';
-                            });
-                          },
-                          underline: SizedBox(),
-                          dropdownColor: Color.fromARGB(255, 255, 255, 255),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  height: size.height * 0.11,
-                  width: size.width * 0.2,
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Color(0xFF78909C),
-                      ),
-                    ),
-                    color: Color(0xFFFAFAFA),
-                  ),
-                  child: DropdownButtonHideUnderline(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, top: 4),
-                          child: Text(
-                            'รูปแบบ',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xFF424242),
-                              fontFamily: 'IBMPlexSansThai',
-                            ),
-                          ),
-                        ),
-                        DropdownButton<String>(
-                          isExpanded: true,
-                          items: point
-                              .map((String item) => DropdownMenuItem<String>(
-                                    value: item,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 10),
-                                      child: Text(
-                                        item,
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          fontFamily: 'IBMPlexSansThai',
-                                        ),
-                                      ),
-                                    ),
-                                  ))
-                              .toList(),
-                          value: _selectedpoint,
-                          onChanged: (v) {
-                            setState(() {
-                              _selectedpoint = v ?? '';
-                            });
-                          },
-                          underline: SizedBox(),
-                          dropdownColor: Color.fromARGB(255, 255, 255, 255),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  height: size.height * 0.11,
-                  width: size.width * 0.12,
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Color(0xFF78909C),
-                      ),
-                    ),
-                    color: Color(0xFFFAFAFA),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10, top: 4),
-                        child: Row(
-                          children: [
-                            Text(
-                              'บาท',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Color(0xFF424242),
-                                fontFamily: 'IBMPlexSansThai',
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: size.width * 0.2,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                              hintText: 'จำนานเงิน',
-                              border: InputBorder.none,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                IconButton(
-                    onPressed: () {
-                      setState(() {
-                        rowdiscount.removeLast();
-                      });
-                    },
-                    icon: Icon(
-                      Icons.highlight_remove_sharp,
-                      color: Color(0xFF616161),
-                    )),
-              ],
-            ),
-          ),
-        ),
-      );
+      if (_selectedpayment != null || _selectedpoint != null) {
+        _selectedpayment = null;
+        _selectedpoint = null;
+      } else {
+        rowData.add({
+          'payment': _selectedpayment ?? '',
+          'point': _selectedpoint ?? '',
+          'amount': '',
+        });
+      }
+    });
+  }
+
+  void clearAllData() {
+    setState(() {
+      rowData.clear();
     });
   }
 
@@ -232,9 +70,7 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                     ),
                     child: IconButton(
                       icon: Icon(Icons.add, size: 15),
-                      onPressed: () {
-                        addPaddingAndRow();
-                      },
+                      onPressed: addPaddingAndRow,
                     ),
                   ),
                 ],
@@ -244,12 +80,36 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
               height: size.height * 0.48,
               child: ListView.separated(
                 shrinkWrap: true,
-                itemCount: rowdiscount.length,
+                itemCount: rowData.length,
                 separatorBuilder: (BuildContext context, int index) {
                   return SizedBox(height: 10);
                 },
                 itemBuilder: (BuildContext context, int index) {
-                  return rowdiscount[index];
+                  return RowDiscountWidget(
+                    rowData: rowData[index],
+                    payment: payment,
+                    point: point,
+                    onChangedPayment: (String? newValue) {
+                      setState(() {
+                        rowData[index]['payment'] = newValue ?? '';
+                      });
+                    },
+                    onChangedPoint: (String? newValue) {
+                      setState(() {
+                        rowData[index]['point'] = newValue ?? '';
+                      });
+                    },
+                    onChangedAmount: (String newValue) {
+                      setState(() {
+                        rowData[index]['amount'] = newValue;
+                      });
+                    },
+                    onRemove: () {
+                      setState(() {
+                        rowData.removeAt(index);
+                      });
+                    },
+                  );
                 },
               ),
             ),
@@ -262,7 +122,7 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: clearAllData,
                       style: ElevatedButton.styleFrom(
                         surfaceTintColor: Colors.white,
                         foregroundColor: Colors.red,
@@ -312,6 +172,198 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                     ),
                   )
                 ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class RowDiscountWidget extends StatelessWidget {
+  final Map<String, String> rowData;
+  final List<String> payment;
+  final List<String> point;
+  final ValueChanged<String?> onChangedPayment;
+  final ValueChanged<String?> onChangedPoint;
+  final ValueChanged<String> onChangedAmount;
+  final VoidCallback onRemove;
+
+  const RowDiscountWidget({
+    required this.rowData,
+    required this.payment,
+    required this.point,
+    required this.onChangedPayment,
+    required this.onChangedPoint,
+    required this.onChangedAmount,
+    required this.onRemove,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Padding(
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      child: SizedBox(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              height: size.height * 0.11,
+              width: size.width * 0.1,
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: Color(0xFF78909C),
+                  ),
+                ),
+                color: Color(0xFFFAFAFA),
+              ),
+              child: DropdownButtonHideUnderline(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, top: 4),
+                      child: Text(
+                        'รูปแบบ',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xFF424242),
+                          fontFamily: 'IBMPlexSansThai',
+                        ),
+                      ),
+                    ),
+                    DropdownButton<String>(
+                      isExpanded: true,
+                      items: ['']
+                          .followedBy(payment)
+                          .map((String item) => DropdownMenuItem<String>(
+                                value: item,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Text(
+                                    item,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: 'IBMPlexSansThai',
+                                    ),
+                                  ),
+                                ),
+                              ))
+                          .toList(),
+                      value: rowData['payment'],
+                      onChanged: onChangedPayment,
+                      underline: SizedBox(),
+                      dropdownColor: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              height: size.height * 0.11,
+              width: size.width * 0.2,
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: Color(0xFF78909C),
+                  ),
+                ),
+                color: Color(0xFFFAFAFA),
+              ),
+              child: DropdownButtonHideUnderline(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, top: 4),
+                      child: Text(
+                        'รูปแบบ',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xFF424242),
+                          fontFamily: 'IBMPlexSansThai',
+                        ),
+                      ),
+                    ),
+                    DropdownButton<String>(
+                      isExpanded: true,
+                      items: ['']
+                          .followedBy(point)
+                          .map((String item) => DropdownMenuItem<String>(
+                                value: item,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Text(
+                                    item,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: 'IBMPlexSansThai',
+                                    ),
+                                  ),
+                                ),
+                              ))
+                          .toList(),
+                      value: rowData['point'],
+                      onChanged: onChangedPoint,
+                      underline: SizedBox(),
+                      dropdownColor: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              height: size.height * 0.11,
+              width: size.width * 0.12,
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: Color(0xFF78909C),
+                  ),
+                ),
+                color: Color(0xFFFAFAFA),
+              ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, top: 4),
+                    child: Row(
+                      children: [
+                        Text(
+                          'บาท',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xFF424242),
+                            fontFamily: 'IBMPlexSansThai',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: size.width * 0.2,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: TextFormField(
+                        onChanged: onChangedAmount,
+                        decoration: InputDecoration(
+                          hintText: 'จำนานเงิน',
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            IconButton(
+              onPressed: onRemove,
+              icon: Icon(
+                Icons.highlight_remove_sharp,
+                color: Color(0xFF616161),
               ),
             ),
           ],
