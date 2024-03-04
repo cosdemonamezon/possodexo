@@ -11,6 +11,7 @@ class OtherDiscountsWidgets extends StatefulWidget {
 
 class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
   List<String> payment = ["จำนวนเงิน", "เปอร์เซ็นต์"];
+  String payment1 = 'จำนวนเงิน';
   String? _selectedpayment;
 
   List<String> point = ["ส่วนลด The 1", "คูปองห้าง"];
@@ -95,10 +96,12 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                   return RowDiscountWidget(
                     rowData: rowData[index],
                     payment: payment,
+                    payment1: payment1,
                     point: point,
                     onChangedPayment: (String? newValue) {
                       setState(() {
                         rowData[index]['payment'] = newValue ?? '';
+                        payment1 = newValue!;
                       });
                     },
                     onChangedPoint: (String? newValue) {
@@ -196,16 +199,17 @@ class RowDiscountWidget extends StatelessWidget {
   final ValueChanged<String?> onChangedPoint;
   final ValueChanged<String> onChangedAmount;
   final VoidCallback onRemove;
+  final String payment1;
 
-  const RowDiscountWidget({
-    required this.rowData,
-    required this.payment,
-    required this.point,
-    required this.onChangedPayment,
-    required this.onChangedPoint,
-    required this.onChangedAmount,
-    required this.onRemove,
-  });
+  const RowDiscountWidget(
+      {required this.rowData,
+      required this.payment,
+      required this.point,
+      required this.onChangedPayment,
+      required this.onChangedPoint,
+      required this.onChangedAmount,
+      required this.onRemove,
+      required this.payment1});
 
   @override
   Widget build(BuildContext context) {
@@ -244,8 +248,7 @@ class RowDiscountWidget extends StatelessWidget {
                     ),
                     DropdownButton<String>(
                       isExpanded: true,
-                      items: ['']
-                          .followedBy(payment)
+                      items: payment
                           .map((String item) => DropdownMenuItem<String>(
                                 value: item,
                                 child: Padding(
@@ -260,7 +263,7 @@ class RowDiscountWidget extends StatelessWidget {
                                 ),
                               ))
                           .toList(),
-                      value: rowData['payment'],
+                      value: payment1,
                       onChanged: onChangedPayment,
                       underline: SizedBox(),
                       dropdownColor: Color.fromARGB(255, 255, 255, 255),
