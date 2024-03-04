@@ -6,7 +6,7 @@ import 'package:possodexo/payment/widgets/Discount.dart';
 import 'package:possodexo/payment/widgets/GiftVoucherwidgets.dart';
 import 'package:possodexo/payment/widgets/OtherDiscountsWidgets.dart';
 import 'package:possodexo/payment/widgets/Redeempointswidget.dart';
-import 'package:possodexo/payment/widgets/moneyDropdrown.dart';
+
 import 'package:possodexo/payment/widgets/numbercel.dart';
 
 class PaymentCash extends StatefulWidget {
@@ -1457,9 +1457,7 @@ class _SplitPaymentState extends State<SplitPayment> {
             ),
           ),
           InkWell(
-            onTap: () {
-              MoneyDropDown();
-            },
+            onTap: () {},
             child: Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Container(
