@@ -59,7 +59,10 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => FirstPage()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => FirstPage()));
                           },
                           child: Card(
                             color: Colors.blue,
@@ -73,7 +76,10 @@ class _LoginPageState extends State<LoginPage> {
                               child: Center(
                                   child: Text(
                                 'เข้าสู่ระบบ',
-                                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold),
                               )),
                             ),
                           ),

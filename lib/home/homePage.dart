@@ -712,6 +712,37 @@ class _HomePageState extends State<HomePage> {
                   Column(
                     children: [
                       Container(
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 241, 241, 241),
+                          border: Border(
+                            bottom: BorderSide(color: Colors.black),
+                          ),
+                        ),
+                        width: size.width * 0.35,
+                        child: TextFormField(
+                          style: TextStyle(fontSize: 22),
+                          decoration: InputDecoration(
+                            hintText: '',
+                            hintStyle: TextStyle(fontSize: 22),
+                            prefixIcon: Icon(Icons.search),
+                            border: UnderlineInputBorder(
+                              borderSide: BorderSide.none,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 241, 241, 241),
+                        ),
+                        height: size.height * 0.08,
+                        width: size.width * 0.35,
+                      )
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Container(
                         color: Colors.white,
                         height: size.height * 0.56,
                         width: size.width * 1,

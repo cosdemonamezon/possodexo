@@ -354,11 +354,11 @@ class _PaymentCashState extends State<PaymentCash> {
                               padding: const EdgeInsets.all(8.0),
                               child: selectedItem == 0
                                   ? Text(
-                                      "ส่วนลด",
+                                      "ชำระเงิน",
                                       style: TextStyle(fontSize: 20),
                                     )
                                   : Text(
-                                      "ชำระเงิน",
+                                      "ส่วนลด",
                                       style: TextStyle(fontSize: 20),
                                     )),
                           SingleChildScrollView(
@@ -1611,7 +1611,7 @@ class _SplitPaymentState extends State<SplitPayment> {
               height: size.height * 0.05,
               width: size.width * 0.1,
               child: Padding(
-                padding: const EdgeInsets.only(left: 25, top: 5),
+                padding: const EdgeInsets.only(left: 35, top: 10),
                 child: Text(
                   "ชำระทั้งหมด",
                   style: TextStyle(color: Color(0xff1264E3)),
