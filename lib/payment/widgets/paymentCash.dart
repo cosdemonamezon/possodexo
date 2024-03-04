@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:chips_choice/chips_choice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -1272,12 +1274,19 @@ class _PaymentCashState extends State<PaymentCash> {
                         ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: size.height * 0.01,
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          SizedBox(
+                            width: size.width * 0.24,
+                            child: Divider(
+                              height: 10,
+                              color: Color(0xFFB0BEC5),
+                            ),
+                          ),
                           Text(
                             'ส่วนลด',
                             style: TextStyle(
@@ -1353,12 +1362,14 @@ class _PaymentCashState extends State<PaymentCash> {
                                   )),
                             ],
                           ),
-                          Divider(
-                            height: 10,
-                            thickness: 1,
-                            color: Color(0xFFB0BEC5),
-                          )
                         ],
+                      ),
+                      SizedBox(
+                        width: size.width * 0.24,
+                        child: Divider(
+                          height: 10,
+                          color: Color(0xFFB0BEC5),
+                        ),
                       )
                     ],
                   )
@@ -1397,183 +1408,187 @@ class _SplitPaymentState extends State<SplitPayment> {
       final size = MediaQuery.of(context).size;
       setState(() {
         payment.add(
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                height: size.height * 0.1,
-                width: size.width * 0.13,
-                decoration: BoxDecoration(
-                    border: Border(bottom: BorderSide(color: Colors.grey)),
-                    borderRadius: BorderRadius.circular(2),
-                    color: Color(0xFFFFFAFAFA)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Opacity(
-                      opacity: 0.5,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 5, top: 3),
-                        child: Text(
-                          'วิธีการชำระเงิน',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontFamily: 'IBMPlexSansThai',
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Container(
+                  height: size.height * 0.1,
+                  width: size.width * 0.13,
+                  decoration: BoxDecoration(
+                      border: Border(bottom: BorderSide(color: Colors.grey)),
+                      borderRadius: BorderRadius.circular(2),
+                      color: Color(0xFFFFFAFAFA)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Opacity(
+                        opacity: 0.5,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 5, top: 3),
+                          child: Text(
+                            'วิธีการชำระเงิน',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'IBMPlexSansThai',
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Row(
-                      children: [
-                        DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
-                            isExpanded: true,
-                            items: general2
-                                .map((String item) => DropdownMenuItem<String>(
-                                      value: item,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 1.0),
+                      Row(
+                        children: [
+                          DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              isExpanded: true,
+                              items: general2
+                                  .map((String item) =>
+                                      DropdownMenuItem<String>(
+                                        value: item,
                                         child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            item,
-                                            style: const TextStyle(
-                                              fontSize: 16,
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 1.0),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              item,
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ))
-                                .toList(),
-                            value: money,
-                            onChanged: (v) {
-                              setState(() {
-                                money = v!;
-                              });
-                            },
-                            underline: SizedBox(),
-                            dropdownColor: Colors.white,
+                                      ))
+                                  .toList(),
+                              value: money,
+                              onChanged: (v) {
+                                setState(() {
+                                  money = v!;
+                                });
+                              },
+                              underline: SizedBox(),
+                              dropdownColor: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  height: size.height * 0.1,
+                  width: size.width * 0.13,
+                  decoration: BoxDecoration(
+                      border: Border(bottom: BorderSide(color: Colors.grey)),
+                      borderRadius: BorderRadius.circular(2),
+                      color: Color(0xFFFFFAFAFA)),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Opacity(
+                              opacity: 0.5,
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 3),
+                                child: Text(
+                                  'วิธีการชำระเงิน',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontFamily: 'IBMPlexSansThai',
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Text(
+                              "฿",
+                              style: TextStyle(fontSize: 25),
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: SizedBox(
+                            width: 0.01,
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                              ),
+                              validator: (selectedItem) {
+                                if (selectedItem == '') {}
+                              },
+                            ),
                           ),
                         ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
-              Container(
-                height: size.height * 0.1,
-                width: size.width * 0.13,
-                decoration: BoxDecoration(
-                    border: Border(bottom: BorderSide(color: Colors.grey)),
-                    borderRadius: BorderRadius.circular(2),
-                    color: Color(0xFFFFFAFAFA)),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Opacity(
-                            opacity: 0.5,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 3),
-                              child: Text(
-                                'วิธีการชำระเงิน',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontFamily: 'IBMPlexSansThai',
+                Container(
+                  height: size.height * 0.1,
+                  width: size.width * 0.13,
+                  decoration: BoxDecoration(
+                      border: Border(bottom: BorderSide(color: Colors.grey)),
+                      borderRadius: BorderRadius.circular(2),
+                      color: Color(0xFFFFFAFAFA)),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Opacity(
+                              opacity: 0.5,
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 3),
+                                child: Text(
+                                  'หมายเหตุ',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontFamily: 'IBMPlexSansThai',
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Text(
-                            "฿",
-                            style: TextStyle(fontSize: 25),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5),
-                        child: SizedBox(
-                          width: 0.01,
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                            ),
-                            validator: (selectedItem) {
-                              if (selectedItem == '') {}
-                            },
-                          ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                height: size.height * 0.1,
-                width: size.width * 0.13,
-                decoration: BoxDecoration(
-                    border: Border(bottom: BorderSide(color: Colors.grey)),
-                    borderRadius: BorderRadius.circular(2),
-                    color: Color(0xFFFFFAFAFA)),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Opacity(
-                            opacity: 0.5,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 3),
-                              child: Text(
-                                'หมายเหตุ',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontFamily: 'IBMPlexSansThai',
-                                ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: SizedBox(
+                            width: size.width * 0.01,
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
                               ),
+                              validator: (selectedItem) {
+                                if (selectedItem == '') {}
+                              },
                             ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5),
-                        child: SizedBox(
-                          width: size.width * 0.01,
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                            ),
-                            validator: (selectedItem) {
-                              if (selectedItem == '') {}
-                            },
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      payment.removeLast();
-                    });
-                  },
-                  icon: Icon(
-                    Icons.highlight_remove_sharp,
-                    color: Color(0xFF616161),
-                  )),
-            ],
+                IconButton(
+                    onPressed: () {
+                      setState(() {
+                        payment.removeLast();
+                      });
+                    },
+                    icon: Icon(
+                      Icons.highlight_remove_sharp,
+                      color: Color(0xFF616161),
+                    )),
+              ],
+            ),
           ),
         );
+        inspect(payment);
       });
     }
 
@@ -1593,7 +1608,11 @@ class _SplitPaymentState extends State<SplitPayment> {
             return SizedBox(height: 10);
           },
           itemBuilder: (BuildContext context, int index) {
-            return payment[index];
+            return Column(
+              children: [
+                payment[index],
+              ],
+            );
           },
         ),
       ),
@@ -1623,9 +1642,8 @@ class _SplitPaymentState extends State<SplitPayment> {
             padding: const EdgeInsets.only(left: 20),
             child: InkWell(
               onTap: () {
-                setState(() {
-                  addModtodpayment();
-                });
+                addModtodpayment();
+                //setState(() {});
               },
               child: Container(
                 decoration: BoxDecoration(

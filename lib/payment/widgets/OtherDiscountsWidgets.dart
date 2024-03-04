@@ -18,6 +18,13 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
 
   List<Map<String, String>> rowData = [];
 
+  @override
+  void initState() {
+    super.initState();
+    _selectedpayment = payment.first; // เลือกค่าเริ่มต้นจาก list แรก
+    _selectedpoint = point.first; // เลือกค่าเริ่มต้นจาก list แรก
+  }
+
   void addPaddingAndRow() {
     setState(() {
       if (_selectedpayment != null || _selectedpoint != null) {
