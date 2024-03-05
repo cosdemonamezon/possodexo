@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:possodexo/home/firstPage.dart';
 import 'package:possodexo/login/widgets/InputTextFormField.dart';
 import 'package:possodexo/login/widgets/RegisTextFormField.dart';
@@ -15,6 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white60,
       body: Row(
         children: [
@@ -58,7 +60,11 @@ class _LoginPageState extends State<LoginPage> {
                           height: size.height * 0.04,
                         ),
                         GestureDetector(
-                          onTap: () {
+                          onTap: () async {
+                            await SystemChrome.setEnabledSystemUIMode(
+                              SystemUiMode.immersiveSticky,
+                            );
+                            if (!mounted) return;
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
