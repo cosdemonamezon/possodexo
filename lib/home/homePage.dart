@@ -12,6 +12,7 @@ import 'package:possodexo/home/widgets/OpenSalesShift.dart';
 import 'package:possodexo/home/widgets/ShowOpenShift.dart';
 import 'package:possodexo/home/widgets/TablePromotion.dart';
 import 'package:possodexo/home/widgets/membership.dart';
+import 'package:possodexo/models/branch.dart';
 import 'package:possodexo/models/product.dart';
 import 'package:provider/provider.dart';
 import '../payment/widgets/paymentCash.dart';
@@ -225,7 +226,7 @@ class _HomePageState extends State<HomePage> {
   // double sumQTY(List<ItemSelect> productPrice) => productPrice.fold(
   //     0, (previousValue, element) => previousValue + newtotaQTYl(element));
 
-  String sizeValue = 'สาขาพระราม 6';
+  Branch? sizeValue;
   String printValue = 'พิมพ์ใบกำกับภาษี';
   bool open = true;
   bool print = false;
@@ -256,15 +257,7 @@ class _HomePageState extends State<HomePage> {
                           height: size.height * 0.08,
                           width: size.width * 0.16,
                           // color: Colors.grey,
-                          child: DropdownBranch(
-                            sizeValue: sizeValue,
-                            size: size,
-                            onSelected: (value) {
-                              setState(() {
-                                sizeValue = value!;
-                              });
-                            },
-                          ),
+                          child: DropdownBranch(),
                         ),
                         Container(
                           height: size.height * 0.08,
@@ -434,7 +427,7 @@ class _HomePageState extends State<HomePage> {
                                                     height: size.height * 0.06,
                                                     child: Center(
                                                         child: Text(
-                                                      '${counter ?? 'Error'} - POS${(orders.length + 1).toString().padLeft(2, '0')}',
+                                                      'Oder${(orders.length + 1).toString().padLeft(2, '0')}',
                                                       style: TextStyle(
                                                           color: kButtonColor,
                                                           fontFamily:
