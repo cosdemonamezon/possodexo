@@ -204,6 +204,7 @@ class _HomePageState extends State<HomePage> {
     ];
   }
 
+// ดึงข้อมูล product
   Future<void> getlistproduct() async {
     try {
       await context.read<ProductController>().getProduct();
@@ -235,6 +236,14 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+//ดึงข้อมูล Payment
+  Future<void> getListPayment() async {
+    try {
+      await context.read<ProductController>().getListPayment();
+    } on Exception catch (e) {
+      inspect(e);
+    }
+  }
   // double newtotal(
   //   Product orders,
   // ) {

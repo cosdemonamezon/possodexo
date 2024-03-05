@@ -45,9 +45,7 @@ class MyApp extends StatelessWidget {
           fontFamily: 'IBMPlexSansThai',
         ),
         debugShowCheckedModeBanner: false,
-        home: PaymentCash(
-          selectedItem: [],
-        ),
+        home: LoginPage(),
       ),
     );
   }
