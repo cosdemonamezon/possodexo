@@ -23,28 +23,36 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
   @override
   void initState() {
     super.initState();
-    _selectedpayment = payment.first; // เลือกค่าเริ่มต้นจาก list แรก
-    _selectedpoint = point.first; // เลือกค่าเริ่มต้นจาก list แรก
+    _selectedpayment = payment.first;
+    _selectedpoint = point.first;
+    payment1 = payment.first;
+    point1 = point.first;
+    rowData.add({
+      'payment': payment1,
+      'point': point1,
+      'amount': '',
+    });
   }
 
   void addPaddingAndRow() {
     setState(() {
-      if (_selectedpayment != null || _selectedpoint != null) {
-        _selectedpayment = null;
-        _selectedpoint = null;
-      } else {
-        rowData.add({
-          'payment': _selectedpayment ?? '',
-          'point': _selectedpoint ?? '',
-          'amount': '',
-        });
-      }
+      rowData.add({
+        'payment': payment1,
+        'point': point1,
+        'amount': '',
+      });
     });
   }
 
   void clearAllData() {
     setState(() {
       rowData.clear();
+      // เพิ่มแถวข้อมูลเริ่มต้นอีกครั้งเมื่อล้างข้อมูล
+      rowData.add({
+        'payment': payment1,
+        'point': point1,
+        'amount': '',
+      });
     });
   }
 
@@ -97,7 +105,6 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                   return RowDiscountWidget(
                     rowData: rowData[index],
                     payment: payment,
-                    payment1: payment1,
                     point: point,
                     onChangedPayment: (String? newValue) {
                       setState(() {
@@ -201,7 +208,6 @@ class RowDiscountWidget extends StatelessWidget {
   final ValueChanged<String?> onChangedPoint;
   final ValueChanged<String> onChangedAmount;
   final VoidCallback onRemove;
-  final String payment1;
 
   const RowDiscountWidget(
       {required this.rowData,
@@ -210,8 +216,7 @@ class RowDiscountWidget extends StatelessWidget {
       required this.onChangedPayment,
       required this.onChangedPoint,
       required this.onChangedAmount,
-      required this.onRemove,
-      required this.payment1});
+      required this.onRemove});
 
   @override
   Widget build(BuildContext context) {
@@ -265,7 +270,7 @@ class RowDiscountWidget extends StatelessWidget {
                                 ),
                               ))
                           .toList(),
-                      value: payment1,
+                      value: rowData['payment'],
                       onChanged: onChangedPayment,
                       underline: SizedBox(),
                       dropdownColor: Color.fromARGB(255, 255, 255, 255),
@@ -302,8 +307,7 @@ class RowDiscountWidget extends StatelessWidget {
                     ),
                     DropdownButton<String>(
                       isExpanded: true,
-                      items: ['']
-                          .followedBy(point)
+                      items: point
                           .map((String item) => DropdownMenuItem<String>(
                                 value: item,
                                 child: Padding(
