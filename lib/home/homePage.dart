@@ -178,7 +178,30 @@ class _HomePageState extends State<HomePage> {
       getlistCategory();
       getlistBranch();
     });
+
     gridCoffees = gridCoffee;
+    orders = [
+      Card(
+        surfaceTintColor: Colors.white,
+        elevation: 2,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.0),
+            side: BorderSide(color: kButtonColor)),
+        child: SizedBox(
+          width: 150,
+          height: 45,
+          child: Center(
+              child: Text(
+            'Order${(orders.length + 1).toString().padLeft(2, '0')}',
+            style: TextStyle(
+                color: kButtonColor,
+                fontFamily: 'IBMPlexSansThai',
+                fontSize: 16,
+                fontWeight: FontWeight.bold),
+          )),
+        ),
+      ),
+    ];
   }
 
   Future<void> getlistproduct() async {
@@ -238,6 +261,7 @@ class _HomePageState extends State<HomePage> {
   bool print = false;
   bool openShift = false;
   int qty = 0;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -433,7 +457,7 @@ class _HomePageState extends State<HomePage> {
                                                     height: size.height * 0.06,
                                                     child: Center(
                                                         child: Text(
-                                                      'Oder${(orders.length + 1).toString().padLeft(2, '0')}',
+                                                      'Order${(orders.length + 1).toString().padLeft(2, '0')}',
                                                       style: TextStyle(
                                                           color: kButtonColor,
                                                           fontFamily:
@@ -445,6 +469,7 @@ class _HomePageState extends State<HomePage> {
                                                   ),
                                                 ),
                                               );
+                                              orders = orders..toList();
                                               setState(() {});
                                             },
                                             onValueChanged: (value) {
