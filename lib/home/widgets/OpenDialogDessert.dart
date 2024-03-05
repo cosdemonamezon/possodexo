@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:possodexo/models/product.dart';
 
 class OpenDialogDessert extends StatefulWidget {
   const OpenDialogDessert({
@@ -8,7 +9,7 @@ class OpenDialogDessert extends StatefulWidget {
     // required this.presscancel,
     // required this.pressaccept,
   });
-  final Map<String, dynamic> gridCoffee;
+  final Product gridCoffee;
   // final VoidCallback pressclose;
   // final VoidCallback presscancel;
   // final VoidCallback pressaccept;
@@ -37,7 +38,7 @@ class _OpenDialogDessertState extends State<OpenDialogDessert> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  widget.gridCoffee['name'],
+                  "",
                   style: TextStyle(
                     color: Colors.black,
                     fontFamily: 'IBMPlexSansThai',

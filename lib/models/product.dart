@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:possodexo/models/category.dart';
 
 part 'product.g.dart';
 
@@ -14,21 +15,23 @@ class Product {
   final String? sellprice;
   final bool enableShot;
   final String? shotPrice;
+  final Category? category;
 
   Product(
-    this.id,
-    this.createdAt,
-    this.updatedAt,
-    this.deletedAt,
-    this.code,
-    this.name,
-    this.stdprice,
-    this.sellprice,
-    this.enableShot,
-    this.shotPrice
-  );
+      this.id,
+      this.createdAt,
+      this.updatedAt,
+      this.deletedAt,
+      this.code,
+      this.name,
+      this.stdprice,
+      this.sellprice,
+      this.enableShot,
+      this.shotPrice,
+      this.category);
 
-  factory Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);
+  factory Product.fromJson(Map<String, dynamic> json) =>
+      _$ProductFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductToJson(this);
 }

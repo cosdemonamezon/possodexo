@@ -65,6 +65,28 @@ class _GridCoffeeState extends State<GridCoffee> {
                     //     widget.onChange(item);
                     //   }
                     // }
+                    if (widget.gridCoffee[index].category?.name == "กาเเฟ") {
+                      final item = await showDialog(
+                          context: context,
+                          builder: (context) {
+                            return OpenDialogProduct(
+                                gridCoffee: widget.gridCoffee[index]);
+                          });
+                      if (item != null) {
+                        inspect(item);
+                        widget.onChange(item);
+                      }
+                    } else {
+                      final item = await showDialog(
+                        context: context,
+                        builder: (context) => OpenDialogDessert(
+                            gridCoffee: widget.gridCoffee[index]),
+                      );
+                      if (item != null) {
+                        inspect(item);
+                        widget.onChange(item);
+                      }
+                    }
                   },
                   child: Column(
                     children: [
