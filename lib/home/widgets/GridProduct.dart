@@ -65,7 +65,7 @@ class _GridCoffeeState extends State<GridCoffee> {
                     //     widget.onChange(item);
                     //   }
                     // }
-                    if (widget.gridCoffee[index].category?.name == "กาเเฟ") {
+                    if (widget.gridCoffee[index].category?.name == "กาแฟ") {
                       final item = await showDialog(
                           context: context,
                           builder: (context) {
@@ -73,7 +73,7 @@ class _GridCoffeeState extends State<GridCoffee> {
                                 gridCoffee: widget.gridCoffee[index]);
                           });
                       if (item != null) {
-                        inspect(item);
+                        // inspect(item);
                         widget.onChange(item);
                       }
                     } else {
@@ -83,7 +83,7 @@ class _GridCoffeeState extends State<GridCoffee> {
                             gridCoffee: widget.gridCoffee[index]),
                       );
                       if (item != null) {
-                        inspect(item);
+                        // inspect(item);
                         widget.onChange(item);
                       }
                     }

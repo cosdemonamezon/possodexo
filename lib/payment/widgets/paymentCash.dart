@@ -14,15 +14,14 @@ import 'package:possodexo/payment/widgets/Redeempointswidget.dart';
 import 'package:possodexo/payment/widgets/numbercel.dart';
 
 class PaymentCash extends StatefulWidget {
-  PaymentCash({
-    super.key,
-    required this.selectedItem,
-    // required this.sumPrice,
-    // required this.sumQTY
-  });
+  PaymentCash(
+      {super.key,
+      required this.selectedItem,
+      required this.sumPrice,
+      required this.sumQTY});
   final List<ItemSelect> selectedItem;
-  // final String sumPrice;
-  // final String sumQTY;
+  final String sumPrice;
+  final String sumQTY;
   String? money;
   @override
   State<PaymentCash> createState() => _PaymentCashState();
