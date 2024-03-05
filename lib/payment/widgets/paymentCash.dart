@@ -1282,11 +1282,7 @@ class _PaymentCashState extends State<PaymentCash> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            width: size.width * 0.24,
-                            child: Divider(
-                              height: 10,
-                              color: Color(0xFFB0BEC5),
-                            ),
+                            height: size.height * 0.01,
                           ),
                           Text(
                             'ส่วนลด',
@@ -1371,7 +1367,154 @@ class _PaymentCashState extends State<PaymentCash> {
                           height: 10,
                           color: Color(0xFFB0BEC5),
                         ),
-                      )
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: size.height * 0.01,
+                          ),
+                          Text(
+                            'Gift Voucher',
+                            style: TextStyle(
+                                fontSize: 20, color: Color(0xFF1264E3)),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                width: size.width * 0.1,
+                                child: Text(
+                                  'คูปองห้อง',
+                                  style: TextStyle(
+                                      color: Color(
+                                        0xFF424242,
+                                      ),
+                                      fontSize: 16),
+                                ),
+                              ),
+                              Container(
+                                width: size.width * 0.1,
+                                child: Text(
+                                  textAlign: TextAlign.end,
+                                  '5',
+                                  style: TextStyle(
+                                      color: Color(
+                                        0xFF424242,
+                                      ),
+                                      fontSize: 20),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.highlight_remove_sharp,
+                                    size: 15,
+                                    color: Color(0xFF616161),
+                                  )),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                width: size.width * 0.1,
+                                child: Text(
+                                  'คูปองหน้าร้าน',
+                                  style: TextStyle(
+                                      color: Color(
+                                        0xFF424242,
+                                      ),
+                                      fontSize: 16),
+                                ),
+                              ),
+                              Container(
+                                width: size.width * 0.1,
+                                child: Text(
+                                  textAlign: TextAlign.end,
+                                  '15.00',
+                                  style: TextStyle(
+                                      color: Color(
+                                        0xFF424242,
+                                      ),
+                                      fontSize: 20),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.highlight_remove_sharp,
+                                    size: 15,
+                                    color: Color(0xFF616161),
+                                  )),
+                            ],
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: size.width * 0.24,
+                        child: Divider(
+                          height: 10,
+                          color: Color(0xFFB0BEC5),
+                        ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: size.height * 0.01,
+                          ),
+                          Text(
+                            'แลกคะแนน',
+                            style: TextStyle(
+                                fontSize: 20, color: Color(0xFF1264E3)),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                width: size.width * 0.1,
+                                child: Text(
+                                  '100 คะแนน',
+                                  style: TextStyle(
+                                      color: Color(
+                                        0xFF424242,
+                                      ),
+                                      fontSize: 16),
+                                ),
+                              ),
+                              Container(
+                                width: size.width * 0.1,
+                                child: Text(
+                                  textAlign: TextAlign.end,
+                                  '10.00',
+                                  style: TextStyle(
+                                      color: Color(
+                                        0xFF424242,
+                                      ),
+                                      fontSize: 20),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.highlight_remove_sharp,
+                                    size: 15,
+                                    color: Color(0xFF616161),
+                                  )),
+                            ],
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: size.width * 0.24,
+                        child: Divider(
+                          height: 10,
+                          color: Color(0xFFB0BEC5),
+                        ),
+                      ),
                     ],
                   )
           ],
@@ -1411,8 +1554,8 @@ class _SplitPaymentState extends State<SplitPayment> {
         payment.add(
           Container(
             color: Colors.black,
-            width: 200,
-            height: 100,
+            width: 500,
+            height: 500,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
