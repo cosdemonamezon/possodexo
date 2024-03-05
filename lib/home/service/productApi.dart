@@ -58,7 +58,7 @@ class ProductApi {
 
   //เรียกดูข้อมูล payment
   static Future<List<Payment>> getPayment() async {
-    final url = Uri.https(publicUrl, '/api/branch');
+    final url = Uri.https(publicUrl, '/api/payment-method');
     final response = await http.get(
       url,
     );
