@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class InputTextFormField extends StatelessWidget {
   InputTextFormField({
@@ -17,6 +18,11 @@ class InputTextFormField extends StatelessWidget {
         width: size.width * 0.35,
         child: TextFormField(
           controller: controller,
+          onTap: () async {
+            await SystemChrome.setEnabledSystemUIMode(
+              SystemUiMode.immersiveSticky,
+            );
+          },
           style: TextStyle(fontSize: 22),
           decoration: InputDecoration(
             hintText: 'รหัสพนักงาน',

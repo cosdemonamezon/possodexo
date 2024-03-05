@@ -12,6 +12,7 @@ import 'package:possodexo/home/widgets/OpenSalesShift.dart';
 import 'package:possodexo/home/widgets/ShowOpenShift.dart';
 import 'package:possodexo/home/widgets/TablePromotion.dart';
 import 'package:possodexo/home/widgets/membership.dart';
+import 'package:possodexo/models/category.dart';
 import 'package:possodexo/models/product.dart';
 import 'package:provider/provider.dart';
 import '../payment/widgets/paymentCash.dart';
@@ -49,12 +50,12 @@ class _HomePageState extends State<HomePage> {
     setState(() {});
   }
 
-  List<Map<String, String>> product = [
-    {'name': 'ทั้งหมด', 'type': 'all'},
-    {'name': 'เครื่องดื่ม', 'type': 'drink'},
-    {'name': 'ของหวาน', 'type': 'dessert'}
+  List<Category> product = [
+    // {'name': 'ทั้งหมด', 'type': 'all'},
+    // {'name': 'เครื่องดื่ม', 'type': 'drink'},
+    // {'name': 'ของหวาน', 'type': 'dessert'}
   ];
-  String sclectedProduct = "ทั้งหมด";
+  Category? sclectedProduct;
   List<Map<String, dynamic>> gridCoffees = [];
   List<Map<String, dynamic>> gridCoffee = [
     {
@@ -191,6 +192,11 @@ class _HomePageState extends State<HomePage> {
   Future<void> getlistCategory() async {
     try {
       await context.read<ProductController>().getListCategory();
+      final list = context.read<ProductController>().categorized;
+      setState(() {
+        product = list;
+        sclectedProduct = list[0];
+      });
     } on Exception catch (e) {
       inspect(e);
     }
@@ -513,12 +519,12 @@ class _HomePageState extends State<HomePage> {
                                     SizedBox(
                                       width: 20,
                                     ),
-                                    DropdownButton<String>(
+                                    DropdownButton<Category>(
                                       selectedItemBuilder: (e) =>
                                           product.map<Widget>((item) {
                                         return Center(
                                           child: Text(
-                                            item['name']!,
+                                            item.name!,
                                             style: TextStyle(
                                               color: Colors.white,
                                             ),
@@ -531,12 +537,12 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       underline: SizedBox(),
                                       items: product
-                                          .map<DropdownMenuItem<String>>(
+                                          .map<DropdownMenuItem<Category>>(
                                               (item) {
-                                        return DropdownMenuItem<String>(
-                                          value: item['name'],
+                                        return DropdownMenuItem<Category>(
+                                          value: item,
                                           child: Text(
-                                            item['name']!,
+                                            item.name!,
                                             style: TextStyle(
                                               fontFamily: 'IBMPlexSansThai',
                                               color: Colors.black,
@@ -547,8 +553,8 @@ class _HomePageState extends State<HomePage> {
                                       value: sclectedProduct,
                                       onChanged: (v) {
                                         setState(() {
-                                          sclectedProduct = v!;
-                                          gridCoffees = gridCoffee;
+                                          sclectedProduct = v;
+
                                           gridCoffees =
                                               gridCoffees.where((product) {
                                             if (v == 'ทั้งหมด') {
