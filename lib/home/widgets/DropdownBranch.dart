@@ -33,7 +33,7 @@ class _DropdownBranchState extends State<DropdownBranch> {
           child: DropdownButton2<Branch>(
             isExpanded: true,
             hint: Text(
-              'Select Item',
+              'เลือกสาขา',
               style: TextStyle(
                 fontSize: 14,
                 fontFamily: 'IBMPlexSansThai',
