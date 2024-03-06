@@ -6,6 +6,7 @@ import 'package:possodexo/home/firstPage.dart';
 import 'package:possodexo/home/homePage.dart';
 import 'package:possodexo/home/service/productController.dart';
 import 'package:possodexo/login/loginPage.dart';
+import 'package:possodexo/payment/widgets/Proceedpayment.dart';
 import 'package:possodexo/payment/widgets/paymentCash.dart';
 import 'package:provider/provider.dart';
 import 'package:possodexo/payment/widgets/Discount.dart';
@@ -45,9 +46,11 @@ class MyApp extends StatelessWidget {
           fontFamily: 'IBMPlexSansThai',
         ),
         debugShowCheckedModeBanner: false,
-        home: LoginPage(
-            // selectedItem: [],
-            ),
+        home: PaymentCash(
+          selectedItem: [],
+          sumPrice: '',
+          sumQTY: '',
+        ),
       ),
     );
   }

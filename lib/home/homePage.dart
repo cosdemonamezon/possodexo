@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
   List<String> filteredProducts = [];
   List<String> nationality = ["ไทย", "พม่า", "ลาว"];
   String lang = "ไทย";
-  List<ItemSelect> selectedItem = [];
+  List<Product> selectedItem = [];
   int selectedIndex = 0;
 
   void onItemTapped(int index) {
@@ -204,6 +204,7 @@ class _HomePageState extends State<HomePage> {
     ];
   }
 
+// ดึงข้อมูล product
   Future<void> getlistproduct() async {
     try {
       await context.read<ProductController>().getProduct();
@@ -235,24 +236,32 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  double newtotal(
-    ItemSelect orders,
-  ) {
-    return double.parse((orders.size! == 0
-            ? orders.priceS! * orders.qty!
-            : orders.size! == 1
-                ? orders.priceM! * orders.qty!
-                : orders.priceL! * orders.qty!)
-        .toString());
+//ดึงข้อมูล Payment
+  Future<void> getListPayment() async {
+    try {
+      await context.read<ProductController>().getListPayment();
+    } on Exception catch (e) {
+      inspect(e);
+    }
   }
+  // double newtotal(
+  //   Product orders,
+  // ) {
+  //   return double.parse((orders.size! == 0
+  //           ? orders.priceS! * orders.qty!
+  //           : orders.size! == 1
+  //               ? orders.priceM! * orders.qty!
+  //               : orders.priceL! * orders.qty!)
+  //       .toString());
+  // }
 
-  // double sumPrice(List<ItemSelect> productPrice) => productPrice.fold(
+  // double sumPrice(List<Product> productPrice) => productPrice.fold(
   //     0, (previousValue, element) => previousValue + newtotal(element));
 
-  // double newtotaQTYl(ItemSelect orders) =>
+  // double newtotaQTYl(Product orders) =>
   //     double.parse((orders.qty).toString());
 
-  // double sumQTY(List<ItemSelect> productPrice) => productPrice.fold(
+  // double sumQTY(List<Product> productPrice) => productPrice.fold(
   //     0, (previousValue, element) => previousValue + newtotaQTYl(element));
 
   Branch? sizeValue;
@@ -986,21 +995,40 @@ class _HomePageState extends State<HomePage> {
                                     ))),
 
                             /// โช สินค้า
-                            // GestureDetector(
-                            //   onTap: () async {
-                            //     final listItem2 = await showDialog(
-                            //         context: context,
-                            //         builder: (context) {
-                            //           return GridCoffee();
-                            //         });
+                            SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 0.01,
+                                    width: 0.01,
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        final listItem2 = await showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return GridCoffee(
+                                                qty: qty,
+                                                gridCoffee: [],
+                                                onChange: (value) {
+                                                  inspect(value);
+                                                },
+                                              );
+                                            });
 
-                            //     if (listItem2 != null) {
-                            //       setState(() {});
-                            //     }
-                            //   },
-                            // )
+                                        if (listItem2 != null) {
+                                          setState(() {
+                                            selectedItem.add(listItem2["item"]);
+                                            inspect(selectedItem);
+                                          });
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                             SizedBox(
-                              height: size.height * 0.001,
+                              height: size.height * 0.01,
                             ),
                             selectedItem.isEmpty
                                 ? SizedBox.shrink()
@@ -1028,46 +1056,46 @@ class _HomePageState extends State<HomePage> {
                                                     children: [
                                                       InkWell(
                                                         onTap: () {
-                                                          if (selectedItem[
-                                                                      index]
-                                                                  .qty! >
-                                                              1) {
-                                                            setState(() {
-                                                              selectedItem[
-                                                                          index]
-                                                                      .qty =
-                                                                  selectedItem[
-                                                                              index]
-                                                                          .qty! -
-                                                                      1;
-                                                              final price = selectedItem[
-                                                                              index]
-                                                                          .size ==
-                                                                      0
-                                                                  ? selectedItem[
-                                                                              index]
-                                                                          .priceS! *
-                                                                      selectedItem[
-                                                                              index]
-                                                                          .qty!
-                                                                  : selectedItem[index]
-                                                                              .size ==
-                                                                          1
-                                                                      ? selectedItem[index]
-                                                                              .priceM! *
-                                                                          selectedItem[index]
-                                                                              .qty!
-                                                                      : selectedItem[index]
-                                                                              .priceL! *
-                                                                          selectedItem[index]
-                                                                              .qty!;
+                                                          // if (selectedItem[
+                                                          //             index]
+                                                          //         .qty! >
+                                                          //     1) {
+                                                          //   setState(() {
+                                                          //     selectedItem[
+                                                          //                 index]
+                                                          //             .qty =
+                                                          //         selectedItem[
+                                                          //                     index]
+                                                          //                 .qty! -
+                                                          //             1;
+                                                          //     final price = selectedItem[
+                                                          //                     index]
+                                                          //                 .size ==
+                                                          //             0
+                                                          //         ? selectedItem[
+                                                          //                     index]
+                                                          //                 .priceS! *
+                                                          //             selectedItem[
+                                                          //                     index]
+                                                          //                 .qty!
+                                                          //         : selectedItem[index]
+                                                          //                     .size ==
+                                                          //                 1
+                                                          //             ? selectedItem[index]
+                                                          //                     .priceM! *
+                                                          //                 selectedItem[index]
+                                                          //                     .qty!
+                                                          //             : selectedItem[index]
+                                                          //                     .priceL! *
+                                                          //                 selectedItem[index]
+                                                          //                     .qty!;
 
-                                                              selectedItem[
-                                                                          index]
-                                                                      .priceQTY =
-                                                                  price;
-                                                            });
-                                                          }
+                                                          //     selectedItem[
+                                                          //                 index]
+                                                          //             .priceQTY =
+                                                          //         price;
+                                                          //   });
+                                                          // }
                                                         },
                                                         child: Container(
                                                           width:
@@ -1090,45 +1118,45 @@ class _HomePageState extends State<HomePage> {
                                                         width: 10,
                                                       ),
                                                       Text(
-                                                          "${selectedItem[index].qty}"),
+                                                          "${selectedItem[index].code}"),
                                                       SizedBox(
                                                         width: 10,
                                                       ),
                                                       InkWell(
                                                         onTap: () {
                                                           setState(() {
-                                                            selectedItem[index]
-                                                                    .qty =
-                                                                selectedItem[
-                                                                            index]
-                                                                        .qty! +
-                                                                    1;
-                                                            final price = selectedItem[
-                                                                            index]
-                                                                        .size ==
-                                                                    0
-                                                                ? selectedItem[
-                                                                            index]
-                                                                        .priceS! *
-                                                                    selectedItem[
-                                                                            index]
-                                                                        .qty!
-                                                                : selectedItem[
-                                                                                index]
-                                                                            .size ==
-                                                                        1
-                                                                    ? selectedItem[index]
-                                                                            .priceM! *
-                                                                        selectedItem[index]
-                                                                            .qty!
-                                                                    : selectedItem[index]
-                                                                            .priceL! *
-                                                                        selectedItem[index]
-                                                                            .qty!;
-                                                            inspect(price);
-                                                            selectedItem[index]
-                                                                    .priceQTY =
-                                                                price;
+                                                            // selectedItem[index]
+                                                            //         .qty =
+                                                            //     selectedItem[
+                                                            //                 index]
+                                                            //             .qty! +
+                                                            //         1;
+                                                            // final price = selectedItem[
+                                                            //                 index]
+                                                            //             .size ==
+                                                            //         0
+                                                            //     ? selectedItem[
+                                                            //                 index]
+                                                            //             .priceS! *
+                                                            //         selectedItem[
+                                                            //                 index]
+                                                            //             .qty!
+                                                            //     : selectedItem[
+                                                            //                     index]
+                                                            //                 .size ==
+                                                            //             1
+                                                            //         ? selectedItem[index]
+                                                            //                 .priceM! *
+                                                            //             selectedItem[index]
+                                                            //                 .qty!
+                                                            //         : selectedItem[index]
+                                                            //                 .priceL! *
+                                                            //             selectedItem[index]
+                                                            //                 .qty!;
+                                                            // inspect(price);
+                                                            // selectedItem[index]
+                                                            //         .priceQTY =
+                                                            //     price;
                                                           });
                                                         },
                                                         child: Container(
@@ -1152,43 +1180,43 @@ class _HomePageState extends State<HomePage> {
                                                   ),
                                                 ],
                                               ),
-                                              selectedItem[index].type ==
-                                                      "เครื่องดื่ม"
-                                                  ? Row(
-                                                      children: [
-                                                        Text(
-                                                          'ขนาด',
-                                                          style: TextStyle(
-                                                              fontSize: 14,
-                                                              fontFamily:
-                                                                  'IBMPlexSansThai',
-                                                              color: Color(
-                                                                  0xFF455A64)),
-                                                        ),
-                                                        SizedBox(
-                                                          width:
-                                                              size.width * 0.01,
-                                                        ),
-                                                        Text(
-                                                          selectedItem[index]
-                                                                      .size ==
-                                                                  0
-                                                              ? 'S'
-                                                              : selectedItem[index]
-                                                                          .size ==
-                                                                      1
-                                                                  ? 'M'
-                                                                  : "L",
-                                                          style: TextStyle(
-                                                              fontSize: 14,
-                                                              fontFamily:
-                                                                  'IBMPlexSansThai',
-                                                              color: Color(
-                                                                  0xFF455A64)),
-                                                        )
-                                                      ],
-                                                    )
-                                                  : SizedBox.shrink(),
+                                              // selectedItem[index].type ==
+                                              //         "เครื่องดื่ม"
+                                              //     ? Row(
+                                              //         children: [
+                                              //           Text(
+                                              //             'ขนาด',
+                                              //             style: TextStyle(
+                                              //                 fontSize: 14,
+                                              //                 fontFamily:
+                                              //                     'IBMPlexSansThai',
+                                              //                 color: Color(
+                                              //                     0xFF455A64)),
+                                              //           ),
+                                              //           SizedBox(
+                                              //             width:
+                                              //                 size.width * 0.01,
+                                              //           ),
+                                              //           Text(
+                                              //             selectedItem[index]
+                                              //                         .size ==
+                                              //                     0
+                                              //                 ? 'S'
+                                              //                 : selectedItem[index]
+                                              //                             .size ==
+                                              //                         1
+                                              //                     ? 'M'
+                                              //                     : "L",
+                                              //             style: TextStyle(
+                                              //                 fontSize: 14,
+                                              //                 fontFamily:
+                                              //                     'IBMPlexSansThai',
+                                              //                 color: Color(
+                                              //                     0xFF455A64)),
+                                              //           )
+                                              //         ],
+                                              //       )
+                                              //     : SizedBox.shrink(),
                                               Row(
                                                 children: [
                                                   Text(
@@ -1208,65 +1236,66 @@ class _HomePageState extends State<HomePage> {
                                                         .spaceBetween,
                                                 children: [
                                                   Text(
-                                                    selectedItem[index].size ==
-                                                            0
-                                                        ? selectedItem[index]
-                                                            .priceS!
-                                                            .toStringAsFixed(2)
-                                                        : selectedItem[index]
-                                                                    .size ==
-                                                                1
-                                                            ? selectedItem[
-                                                                    index]
-                                                                .priceM!
-                                                                .toStringAsFixed(
-                                                                    2)
-                                                            : selectedItem[
-                                                                    index]
-                                                                .priceL!
-                                                                .toStringAsFixed(
-                                                                    2),
+                                                    'vxcvx',
+                                                    // selectedItem[index].size ==
+                                                    //         0
+                                                    //     ? selectedItem[index]
+                                                    //         .priceS!
+                                                    //         .toStringAsFixed(2)
+                                                    //     : selectedItem[index]
+                                                    //                 .size ==
+                                                    //             1
+                                                    //         ? selectedItem[
+                                                    //                 index]
+                                                    //             .priceM!
+                                                    //             .toStringAsFixed(
+                                                    //                 2)
+                                                    //         : selectedItem[
+                                                    //                 index]
+                                                    //             .priceL!
+                                                    //             .toStringAsFixed(
+                                                    //                 2),
                                                   ),
-                                                  selectedItem[index]
-                                                              .priceQTY ==
-                                                          0
-                                                      ? Text(
-                                                          selectedItem[index]
-                                                                      .size ==
-                                                                  0
-                                                              ? selectedItem[
-                                                                      index]
-                                                                  .priceS!
-                                                                  .toStringAsFixed(
-                                                                      2)
-                                                              : selectedItem[index]
-                                                                          .size ==
-                                                                      1
-                                                                  ? selectedItem[
-                                                                          index]
-                                                                      .priceM!
-                                                                      .toStringAsFixed(
-                                                                          2)
-                                                                  : selectedItem[
-                                                                          index]
-                                                                      .priceL!
-                                                                      .toStringAsFixed(
-                                                                          2),
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        )
-                                                      : Text(
-                                                          selectedItem[index]
-                                                              .priceQTY!
-                                                              .toStringAsFixed(
-                                                                  2),
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
+                                                  // selectedItem[index]
+                                                  //             .priceQTY ==
+                                                  //         0
+                                                  //     ? Text(
+                                                  //         selectedItem[index]
+                                                  //                     .size ==
+                                                  //                 0
+                                                  //             ? selectedItem[
+                                                  //                     index]
+                                                  //                 .priceS!
+                                                  //                 .toStringAsFixed(
+                                                  //                     2)
+                                                  //             : selectedItem[index]
+                                                  //                         .size ==
+                                                  //                     1
+                                                  //                 ? selectedItem[
+                                                  //                         index]
+                                                  //                     .priceM!
+                                                  //                     .toStringAsFixed(
+                                                  //                         2)
+                                                  //                 : selectedItem[
+                                                  //                         index]
+                                                  //                     .priceL!
+                                                  //                     .toStringAsFixed(
+                                                  //                         2),
+                                                  //         style: TextStyle(
+                                                  //             fontWeight:
+                                                  //                 FontWeight
+                                                  //                     .bold),
+                                                  //       )
+                                                  //     : Text(
+                                                  //         selectedItem[index]
+                                                  //             .priceQTY!
+                                                  //             .toStringAsFixed(
+                                                  //                 2),
+                                                  //         style: TextStyle(
+                                                  //             fontWeight:
+                                                  //                 FontWeight
+                                                  //                     .bold),
+                                                  //       ),
                                                 ],
                                               ),
                                               Divider()
@@ -1311,12 +1340,13 @@ class _HomePageState extends State<HomePage> {
                                               fontFamily: 'IBMPlexSansThai',
                                               color: Color(0xFF424242)),
                                         ),
-                                        // Text(
-                                        //   '${sumQTY(selectedItem)} ชิ้น',
-                                        //   style: TextStyle(
-                                        //     fontFamily: 'IBMPlexSansThai',
-                                        //   ),
-                                        // )
+                                        Text(
+                                          '',
+                                          // '${sumQTY(selectedItem)} ชิ้น',
+                                          style: TextStyle(
+                                            fontFamily: 'IBMPlexSansThai',
+                                          ),
+                                        )
                                       ],
                                     ),
                                     Row(
@@ -1329,12 +1359,13 @@ class _HomePageState extends State<HomePage> {
                                               fontFamily: 'IBMPlexSansThai',
                                               color: Color(0xFF424242)),
                                         ),
-                                        // Text(
-                                        //   '${sumPrice(selectedItem)} ฿',
-                                        //   style: TextStyle(
-                                        //     fontFamily: 'IBMPlexSansThai',
-                                        //   ),
-                                        // )
+                                        Text(
+                                          '',
+                                          // '${sumPrice(selectedItem)} ฿',
+                                          style: TextStyle(
+                                            fontFamily: 'IBMPlexSansThai',
+                                          ),
+                                        )
                                       ],
                                     ),
                                     Row(
@@ -1366,12 +1397,13 @@ class _HomePageState extends State<HomePage> {
                                               fontFamily: 'IBMPlexSansThai',
                                               color: Color(0xFF424242)),
                                         ),
-                                        // Text(
-                                        //   "${sumPrice(selectedItem)} ฿",
-                                        //   style: TextStyle(
-                                        //     fontFamily: 'IBMPlexSansThai',
-                                        //   ),
-                                        // )
+                                        Text(
+                                          '',
+                                          // "${sumPrice(selectedItem)} ฿",
+                                          style: TextStyle(
+                                            fontFamily: 'IBMPlexSansThai',
+                                          ),
+                                        )
                                       ],
                                     ),
                                     SizedBox(
@@ -1469,23 +1501,25 @@ class _HomePageState extends State<HomePage> {
                                                 builder: (context) =>
                                                     PaymentCash(
                                                       selectedItem: [],
+                                                      sumPrice: '',
+                                                      sumQTY: '',
                                                     )));
                                         // selectedItem.isNotEmpty
-                                        // ? Navigator.push(
-                                        //     context,
-                                        //     MaterialPageRoute(
-                                        //         builder: (context) =>
-                                        //             PaymentCash(
-                                        //               selectedItem:
-                                        //                   selectedItem,
-                                        //               sumPrice: sumPrice(
-                                        //                       selectedItem)
-                                        //                   .toString(),
-                                        //               sumQTY: sumQTY(
-                                        //                       selectedItem)
-                                        //                   .toString(),
-                                        //             )))
-                                        // : null;
+                                        //     ? Navigator.push(
+                                        //         context,
+                                        //         MaterialPageRoute(
+                                        //             builder: (context) =>
+                                        //                 PaymentCash(
+                                        //                   selectedItem:
+                                        //                       selectedItem,
+                                        //                   sumPrice: sumPrice(
+                                        //                           selectedItem)
+                                        //                       .toString(),
+                                        //                   sumQTY: sumQTY(
+                                        //                           selectedItem)
+                                        //                       .toString(),
+                                        //                 )))
+                                        //     : null;
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(

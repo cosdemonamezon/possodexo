@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:possodexo/constants.dart';
 import 'package:possodexo/models/branch.dart';
 import 'package:possodexo/models/category.dart';
+import 'package:possodexo/models/payment.dart';
 import 'package:possodexo/models/product.dart';
 
 class ProductApi {
@@ -49,6 +50,22 @@ class ProductApi {
       final data = convert.jsonDecode(response.body);
       final list = data as List;
       return list.map((e) => Branch.fromJson(e)).toList();
+    } else {
+      final data = convert.jsonDecode(response.body);
+      throw Exception(data['message']);
+    }
+  }
+
+  //เรียกดูข้อมูล payment
+  static Future<List<Payment>> getPayment() async {
+    final url = Uri.https(publicUrl, '/api/payment-method');
+    final response = await http.get(
+      url,
+    );
+    if (response.statusCode == 200) {
+      final data = convert.jsonDecode(response.body);
+      final list = data as List;
+      return list.map((e) => Payment.fromJson(e)).toList();
     } else {
       final data = convert.jsonDecode(response.body);
       throw Exception(data['message']);

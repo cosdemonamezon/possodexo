@@ -59,6 +59,7 @@ dev_dependencies:
   # คำสั่งในการสร้างโมเดล --->  flutter pub run build_runner build --delete-conflicting-outputs
   # คำสั่งในการสร้างโมเดล ---> dart run build_runner build
   flutter_lints: ^2.0.0
+  timer_count_down: ^2.2.0
   
 
 # For information on the generic Dart part of this file, see the
