@@ -9,6 +9,7 @@ import 'package:possodexo/home/widgets/OpenAndCloseSwitch.dart';
 import 'package:possodexo/payment/widgets/Discount.dart';
 import 'package:possodexo/payment/widgets/GiftVoucherwidgets.dart';
 import 'package:possodexo/payment/widgets/OtherDiscountsWidgets.dart';
+import 'package:possodexo/payment/widgets/Proceedpayment.dart';
 import 'package:possodexo/payment/widgets/Redeempointswidget.dart';
 
 import 'package:possodexo/payment/widgets/numbercel.dart';
@@ -795,18 +796,26 @@ class _PaymentCashState extends State<PaymentCash> {
                           SizedBox(
                             height: size.height * 0.5,
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                color: Color(0xff4CAF50)),
-                            height: size.height * 0.095,
-                            width: double.infinity,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Text(
-                                  "ยืนยันชำระเงิน",
-                                  style: TextStyle(color: Colors.white),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Proceedpayment()));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: Color(0xff4CAF50)),
+                              height: size.height * 0.095,
+                              width: double.infinity,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Center(
+                                  child: Text(
+                                    "ยืนยันชำระเงิน",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                 ),
                               ),
                             ),
