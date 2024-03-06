@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:possodexo/constants.dart';
 
 class Proceedpayment extends StatefulWidget {
@@ -14,7 +15,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 5), () {
+    Future.delayed(Duration(seconds: 10), () {
       setState(() {
         _showAlternativeBody = true;
       });
@@ -33,23 +34,29 @@ class _ProceedpaymentState extends State<Proceedpayment> {
           scale: 7,
         ),
         centerTitle: true,
-        leading: Row(
-          children: [
-            IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(
-                Icons.arrow_back_ios,
-                size: 23,
-                color: Colors.white,
+        leading: SizedBox(
+          width: size.width * 0.1,
+          height: AppBar().preferredSize.height,
+          child: Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  size: 23,
+                  color: Colors.white,
+                ),
               ),
-            ),
-            Text(
-              'กลับ',
-              style: TextStyle(fontSize: 20, color: Colors.white),
-            ),
-          ],
+              Expanded(
+                child: Text(
+                  'กลับ',
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       body: Container(
@@ -73,7 +80,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
         height: size.height * 0.65,
         width: size.width * 0.3,
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(8)),
+            color: Colors.white, borderRadius: BorderRadius.circular(10)),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
@@ -159,7 +166,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
         height: size.height * 0.5,
         width: size.width * 0.3,
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(8)),
+            color: Colors.white, borderRadius: BorderRadius.circular(10)),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(

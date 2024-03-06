@@ -402,7 +402,6 @@ class _PaymentCashState extends State<PaymentCash> {
                                                         onChanged: (value) {
                                                           setState(() {
                                                             open = value;
-                                                            print(open);
                                                           });
                                                         },
                                                       ),
