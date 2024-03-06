@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:possodexo/home/homePage.dart';
 import 'package:possodexo/home/widgets/OpenAndCloseSwitch.dart';
+import 'package:possodexo/payment/widgets/Addpayment.dart';
 import 'package:possodexo/payment/widgets/Discount.dart';
 import 'package:possodexo/payment/widgets/GiftVoucherwidgets.dart';
 import 'package:possodexo/payment/widgets/OtherDiscountsWidgets.dart';
@@ -59,6 +60,20 @@ class _PaymentCashState extends State<PaymentCash> {
       selectedIndex = index;
     });
   }
+
+  String money = "เงินสด";
+  List<String> general2 = [
+    "เงินสด",
+    "บัตรเครดิต/เดบิต",
+    "QR Promptpay",
+    "True Money",
+    "LINE Pay",
+    "Transfer",
+    "Consignment",
+    "บัตรพนักงาน  ",
+    "แม่มณี",
+    "อื่นๆ"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -416,7 +431,19 @@ class _PaymentCashState extends State<PaymentCash> {
                                                 ? Column(
                                                     children: [
                                                       open == true
-                                                          ? SplitPayment()
+                                                          ? Addpayment(
+                                                              size: size,
+                                                              money: money,
+                                                              general2:
+                                                                  general2,
+                                                              seclecpayment:
+                                                                  (value) {
+                                                                setState(() {
+                                                                  money =
+                                                                      value!;
+                                                                });
+                                                              },
+                                                            )
                                                           : Column(
                                                               mainAxisAlignment:
                                                                   MainAxisAlignment
@@ -1136,8 +1163,8 @@ class _SplitPaymentState extends State<SplitPayment> {
         payment.add(
           Container(
             color: Colors.black,
-            width: 500,
-            height: 500,
+            width: size.width * 0.01,
+            height: size.height * 0.1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -1405,50 +1432,6 @@ class _SplitPaymentState extends State<SplitPayment> {
           )
         ],
       ),
-      SizedBox(
-        height: 10,
-      ),
     ]);
-  }
-}
-
-class NumberButton extends StatelessWidget {
-  final String number;
-  final double size;
-  final Color color;
-  final TextEditingController controller;
-  final Function() onPressed;
-
-  const NumberButton({
-    Key? key,
-    required this.number,
-    required this.size,
-    required this.color,
-    required this.controller,
-    required this.onPressed,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: size,
-      height: size,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: color,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(size / 2),
-          ),
-        ),
-        onPressed: onPressed,
-        child: Center(
-          child: Text(
-            number.toString(),
-            style: const TextStyle(
-                fontWeight: FontWeight.bold, color: Colors.black, fontSize: 25),
-          ),
-        ),
-      ),
-    );
   }
 }
