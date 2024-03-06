@@ -27,7 +27,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 70,
-        backgroundColor: Color(0xFF1B1B28), // เปลี่ยนสีพื้นหลังของ appBar
+        backgroundColor: Color(0xFF1B1B28),
         title: Image.asset(
           'assets/images/poslogo.png',
           scale: 7,
@@ -53,12 +53,10 @@ class _ProceedpaymentState extends State<Proceedpayment> {
         ),
       ),
       body: Container(
-        // ใช้ Container เพื่อเปลี่ยนสีพื้นหลังของ body
-        color: Color(0xFFF6F6F8), // เปลี่ยนสีพื้นหลังของ body
+        color: Color(0xFFF6F6F8),
         child: Center(
           child: AnimatedSwitcher(
-            // AnimatedSwitcher สำหรับทำให้การเปลี่ยน widget มีการเปลี่ยนแปลงแบบอนิเมชั่น
-            duration: Duration(seconds: 1), // กำหนดระยะเวลาในการทำอนิเมชั่น
+            duration: Duration(seconds: 1),
             child: _showAlternativeBody
                 ? _buildAlternativeBody()
                 : _buildDefaultBody(),
