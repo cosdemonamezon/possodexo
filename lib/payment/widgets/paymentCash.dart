@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:possodexo/home/homePage.dart';
 import 'package:possodexo/home/widgets/OpenAndCloseSwitch.dart';
+import 'package:possodexo/payment/widgets/Addpayment.dart';
 import 'package:possodexo/payment/widgets/Discount.dart';
 import 'package:possodexo/payment/widgets/GiftVoucherwidgets.dart';
 import 'package:possodexo/payment/widgets/OtherDiscountsWidgets.dart';
@@ -60,6 +61,20 @@ class _PaymentCashState extends State<PaymentCash> {
       selectedIndex = index;
     });
   }
+
+  String money = "เงินสด";
+  List<String> general2 = [
+    "เงินสด",
+    "บัตรเครดิต/เดบิต",
+    "QR Promptpay",
+    "True Money",
+    "LINE Pay",
+    "Transfer",
+    "Consignment",
+    "บัตรพนักงาน  ",
+    "แม่มณี",
+    "อื่นๆ"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -407,7 +422,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                                       ),
                                                     ],
                                                   )
-                                                : Row()),
+                                                : Row(
+                                                    // children: [Text("kub")],
+                                                    )),
                                         SizedBox(
                                           height: size.height * 0.01,
                                         ),
@@ -416,7 +433,19 @@ class _PaymentCashState extends State<PaymentCash> {
                                                 ? Column(
                                                     children: [
                                                       open == true
-                                                          ? SplitPayment()
+                                                          ? Addpayment(
+                                                              size: size,
+                                                              money: money,
+                                                              general2:
+                                                                  general2,
+                                                              seclecpayment:
+                                                                  (value) {
+                                                                setState(() {
+                                                                  money =
+                                                                      value!;
+                                                                });
+                                                              },
+                                                            )
                                                           : Column(
                                                               mainAxisAlignment:
                                                                   MainAxisAlignment
@@ -685,144 +714,160 @@ class _PaymentCashState extends State<PaymentCash> {
               ),
             ),
             selectedItem == 0
-                ? Column(
-                    children: [
-                      Container(
-                        height: size.height * 0.08,
-                        width: size.width * 0.25,
-                        decoration: BoxDecoration(color: Color(0xfffECEFF1)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Text(
-                            "เงินสด",
-                            style: TextStyle(fontSize: 23),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: size.height * 0.87,
-                        width: size.width * 0.25,
-                        padding: EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 245, 245, 245)),
-                        child: Column(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "รวม",
-                                  style: TextStyle(
-                                    fontFamily: 'IBMPlexSansThai',
-                                  ),
-                                ),
-                                // Text(
-                                //   '${widget.sumPrice} ฿',
-                                //   style: TextStyle(
-                                //     fontFamily: 'IBMPlexSansThai',
-                                //   ),
-                                // ),
-                              ],
-                            ),
-                          ),
-                          Divider(
-                            color: Color(0xfff78909C),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "ยอดชำระ",
-                                  style: TextStyle(
-                                    fontFamily: 'IBMPlexSansThai',
-                                  ),
-                                ),
-                                // Text(
-                                //   '${widget.sumPrice} ฿',
-                                //   style: TextStyle(
-                                //     fontFamily: 'IBMPlexSansThai',
-                                //   ),
-                                // ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "เงินทอน",
-                                  style: TextStyle(
-                                    fontFamily: 'IBMPlexSansThai',
-                                  ),
-                                ),
-                                Text(
-                                  '0.00 ฿',
-                                  style: TextStyle(
-                                    fontFamily: 'IBMPlexSansThai',
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "รวม",
-                                  style: TextStyle(
-                                    color: Colors.red,
-                                    fontFamily: 'IBMPlexSansThai',
-                                  ),
-                                ),
-                                // Text(
-                                //   '${widget.sumPrice} ฿',
-                                //   style: TextStyle(
-                                //     color: Colors.red,
-                                //     fontFamily: 'IBMPlexSansThai',
-                                //   ),
-                                // ),
-                              ],
-                            ),
-                          ),
-                          Divider(color: Color(0xfff78909C)),
-                          SizedBox(
-                            height: size.height * 0.5,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Proceedpayment()));
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: Color(0xff4CAF50)),
-                              height: size.height * 0.095,
-                              width: double.infinity,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Center(
+                ? open == true
+                    ? SizedBox.shrink()
+                    : Column(
+                        children: [
+                          Column(
+                            children: [
+                              Container(
+                                height: size.height * 0.08,
+                                width: size.width * 0.25,
+                                decoration:
+                                    BoxDecoration(color: Color(0xfffECEFF1)),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8),
                                   child: Text(
-                                    "ยืนยันชำระเงิน",
-                                    style: TextStyle(color: Colors.white),
+                                    "เงินสด",
+                                    style: TextStyle(fontSize: 23),
                                   ),
                                 ),
                               ),
-                            ),
+                              Container(
+                                height: size.height * 0.87,
+                                width: size.width * 0.25,
+                                padding: EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                    color: Color.fromARGB(255, 245, 245, 245)),
+                                child: Column(children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "รวม",
+                                          style: TextStyle(
+                                            fontFamily: 'IBMPlexSansThai',
+                                          ),
+                                        ),
+                                        // Text(
+                                        //   '${widget.sumPrice} ฿',
+                                        //   style: TextStyle(
+                                        //     fontFamily: 'IBMPlexSansThai',
+                                        //   ),
+                                        // ),
+                                      ],
+                                    ),
+                                  ),
+                                  Divider(
+                                    color: Color(0xfff78909C),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "ยอดชำระ",
+                                          style: TextStyle(
+                                            fontFamily: 'IBMPlexSansThai',
+                                          ),
+                                        ),
+                                        // Text(
+                                        //   '${widget.sumPrice} ฿',
+                                        //   style: TextStyle(
+                                        //     fontFamily: 'IBMPlexSansThai',
+                                        //   ),
+                                        // ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "เงินทอน",
+                                          style: TextStyle(
+                                            fontFamily: 'IBMPlexSansThai',
+                                          ),
+                                        ),
+                                        Text(
+                                          '0.00 ฿',
+                                          style: TextStyle(
+                                            fontFamily: 'IBMPlexSansThai',
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "รวม",
+                                          style: TextStyle(
+                                            color: Colors.red,
+                                            fontFamily: 'IBMPlexSansThai',
+                                          ),
+                                        ),
+                                        // Text(
+                                        //   '${widget.sumPrice} ฿',
+                                        //   style: TextStyle(
+                                        //     color: Colors.red,
+                                        //     fontFamily: 'IBMPlexSansThai',
+                                        //   ),
+                                        // ),
+                                      ],
+                                    ),
+                                  ),
+                                  Divider(color: Color(0xfff78909C)),
+                                  SizedBox(
+                                    height: size.height * 0.5,
+                                  ),
+                                  SizedBox(
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Proceedpayment()));
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            color: Color(0xff4CAF50)),
+                                        height: size.height * 0.095,
+                                        width: double.infinity,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Center(
+                                            child: Text(
+                                              "ยืนยันชำระเงิน",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ]),
+                              ),
+                            ],
                           ),
-                        ]),
-                      ),
-                    ],
-                  )
+                        ],
+                      )
                 : Column(
                     children: [
                       Container(
@@ -1144,8 +1189,8 @@ class _SplitPaymentState extends State<SplitPayment> {
         payment.add(
           Container(
             color: Colors.black,
-            width: 500,
-            height: 500,
+            width: size.width * 0.01,
+            height: size.height * 0.1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -1413,50 +1458,6 @@ class _SplitPaymentState extends State<SplitPayment> {
           )
         ],
       ),
-      SizedBox(
-        height: 10,
-      ),
     ]);
-  }
-}
-
-class NumberButton extends StatelessWidget {
-  final String number;
-  final double size;
-  final Color color;
-  final TextEditingController controller;
-  final Function() onPressed;
-
-  const NumberButton({
-    Key? key,
-    required this.number,
-    required this.size,
-    required this.color,
-    required this.controller,
-    required this.onPressed,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: size,
-      height: size,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: color,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(size / 2),
-          ),
-        ),
-        onPressed: onPressed,
-        child: Center(
-          child: Text(
-            number.toString(),
-            style: const TextStyle(
-                fontWeight: FontWeight.bold, color: Colors.black, fontSize: 25),
-          ),
-        ),
-      ),
-    );
   }
 }

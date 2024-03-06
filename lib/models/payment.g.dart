@@ -19,6 +19,7 @@ Payment _$PaymentFromJson(Map<String, dynamic> json) => Payment(
           : DateTime.parse(json['deletedAt'] as String),
       json['name'] as String?,
       json['type'] as String?,
+      json['icon'] as String?,
     );
 
 Map<String, dynamic> _$PaymentToJson(Payment instance) => <String, dynamic>{
@@ -28,4 +29,5 @@ Map<String, dynamic> _$PaymentToJson(Payment instance) => <String, dynamic>{
       'deletedAt': instance.deletedAt?.toIso8601String(),
       'name': instance.name,
       'type': instance.type,
+      'icon': instance.icon,
     };
