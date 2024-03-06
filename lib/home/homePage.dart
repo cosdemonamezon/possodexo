@@ -244,6 +244,15 @@ class _HomePageState extends State<HomePage> {
       inspect(e);
     }
   }
+
+  //ดึงข้อมูล Payment
+  Future<void> getListshiftt() async {
+    try {
+      await context.read<ProductController>().getListShift();
+    } on Exception catch (e) {
+      inspect(e);
+    }
+  }
   // double newtotal(
   //   Product orders,
   // ) {
