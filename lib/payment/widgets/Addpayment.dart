@@ -38,92 +38,153 @@ class _AddpaymentState extends State<Addpayment> {
               child: Column(
                 children: List.generate(
                   dataadd.length,
-                  (index) => Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Container(
-                        height: widget.size.height * 0.1,
-                        width: widget.size.width * 0.13,
-                        decoration: BoxDecoration(
-                            border:
-                                Border(bottom: BorderSide(color: Colors.grey)),
-                            borderRadius: BorderRadius.circular(2),
-                            color: Color(0xFFFFFAFAFA)),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Opacity(
-                              opacity: 0.5,
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 5, top: 3),
-                                child: Text(
-                                  'วิธีการชำระเงิน',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: 'IBMPlexSansThai',
+                  (index) => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          height: widget.size.height * 0.1,
+                          width: widget.size.width * 0.13,
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(color: Colors.grey)),
+                              borderRadius: BorderRadius.circular(2),
+                              color: Color(0xFFFFFAFAFA)),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Opacity(
+                                opacity: 0.5,
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 5, top: 3),
+                                  child: Text(
+                                    'วิธีการชำระเงิน',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontFamily: 'IBMPlexSansThai',
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              height: widget.size.height * 0.06,
-                              width: widget.size.width * 0.2,
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton<String>(
-                                  isExpanded: true,
-                                  items: widget.general2
-                                      .map((String item) =>
-                                          DropdownMenuItem<String>(
-                                            value: item,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 1.0),
+                              SizedBox(
+                                height: widget.size.height * 0.06,
+                                width: widget.size.width * 0.2,
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton<String>(
+                                    isExpanded: true,
+                                    items: widget.general2
+                                        .map((String item) =>
+                                            DropdownMenuItem<String>(
+                                              value: item,
                                               child: Padding(
                                                 padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  item,
-                                                  style: const TextStyle(
-                                                    fontSize: 16,
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 1.0),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    item,
+                                                    style: const TextStyle(
+                                                      fontSize: 16,
+                                                    ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                          ))
-                                      .toList(),
-                                  value: widget.money,
-                                  onChanged: widget.seclecpayment,
-                                  underline: SizedBox(),
-                                  dropdownColor: Colors.white,
+                                            ))
+                                        .toList(),
+                                    value: widget.money,
+                                    onChanged: widget.seclecpayment,
+                                    underline: SizedBox(),
+                                    dropdownColor: Colors.white,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        height: widget.size.height * 0.1,
-                        width: widget.size.width * 0.13,
-                        decoration: BoxDecoration(
-                            border:
-                                Border(bottom: BorderSide(color: Colors.grey)),
-                            borderRadius: BorderRadius.circular(2),
-                            color: Color(0xFFFFFAFAFA)),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 10),
+                        Container(
+                          height: widget.size.height * 0.1,
+                          width: widget.size.width * 0.13,
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(color: Colors.grey)),
+                              borderRadius: BorderRadius.circular(2),
+                              color: Color(0xFFFFFAFAFA)),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Opacity(
+                                      opacity: 0.5,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(top: 3),
+                                        child: Text(
+                                          'วิธีการชำระเงิน',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontFamily: 'IBMPlexSansThai',
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "฿",
+                                      style: TextStyle(fontSize: 25),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 5, left: 10),
+                                      child: SizedBox(
+                                        width: widget.size.width * 0.09,
+                                        child: TextFormField(
+                                          decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                          ),
+                                          validator: (selectedItem) {
+                                            if (selectedItem == '') {}
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
+                          height: widget.size.height * 0.1,
+                          width: widget.size.width * 0.13,
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(color: Colors.grey)),
+                              borderRadius: BorderRadius.circular(2),
+                              color: Color(0xFFFFFAFAFA)),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Opacity(
                                     opacity: 0.5,
                                     child: Padding(
-                                      padding: const EdgeInsets.only(top: 3),
+                                      padding: const EdgeInsets.only(
+                                          top: 3, left: 10),
                                       child: Text(
-                                        'วิธีการชำระเงิน',
+                                        'หมายเหตุ',
                                         style: TextStyle(
                                           fontSize: 12,
                                           fontFamily: 'IBMPlexSansThai',
@@ -133,82 +194,26 @@ class _AddpaymentState extends State<Addpayment> {
                                   ),
                                 ],
                               ),
-                              Row(
-                                children: [
-                                  Text(
-                                    "฿",
-                                    style: TextStyle(fontSize: 25),
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(top: 5, left: 10),
-                                    child: SizedBox(
-                                      width: widget.size.width * 0.09,
-                                      child: TextFormField(
-                                        decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                        ),
-                                        validator: (selectedItem) {
-                                          if (selectedItem == '') {}
-                                        },
-                                      ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 5, left: 10),
+                                child: SizedBox(
+                                  width: widget.size.width * 0.5,
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
                                     ),
+                                    validator: (selectedItem) {
+                                      if (selectedItem == '') {}
+                                    },
                                   ),
-                                ],
+                                ),
                               ),
                             ],
                           ),
                         ),
-                      ),
-                      Container(
-                        height: widget.size.height * 0.1,
-                        width: widget.size.width * 0.13,
-                        decoration: BoxDecoration(
-                            border:
-                                Border(bottom: BorderSide(color: Colors.grey)),
-                            borderRadius: BorderRadius.circular(2),
-                            color: Color(0xFFFFFAFAFA)),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Opacity(
-                                  opacity: 0.5,
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsets.only(top: 3, left: 10),
-                                    child: Text(
-                                      'หมายเหตุ',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontFamily: 'IBMPlexSansThai',
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5, left: 10),
-                              child: SizedBox(
-                                width: widget.size.width * 0.5,
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                  ),
-                                  validator: (selectedItem) {
-                                    if (selectedItem == '') {}
-                                  },
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -275,11 +280,11 @@ class _AddpaymentState extends State<Addpayment> {
   }
 }
 
-class ListData extends StatelessWidget {
-  const ListData({super.key});
+// class ListData extends StatelessWidget {
+//   const ListData({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container();
+//   }
+// }
