@@ -39,14 +39,19 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ProductController()),
       ],
       child: MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-            fontFamily: 'IBMPlexSansThai',
-          ),
-          debugShowCheckedModeBanner: false,
-          home: LoginPage()),
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+          fontFamily: 'IBMPlexSansThai',
+        ),
+        debugShowCheckedModeBanner: false,
+        home: LoginPage(
+            // selectedItem: [],
+            // sumPrice: '',
+            // sumQTY: '',
+            ),
+      ),
     );
   }
 }
