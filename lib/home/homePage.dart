@@ -253,6 +253,7 @@ class _HomePageState extends State<HomePage> {
       inspect(e);
     }
   }
+
   // double newtotal(
   //   Product orders,
   // ) {
