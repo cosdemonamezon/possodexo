@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:possodexo/constants.dart';
 
-class Proceedpayment extends StatefulWidget {
-  const Proceedpayment({Key? key}) : super(key: key);
+class Proceedsplitpayments extends StatefulWidget {
+  const Proceedsplitpayments({super.key});
 
   @override
-  State<Proceedpayment> createState() => _ProceedpaymentState();
+  State<Proceedsplitpayments> createState() => _ProceedsplitpaymentsState();
 }
 
-class _ProceedpaymentState extends State<Proceedpayment> {
+class _ProceedsplitpaymentsState extends State<Proceedsplitpayments> {
   bool _showAlternativeBody = false;
 
   @override
@@ -93,7 +92,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                 scale: 10,
               ),
               Text(
-                'ดำเนินการชำระเงิน',
+                'แบ่งจ่ายลำดับที่  #1',
                 style: TextStyle(color: ktextColr, fontSize: 30),
               ),
               Text(
@@ -102,7 +101,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                     color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
               ),
               Text(
-                '243.00',
+                '100.00',
                 style: TextStyle(
                     color: Color.fromARGB(255, 18, 102, 227), fontSize: 52),
               ),
@@ -113,7 +112,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'ราคารวมเงิน',
+                    'จากยอดรวมทั้งหมด',
                     style: TextStyle(
                         color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
                   ),
@@ -127,30 +126,63 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'เงินทอน',
+                    'ยอดคงเหลือ',
                     style: TextStyle(
                         color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
                   ),
                   Text(
-                    '0.00 ฿',
+                    '143.00 ฿',
                     style: TextStyle(color: ktextColr, fontSize: 30),
                   ),
                 ],
               ),
-              Container(
-                width: size.width * 0.25,
-                height: size.height * 0.065,
-                decoration: BoxDecoration(
-                    color: Color(0xFF1264E3),
-                    borderRadius: BorderRadius.circular(8)),
-                child: Center(
-                  child: Text(
-                    textAlign: TextAlign.center,
-                    'รับเงินสำเร็จ',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: size.width * 0.13,
+                    height: size.height * 0.065,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: Color(0xFF1264E3))),
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/icons/penedit.png',
+                            scale: 35,
+                          ),
+                          SizedBox(
+                            width: size.width * 0.01,
+                          ),
+                          Text(
+                            textAlign: TextAlign.center,
+                            'แก้ไขวิธีการชำระเงิน',
+                            style: TextStyle(
+                                color: Color(0xFF1264E3), fontSize: 16),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              )
+                  Container(
+                    width: size.width * 0.13,
+                    height: size.height * 0.065,
+                    decoration: BoxDecoration(
+                        color: Color(0xFF1264E3),
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Center(
+                      child: Text(
+                        textAlign: TextAlign.center,
+                        'รับเงินเสร็จ',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
