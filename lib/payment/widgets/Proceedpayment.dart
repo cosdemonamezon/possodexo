@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:possodexo/constants.dart';
+import 'package:possodexo/home/homePage.dart';
 
 class Proceedpayment extends StatefulWidget {
   const Proceedpayment({Key? key}) : super(key: key);
@@ -63,9 +65,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
         child: Center(
           child: AnimatedSwitcher(
             duration: Duration(seconds: 1),
-            child: _showAlternativeBody
-                ? _buildAlternativeBody()
-                : _buildDefaultBody(),
+            child: _showAlternativeBody ? _buildAlternativeBody() : _buildDefaultBody(),
           ),
         ),
       ),
@@ -78,8 +78,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
       child: Container(
         height: size.height * 0.65,
         width: size.width * 0.3,
-        decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(10)),
+        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
@@ -98,13 +97,11 @@ class _ProceedpaymentState extends State<Proceedpayment> {
               ),
               Text(
                 'ประเภท : เงินสด',
-                style: TextStyle(
-                    color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
+                style: TextStyle(color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
               ),
               Text(
                 '243.00',
-                style: TextStyle(
-                    color: Color.fromARGB(255, 18, 102, 227), fontSize: 52),
+                style: TextStyle(color: Color.fromARGB(255, 18, 102, 227), fontSize: 52),
               ),
               Divider(
                 color: Color(0xFF78909C),
@@ -114,8 +111,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                 children: [
                   Text(
                     'ราคารวมเงิน',
-                    style: TextStyle(
-                        color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
+                    style: TextStyle(color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
                   ),
                   Text(
                     '243.00 ฿',
@@ -128,8 +124,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                 children: [
                   Text(
                     'เงินทอน',
-                    style: TextStyle(
-                        color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
+                    style: TextStyle(color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
                   ),
                   Text(
                     '0.00 ฿',
@@ -140,9 +135,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
               Container(
                 width: size.width * 0.25,
                 height: size.height * 0.065,
-                decoration: BoxDecoration(
-                    color: Color(0xFF1264E3),
-                    borderRadius: BorderRadius.circular(8)),
+                decoration: BoxDecoration(color: Color(0xFF1264E3), borderRadius: BorderRadius.circular(8)),
                 child: Center(
                   child: Text(
                     textAlign: TextAlign.center,
@@ -164,8 +157,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
       child: Container(
         height: size.height * 0.5,
         width: size.width * 0.3,
-        decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(10)),
+        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
@@ -181,16 +173,14 @@ class _ProceedpaymentState extends State<Proceedpayment> {
               ),
               Text(
                 'ประเภท : เงินสด',
-                style: TextStyle(
-                    color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
+                style: TextStyle(color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'ใบเสร็จ : ',
-                    style: TextStyle(
-                        color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
+                    style: TextStyle(color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
                   ),
                   Text(
                     'RM924022300002',
@@ -206,8 +196,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                 children: [
                   Text(
                     'ยอดชำระ',
-                    style: TextStyle(
-                        color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
+                    style: TextStyle(color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
                   ),
                   Text(
                     '243.00 ฿',
@@ -221,30 +210,30 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                   Container(
                     width: size.width * 0.13,
                     height: size.height * 0.065,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: Color(0xFF1264E3))),
+                    decoration:
+                        BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8), border: Border.all(color: Color(0xFF1264E3))),
                     child: Center(
                       child: Text(
                         textAlign: TextAlign.center,
                         'พิมใบเสร็จ',
-                        style:
-                            TextStyle(color: Color(0xFF1264E3), fontSize: 16),
+                        style: TextStyle(color: Color(0xFF1264E3), fontSize: 16),
                       ),
                     ),
                   ),
-                  Container(
-                    width: size.width * 0.13,
-                    height: size.height * 0.065,
-                    decoration: BoxDecoration(
-                        color: Color(0xFF1264E3),
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Center(
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        'เสร็จ',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                    },
+                    child: Container(
+                      width: size.width * 0.13,
+                      height: size.height * 0.065,
+                      decoration: BoxDecoration(color: Color(0xFF1264E3), borderRadius: BorderRadius.circular(8)),
+                      child: Center(
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          'เสร็จ',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
                       ),
                     ),
                   ),

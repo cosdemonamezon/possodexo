@@ -167,8 +167,7 @@ class _AddpaymentState extends State<Addpayment> {
                                     style: TextStyle(fontSize: 25),
                                   ),
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.only(top: 5, left: 10),
+                                    padding: const EdgeInsets.only(left: 10),
                                     child: SizedBox(
                                       width: widget.size.width * 0.09,
                                       child: TextFormField(
@@ -221,7 +220,7 @@ class _AddpaymentState extends State<Addpayment> {
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 5, left: 10),
+                              padding: const EdgeInsets.only(left: 10),
                               child: SizedBox(
                                 width: widget.size.width * 0.5,
                                 child: TextFormField(
