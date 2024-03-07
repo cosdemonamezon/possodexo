@@ -456,11 +456,34 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                       .start,
                                                               children: [
                                                                 Container(
-                                                                    height:
-                                                                        size.height *
-                                                                            0.2,
+                                                                    height: size
+                                                                            .height *
+                                                                        0.18,
                                                                     child:
                                                                         PaymentMethod()),
+                                                                Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  children: [
+                                                                    Text(
+                                                                      'ยอดชำระ',
+                                                                      style: TextStyle(
+                                                                          color: Color(
+                                                                              0xFF424242),
+                                                                          fontSize:
+                                                                              16),
+                                                                    ),
+                                                                    Text(
+                                                                      'ชำระทั้งหมด',
+                                                                      style: TextStyle(
+                                                                          color: Color(
+                                                                              0xFF1264E3),
+                                                                          fontSize:
+                                                                              16),
+                                                                    ),
+                                                                  ],
+                                                                ),
                                                                 Numbercel(),
                                                               ],
                                                             ),

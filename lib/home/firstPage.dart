@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:possodexo/home/homePage.dart';
 import 'package:possodexo/home/widgets/ItemMenuWidget.dart';
@@ -20,6 +21,8 @@ class _FirstPageState extends State<FirstPage> {
       case 'Menu':
         return Container();
       case 'History':
+        return Container();
+      case 'Setting':
         return Container();
 
       default:
@@ -97,6 +100,16 @@ class _FirstPageState extends State<FirstPage> {
                           title: 'ปิด/เปิด \n กะงาน',
                           image: 'assets/icons/Clock.png',
                           press: () => _setPage('History'),
+                        ),
+                        SizedBox(
+                          height: size.height * 0.13,
+                        ),
+                        ItemMenuWidget(
+                          pageActive: pageActive,
+                          menu: 'Setting',
+                          title: 'ตั้งค่า POS',
+                          image: 'assets/icons/Settinglogo.png',
+                          press: () => _setPage('Setting'),
                         ),
                       ],
                     ),
