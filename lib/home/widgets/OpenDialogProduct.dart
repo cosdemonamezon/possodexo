@@ -96,7 +96,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                                 widget.productmains.productAttribute[index]
                                         .name !=
                                     'Topping'
-                            ? InkWell(
+                            ? GestureDetector(
                                 onTap: () {
                                   print(index2);
                                   selectSize(index2);
