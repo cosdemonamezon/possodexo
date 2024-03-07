@@ -22,12 +22,12 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
       (json['stdprice'] as num?)?.toDouble(),
       (json['sellprice'] as num?)?.toDouble(),
       json['enableShot'] as bool,
-      (json['shotPrice'] as num?)?.toDouble(),
+      json['shotPrice'] as String?,
       json['category'] == null
           ? null
           : Category.fromJson(json['category'] as Map<String, dynamic>),
-      json['priceQTY'] as int?,
-      json['qty'] as int?,
+      qty: json['qty'] as int? ?? 1,
+      priceQTY: json['priceQTY'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{

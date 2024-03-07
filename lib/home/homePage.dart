@@ -59,7 +59,8 @@ class _HomePageState extends State<HomePage> {
   ];
   Category? sclectedProduct;
   List<Map<String, dynamic>> gridCoffees = [];
-
+  int? menuSize;
+  int? sizeprice;
   List<Widget> orders = [];
   void onTapProduct(int index) {
     setState(() {});
@@ -69,7 +70,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      getlistproduct();
+      //getlistproduct();
       getlistCategory();
       getlistBranch();
     });
@@ -78,20 +79,14 @@ class _HomePageState extends State<HomePage> {
       Card(
         surfaceTintColor: Colors.white,
         elevation: 2,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5.0),
-            side: BorderSide(color: kButtonColor)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0), side: BorderSide(color: kButtonColor)),
         child: SizedBox(
           width: 150,
           height: 45,
           child: Center(
               child: Text(
             'Order${(orders.length + 1).toString().padLeft(2, '0')}',
-            style: TextStyle(
-                color: kButtonColor,
-                fontFamily: 'IBMPlexSansThai',
-                fontSize: 16,
-                fontWeight: FontWeight.bold),
+            style: TextStyle(color: kButtonColor, fontFamily: 'IBMPlexSansThai', fontSize: 16, fontWeight: FontWeight.bold),
           )),
         ),
       ),
@@ -99,13 +94,13 @@ class _HomePageState extends State<HomePage> {
   }
 
 // ดึงข้อมูล product
-  Future<void> getlistproduct() async {
-    try {
-      await context.read<ProductController>().getProduct();
-    } on Exception catch (e) {
-      inspect(e);
-    }
-  }
+  // Future<void> getlistproduct() async {
+  //   try {
+  //     await context.read<ProductController>().getProduct();
+  //   } on Exception catch (e) {
+  //     inspect(e);
+  //   }
+  // }
 
   //ดึงข้อมูล Category
   Future<void> getlistCategory() async {
@@ -175,8 +170,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Consumer<ProductController>(
-        builder: (context, productController, child) {
+    return Consumer<ProductController>(builder: (context, productController, child) {
       final products = productController.products;
       return Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -259,15 +253,11 @@ class _HomePageState extends State<HomePage> {
                                 width: size.width * 0.04,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8),
-                                      border:
-                                          Border.all(color: Color(0xFF1264E3))),
+                                      color: Colors.white, borderRadius: BorderRadius.circular(8), border: Border.all(color: Color(0xFF1264E3))),
                                   child: PopupMenuButton(
                                     color: Colors.white,
                                     surfaceTintColor: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.zero),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
                                     icon: Icon(Icons.more_horiz),
                                     itemBuilder: (ctx) => [
                                       PopupMenuItem(
@@ -353,15 +343,10 @@ class _HomePageState extends State<HomePage> {
                                               Navigator.pop(context, true);
                                               orders.add(
                                                 Card(
-                                                  surfaceTintColor:
-                                                      Colors.white,
+                                                  surfaceTintColor: Colors.white,
                                                   elevation: 2,
                                                   shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5.0),
-                                                      side: BorderSide(
-                                                          color: kButtonColor)),
+                                                      borderRadius: BorderRadius.circular(5.0), side: BorderSide(color: kButtonColor)),
                                                   child: SizedBox(
                                                     width: size.width * 0.1,
                                                     height: size.height * 0.06,
@@ -370,11 +355,9 @@ class _HomePageState extends State<HomePage> {
                                                       'Order${(orders.length + 1).toString().padLeft(2, '0')}',
                                                       style: TextStyle(
                                                           color: kButtonColor,
-                                                          fontFamily:
-                                                              'IBMPlexSansThai',
+                                                          fontFamily: 'IBMPlexSansThai',
                                                           fontSize: 16,
-                                                          fontWeight:
-                                                              FontWeight.bold),
+                                                          fontWeight: FontWeight.bold),
                                                     )),
                                                   ),
                                                 ),
@@ -397,18 +380,14 @@ class _HomePageState extends State<HomePage> {
                                       child: Card(
                                         surfaceTintColor: Colors.white,
                                         elevation: 5,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5.0),
-                                            side: BorderSide(
-                                                color: kButtonColor)),
+                                        shape:
+                                            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0), side: BorderSide(color: kButtonColor)),
                                         color: Colors.white,
                                         child: SizedBox(
                                           width: size.width * 0.07,
                                           height: size.height * 0.06,
                                           child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                            mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
                                               Image.asset(
                                                 'assets/icons/add.png',
@@ -420,12 +399,7 @@ class _HomePageState extends State<HomePage> {
                                               Text(
                                                 'เพิ่ม',
                                                 style: TextStyle(
-                                                    color: kButtonColor,
-                                                    fontFamily:
-                                                        'IBMPlexSansThai',
-                                                    fontSize: 16,
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                                    color: kButtonColor, fontFamily: 'IBMPlexSansThai', fontSize: 16, fontWeight: FontWeight.bold),
                                               ),
                                             ],
                                           ),
@@ -448,8 +422,7 @@ class _HomePageState extends State<HomePage> {
                                       width: 20,
                                     ),
                                     DropdownButton<Category>(
-                                      selectedItemBuilder: (e) =>
-                                          product.map<Widget>((item) {
+                                      selectedItemBuilder: (e) => product.map<Widget>((item) {
                                         return Center(
                                           child: Text(
                                             item.name!,
@@ -464,9 +437,7 @@ class _HomePageState extends State<HomePage> {
                                         color: Colors.white,
                                       ),
                                       underline: SizedBox(),
-                                      items: product
-                                          .map<DropdownMenuItem<Category>>(
-                                              (item) {
+                                      items: product.map<DropdownMenuItem<Category>>((item) {
                                         return DropdownMenuItem<Category>(
                                           value: item,
                                           child: Text(
@@ -483,8 +454,7 @@ class _HomePageState extends State<HomePage> {
                                         setState(() {
                                           sclectedProduct = v;
 
-                                          gridCoffees =
-                                              gridCoffees.where((product) {
+                                          gridCoffees = gridCoffees.where((product) {
                                             if (v == 'ทั้งหมด') {
                                               return true;
                                             } else {
@@ -508,9 +478,12 @@ class _HomePageState extends State<HomePage> {
                                       qty: qty,
                                       gridCoffee: products,
                                       onChange: (value) {
-                                        inspect(value);
+                                        // inspect(value);
                                         final Product item = value["item"];
-                                        inspect(item);
+                                        menuSize = value["size"];
+                                        inspect(menuSize);
+                                        sizeprice = value["pricesize"];
+                                        inspect(sizeprice);
                                         item.code;
                                         // final item = Product(
                                         //   name: value['item']['name'],
@@ -592,9 +565,7 @@ class _HomePageState extends State<HomePage> {
                         Container(
                           width: size.width * 0.11,
                           height: size.height * 0.06,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: Colors.white),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Colors.white),
                           child: Padding(
                             padding: const EdgeInsets.all(2.0),
                             child: Row(
@@ -609,23 +580,17 @@ class _HomePageState extends State<HomePage> {
                                     height: size.height * 0.05,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
-                                      color: selectedIndex == 0
-                                          ? Colors.blue
-                                          : Color.fromARGB(255, 255, 255, 255),
+                                      color: selectedIndex == 0 ? Colors.blue : Color.fromARGB(255, 255, 255, 255),
                                     ),
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Text(
                                           "ทั่วไป",
                                           style: TextStyle(
                                             fontSize: 16,
                                             fontFamily: 'IBMPlexSansThai',
-                                            color: selectedIndex == 0
-                                                ? Color.fromARGB(
-                                                    255, 255, 255, 255)
-                                                : Colors.black,
+                                            color: selectedIndex == 0 ? Color.fromARGB(255, 255, 255, 255) : Colors.black,
                                           ),
                                         ),
                                       ],
@@ -641,23 +606,16 @@ class _HomePageState extends State<HomePage> {
                                     height: size.height * 0.05,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8),
-                                        color: selectedIndex == 1
-                                            ? Colors.blue
-                                            : Color.fromARGB(
-                                                255, 255, 255, 255)),
+                                        color: selectedIndex == 1 ? Colors.blue : Color.fromARGB(255, 255, 255, 255)),
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Text(
                                           "สมาชิก",
                                           style: TextStyle(
                                               fontSize: 16,
                                               fontFamily: 'IBMPlexSansThai',
-                                              color: selectedIndex == 1
-                                                  ? Color.fromARGB(
-                                                      255, 255, 255, 255)
-                                                  : Colors.black),
+                                              color: selectedIndex == 1 ? Color.fromARGB(255, 255, 255, 255) : Colors.black),
                                         ),
                                       ],
                                     ),
@@ -709,7 +667,6 @@ class _HomePageState extends State<HomePage> {
                         width: size.width * 1,
                         child: Column(
                           children: [
-                            Container(),
                             SizedBox(
                               height: size.height * 0.02,
                             ),
@@ -723,27 +680,21 @@ class _HomePageState extends State<HomePage> {
                                       padding: const EdgeInsets.all(6.0),
                                       child: Container(
                                         decoration: BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: Colors.grey)),
-                                            borderRadius:
-                                                BorderRadius.circular(2),
+                                            border: Border(bottom: BorderSide(color: Colors.grey)),
+                                            borderRadius: BorderRadius.circular(2),
                                             color: Color(0xFFFFFAFAFA)),
                                         child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Opacity(
                                               opacity: 0.5,
                                               child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 5, top: 3),
+                                                padding: const EdgeInsets.only(left: 5, top: 3),
                                                 child: Text(
                                                   'สัญชาติ',
                                                   style: TextStyle(
                                                     fontSize: 12,
-                                                    fontFamily:
-                                                        'IBMPlexSansThai',
+                                                    fontFamily: 'IBMPlexSansThai',
                                                   ),
                                                 ),
                                               ),
@@ -752,24 +703,15 @@ class _HomePageState extends State<HomePage> {
                                               child: DropdownButton<String>(
                                                 isExpanded: true,
                                                 items: nationality
-                                                    .map((String item) =>
-                                                        DropdownMenuItem<
-                                                            String>(
+                                                    .map((String item) => DropdownMenuItem<String>(
                                                           value: item,
                                                           child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .symmetric(
-                                                                    horizontal:
-                                                                        1.0),
+                                                            padding: const EdgeInsets.symmetric(horizontal: 1.0),
                                                             child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(8.0),
+                                                              padding: const EdgeInsets.all(8.0),
                                                               child: Text(
                                                                 item,
-                                                                style:
-                                                                    const TextStyle(
+                                                                style: const TextStyle(
                                                                   fontSize: 16,
                                                                 ),
                                                               ),
@@ -800,27 +742,21 @@ class _HomePageState extends State<HomePage> {
                                       padding: const EdgeInsets.all(6.0),
                                       child: Container(
                                         decoration: BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: Colors.grey)),
-                                            borderRadius:
-                                                BorderRadius.circular(2),
+                                            border: Border(bottom: BorderSide(color: Colors.grey)),
+                                            borderRadius: BorderRadius.circular(2),
                                             color: Color(0xFFFFFAFAFA)),
                                         child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Opacity(
                                               opacity: 0.5,
                                               child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 5, top: 3),
+                                                padding: const EdgeInsets.only(left: 5, top: 3),
                                                 child: Text(
                                                   'เพศ',
                                                   style: TextStyle(
                                                     fontSize: 12,
-                                                    fontFamily:
-                                                        'IBMPlexSansThai',
+                                                    fontFamily: 'IBMPlexSansThai',
                                                   ),
                                                 ),
                                               ),
@@ -829,24 +765,15 @@ class _HomePageState extends State<HomePage> {
                                               child: DropdownButton<String>(
                                                 isExpanded: true,
                                                 items: general
-                                                    .map((String item) =>
-                                                        DropdownMenuItem<
-                                                            String>(
+                                                    .map((String item) => DropdownMenuItem<String>(
                                                           value: item,
                                                           child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .symmetric(
-                                                                    horizontal:
-                                                                        1.0),
+                                                            padding: const EdgeInsets.symmetric(horizontal: 1.0),
                                                             child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(8.0),
+                                                              padding: const EdgeInsets.all(8.0),
                                                               child: Text(
                                                                 item,
-                                                                style:
-                                                                    const TextStyle(
+                                                                style: const TextStyle(
                                                                   fontSize: 16,
                                                                 ),
                                                               ),
@@ -883,8 +810,7 @@ class _HomePageState extends State<HomePage> {
                                       });
                                     },
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
@@ -898,38 +824,39 @@ class _HomePageState extends State<HomePage> {
                                     ))),
 
                             /// โช สินค้า
-                            SingleChildScrollView(
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 0.01,
-                                    width: 0.01,
-                                    child: GestureDetector(
-                                      onTap: () async {
-                                        final listItem2 = await showDialog(
-                                            context: context,
-                                            builder: (context) {
-                                              return GridCoffee(
-                                                qty: qty,
-                                                gridCoffee: [],
-                                                onChange: (value) {
-                                                  inspect(value);
-                                                },
-                                              );
-                                            });
+                            // SingleChildScrollView(
+                            //   child: Column(
+                            //     children: [
+                            //       SizedBox(
+                            //         height: 0.01,
+                            //         width: 0.01,
+                            //         child: GestureDetector(
+                            //           onTap: () async {
+                            //             // final listItem2 = await showDialog(
+                            //             //     context: context,
+                            //             //     builder: (context) {
+                            //             //       return GridCoffee(
+                            //             //         qty: qty,
+                            //             //         gridCoffee: [],
+                            //             //         onChange: (value) {
+                            //             //           // inspect(value);
+                            //             //         },
+                            //             //       );
+                            //             //     });
 
-                                        if (listItem2 != null) {
-                                          setState(() {
-                                            selectedItem.add(listItem2["item"]);
-                                            inspect(selectedItem);
-                                          });
-                                        }
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                            //             // if (listItem2 != null) {
+                            //             //   setState(() {
+                            //             //     selectedItem.add(listItem2["item"]);
+                            //             //     inspect(selectedItem);
+                            //             //   });
+                            //             // }
+                            //           },
+                            //         ),
+                            //       ),
+                            //     ],
+                            //   ),
+                            // ),
+
                             SizedBox(
                               height: size.height * 0.01,
                             ),
@@ -948,55 +875,27 @@ class _HomePageState extends State<HomePage> {
                                                 height: size.height * 0.01,
                                               ),
                                               Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Text(selectedItem[index]
-                                                          .name ??
-                                                      ''),
+                                                  Text(selectedItem[index].name ?? ''),
                                                   Row(
                                                     children: [
                                                       InkWell(
-                                                        // onTap: () {
-                                                        //   if (selectedItem[
-                                                        //               index]
-                                                        //           .qty! >
-                                                        //       1) {
-                                                        //     setState(() {
-                                                        //       selectedItem[
-                                                        //                   index]
-                                                        //               .qty =
-                                                        //           selectedItem[
-                                                        //                       index]
-                                                        //                   .qty! -
-                                                        //               1;
-                                                        //       final price = int.parse(
-                                                        //               selectedItem[
-                                                        //                       index]
-                                                        //                   .sellprice!) *
-                                                        //           selectedItem[
-                                                        //                   index]
-                                                        //               .qty!;
+                                                        onTap: () {
+                                                          if (selectedItem[index].qty >= 1) {
+                                                            setState(() {
+                                                              selectedItem[index].qty = selectedItem[index].qty - 1;
+                                                              final price =
+                                                                  int.parse(selectedItem[index].sellprice!.toString()) * selectedItem[index].qty;
 
-                                                        //       selectedItem[
-                                                        //                   index]
-                                                        //               .priceQTY =
-                                                        //           price;
-                                                        //     });
-                                                        //   }
-                                                        // },
+                                                              selectedItem[index].priceQTY = price;
+                                                            });
+                                                          }
+                                                        },
                                                         child: Container(
-                                                          width:
-                                                              size.width * 0.02,
+                                                          width: size.width * 0.02,
                                                           height: 30,
-                                                          decoration: BoxDecoration(
-                                                              color: Color(
-                                                                  0xFFCFD8DC),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          6)),
+                                                          decoration: BoxDecoration(color: Color(0xFFCFD8DC), borderRadius: BorderRadius.circular(6)),
                                                           child: Icon(
                                                             Icons.remove,
                                                             size: 15,
@@ -1006,78 +905,33 @@ class _HomePageState extends State<HomePage> {
                                                       SizedBox(
                                                         width: 10,
                                                       ),
-                                                      Text(
-                                                          "${selectedItem[index].qty ?? 1}"),
+                                                      Text("${selectedItem[index].qty ?? 1}"),
                                                       SizedBox(
                                                         width: 10,
                                                       ),
                                                       InkWell(
                                                         onTap: () {
                                                           // setState(() {
-                                                          //   selectedItem[index]
-                                                          //           .qty =
-                                                          //       selectedItem[
-                                                          //                   index]
-                                                          //               .qty ??
-                                                          //           1 + 1;
-                                                          //   final price = int.parse(
-                                                          //           selectedItem[
-                                                          //                   index]
-                                                          //               .sellprice!) *
-                                                          //       selectedItem[
-                                                          //               index]
-                                                          //           .qty!;
+                                                          //   selectedItem[index].qty = selectedItem[index].qty ?? 1 + 1;
+                                                          //   final price = int.parse(selectedItem[index]) * selectedItem[index].qty!;
 
-                                                          //   selectedItem[index]
-                                                          //           .priceQTY =
-                                                          //       price;
+                                                          //   selectedItem[index].priceQTY = price;
                                                           // });
                                                           // setState(() {
-                                                          //   selectedItem[index]
-                                                          //           .qty =
-                                                          //       selectedItem[
-                                                          //                   index]
-                                                          //               .qty! +
-                                                          //           1;
-                                                          //   final price = selectedItem[
-                                                          //                   index]
-                                                          //               .size ==
-                                                          //           0
-                                                          //       ? selectedItem[
-                                                          //                   index]
-                                                          //               .priceS! *
-                                                          //           selectedItem[
-                                                          //                   index]
-                                                          //               .qty!
-                                                          //       : selectedItem[
-                                                          //                       index]
-                                                          //                   .size ==
-                                                          //               1
-                                                          //           ? selectedItem[index]
-                                                          //                   .priceM! *
-                                                          //               selectedItem[index]
-                                                          //                   .qty!
-                                                          //           : selectedItem[index]
-                                                          //                   .priceL! *
-                                                          //               selectedItem[index]
-                                                          //                   .qty!;
+                                                          //   selectedItem[index].qty = selectedItem[index].qty! + 1;
+                                                          //   final price = selectedItem[index].sellprice == 0
+                                                          //       ? selectedItem[index].priceS! * selectedItem[index].qty!
+                                                          //       : selectedItem[index].size == 1
+                                                          //           ? selectedItem[index].priceM! * selectedItem[index].qty!
+                                                          //           : selectedItem[index].priceL! * selectedItem[index].qty!;
                                                           //   inspect(price);
-                                                          //   selectedItem[index]
-                                                          //           .priceQTY =
-                                                          //       price;
+                                                          //   selectedItem[index].priceQTY = price;
                                                           // });
                                                         },
                                                         child: Container(
-                                                          width:
-                                                              size.width * 0.02,
+                                                          width: size.width * 0.02,
                                                           height: 30,
-                                                          decoration: BoxDecoration(
-                                                              color: Color(
-                                                                  0xFFCFD8DC),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          6)),
+                                                          decoration: BoxDecoration(color: Color(0xFFCFD8DC), borderRadius: BorderRadius.circular(6)),
                                                           child: Icon(
                                                             Icons.add,
                                                             size: 15,
@@ -1088,39 +942,23 @@ class _HomePageState extends State<HomePage> {
                                                   ),
                                                 ],
                                               ),
-                                              // selectedItem[index].type ==
-                                              //         "เครื่องดื่ม"
+                                              // selectedItem[index].type == "เครื่องดื่ม"
                                               //     ? Row(
                                               //         children: [
                                               //           Text(
                                               //             'ขนาด',
-                                              //             style: TextStyle(
-                                              //                 fontSize: 14,
-                                              //                 fontFamily:
-                                              //                     'IBMPlexSansThai',
-                                              //                 color: Color(
-                                              //                     0xFF455A64)),
+                                              //             style: TextStyle(fontSize: 14, fontFamily: 'IBMPlexSansThai', color: Color(0xFF455A64)),
                                               //           ),
                                               //           SizedBox(
-                                              //             width:
-                                              //                 size.width * 0.01,
+                                              //             width: size.width * 0.01,
                                               //           ),
                                               //           Text(
-                                              //             selectedItem[index]
-                                              //                         .size ==
-                                              //                     0
+                                              //             selectedItem[index].size == 0
                                               //                 ? 'S'
-                                              //                 : selectedItem[index]
-                                              //                             .size ==
-                                              //                         1
+                                              //                 : selectedItem[index].size == 1
                                               //                     ? 'M'
                                               //                     : "L",
-                                              //             style: TextStyle(
-                                              //                 fontSize: 14,
-                                              //                 fontFamily:
-                                              //                     'IBMPlexSansThai',
-                                              //                 color: Color(
-                                              //                     0xFF455A64)),
+                                              //             style: TextStyle(fontSize: 14, fontFamily: 'IBMPlexSansThai', color: Color(0xFF455A64)),
                                               //           )
                                               //         ],
                                               //       )
@@ -1129,41 +967,14 @@ class _HomePageState extends State<HomePage> {
                                                 children: [
                                                   Text(
                                                     'โปรโมชั่น',
-                                                    style: TextStyle(
-                                                        fontSize: 14,
-                                                        fontFamily:
-                                                            'IBMPlexSansThai',
-                                                        color:
-                                                            Color(0xFF455A64)),
+                                                    style: TextStyle(fontSize: 14, fontFamily: 'IBMPlexSansThai', color: Color(0xFF455A64)),
                                                   ),
                                                 ],
                                               ),
                                               Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Text(
-                                                    'vxcvx',
-                                                    // selectedItem[index].size ==
-                                                    //         0
-                                                    //     ? selectedItem[index]
-                                                    //         .priceS!
-                                                    //         .toStringAsFixed(2)
-                                                    //     : selectedItem[index]
-                                                    //                 .size ==
-                                                    //             1
-                                                    //         ? selectedItem[
-                                                    //                 index]
-                                                    //             .priceM!
-                                                    //             .toStringAsFixed(
-                                                    //                 2)
-                                                    //         : selectedItem[
-                                                    //                 index]
-                                                    //             .priceL!
-                                                    //             .toStringAsFixed(
-                                                    //                 2),
-                                                  ),
+                                                  Text((selectedItem[index].sellprice ?? 0 + sizeprice!).toStringAsFixed(2)),
                                                   // selectedItem[index]
                                                   //             .priceQTY ==
                                                   //         0
@@ -1239,14 +1050,11 @@ class _HomePageState extends State<HomePage> {
                                       height: size.height * 0.01,
                                     ),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           "จำนวนสินค้า",
-                                          style: TextStyle(
-                                              fontFamily: 'IBMPlexSansThai',
-                                              color: Color(0xFF424242)),
+                                          style: TextStyle(fontFamily: 'IBMPlexSansThai', color: Color(0xFF424242)),
                                         ),
                                         Text(
                                           '',
@@ -1258,14 +1066,11 @@ class _HomePageState extends State<HomePage> {
                                       ],
                                     ),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           "รวม",
-                                          style: TextStyle(
-                                              fontFamily: 'IBMPlexSansThai',
-                                              color: Color(0xFF424242)),
+                                          style: TextStyle(fontFamily: 'IBMPlexSansThai', color: Color(0xFF424242)),
                                         ),
                                         Text(
                                           '',
@@ -1277,14 +1082,11 @@ class _HomePageState extends State<HomePage> {
                                       ],
                                     ),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           "ส่วนลด",
-                                          style: TextStyle(
-                                              fontFamily: 'IBMPlexSansThai',
-                                              color: Color(0xFF424242)),
+                                          style: TextStyle(fontFamily: 'IBMPlexSansThai', color: Color(0xFF424242)),
                                         ),
                                         Text(
                                           '0 ฿',
@@ -1296,14 +1098,11 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     Divider(),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           "ชำระทั้งหมด",
-                                          style: TextStyle(
-                                              fontFamily: 'IBMPlexSansThai',
-                                              color: Color(0xFF424242)),
+                                          style: TextStyle(fontFamily: 'IBMPlexSansThai', color: Color(0xFF424242)),
                                         ),
                                         Text(
                                           '',
@@ -1318,15 +1117,13 @@ class _HomePageState extends State<HomePage> {
                                       height: size.height * 0.02,
                                     ),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: [
                                         InkWell(
                                           onTap: () async {
                                             final statusD = await showDialog(
                                                 context: context,
-                                                builder: (context) =>
-                                                    TablePromotion(
+                                                builder: (context) => TablePromotion(
                                                       closeblack: () {
                                                         Navigator.pop(context);
                                                       },
@@ -1334,25 +1131,19 @@ class _HomePageState extends State<HomePage> {
                                             if (statusD == true) {}
                                           },
                                           child: Container(
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                                border: Border.all(
-                                                    color: Colors.black)),
+                                            decoration:
+                                                BoxDecoration(borderRadius: BorderRadius.circular(8), border: Border.all(color: Colors.black)),
                                             height: size.height * 0.05,
                                             width: size.width * 0.13,
                                             child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
+                                              padding: const EdgeInsets.all(8.0),
                                               child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
+                                                mainAxisAlignment: MainAxisAlignment.center,
                                                 children: [
                                                   Text(
                                                     "ดูโปรโมชั่น",
                                                     style: TextStyle(
-                                                      fontFamily:
-                                                          'IBMPlexSansThai',
+                                                      fontFamily: 'IBMPlexSansThai',
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -1371,8 +1162,7 @@ class _HomePageState extends State<HomePage> {
                                           onTap: () async {
                                             final statusD = await showDialog(
                                                 context: context,
-                                                builder: (context) =>
-                                                    Membership(
+                                                builder: (context) => Membership(
                                                       closeblack: () {
                                                         Navigator.pop(context);
                                                       },
@@ -1380,16 +1170,12 @@ class _HomePageState extends State<HomePage> {
                                             if (statusD == true) {}
                                           },
                                           child: Container(
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                                border: Border.all(
-                                                    color: Colors.black)),
+                                            decoration:
+                                                BoxDecoration(borderRadius: BorderRadius.circular(8), border: Border.all(color: Colors.black)),
                                             height: size.height * 0.05,
                                             width: size.width * 0.13,
                                             child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.center,
                                               children: [
                                                 Text("สมัครสมาชิก"),
                                               ],
@@ -1406,8 +1192,7 @@ class _HomePageState extends State<HomePage> {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) =>
-                                                    PaymentCash(
+                                                builder: (context) => PaymentCash(
                                                       selectedItem: [],
                                                       sumPrice: '',
                                                       sumQTY: '',
@@ -1431,8 +1216,7 @@ class _HomePageState extends State<HomePage> {
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
+                                            borderRadius: BorderRadius.circular(8),
                                             // color: selectedItem.isNotEmpty
                                             color: Colors.blue),
                                         height: size.height * 0.05,
@@ -1440,24 +1224,16 @@ class _HomePageState extends State<HomePage> {
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                            mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
                                               Opacity(
                                                 opacity: 0.8,
                                                 child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 5, top: 3),
+                                                  padding: const EdgeInsets.only(left: 5, top: 3),
                                                   child: Text(
                                                     'ชำระเงิน ',
                                                     style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 12,
-                                                        fontFamily:
-                                                            'IBMPlexSansThai',
-                                                        color: Colors.white
+                                                        fontWeight: FontWeight.bold, fontSize: 12, fontFamily: 'IBMPlexSansThai', color: Colors.white
                                                         // : Color.fromARGB(
                                                         //     110,
                                                         //     185,

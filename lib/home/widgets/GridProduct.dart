@@ -26,6 +26,11 @@ class GridCoffee extends StatefulWidget {
 
 class _GridCoffeeState extends State<GridCoffee> {
   int qty = 0;
+  @override
+  void initState() {
+    super.initState();
+    getproductMain(id: widget.gridCoffee[0].id);
+  }
 
 //ดึงขอมูล ProductMain
   Future<void> getproductMain({required int id}) async {
@@ -39,8 +44,7 @@ class _GridCoffeeState extends State<GridCoffee> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Consumer<ProductController>(
-        builder: (context, productController, child) {
+    return Consumer<ProductController>(builder: (context, productController, child) {
       final productmains = productController.productMain;
       return Padding(
         padding: const EdgeInsets.all(18.0),
@@ -80,15 +84,13 @@ class _GridCoffeeState extends State<GridCoffee> {
                       //   }
                       // }
 
-                      getproductMain(id: widget.gridCoffee[index].id);
-
-                      if (productmains!.name == "กาแฟ") {
+                      // await getproductMain(id: widget.gridCoffee[index].id);
+                      // if (!mounted) return;
+                      if (productmains?.name == "กาแฟ") {
                         final item = await showDialog(
                             context: context,
                             builder: (context) {
-                              return OpenDialogProduct(
-                                  productmains: productmains,
-                                  gridCoffee: widget.gridCoffee[index]);
+                              return OpenDialogProduct(productmains: productmains!, gridCoffee: widget.gridCoffee[index]);
                             });
                         if (item != null) {
                           // inspect(item);
@@ -97,8 +99,7 @@ class _GridCoffeeState extends State<GridCoffee> {
                       } else {
                         final item = await showDialog(
                           context: context,
-                          builder: (context) => OpenDialogDessert(
-                              gridCoffee: widget.gridCoffee[index]),
+                          builder: (context) => OpenDialogDessert(gridCoffee: widget.gridCoffee[index]),
                         );
                         if (item != null) {
                           // inspect(item);
@@ -121,20 +122,16 @@ class _GridCoffeeState extends State<GridCoffee> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
                                   padding: EdgeInsets.all(4),
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(4)),
-                                  child: widget.gridCoffee[index].sellprice !=
-                                          null
+                                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(4)),
+                                  child: widget.gridCoffee[index].sellprice != null
                                       ? Text(
-                                          widget.gridCoffee[index].sellprice!
-                                              .toString(),
+                                          widget.gridCoffee[index].sellprice!.toString(),
                                           style: TextStyle(
                                             fontFamily: 'IBMPlexSansThai',
                                           ),
                                         )
                                       : Text(
-                                          '',
+                                          '0.00',
                                           style: TextStyle(
                                             fontFamily: 'IBMPlexSansThai',
                                           ),
@@ -151,26 +148,21 @@ class _GridCoffeeState extends State<GridCoffee> {
                                       width: double.maxFinite,
                                       color: Color.fromARGB(60, 0, 0, 0),
                                       child: Center(
-                                          child:
-                                              widget.gridCoffee[index].name !=
-                                                      null
-                                                  ? Text(
-                                                      widget.gridCoffee[index]
-                                                          .name!,
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontFamily:
-                                                            'IBMPlexSansThai',
-                                                      ),
-                                                    )
-                                                  : Text(
-                                                      '',
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontFamily:
-                                                            'IBMPlexSansThai',
-                                                      ),
-                                                    )),
+                                          child: widget.gridCoffee[index].name != null
+                                              ? Text(
+                                                  widget.gridCoffee[index].name!,
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontFamily: 'IBMPlexSansThai',
+                                                  ),
+                                                )
+                                              : Text(
+                                                  '',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontFamily: 'IBMPlexSansThai',
+                                                  ),
+                                                )),
                                     ),
                                   ],
                                 ),

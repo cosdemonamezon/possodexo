@@ -14,10 +14,10 @@ class Product {
   final double? stdprice;
   final double? sellprice;
   final bool enableShot;
-  final double? shotPrice;
+  final String? shotPrice;
   final Category? category;
-  int? priceQTY = 0;
-  int? qty = 1;
+  int priceQTY;
+  int qty;
 
   Product(
     this.id,
@@ -30,13 +30,12 @@ class Product {
     this.sellprice,
     this.enableShot,
     this.shotPrice,
-    this.category,
-    this.priceQTY,
-    this.qty,
-  );
+    this.category, {
+    this.qty = 1,
+    this.priceQTY = 0,
+  });
 
-  factory Product.fromJson(Map<String, dynamic> json) =>
-      _$ProductFromJson(json);
+  factory Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductToJson(this);
 }
