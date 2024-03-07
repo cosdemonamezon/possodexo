@@ -12,6 +12,7 @@ import 'package:possodexo/home/widgets/OpenSalesShift.dart';
 import 'package:possodexo/home/widgets/ShowOpenShift.dart';
 import 'package:possodexo/home/widgets/TablePromotion.dart';
 import 'package:possodexo/home/widgets/membership.dart';
+import 'package:possodexo/models/attributeValues.dart';
 import 'package:possodexo/models/branch.dart';
 import 'package:possodexo/models/category.dart';
 import 'package:possodexo/models/product.dart';
@@ -58,112 +59,6 @@ class _HomePageState extends State<HomePage> {
   ];
   Category? sclectedProduct;
   List<Map<String, dynamic>> gridCoffees = [];
-  List<Map<String, dynamic>> gridCoffee = [
-    {
-      'image': 'assets/images/coffee2.png',
-      'priceS': 165,
-      'priceM': 175,
-      'priceL': 185,
-      'name': 'Matcha Latte',
-      'type': 'เครื่องดื่ม'
-    },
-    {
-      'image': 'assets/images/coffee3.png',
-      'priceS': 65,
-      'priceM': 75,
-      'priceL': 85,
-      'name': 'Americano',
-      'type': 'เครื่องดื่ม'
-    },
-    {
-      'image': 'assets/images/coffee4.png',
-      'priceS': 165,
-      'priceM': 175,
-      'priceL': 185,
-      'name': 'Matcha Latte',
-      'type': 'เครื่องดื่ม'
-    },
-    {
-      'image': 'assets/images/coffee5.png',
-      'priceS': 65,
-      'priceM': 75,
-      'priceL': 85,
-      'name': 'Americano',
-      'type': 'เครื่องดื่ม'
-    },
-    {
-      'image': 'assets/images/coffee6.png',
-      'priceS': 165,
-      'priceM': 175,
-      'priceL': 185,
-      'name': 'Americano',
-      'type': 'เครื่องดื่ม'
-    },
-    {
-      'image': 'assets/images/coffee7.png',
-      'priceS': 65,
-      'priceM': 75,
-      'priceL': 85,
-      'name': 'Matcha Latte',
-      'type': 'เครื่องดื่ม'
-    },
-    {
-      'image': 'assets/images/coffee8.png',
-      'priceS': 165,
-      'priceM': 175,
-      'priceL': 185,
-      'name': 'Americano',
-      'type': 'เครื่องดื่ม'
-    },
-    {
-      'image': 'assets/images/coffee9.png',
-      'priceS': 65,
-      'priceM': 75,
-      'priceL': 85,
-      'name': 'Matcha Latte',
-      'type': 'เครื่องดื่ม'
-    },
-    {
-      'image': 'assets/images/coddee10.png',
-      'priceS': 165,
-      'priceM': 175,
-      'priceL': 185,
-      'name': 'Americano',
-      'type': 'เครื่องดื่ม'
-    },
-    {
-      'image': 'assets/images/coffee9.png',
-      'priceS': 65,
-      'priceM': 75,
-      'priceL': 85,
-      'name': 'Matcha Latte',
-      'type': 'เครื่องดื่ม'
-    },
-    {
-      'image': 'assets/images/dessert3.jpg',
-      'priceS': 165,
-      'priceM': 175,
-      'priceL': 185,
-      'name': 'Mango Sticky Rice',
-      'type': 'ของหวาน'
-    },
-    {
-      'image': 'assets/images/dessert2.jpg',
-      'priceS': 65,
-      'priceM': 75,
-      'priceL': 85,
-      'name': 'Bingsu',
-      'type': 'ของหวาน'
-    },
-    {
-      'image': 'assets/images/dessert1.jpg',
-      'priceS': 165,
-      'priceM': 175,
-      'priceL': 185,
-      'name': 'waffle',
-      'type': 'ของหวาน'
-    },
-  ];
 
   List<Widget> orders = [];
   void onTapProduct(int index) {
@@ -179,7 +74,6 @@ class _HomePageState extends State<HomePage> {
       getlistBranch();
     });
 
-    gridCoffees = gridCoffee;
     orders = [
       Card(
         surfaceTintColor: Colors.white,
@@ -254,10 +148,8 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  // double newtotal(
-  //   Product orders,
-  // ) {
-  //   return double.parse((orders.size! == 0
+  // double newtotal(Product orders, AttributeValues sizes) {
+  //   return double.parse((sizes.price! == 0
   //           ? orders.priceS! * orders.qty!
   //           : orders.size! == 1
   //               ? orders.priceM! * orders.qty!
@@ -268,8 +160,7 @@ class _HomePageState extends State<HomePage> {
   // double sumPrice(List<Product> productPrice) => productPrice.fold(
   //     0, (previousValue, element) => previousValue + newtotal(element));
 
-  // double newtotaQTYl(Product orders) =>
-  //     double.parse((orders.qty).toString());
+  // double newtotaQTYl(Product orders) => double.parse((orders.qty).toString());
 
   // double sumQTY(List<Product> productPrice) => productPrice.fold(
   //     0, (previousValue, element) => previousValue + newtotaQTYl(element));
@@ -308,7 +199,7 @@ class _HomePageState extends State<HomePage> {
                           // color: Colors.grey,
                           child: DropdownBranch(),
                         ),
-                        Container(
+                        SizedBox(
                           height: size.height * 0.08,
                           width: size.width * 0.38,
                           //color: Colors.grey,
@@ -617,9 +508,12 @@ class _HomePageState extends State<HomePage> {
                                       qty: qty,
                                       gridCoffee: products,
                                       onChange: (value) {
-                                        // inspect(value);
-                                        // final item = ItemSelect(
-                                        //   image: value['item']['image'],
+                                        inspect(value);
+                                        final Product item = value["item"];
+                                        inspect(item);
+                                        item.code;
+                                        // final item = Product(
+                                        //   name: value['item']['name'],
                                         //   priceS: value['item']['priceS'],
                                         //   priceM: value['item']['priceM'],
                                         //   priceL: value['item']['priceL'],
@@ -627,8 +521,8 @@ class _HomePageState extends State<HomePage> {
                                         //   type: value['item']['type'],
                                         //   size: value['size'],
                                         // );
-                                        // selectedItem.add(item);
-                                        // setState(() {});
+                                        selectedItem.add(item);
+                                        setState(() {});
                                       },
                                     ),
                                   ),
@@ -1064,48 +958,34 @@ class _HomePageState extends State<HomePage> {
                                                   Row(
                                                     children: [
                                                       InkWell(
-                                                        onTap: () {
-                                                          // if (selectedItem[
-                                                          //             index]
-                                                          //         .qty! >
-                                                          //     1) {
-                                                          //   setState(() {
-                                                          //     selectedItem[
-                                                          //                 index]
-                                                          //             .qty =
-                                                          //         selectedItem[
-                                                          //                     index]
-                                                          //                 .qty! -
-                                                          //             1;
-                                                          //     final price = selectedItem[
-                                                          //                     index]
-                                                          //                 .size ==
-                                                          //             0
-                                                          //         ? selectedItem[
-                                                          //                     index]
-                                                          //                 .priceS! *
-                                                          //             selectedItem[
-                                                          //                     index]
-                                                          //                 .qty!
-                                                          //         : selectedItem[index]
-                                                          //                     .size ==
-                                                          //                 1
-                                                          //             ? selectedItem[index]
-                                                          //                     .priceM! *
-                                                          //                 selectedItem[index]
-                                                          //                     .qty!
-                                                          //             : selectedItem[index]
-                                                          //                     .priceL! *
-                                                          //                 selectedItem[index]
-                                                          //                     .qty!;
+                                                        // onTap: () {
+                                                        //   if (selectedItem[
+                                                        //               index]
+                                                        //           .qty! >
+                                                        //       1) {
+                                                        //     setState(() {
+                                                        //       selectedItem[
+                                                        //                   index]
+                                                        //               .qty =
+                                                        //           selectedItem[
+                                                        //                       index]
+                                                        //                   .qty! -
+                                                        //               1;
+                                                        //       final price = int.parse(
+                                                        //               selectedItem[
+                                                        //                       index]
+                                                        //                   .sellprice!) *
+                                                        //           selectedItem[
+                                                        //                   index]
+                                                        //               .qty!;
 
-                                                          //     selectedItem[
-                                                          //                 index]
-                                                          //             .priceQTY =
-                                                          //         price;
-                                                          //   });
-                                                          // }
-                                                        },
+                                                        //       selectedItem[
+                                                        //                   index]
+                                                        //               .priceQTY =
+                                                        //           price;
+                                                        //     });
+                                                        //   }
+                                                        // },
                                                         child: Container(
                                                           width:
                                                               size.width * 0.02,
@@ -1127,46 +1007,65 @@ class _HomePageState extends State<HomePage> {
                                                         width: 10,
                                                       ),
                                                       Text(
-                                                          "${selectedItem[index].code}"),
+                                                          "${selectedItem[index].qty ?? 1}"),
                                                       SizedBox(
                                                         width: 10,
                                                       ),
                                                       InkWell(
                                                         onTap: () {
-                                                          setState(() {
-                                                            // selectedItem[index]
-                                                            //         .qty =
-                                                            //     selectedItem[
-                                                            //                 index]
-                                                            //             .qty! +
-                                                            //         1;
-                                                            // final price = selectedItem[
-                                                            //                 index]
-                                                            //             .size ==
-                                                            //         0
-                                                            //     ? selectedItem[
-                                                            //                 index]
-                                                            //             .priceS! *
-                                                            //         selectedItem[
-                                                            //                 index]
-                                                            //             .qty!
-                                                            //     : selectedItem[
-                                                            //                     index]
-                                                            //                 .size ==
-                                                            //             1
-                                                            //         ? selectedItem[index]
-                                                            //                 .priceM! *
-                                                            //             selectedItem[index]
-                                                            //                 .qty!
-                                                            //         : selectedItem[index]
-                                                            //                 .priceL! *
-                                                            //             selectedItem[index]
-                                                            //                 .qty!;
-                                                            // inspect(price);
-                                                            // selectedItem[index]
-                                                            //         .priceQTY =
-                                                            //     price;
-                                                          });
+                                                          // setState(() {
+                                                          //   selectedItem[index]
+                                                          //           .qty =
+                                                          //       selectedItem[
+                                                          //                   index]
+                                                          //               .qty ??
+                                                          //           1 + 1;
+                                                          //   final price = int.parse(
+                                                          //           selectedItem[
+                                                          //                   index]
+                                                          //               .sellprice!) *
+                                                          //       selectedItem[
+                                                          //               index]
+                                                          //           .qty!;
+
+                                                          //   selectedItem[index]
+                                                          //           .priceQTY =
+                                                          //       price;
+                                                          // });
+                                                          // setState(() {
+                                                          //   selectedItem[index]
+                                                          //           .qty =
+                                                          //       selectedItem[
+                                                          //                   index]
+                                                          //               .qty! +
+                                                          //           1;
+                                                          //   final price = selectedItem[
+                                                          //                   index]
+                                                          //               .size ==
+                                                          //           0
+                                                          //       ? selectedItem[
+                                                          //                   index]
+                                                          //               .priceS! *
+                                                          //           selectedItem[
+                                                          //                   index]
+                                                          //               .qty!
+                                                          //       : selectedItem[
+                                                          //                       index]
+                                                          //                   .size ==
+                                                          //               1
+                                                          //           ? selectedItem[index]
+                                                          //                   .priceM! *
+                                                          //               selectedItem[index]
+                                                          //                   .qty!
+                                                          //           : selectedItem[index]
+                                                          //                   .priceL! *
+                                                          //               selectedItem[index]
+                                                          //                   .qty!;
+                                                          //   inspect(price);
+                                                          //   selectedItem[index]
+                                                          //           .priceQTY =
+                                                          //       price;
+                                                          // });
                                                         },
                                                         child: Container(
                                                           width:

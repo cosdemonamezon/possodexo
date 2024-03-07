@@ -127,7 +127,8 @@ class _GridCoffeeState extends State<GridCoffee> {
                                   child: widget.gridCoffee[index].sellprice !=
                                           null
                                       ? Text(
-                                          widget.gridCoffee[index].sellprice!,
+                                          widget.gridCoffee[index].sellprice!
+                                              .toString(),
                                           style: TextStyle(
                                             fontFamily: 'IBMPlexSansThai',
                                           ),

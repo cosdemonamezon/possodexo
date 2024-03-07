@@ -58,7 +58,7 @@ class Addpointsela extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
+              SizedBox(
                 width: size.width * 0.2,
                 child: Text(
                   'พนักงาน',
@@ -75,7 +75,7 @@ class Addpointsela extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
+              SizedBox(
                 width: size.width * 0.2,
                 child: Text(
                   'เคาเตอร์',
@@ -92,7 +92,7 @@ class Addpointsela extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
+              SizedBox(
                 width: size.width * 0.2,
                 child: Text(
                   'หมายเหตุ',
@@ -122,7 +122,7 @@ class Addpointsela extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5.0),
                     side: BorderSide(color: kButtonColor)),
 
-                child: Container(
+                child: SizedBox(
                   width: size.width * 0.12,
                   height: size.height * 0.06,
                   child: Center(
@@ -147,7 +147,7 @@ class Addpointsela extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5.0),
                 ),
-                child: Container(
+                child: SizedBox(
                   width: size.width * 0.12,
                   height: size.height * 0.06,
                   child: Center(

@@ -11,24 +11,29 @@ class Product {
   final DateTime? deletedAt;
   final String? code;
   final String? name;
-  final String? stdprice;
-  final String? sellprice;
+  final double? stdprice;
+  final double? sellprice;
   final bool enableShot;
-  final String? shotPrice;
+  final double? shotPrice;
   final Category? category;
+  int? priceQTY = 0;
+  int? qty = 1;
 
   Product(
-      this.id,
-      this.createdAt,
-      this.updatedAt,
-      this.deletedAt,
-      this.code,
-      this.name,
-      this.stdprice,
-      this.sellprice,
-      this.enableShot,
-      this.shotPrice,
-      this.category);
+    this.id,
+    this.createdAt,
+    this.updatedAt,
+    this.deletedAt,
+    this.code,
+    this.name,
+    this.stdprice,
+    this.sellprice,
+    this.enableShot,
+    this.shotPrice,
+    this.category,
+    this.priceQTY,
+    this.qty,
+  );
 
   factory Product.fromJson(Map<String, dynamic> json) =>
       _$ProductFromJson(json);

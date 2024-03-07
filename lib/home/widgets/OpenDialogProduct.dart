@@ -90,129 +90,103 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                       children: List.generate(
                         widget.productmains.productAttribute[index]
                             .attributeValues.length,
-                        (index2) =>
-                            widget.productmains.productAttribute[index].name !=
-                                        'เพิ่มช็อต' &&
-                                    widget.productmains.productAttribute[index]
-                                            .name !=
-                                        'Topping'
-                                ? InkWell(
-                                    onTap: () {
-                                      selectSize(0);
-                                    },
-                                    child: Container(
-                                      height: size.height * 0.12,
-                                      width: size.width * 0.03,
-                                      decoration: BoxDecoration(
-                                        color: selectedIndex == 0
-                                            ? Color(0xFFE8EAF6)
-                                            : Colors.white,
-                                        borderRadius: BorderRadius.circular(6),
-                                        border: Border.all(color: Colors.blue),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          '${widget.productmains.productAttribute[index].attributeValues[index2].name}',
-                                          style: TextStyle(
-                                            fontFamily: 'IBMPlexSansThai',
-                                          ),
+                        (index2) => widget.productmains.productAttribute[index]
+                                        .name !=
+                                    'เพิ่มช็อต' &&
+                                widget.productmains.productAttribute[index]
+                                        .name !=
+                                    'Topping'
+                            ? InkWell(
+                                onTap: () {
+                                  print(index2);
+                                  selectSize(index2);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 10),
+                                  child: Container(
+                                    height: size.height * 0.12,
+                                    width: size.width * 0.03,
+                                    decoration: BoxDecoration(
+                                      color: selectedIndex == index2
+                                          ? Color(0xFFE8EAF6)
+                                          : Colors.white,
+                                      borderRadius: BorderRadius.circular(6),
+                                      border: Border.all(color: Colors.blue),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        '${widget.productmains.productAttribute[index].attributeValues[index2].name}',
+                                        style: TextStyle(
+                                          fontFamily: 'IBMPlexSansThai',
                                         ),
                                       ),
                                     ),
+                                  ),
+                                ),
+                              )
+                            : widget.productmains.productAttribute[index]
+                                        .name !=
+                                    'Topping'
+                                ? Container(
+                                    height: 40,
+                                    // height: size.height * 0.036,
+                                    child: Row(
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            setState(() {
+                                              if (qty > 0) {
+                                                qty = qty - 1;
+                                              }
+                                            });
+                                          },
+                                          child: Container(
+                                            width: size.width * 0.02,
+                                            height: 30,
+                                            decoration: BoxDecoration(
+                                                color: Color(0xFFCFD8DC),
+                                                borderRadius:
+                                                    BorderRadius.circular(6)),
+                                            child: Icon(
+                                              Icons.remove,
+                                              size: 15,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text("${qty}"),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            setState(() {
+                                              qty = qty + 1;
+                                            });
+                                          },
+                                          child: Container(
+                                            width: size.width * 0.02,
+                                            height: 30,
+                                            decoration: BoxDecoration(
+                                                color: Color(0xFFCFD8DC),
+                                                borderRadius:
+                                                    BorderRadius.circular(6)),
+                                            child: Icon(
+                                              Icons.add,
+                                              size: 15,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   )
-                                : widget.productmains.productAttribute[index]
-                                            .name !=
-                                        'Topping'
-                                    ? SizedBox(
-                                        child: Text("โชเพิ่มช็อต"),
-                                      )
-                                    : SizedBox(
-                                        child: Text("โชท็อปปิ้ง"),
-                                      ),
+                                : SizedBox(
+                                    child: Text("โชท็อปปิ้ง"),
+                                  ),
                       ),
                     ),
-                    // child: Row(
-                    //   children: [
-                    //     InkWell(
-                    //       onTap: () {
-                    //         selectSize(0);
-                    //       },
-                    //       child: Container(
-                    //         height: size.height * 0.12,
-                    //         width: size.width * 0.03,
-                    //         decoration: BoxDecoration(
-                    //           color: selectedIndex == 0
-                    //               ? Color(0xFFE8EAF6)
-                    //               : Colors.white,
-                    //           borderRadius: BorderRadius.circular(6),
-                    //           border: Border.all(color: Colors.blue),
-                    //         ),
-                    //         child: Center(
-                    //           child: Text(
-                    //             'm',
-                    //             style: TextStyle(
-                    //               fontFamily: 'IBMPlexSansThai',
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     SizedBox(
-                    //       width: 10,
-                    //     ),
-                    //     InkWell(
-                    //       onTap: () {
-                    //         selectSize(1);
-                    //       },
-                    //       child: Container(
-                    //         height: size.height * 0.12,
-                    //         width: size.width * 0.03,
-                    //         decoration: BoxDecoration(
-                    //           color: selectedIndex == 1
-                    //               ? Color(0xFFE8EAF6)
-                    //               : Colors.white,
-                    //           borderRadius: BorderRadius.circular(6),
-                    //           border: Border.all(color: Colors.blue),
-                    //         ),
-                    //         child: Center(
-                    //           child: Text(
-                    //             'M',
-                    //             style: TextStyle(
-                    //               fontFamily: 'IBMPlexSansThai',
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     SizedBox(
-                    //       width: 10,
-                    //     ),
-                    //     InkWell(
-                    //       onTap: () {
-                    //         selectSize(2);
-                    //       },
-                    //       child: Container(
-                    //         height: size.height * 0.12,
-                    //         width: size.width * 0.03,
-                    //         decoration: BoxDecoration(
-                    //           color: selectedIndex == 2
-                    //               ? Color(0xFFE8EAF6)
-                    //               : Colors.white,
-                    //           borderRadius: BorderRadius.circular(6),
-                    //           border: Border.all(color: Colors.blue),
-                    //         ),
-                    //         child: Center(
-                    //           child: Text(
-                    //             'L',
-                    //             style: TextStyle(
-                    //               fontFamily: 'IBMPlexSansThai',
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     )
-                    //   ],
-                    // ),
                   ),
                 ],
               ),
@@ -235,59 +209,59 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
           //         ),
           //       ),
           //     ),
-          //     Container(
-          //       height: 40,
-          //       // height: size.height * 0.036,
-          //       child: Row(
-          //         children: [
-          //           InkWell(
-          //             onTap: () {
-          //               setState(() {
-          //                 if (qty > 0) {
-          //                   qty = qty - 1;
-          //                 }
-          //               });
-          //             },
-          //             child: Container(
-          //               width: size.width * 0.02,
-          //               height: 30,
-          //               decoration: BoxDecoration(
-          //                   color: Color(0xFFCFD8DC),
-          //                   borderRadius: BorderRadius.circular(6)),
-          //               child: Icon(
-          //                 Icons.remove,
-          //                 size: 15,
-          //               ),
-          //             ),
+          // Container(
+          //   height: 40,
+          //   // height: size.height * 0.036,
+          //   child: Row(
+          //     children: [
+          //       InkWell(
+          //         onTap: () {
+          //           setState(() {
+          //             if (qty > 0) {
+          //               qty = qty - 1;
+          //             }
+          //           });
+          //         },
+          //         child: Container(
+          //           width: size.width * 0.02,
+          //           height: 30,
+          //           decoration: BoxDecoration(
+          //               color: Color(0xFFCFD8DC),
+          //               borderRadius: BorderRadius.circular(6)),
+          //           child: Icon(
+          //             Icons.remove,
+          //             size: 15,
           //           ),
-          //           SizedBox(
-          //             width: 10,
-          //           ),
-          //           Text("${qty}"),
-          //           SizedBox(
-          //             width: 10,
-          //           ),
-          //           InkWell(
-          //             onTap: () {
-          //               setState(() {
-          //                 qty = qty + 1;
-          //               });
-          //             },
-          //             child: Container(
-          //               width: size.width * 0.02,
-          //               height: 30,
-          //               decoration: BoxDecoration(
-          //                   color: Color(0xFFCFD8DC),
-          //                   borderRadius: BorderRadius.circular(6)),
-          //               child: Icon(
-          //                 Icons.add,
-          //                 size: 15,
-          //               ),
-          //             ),
-          //           ),
-          //         ],
+          //         ),
           //       ),
-          //     ),
+          //       SizedBox(
+          //         width: 10,
+          //       ),
+          //       Text("${qty}"),
+          //       SizedBox(
+          //         width: 10,
+          //       ),
+          //       InkWell(
+          //         onTap: () {
+          //           setState(() {
+          //             qty = qty + 1;
+          //           });
+          //         },
+          //         child: Container(
+          //           width: size.width * 0.02,
+          //           height: 30,
+          //           decoration: BoxDecoration(
+          //               color: Color(0xFFCFD8DC),
+          //               borderRadius: BorderRadius.circular(6)),
+          //           child: Icon(
+          //             Icons.add,
+          //             size: 15,
+          //           ),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           //   ],
           // ),
           // SizedBox(
