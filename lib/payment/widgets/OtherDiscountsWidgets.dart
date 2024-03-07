@@ -47,7 +47,6 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
   void clearAllData() {
     setState(() {
       rowData.clear();
-      // เพิ่มแถวข้อมูลเริ่มต้นอีกครั้งเมื่อล้างข้อมูล
       rowData.add({
         'payment': payment1,
         'point': point1,
@@ -177,7 +176,6 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                         padding: EdgeInsets.symmetric(horizontal: 50),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0),
-                          // side: BorderSide(color: Colors.red),
                         ),
                       ),
                       child: Text(

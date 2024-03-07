@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:possodexo/payment/widgets/numbercel.dart';
+import 'package:possodexo/payment/widgets/numbercelpercen.dart';
 
 class DiscountWidgets extends StatefulWidget {
   const DiscountWidgets({super.key});
@@ -164,7 +165,7 @@ class _DiscountWidgetsState extends State<DiscountWidgets> {
           SizedBox(
             height: 25,
           ),
-          Numbercel(),
+          selectedIndex == 0 ? Numbercel() : Numbercelpercen(),
         ],
       ),
     );
