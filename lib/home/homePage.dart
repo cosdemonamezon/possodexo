@@ -450,18 +450,18 @@ class _HomePageState extends State<HomePage> {
                                         );
                                       }).toList(),
                                       value: sclectedProduct,
-                                      onChanged: (v) {
+                                      onChanged: (v) async {
                                         setState(() {
                                           sclectedProduct = v;
-
-                                          gridCoffees = gridCoffees.where((product) {
-                                            if (v == 'ทั้งหมด') {
-                                              return true;
-                                            } else {
-                                              return product['type'] == v;
-                                            }
-                                          }).toList();
+                                          //gridCoffees = gridCoffees.where((product) {
+                                          //   if (v == 'ทั้งหมด') {
+                                          //     return true;
+                                          //   } else {
+                                          //     return product['type'] == v;
+                                          //   }
+                                          // }).toList();
                                         });
+                                        await context.read<ProductController>().getProduct(id: sclectedProduct!.id);
                                       },
                                     ),
                                   ],
@@ -485,6 +485,7 @@ class _HomePageState extends State<HomePage> {
                                         sizeprice = value["pricesize"];
                                         inspect(sizeprice);
                                         item.code;
+                                        item.priceQTY = item.sellprice!;
                                         // final item = Product(
                                         //   name: value['item']['name'],
                                         //   priceS: value['item']['priceS'],
@@ -494,6 +495,7 @@ class _HomePageState extends State<HomePage> {
                                         //   type: value['item']['type'],
                                         //   size: value['size'],
                                         // );
+
                                         selectedItem.add(item);
                                         setState(() {});
                                       },
@@ -882,11 +884,11 @@ class _HomePageState extends State<HomePage> {
                                                     children: [
                                                       InkWell(
                                                         onTap: () {
-                                                          if (selectedItem[index].qty >= 1) {
+                                                          if (selectedItem[index].qty > 1) {
                                                             setState(() {
                                                               selectedItem[index].qty = selectedItem[index].qty - 1;
                                                               final price =
-                                                                  int.parse(selectedItem[index].sellprice!.toString()) * selectedItem[index].qty;
+                                                                  double.parse((selectedItem[index].sellprice! * selectedItem[index].qty).toString());
 
                                                               selectedItem[index].priceQTY = price;
                                                             });
@@ -905,12 +907,21 @@ class _HomePageState extends State<HomePage> {
                                                       SizedBox(
                                                         width: 10,
                                                       ),
-                                                      Text("${selectedItem[index].qty ?? 1}"),
+                                                      Text("${selectedItem[index].qty}"),
                                                       SizedBox(
                                                         width: 10,
                                                       ),
                                                       InkWell(
                                                         onTap: () {
+                                                          if (selectedItem[index].qty >= 1) {
+                                                            setState(() {
+                                                              selectedItem[index].qty = selectedItem[index].qty + 1;
+                                                              final price =
+                                                                  double.parse((selectedItem[index].sellprice! * selectedItem[index].qty).toString());
+
+                                                              selectedItem[index].priceQTY = price;
+                                                            });
+                                                          }
                                                           // setState(() {
                                                           //   selectedItem[index].qty = selectedItem[index].qty ?? 1 + 1;
                                                           //   final price = int.parse(selectedItem[index]) * selectedItem[index].qty!;
@@ -929,8 +940,8 @@ class _HomePageState extends State<HomePage> {
                                                           // });
                                                         },
                                                         child: Container(
-                                                          width: size.width * 0.02,
-                                                          height: 30,
+                                                          width: size.width * 0.03,
+                                                          height: size.height * 0.04,
                                                           decoration: BoxDecoration(color: Color(0xFFCFD8DC), borderRadius: BorderRadius.circular(6)),
                                                           child: Icon(
                                                             Icons.add,
@@ -975,46 +986,7 @@ class _HomePageState extends State<HomePage> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Text((selectedItem[index].sellprice ?? 0 + sizeprice!).toStringAsFixed(2)),
-                                                  // selectedItem[index]
-                                                  //             .priceQTY ==
-                                                  //         0
-                                                  //     ? Text(
-                                                  //         selectedItem[index]
-                                                  //                     .size ==
-                                                  //                 0
-                                                  //             ? selectedItem[
-                                                  //                     index]
-                                                  //                 .priceS!
-                                                  //                 .toStringAsFixed(
-                                                  //                     2)
-                                                  //             : selectedItem[index]
-                                                  //                         .size ==
-                                                  //                     1
-                                                  //                 ? selectedItem[
-                                                  //                         index]
-                                                  //                     .priceM!
-                                                  //                     .toStringAsFixed(
-                                                  //                         2)
-                                                  //                 : selectedItem[
-                                                  //                         index]
-                                                  //                     .priceL!
-                                                  //                     .toStringAsFixed(
-                                                  //                         2),
-                                                  //         style: TextStyle(
-                                                  //             fontWeight:
-                                                  //                 FontWeight
-                                                  //                     .bold),
-                                                  //       )
-                                                  //     : Text(
-                                                  //         selectedItem[index]
-                                                  //             .priceQTY!
-                                                  //             .toStringAsFixed(
-                                                  //                 2),
-                                                  //         style: TextStyle(
-                                                  //             fontWeight:
-                                                  //                 FontWeight
-                                                  //                     .bold),
-                                                  //       ),
+                                                  Text("${selectedItem[index].priceQTY}"),
                                                 ],
                                               ),
                                               Divider()
