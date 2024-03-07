@@ -82,12 +82,12 @@ class _GridCoffeeState extends State<GridCoffee> {
 
                       getproductMain(id: widget.gridCoffee[index].id);
 
-                      if (productmains!.name == "กาแฟ") {
+                      if (productmains?.name == "กาแฟ") {
                         final item = await showDialog(
                             context: context,
                             builder: (context) {
                               return OpenDialogProduct(
-                                  productmains: productmains,
+                                  productmains: productmains!,
                                   gridCoffee: widget.gridCoffee[index]);
                             });
                         if (item != null) {
@@ -134,7 +134,7 @@ class _GridCoffeeState extends State<GridCoffee> {
                                           ),
                                         )
                                       : Text(
-                                          '',
+                                          '0.00',
                                           style: TextStyle(
                                             fontFamily: 'IBMPlexSansThai',
                                           ),

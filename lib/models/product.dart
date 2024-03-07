@@ -14,7 +14,7 @@ class Product {
   final double? stdprice;
   final double? sellprice;
   final bool enableShot;
-  final double? shotPrice;
+  final String? shotPrice;
   final Category? category;
   int? priceQTY = 0;
   int? qty = 1;
