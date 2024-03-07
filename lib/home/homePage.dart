@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      getlistproduct();
+      //getlistproduct();
       getlistCategory();
       getlistBranch();
     });
@@ -93,13 +93,13 @@ class _HomePageState extends State<HomePage> {
   }
 
 // ดึงข้อมูล product
-  Future<void> getlistproduct() async {
-    try {
-      await context.read<ProductController>().getProduct();
-    } on Exception catch (e) {
-      inspect(e);
-    }
-  }
+  // Future<void> getlistproduct() async {
+  //   try {
+  //     await context.read<ProductController>().getProduct();
+  //   } on Exception catch (e) {
+  //     inspect(e);
+  //   }
+  // }
 
   //ดึงข้อมูล Category
   Future<void> getlistCategory() async {

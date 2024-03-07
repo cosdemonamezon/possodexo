@@ -26,16 +26,18 @@ class ProductController extends ChangeNotifier {
 
   ProductMain? productMain;
 
-  getProduct() async {
+  getProduct({required int id}) async {
     products.clear();
-    products = await ProductApi.getProduct();
+    products = await ProductApi.getProduct(id: id);
     notifyListeners();
   }
 
   getListCategory() async {
     categorized.clear();
     categorized = await ProductApi.getCategory();
+    categorized.insert(0, Category(0,DateTime.now(),DateTime.now(),DateTime.now(),'00','ทั้งหมด'));
     notifyListeners();
+    getProduct(id: categorized[0].id);
   }
 
   getListBranch() async {

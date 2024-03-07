@@ -11,8 +11,11 @@ import 'package:possodexo/models/shift.dart';
 class ProductApi {
   const ProductApi();
 
-  static Future<List<Product>> getProduct() async {
-    final url = Uri.https(publicUrl, '/api/product');
+  static Future<List<Product>> getProduct({required int id}) async {
+    final url = Uri.https(publicUrl, '/api/product', {
+      "categoryId": '$id',
+      "sortBy": 'createdAt:DESC',
+    });
     final response = await http.get(
       url,
     );
