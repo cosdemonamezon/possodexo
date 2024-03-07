@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:possodexo/models/product.dart';
+import 'package:possodexo/models/productMain.dart';
 
 import '../../constants.dart';
 
 class OpenDialogProduct extends StatefulWidget {
-  OpenDialogProduct({
-    super.key,
-    required this.gridCoffee,
-    // required this.pressclose,
-    // required this.pressaccept,
-    // required this.presscancel,
-  });
+  OpenDialogProduct(
+      {super.key, required this.gridCoffee, required this.productmains
+      // required this.pressclose,
+      // required this.pressaccept,
+      // required this.presscancel,
+      });
   final Product gridCoffee;
+  final ProductMain productmains;
   // final VoidCallback pressclose;
   // final VoidCallback pressaccept;
   // final VoidCallback presscancel;
@@ -39,7 +40,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                widget.gridCoffee.name ?? '',
+                widget.productmains.name ?? '',
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: 'IBMPlexSansThai',
@@ -66,204 +67,229 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
-            children: [
-              Container(
-                width: size.width * 0.15,
-                height: size.height * 0.04,
-                child: Text(
-                  "ขนาน",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'IBMPlexSansThai',
-                  ),
-                ),
-              ),
-              Container(
-                width: size.width * 0.25,
-                height: size.height * 0.065,
-                child: Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        selectSize(0);
-                      },
-                      child: Container(
-                        height: size.height * 0.12,
-                        width: size.width * 0.03,
-                        decoration: BoxDecoration(
-                          color: selectedIndex == 0
-                              ? Color(0xFFE8EAF6)
-                              : Colors.white,
-                          borderRadius: BorderRadius.circular(6),
-                          border: Border.all(color: Colors.blue),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'S',
-                            style: TextStyle(
-                              fontFamily: 'IBMPlexSansThai',
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        selectSize(1);
-                      },
-                      child: Container(
-                        height: size.height * 0.12,
-                        width: size.width * 0.03,
-                        decoration: BoxDecoration(
-                          color: selectedIndex == 1
-                              ? Color(0xFFE8EAF6)
-                              : Colors.white,
-                          borderRadius: BorderRadius.circular(6),
-                          border: Border.all(color: Colors.blue),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'M',
-                            style: TextStyle(
-                              fontFamily: 'IBMPlexSansThai',
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        selectSize(2);
-                      },
-                      child: Container(
-                        height: size.height * 0.12,
-                        width: size.width * 0.03,
-                        decoration: BoxDecoration(
-                          color: selectedIndex == 2
-                              ? Color(0xFFE8EAF6)
-                              : Colors.white,
-                          borderRadius: BorderRadius.circular(6),
-                          border: Border.all(color: Colors.blue),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'L',
-                            style: TextStyle(
-                              fontFamily: 'IBMPlexSansThai',
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 25,
-          ),
-          Row(
-            children: [
-              Container(
-                width: size.width * 0.15,
-                height: size.height * 0.04,
-                child: Text(
-                  'เพิ่มช็อต',
-                  style: TextStyle(
-                    fontFamily: 'IBMPlexSansThai',
-                    fontSize: 18,
-                  ),
-                ),
-              ),
-              Container(
-                height: 40,
-                // height: size.height * 0.036,
-                child: Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          if (qty > 0) {
-                            qty = qty - 1;
-                          }
-                        });
-                      },
-                      child: Container(
-                        width: size.width * 0.02,
-                        height: 30,
-                        decoration: BoxDecoration(
-                            color: Color(0xFFCFD8DC),
-                            borderRadius: BorderRadius.circular(6)),
-                        child: Icon(
-                          Icons.remove,
-                          size: 15,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text("${qty}"),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          qty = qty + 1;
-                        });
-                      },
-                      child: Container(
-                        width: size.width * 0.02,
-                        height: 30,
-                        decoration: BoxDecoration(
-                            color: Color(0xFFCFD8DC),
-                            borderRadius: BorderRadius.circular(6)),
-                        child: Icon(
-                          Icons.add,
-                          size: 15,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 25,
-          ),
-          Row(
-            children: [
-              Container(
-                width: size.width * 0.15,
-                height: size.height * 0.04,
-                child: Text(
-                  'โปรโมชั่น',
-                  style: TextStyle(
-                    fontFamily: 'IBMPlexSansThai',
-                    fontSize: 18,
-                  ),
-                ),
-              ),
-              Row(
+          Column(
+            children: List.generate(
+              widget.productmains.productAttribute.length,
+              (index) => Row(
                 children: [
                   Container(
-                      width: size.width * 0.25,
-                      height: size.height * 0.04,
-                      child: Text('แถมโค้กฟรี 1 ขวด')),
+                    width: size.width * 0.15,
+                    height: size.height * 0.04,
+                    child: Text(
+                      "${widget.productmains.productAttribute[index].name}",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'IBMPlexSansThai',
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: size.width * 0.25,
+                    height: size.height * 0.065,
+                    child: Row(
+                      children: List.generate(
+                        widget.productmains.productAttribute[index]
+                            .attributeValues.length,
+                        (index2) => widget.productmains.productAttribute[index]
+                                        .name !=
+                                    'เพิ่มช็อต' &&
+                                widget.productmains.productAttribute[index]
+                                        .name !=
+                                    'Topping'
+                            ? InkWell(
+                                onTap: () {
+                                  print(index2);
+                                  selectSize(index2);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 10),
+                                  child: Container(
+                                    height: size.height * 0.12,
+                                    width: size.width * 0.03,
+                                    decoration: BoxDecoration(
+                                      color: selectedIndex == index2
+                                          ? Color(0xFFE8EAF6)
+                                          : Colors.white,
+                                      borderRadius: BorderRadius.circular(6),
+                                      border: Border.all(color: Colors.blue),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        '${widget.productmains.productAttribute[index].attributeValues[index2].name}',
+                                        style: TextStyle(
+                                          fontFamily: 'IBMPlexSansThai',
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : widget.productmains.productAttribute[index]
+                                        .name !=
+                                    'Topping'
+                                ? Container(
+                                    height: 40,
+                                    // height: size.height * 0.036,
+                                    child: Row(
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            setState(() {
+                                              if (qty > 0) {
+                                                qty = qty - 1;
+                                              }
+                                            });
+                                          },
+                                          child: Container(
+                                            width: size.width * 0.02,
+                                            height: 30,
+                                            decoration: BoxDecoration(
+                                                color: Color(0xFFCFD8DC),
+                                                borderRadius:
+                                                    BorderRadius.circular(6)),
+                                            child: Icon(
+                                              Icons.remove,
+                                              size: 15,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text("${qty}"),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            setState(() {
+                                              qty = qty + 1;
+                                            });
+                                          },
+                                          child: Container(
+                                            width: size.width * 0.02,
+                                            height: 30,
+                                            decoration: BoxDecoration(
+                                                color: Color(0xFFCFD8DC),
+                                                borderRadius:
+                                                    BorderRadius.circular(6)),
+                                            child: Icon(
+                                              Icons.add,
+                                              size: 15,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                : SizedBox(
+                                    child: Text("โชท็อปปิ้ง"),
+                                  ),
+                      ),
+                    ),
+                  ),
                 ],
-              )
-            ],
-          )
+              ),
+            ),
+          ),
+
+          // SizedBox(
+          //   height: 25,
+          // ),
+          // Row(
+          //   children: [
+          //     Container(
+          //       width: size.width * 0.15,
+          //       height: size.height * 0.04,
+          //       child: Text(
+          //         'เพิ่มช็อต',
+          //         style: TextStyle(
+          //           fontFamily: 'IBMPlexSansThai',
+          //           fontSize: 18,
+          //         ),
+          //       ),
+          //     ),
+          // Container(
+          //   height: 40,
+          //   // height: size.height * 0.036,
+          //   child: Row(
+          //     children: [
+          //       InkWell(
+          //         onTap: () {
+          //           setState(() {
+          //             if (qty > 0) {
+          //               qty = qty - 1;
+          //             }
+          //           });
+          //         },
+          //         child: Container(
+          //           width: size.width * 0.02,
+          //           height: 30,
+          //           decoration: BoxDecoration(
+          //               color: Color(0xFFCFD8DC),
+          //               borderRadius: BorderRadius.circular(6)),
+          //           child: Icon(
+          //             Icons.remove,
+          //             size: 15,
+          //           ),
+          //         ),
+          //       ),
+          //       SizedBox(
+          //         width: 10,
+          //       ),
+          //       Text("${qty}"),
+          //       SizedBox(
+          //         width: 10,
+          //       ),
+          //       InkWell(
+          //         onTap: () {
+          //           setState(() {
+          //             qty = qty + 1;
+          //           });
+          //         },
+          //         child: Container(
+          //           width: size.width * 0.02,
+          //           height: 30,
+          //           decoration: BoxDecoration(
+          //               color: Color(0xFFCFD8DC),
+          //               borderRadius: BorderRadius.circular(6)),
+          //           child: Icon(
+          //             Icons.add,
+          //             size: 15,
+          //           ),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          //   ],
+          // ),
+          // SizedBox(
+          //   height: 25,
+          // ),
+          // Row(
+          //   children: [
+          //     Container(
+          //       width: size.width * 0.15,
+          //       height: size.height * 0.04,
+          //       child: Text(
+          //         'โปรโมชั่น',
+          //         style: TextStyle(
+          //           fontFamily: 'IBMPlexSansThai',
+          //           fontSize: 18,
+          //         ),
+          //       ),
+          //     ),
+          //     Row(
+          //       children: [
+          //         Container(
+          //             width: size.width * 0.25,
+          //             height: size.height * 0.04,
+          //             child: Text('แถมโค้กฟรี 1 ขวด')),
+          //       ],
+          //     )
+          //   ],
+          // )
         ],
       ),
       actions: [

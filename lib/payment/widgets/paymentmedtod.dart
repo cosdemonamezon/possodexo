@@ -52,10 +52,10 @@ class _PaymentMethodState extends State<PaymentMethod> {
             width: size.width * 0.11,
             child: Row(
               children: [
-                // Padding(
-                //   padding: const EdgeInsets.only(left: 10),
-                //   child: Image.asset(_getPaymentMethodIcon(index), scale: 20),
-                // ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Image.network(productController.payments[index].icon!),
+                ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
                   child: Text(productController.payments[index].name!),
@@ -66,63 +66,5 @@ class _PaymentMethodState extends State<PaymentMethod> {
         ),
       ),
     );
-  }
-
-  String _getPaymentMethodIcon(int index) {
-    switch (index) {
-      case 0:
-        return "assets/icons/cash.png";
-      case 1:
-        return "assets/icons/Promptpay.png";
-      case 2:
-        return "assets/icons/TrueMoney.png";
-      case 3:
-        return "assets/icons/MaeManee.png";
-      case 4:
-        return "assets/icons/Linepay.png";
-      case 5:
-        return "assets/icons/moneyCard.png";
-      case 6:
-        return "assets/icons/MaeManee.png";
-      case 7:
-        return "assets/icons/EmCard.png";
-      case 8:
-        return "assets/icons/Wechart.png";
-      case 9:
-        return "assets/icons/Alipay.png";
-      case 10:
-        return "assets/icons/Wallet.png";
-      default:
-        return "assets/icons/cash.png";
-    }
-  }
-
-  String _getPaymentMethodName(int index) {
-    switch (index) {
-      case 0:
-        return "เงินสด";
-      case 1:
-        return "QR Promptpay";
-      case 2:
-        return "True Money";
-      case 3:
-        return "แม่มณี";
-      case 4:
-        return "LINE Pay";
-      case 5:
-        return "บัตรเครดิต/เดบิต";
-      case 6:
-        return "แม่มณี";
-      case 7:
-        return "บัตรพนักงาน";
-      case 8:
-        return "We Chart";
-      case 9:
-        return "Alipay";
-      case 10:
-        return "อื่นๆ";
-      default:
-        return "เงินสด";
-    }
   }
 }

@@ -10,15 +10,10 @@ class Payment {
   final DateTime? deletedAt;
   final String? name;
   final String? type;
+  final String? icon;
 
-  Payment(
-    this.id,
-    this.createdAt,
-    this.updatedAt,
-    this.deletedAt,
-    this.name,
-    this.type,
-  );
+  Payment(this.id, this.createdAt, this.updatedAt, this.deletedAt, this.name,
+      this.type, this.icon);
 
   factory Payment.fromJson(Map<String, dynamic> json) =>
       _$PaymentFromJson(json);

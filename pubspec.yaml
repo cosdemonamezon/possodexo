@@ -45,7 +45,6 @@ dependencies:
   json_serializable: ^6.6.1
   json_annotation: ^4.8.0
   provider: ^6.0.3
-  analyzer: ^5.13.0
   http: ^0.13.5
 dev_dependencies:
   flutter_test:
@@ -60,6 +59,7 @@ dev_dependencies:
   # คำสั่งในการสร้างโมเดล ---> dart run build_runner build
   flutter_lints: ^2.0.0
   timer_count_down: ^2.2.0
+  analyzer: ^5.13.0
   
 
 # For information on the generic Dart part of this file, see the

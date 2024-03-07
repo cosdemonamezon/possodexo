@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'payment.dart';
+part of 'shift.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Payment _$PaymentFromJson(Map<String, dynamic> json) => Payment(
+Shift _$ShiftFromJson(Map<String, dynamic> json) => Shift(
       json['id'] as int,
       json['createdAt'] == null
           ? null
@@ -17,17 +17,19 @@ Payment _$PaymentFromJson(Map<String, dynamic> json) => Payment(
       json['deletedAt'] == null
           ? null
           : DateTime.parse(json['deletedAt'] as String),
-      json['name'] as String?,
-      json['type'] as String?,
-      json['icon'] as String?,
+      json['change'] as int?,
+      json['cash'] as int?,
+      json['remark'] as String?,
+      json['status'] as String?,
     );
 
-Map<String, dynamic> _$PaymentToJson(Payment instance) => <String, dynamic>{
+Map<String, dynamic> _$ShiftToJson(Shift instance) => <String, dynamic>{
       'id': instance.id,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'deletedAt': instance.deletedAt?.toIso8601String(),
-      'name': instance.name,
-      'type': instance.type,
-      'icon': instance.icon,
+      'change': instance.change,
+      'cash': instance.cash,
+      'remark': instance.remark,
+      'status': instance.status,
     };
