@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:possodexo/constants.dart';
+import 'package:possodexo/home/firstPage.dart';
 import 'package:possodexo/home/homePage.dart';
 
 class Proceedpayment extends StatefulWidget {
@@ -222,7 +223,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => FirstPage()));
                     },
                     child: Container(
                       width: size.width * 0.13,
