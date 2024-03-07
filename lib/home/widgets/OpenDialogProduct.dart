@@ -5,8 +5,7 @@ import 'package:possodexo/models/productMain.dart';
 import '../../constants.dart';
 
 class OpenDialogProduct extends StatefulWidget {
-  OpenDialogProduct(
-      {super.key, required this.gridCoffee, required this.productmains
+  OpenDialogProduct({super.key, required this.gridCoffee, required this.productmains
       // required this.pressclose,
       // required this.pressaccept,
       // required this.presscancel,
@@ -23,6 +22,7 @@ class OpenDialogProduct extends StatefulWidget {
 
 class _OpenDialogProductState extends State<OpenDialogProduct> {
   int selectedIndex = 0;
+  int? selectedPrice = 0;
   void selectSize(int index) {
     setState(() {
       selectedIndex = index;
@@ -62,8 +62,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
       ),
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.white,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(2))),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(2))),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -88,18 +87,15 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                     height: size.height * 0.065,
                     child: Row(
                       children: List.generate(
-                        widget.productmains.productAttribute[index]
-                            .attributeValues.length,
-                        (index2) => widget.productmains.productAttribute[index]
-                                        .name !=
-                                    'เพิ่มช็อต' &&
-                                widget.productmains.productAttribute[index]
-                                        .name !=
-                                    'Topping'
+                        widget.productmains.productAttribute[index].attributeValues.length,
+                        (index2) => widget.productmains.productAttribute[index].name != 'เพิ่มช็อต' &&
+                                widget.productmains.productAttribute[index].name != 'Topping'
                             ? GestureDetector(
                                 onTap: () {
                                   print(index2);
                                   selectSize(index2);
+                                  selectedPrice = widget.productmains.productAttribute[index].attributeValues[index2].price;
+                                  print(selectedPrice);
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.only(right: 10),
@@ -107,9 +103,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                                     height: size.height * 0.12,
                                     width: size.width * 0.03,
                                     decoration: BoxDecoration(
-                                      color: selectedIndex == index2
-                                          ? Color(0xFFE8EAF6)
-                                          : Colors.white,
+                                      color: selectedIndex == index2 ? Color(0xFFE8EAF6) : Colors.white,
                                       borderRadius: BorderRadius.circular(6),
                                       border: Border.all(color: Colors.blue),
                                     ),
@@ -124,9 +118,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                                   ),
                                 ),
                               )
-                            : widget.productmains.productAttribute[index]
-                                        .name !=
-                                    'Topping'
+                            : widget.productmains.productAttribute[index].name != 'Topping'
                                 ? Container(
                                     height: 40,
                                     // height: size.height * 0.036,
@@ -143,10 +135,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                                           child: Container(
                                             width: size.width * 0.02,
                                             height: 30,
-                                            decoration: BoxDecoration(
-                                                color: Color(0xFFCFD8DC),
-                                                borderRadius:
-                                                    BorderRadius.circular(6)),
+                                            decoration: BoxDecoration(color: Color(0xFFCFD8DC), borderRadius: BorderRadius.circular(6)),
                                             child: Icon(
                                               Icons.remove,
                                               size: 15,
@@ -169,10 +158,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                                           child: Container(
                                             width: size.width * 0.02,
                                             height: 30,
-                                            decoration: BoxDecoration(
-                                                color: Color(0xFFCFD8DC),
-                                                borderRadius:
-                                                    BorderRadius.circular(6)),
+                                            decoration: BoxDecoration(color: Color(0xFFCFD8DC), borderRadius: BorderRadius.circular(6)),
                                             child: Icon(
                                               Icons.add,
                                               size: 15,
@@ -303,9 +289,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
               child: Container(
                   width: size.width * 0.08,
                   height: size.height * 0.05,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blue),
-                      borderRadius: BorderRadius.circular(6)),
+                  decoration: BoxDecoration(border: Border.all(color: Colors.blue), borderRadius: BorderRadius.circular(6)),
                   child: Center(
                       child: Text(
                     'ยกเลิก',
@@ -317,19 +301,18 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
             ),
             InkWell(
               onTap: () {
-                final out = {
-                  'item': widget.gridCoffee,
-                  'size': selectedIndex,
-                };
+                if (selectedPrice == 0) {
+                  setState(() {
+                    selectedPrice = widget.productmains.productAttribute[0].attributeValues[0].price;
+                  });
+                }
+                final out = {'item': widget.gridCoffee, 'size': selectedIndex, 'pricesize': selectedPrice};
                 Navigator.pop(context, out);
               },
               child: Container(
                   width: size.width * 0.08,
                   height: size.height * 0.05,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blue),
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(6)),
+                  decoration: BoxDecoration(border: Border.all(color: Colors.blue), color: Colors.blue, borderRadius: BorderRadius.circular(6)),
                   child: Center(
                     child: Text(
                       'ตกลง',
