@@ -83,7 +83,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: size.width * 0.25,
                     height: size.height * 0.065,
                     child: Row(
