@@ -487,7 +487,7 @@ class _HomePageState extends State<HomePage> {
                                         sizeprice = value["pricesize"];
                                         inspect(sizeprice);
                                         item.code;
-                                        totleprice = item.priceQTY;
+                                        totleprice = item.sellprice!;
                                         totleqty = item.qty;
                                         item.priceQTY = item.sellprice!;
                                         // final item = Product(
@@ -893,9 +893,10 @@ class _HomePageState extends State<HomePage> {
                                                               selectedItem[index].qty = selectedItem[index].qty - 1;
                                                               final price =
                                                                   double.parse((selectedItem[index].sellprice! * selectedItem[index].qty).toString());
-                                                              totleprice = selectedItem[index].priceQTY;
+
                                                               totleqty = selectedItem[index].qty;
                                                               selectedItem[index].priceQTY = price;
+                                                              totleprice = selectedItem[index].priceQTY;
                                                             });
                                                           }
                                                         },
@@ -924,7 +925,9 @@ class _HomePageState extends State<HomePage> {
                                                               final price =
                                                                   double.parse((selectedItem[index].sellprice! * selectedItem[index].qty).toString());
                                                               totleqty = selectedItem[index].qty;
+
                                                               selectedItem[index].priceQTY = price;
+                                                              totleprice = selectedItem[index].priceQTY;
                                                             });
                                                           }
                                                           // setState(() {
