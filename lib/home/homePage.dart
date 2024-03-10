@@ -145,6 +145,10 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  //ฟังก์ชั่นคำนวน ราคา และ qty
+  double sum(List<Product> orders) => orders.fold(0, (previous, o) => previous + (o.qty * o.priceQTY));
+  int newQty(List<Product> orders) => orders.fold(0, (previousValue, e) => previousValue + e.qty);
+
   // double newtotal(Product orders, AttributeValues sizes) {
   //   return double.parse((sizes.price! == 0
   //           ? orders.priceS! * orders.qty!
@@ -1039,7 +1043,7 @@ class _HomePageState extends State<HomePage> {
                                           style: TextStyle(fontFamily: 'IBMPlexSansThai', color: Color(0xFF424242)),
                                         ),
                                         Text(
-                                          '${totleqty}',
+                                          '${newQty(selectedItem)}',
                                           // '${sumQTY(selectedItem)} ชิ้น',
                                           style: TextStyle(
                                             fontFamily: 'IBMPlexSansThai',
@@ -1055,7 +1059,7 @@ class _HomePageState extends State<HomePage> {
                                           style: TextStyle(fontFamily: 'IBMPlexSansThai', color: Color(0xFF424242)),
                                         ),
                                         Text(
-                                          '$totleprice',
+                                          '${sum(selectedItem)}',
                                           // '${sumPrice(selectedItem)} ฿',
                                           style: TextStyle(
                                             fontFamily: 'IBMPlexSansThai',
