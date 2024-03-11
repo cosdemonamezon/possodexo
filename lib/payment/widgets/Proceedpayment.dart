@@ -208,16 +208,19 @@ class _ProceedpaymentState extends State<Proceedpayment> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    width: size.width * 0.13,
-                    height: size.height * 0.065,
-                    decoration:
-                        BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8), border: Border.all(color: Color(0xFF1264E3))),
-                    child: Center(
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        'พิมใบเสร็จ',
-                        style: TextStyle(color: Color(0xFF1264E3), fontSize: 16),
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      width: size.width * 0.13,
+                      height: size.height * 0.065,
+                      decoration:
+                          BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8), border: Border.all(color: Color(0xFF1264E3))),
+                      child: Center(
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          'พิมใบเสร็จ',
+                          style: TextStyle(color: Color(0xFF1264E3), fontSize: 16),
+                        ),
                       ),
                     ),
                   ),

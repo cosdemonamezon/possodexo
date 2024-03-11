@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:possodexo/PrintReceiptsRetrospectively/PrintCallBack.dart';
 import 'package:possodexo/constants.dart';
 import 'package:possodexo/home/service/productController.dart';
 import 'package:possodexo/home/widgets/ClosePrintDialog.dart';
@@ -41,6 +42,7 @@ class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
   int totleqty = 0;
   double totleprice = 0.00;
+  int selectedPayback = 0;
 
   void onItemTapped(int index) {
     setState(() {
@@ -292,7 +294,9 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                           ],
                                         ),
-                                        onTap: () {},
+                                        onTap: () {
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => PrintCallBack()));
+                                        },
                                       ),
                                     ],
                                   ),
@@ -459,13 +463,6 @@ class _HomePageState extends State<HomePage> {
                                       onChanged: (v) async {
                                         setState(() {
                                           sclectedProduct = v;
-                                          //gridCoffees = gridCoffees.where((product) {
-                                          //   if (v == 'ทั้งหมด') {
-                                          //     return true;
-                                          //   } else {
-                                          //     return product['type'] == v;
-                                          //   }
-                                          // }).toList();
                                         });
                                         await context.read<ProductController>().getProduct(id: sclectedProduct!.id);
                                       },
@@ -494,15 +491,6 @@ class _HomePageState extends State<HomePage> {
                                         totleprice = item.sellprice!;
                                         totleqty = item.qty;
                                         item.priceQTY = item.sellprice!;
-                                        // final item = Product(
-                                        //   name: value['item']['name'],
-                                        //   priceS: value['item']['priceS'],
-                                        //   priceM: value['item']['priceM'],
-                                        //   priceL: value['item']['priceL'],
-                                        //   name: value['item']['name'],
-                                        //   type: value['item']['type'],
-                                        //   size: value['size'],
-                                        // );
 
                                         selectedItem.add(item);
                                         setState(() {});
