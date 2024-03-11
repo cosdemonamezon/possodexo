@@ -20,7 +20,7 @@ import 'package:possodexo/payment/widgets/paymentmedtod.dart';
 
 class PaymentCash extends StatefulWidget {
   PaymentCash({super.key, required this.selectedItem, required this.sumPrice, required this.sumQTY});
-  List<Product> selectedItem = [];
+  final List<ItemSelect> selectedItem;
   final String sumPrice;
   final String sumQTY;
   String? money;
@@ -122,9 +122,8 @@ class _PaymentCashState extends State<PaymentCash> {
                         children: [
                           Row(
                             children: [
-                              Text('data'),
-                              // Text("${widget.selectedItem[index].name}"),
-                              // Text(" X ${widget.selectedItem[index].qty}"),
+                              Text("${widget.selectedItem[index].name}"),
+                              Text(" X ${widget.selectedItem[index].qty}"),
                               SizedBox(
                                 width: 10,
                               ),
@@ -132,15 +131,15 @@ class _PaymentCashState extends State<PaymentCash> {
                           ),
                           Row(
                             children: [
-                              // Text('ขนาด'),
-                              // SizedBox(
-                              //   width: size.width * 0.01,
-                              // ),
-                              // Text(widget.selectedItem[index].size == 0
-                              //     ? 'S'
-                              //     : widget.selectedItem[index].size == 1
-                              //         ? 'M'
-                              //         : "L")
+                              Text('ขนาด'),
+                              SizedBox(
+                                width: size.width * 0.01,
+                              ),
+                              Text(widget.selectedItem[index].size == 0
+                                  ? 'S'
+                                  : widget.selectedItem[index].size == 1
+                                      ? 'M'
+                                      : "L")
                             ],
                           ),
                           Row(
@@ -151,22 +150,22 @@ class _PaymentCashState extends State<PaymentCash> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              // Text(
-                              //   widget.selectedItem[index].size == 0
-                              //       ? widget.selectedItem[index].priceS!.toStringAsFixed(2)
-                              //       : widget.selectedItem[index].size == 1
-                              //           ? widget.selectedItem[index].priceM!.toStringAsFixed(2)
-                              //           : widget.selectedItem[index].priceL!.toStringAsFixed(2),
-                              // ),
-                              // widget.selectedItem[index].priceQTY == 0
-                              //     ? Text(
-                              //         widget.selectedItem[index].priceS!.toStringAsFixed(2),
-                              //         style: TextStyle(fontWeight: FontWeight.bold),
-                              //       )
-                              //     : Text(
-                              //         widget.selectedItem[index].priceQTY!.toStringAsFixed(2),
-                              //         style: TextStyle(fontWeight: FontWeight.bold),
-                              //       ),
+                              Text(
+                                widget.selectedItem[index].size == 0
+                                    ? widget.selectedItem[index].priceS!.toStringAsFixed(2)
+                                    : widget.selectedItem[index].size == 1
+                                        ? widget.selectedItem[index].priceM!.toStringAsFixed(2)
+                                        : widget.selectedItem[index].priceL!.toStringAsFixed(2),
+                              ),
+                              widget.selectedItem[index].priceQTY == 0
+                                  ? Text(
+                                      widget.selectedItem[index].priceS!.toStringAsFixed(2),
+                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                    )
+                                  : Text(
+                                      widget.selectedItem[index].priceQTY!.toStringAsFixed(2),
+                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                    ),
                             ],
                           ),
                         ],

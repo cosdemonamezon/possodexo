@@ -168,8 +168,18 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                                       ],
                                     ),
                                   )
-                                : SizedBox(
-                                    child: Text("โชท็อปปิ้ง"),
+                                : Padding(
+                                    padding: const EdgeInsets.only(right: 10),
+                                    child: Container(
+                                      color: Colors.black,
+                                      height: size.height * 0.12,
+                                      width: size.width * 0.035,
+                                      child: Text(
+                                        // ignore: unnecessary_string_interpolations
+                                        "โชท็อปปิ้ง",
+                                        style: TextStyle(color: Colors.amber),
+                                      ),
+                                    ),
                                   ),
                       ),
                     ),

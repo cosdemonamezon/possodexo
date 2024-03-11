@@ -39,6 +39,8 @@ class _HomePageState extends State<HomePage> {
   String lang = "ไทย";
   List<Product> selectedItem = [];
   int selectedIndex = 0;
+  int totleqty = 0;
+  double totleprice = 0.00;
 
   void onItemTapped(int index) {
     setState(() {
@@ -142,6 +144,10 @@ class _HomePageState extends State<HomePage> {
       inspect(e);
     }
   }
+
+  //ฟังก์ชั่นคำนวน ราคา และ qty
+  double sum(List<Product> orders) => orders.fold(0, (previous, o) => previous + (o.qty * o.priceQTY));
+  int newQty(List<Product> orders) => orders.fold(0, (previousValue, e) => previousValue + e.qty);
 
   // double newtotal(Product orders, AttributeValues sizes) {
   //   return double.parse((sizes.price! == 0
@@ -485,6 +491,8 @@ class _HomePageState extends State<HomePage> {
                                         sizeprice = value["pricesize"];
                                         inspect(sizeprice);
                                         item.code;
+                                        totleprice = item.sellprice!;
+                                        totleqty = item.qty;
                                         item.priceQTY = item.sellprice!;
                                         // final item = Product(
                                         //   name: value['item']['name'],
@@ -890,7 +898,9 @@ class _HomePageState extends State<HomePage> {
                                                               final price =
                                                                   double.parse((selectedItem[index].sellprice! * selectedItem[index].qty).toString());
 
+                                                              totleqty = selectedItem[index].qty;
                                                               selectedItem[index].priceQTY = price;
+                                                              totleprice = selectedItem[index].priceQTY;
                                                             });
                                                           }
                                                         },
@@ -918,8 +928,10 @@ class _HomePageState extends State<HomePage> {
                                                               selectedItem[index].qty = selectedItem[index].qty + 1;
                                                               final price =
                                                                   double.parse((selectedItem[index].sellprice! * selectedItem[index].qty).toString());
+                                                              totleqty = selectedItem[index].qty;
 
                                                               selectedItem[index].priceQTY = price;
+                                                              totleprice = selectedItem[index].priceQTY;
                                                             });
                                                           }
                                                           // setState(() {
@@ -985,7 +997,9 @@ class _HomePageState extends State<HomePage> {
                                               Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Text((selectedItem[index].sellprice ?? 0 + sizeprice!).toStringAsFixed(2)),
+                                                  Text(
+                                                    (selectedItem[index].sellprice ?? 0 + sizeprice!).toStringAsFixed(2),
+                                                  ),
                                                   Text("${selectedItem[index].priceQTY}"),
                                                 ],
                                               ),
@@ -1029,7 +1043,7 @@ class _HomePageState extends State<HomePage> {
                                           style: TextStyle(fontFamily: 'IBMPlexSansThai', color: Color(0xFF424242)),
                                         ),
                                         Text(
-                                          '',
+                                          '${newQty(selectedItem)}',
                                           // '${sumQTY(selectedItem)} ชิ้น',
                                           style: TextStyle(
                                             fontFamily: 'IBMPlexSansThai',
@@ -1045,7 +1059,7 @@ class _HomePageState extends State<HomePage> {
                                           style: TextStyle(fontFamily: 'IBMPlexSansThai', color: Color(0xFF424242)),
                                         ),
                                         Text(
-                                          '',
+                                          '${sum(selectedItem)}',
                                           // '${sumPrice(selectedItem)} ฿',
                                           style: TextStyle(
                                             fontFamily: 'IBMPlexSansThai',
@@ -1077,8 +1091,7 @@ class _HomePageState extends State<HomePage> {
                                           style: TextStyle(fontFamily: 'IBMPlexSansThai', color: Color(0xFF424242)),
                                         ),
                                         Text(
-                                          '',
-                                          // "${sumPrice(selectedItem)} ฿",
+                                          "",
                                           style: TextStyle(
                                             fontFamily: 'IBMPlexSansThai',
                                           ),

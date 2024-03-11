@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:possodexo/models/attributeValues.dart';
-import 'package:possodexo/models/category.dart';
 
 part 'productAttribute.g.dart';
 
@@ -9,7 +8,7 @@ class ProductAttribute {
   final int id;
   final String? name;
   final int? price;
-  List<AttributeValues> attributeValues;
+  final List<AttributeValues> attributeValues;
 
   ProductAttribute(
     this.id,
