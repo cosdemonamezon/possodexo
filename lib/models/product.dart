@@ -16,7 +16,7 @@ class Product {
   final bool enableShot;
   final String? shotPrice;
   final Category? category;
-  int priceQTY;
+  double priceQTY;
   int qty;
 
   Product(

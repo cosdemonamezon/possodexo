@@ -168,8 +168,18 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                                       ],
                                     ),
                                   )
-                                : SizedBox(
-                                    child: Text("โชท็อปปิ้ง"),
+                                : Padding(
+                                    padding: const EdgeInsets.only(right: 10),
+                                    child: Container(
+                                      color: Colors.black,
+                                      height: size.height * 0.12,
+                                      width: size.width * 0.035,
+                                      child: Text(
+                                        // ignore: unnecessary_string_interpolations
+                                        "โชท็อปปิ้ง",
+                                        style: TextStyle(color: Colors.amber),
+                                      ),
+                                    ),
                                   ),
                       ),
                     ),
@@ -178,104 +188,6 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
               ),
             ),
           ),
-
-          // SizedBox(
-          //   height: 25,
-          // ),
-          // Row(
-          //   children: [
-          //     Container(
-          //       width: size.width * 0.15,
-          //       height: size.height * 0.04,
-          //       child: Text(
-          //         'เพิ่มช็อต',
-          //         style: TextStyle(
-          //           fontFamily: 'IBMPlexSansThai',
-          //           fontSize: 18,
-          //         ),
-          //       ),
-          //     ),
-          // Container(
-          //   height: 40,
-          //   // height: size.height * 0.036,
-          //   child: Row(
-          //     children: [
-          //       InkWell(
-          //         onTap: () {
-          //           setState(() {
-          //             if (qty > 0) {
-          //               qty = qty - 1;
-          //             }
-          //           });
-          //         },
-          //         child: Container(
-          //           width: size.width * 0.02,
-          //           height: 30,
-          //           decoration: BoxDecoration(
-          //               color: Color(0xFFCFD8DC),
-          //               borderRadius: BorderRadius.circular(6)),
-          //           child: Icon(
-          //             Icons.remove,
-          //             size: 15,
-          //           ),
-          //         ),
-          //       ),
-          //       SizedBox(
-          //         width: 10,
-          //       ),
-          //       Text("${qty}"),
-          //       SizedBox(
-          //         width: 10,
-          //       ),
-          //       InkWell(
-          //         onTap: () {
-          //           setState(() {
-          //             qty = qty + 1;
-          //           });
-          //         },
-          //         child: Container(
-          //           width: size.width * 0.02,
-          //           height: 30,
-          //           decoration: BoxDecoration(
-          //               color: Color(0xFFCFD8DC),
-          //               borderRadius: BorderRadius.circular(6)),
-          //           child: Icon(
-          //             Icons.add,
-          //             size: 15,
-          //           ),
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          //   ],
-          // ),
-          // SizedBox(
-          //   height: 25,
-          // ),
-          // Row(
-          //   children: [
-          //     Container(
-          //       width: size.width * 0.15,
-          //       height: size.height * 0.04,
-          //       child: Text(
-          //         'โปรโมชั่น',
-          //         style: TextStyle(
-          //           fontFamily: 'IBMPlexSansThai',
-          //           fontSize: 18,
-          //         ),
-          //       ),
-          //     ),
-          //     Row(
-          //       children: [
-          //         Container(
-          //             width: size.width * 0.25,
-          //             height: size.height * 0.04,
-          //             child: Text('แถมโค้กฟรี 1 ขวด')),
-          //       ],
-          //     )
-          //   ],
-          // )
         ],
       ),
       actions: [
