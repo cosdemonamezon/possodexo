@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 class Policypage extends StatefulWidget {
@@ -16,8 +14,7 @@ class _PolicypageState extends State<Policypage> {
     return AlertDialog(
       surfaceTintColor: Colors.white,
       backgroundColor: Colors.white,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(2))),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(2))),
       title: Text("desofo"),
     );
   }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
-
 class OpenDialogProduct extends StatefulWidget {
   OpenDialogProduct({
     super.key,
@@ -58,8 +56,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
       ),
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.white,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(2))),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(2))),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -89,9 +86,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                         height: size.height * 0.12,
                         width: size.width * 0.03,
                         decoration: BoxDecoration(
-                          color: selectedIndex == 0
-                              ? Color(0xFFE8EAF6)
-                              : Colors.white,
+                          color: selectedIndex == 0 ? Color(0xFFE8EAF6) : Colors.white,
                           borderRadius: BorderRadius.circular(6),
                           border: Border.all(color: Colors.blue),
                         ),
@@ -116,9 +111,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                         height: size.height * 0.12,
                         width: size.width * 0.03,
                         decoration: BoxDecoration(
-                          color: selectedIndex == 1
-                              ? Color(0xFFE8EAF6)
-                              : Colors.white,
+                          color: selectedIndex == 1 ? Color(0xFFE8EAF6) : Colors.white,
                           borderRadius: BorderRadius.circular(6),
                           border: Border.all(color: Colors.blue),
                         ),
@@ -143,9 +136,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                         height: size.height * 0.12,
                         width: size.width * 0.03,
                         decoration: BoxDecoration(
-                          color: selectedIndex == 2
-                              ? Color(0xFFE8EAF6)
-                              : Colors.white,
+                          color: selectedIndex == 2 ? Color(0xFFE8EAF6) : Colors.white,
                           borderRadius: BorderRadius.circular(6),
                           border: Border.all(color: Colors.blue),
                         ),
@@ -194,9 +185,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                         });
                       },
                       child: Container(
-                        decoration: BoxDecoration(
-                            color: Color(0xFF9E9E9E),
-                            borderRadius: BorderRadius.circular(6)),
+                        decoration: BoxDecoration(color: Color(0xFF9E9E9E), borderRadius: BorderRadius.circular(6)),
                         child: Icon(Icons.remove),
                       ),
                     ),
@@ -214,9 +203,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                         });
                       },
                       child: Container(
-                        decoration: BoxDecoration(
-                            color: Color(0xFF9E9E9E),
-                            borderRadius: BorderRadius.circular(6)),
+                        decoration: BoxDecoration(color: Color(0xFF9E9E9E), borderRadius: BorderRadius.circular(6)),
                         child: Icon(Icons.add),
                       ),
                     ),
@@ -243,10 +230,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
               ),
               Row(
                 children: [
-                  Container(
-                      width: size.width * 0.25,
-                      height: size.height * 0.04,
-                      child: Text('แถมโค้กฟรี 1 ขวด')),
+                  Container(width: size.width * 0.25, height: size.height * 0.04, child: Text('แถมโค้กฟรี 1 ขวด')),
                 ],
               )
             ],
@@ -262,9 +246,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
               child: Container(
                   width: size.width * 0.08,
                   height: size.height * 0.05,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blue),
-                      borderRadius: BorderRadius.circular(6)),
+                  decoration: BoxDecoration(border: Border.all(color: Colors.blue), borderRadius: BorderRadius.circular(6)),
                   child: Center(
                       child: Text(
                     'ยกเลิก',
@@ -279,10 +261,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
               child: Container(
                   width: size.width * 0.08,
                   height: size.height * 0.05,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blue),
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(6)),
+                  decoration: BoxDecoration(border: Border.all(color: Colors.blue), color: Colors.blue, borderRadius: BorderRadius.circular(6)),
                   child: Center(
                     child: Text(
                       'ตกลง',
