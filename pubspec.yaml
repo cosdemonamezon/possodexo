@@ -61,7 +61,6 @@ dev_dependencies:
   # คำสั่งในการสร้างโมเดล ---> dart run build_runner build
   flutter_lints: ^2.0.0
   timer_count_down: ^2.2.0
-  presentation_displays: ^1.0.0
   analyzer: ^5.13.0
   
 
