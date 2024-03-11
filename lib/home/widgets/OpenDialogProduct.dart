@@ -169,7 +169,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                                     ),
                                   )
                                 : Padding(
-                                    padding: const EdgeInsets.only(right: 5),
+                                    padding: const EdgeInsets.only(right: 10),
                                     child: Container(
                                       height: size.height * 0.12,
                                       width: size.width * 0.04,
