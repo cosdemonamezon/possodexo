@@ -88,7 +88,8 @@ class _HomePageState extends State<HomePage> {
           child: Center(
               child: Text(
             'Order${(orders.length + 1).toString().padLeft(2, '0')}',
-            style: TextStyle(color: kButtonColor, fontFamily: 'IBMPlexSansThai', fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                color: kButtonColor, fontFamily: 'IBMPlexSansThai', fontSize: 16, fontWeight: FontWeight.bold),
           )),
         ),
       ),
@@ -255,7 +256,9 @@ class _HomePageState extends State<HomePage> {
                                 width: size.width * 0.04,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: Colors.white, borderRadius: BorderRadius.circular(8), border: Border.all(color: Color(0xFF1264E3))),
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(8),
+                                      border: Border.all(color: Color(0xFF1264E3))),
                                   child: PopupMenuButton(
                                     color: Colors.white,
                                     surfaceTintColor: Colors.white,
@@ -348,7 +351,8 @@ class _HomePageState extends State<HomePage> {
                                                   surfaceTintColor: Colors.white,
                                                   elevation: 2,
                                                   shape: RoundedRectangleBorder(
-                                                      borderRadius: BorderRadius.circular(5.0), side: BorderSide(color: kButtonColor)),
+                                                      borderRadius: BorderRadius.circular(5.0),
+                                                      side: BorderSide(color: kButtonColor)),
                                                   child: SizedBox(
                                                     width: size.width * 0.1,
                                                     height: size.height * 0.06,
@@ -382,8 +386,9 @@ class _HomePageState extends State<HomePage> {
                                       child: Card(
                                         surfaceTintColor: Colors.white,
                                         elevation: 5,
-                                        shape:
-                                            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0), side: BorderSide(color: kButtonColor)),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(5.0),
+                                            side: BorderSide(color: kButtonColor)),
                                         color: Colors.white,
                                         child: SizedBox(
                                           width: size.width * 0.07,
@@ -401,7 +406,10 @@ class _HomePageState extends State<HomePage> {
                                               Text(
                                                 'เพิ่ม',
                                                 style: TextStyle(
-                                                    color: kButtonColor, fontFamily: 'IBMPlexSansThai', fontSize: 16, fontWeight: FontWeight.bold),
+                                                    color: kButtonColor,
+                                                    fontFamily: 'IBMPlexSansThai',
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold),
                                               ),
                                             ],
                                           ),
@@ -480,37 +488,126 @@ class _HomePageState extends State<HomePage> {
                                       qty: qty,
                                       gridCoffee: products,
                                       onChange: (value) {
-                                        // inspect(value);
-                                        final Product item = value["item"];
-                                        menuSize = value["size"];
-                                        inspect(menuSize);
-                                        sizeprice = value["pricesize"];
-                                        inspect(sizeprice);
-                                        item.code;
-                                        totleprice = item.sellprice!;
-                                        totleqty = item.qty;
-                                        item.priceQTY = item.sellprice!;
-                                        // final item = Product(
-                                        //   name: value['item']['name'],
-                                        //   priceS: value['item']['priceS'],
-                                        //   priceM: value['item']['priceM'],
-                                        //   priceL: value['item']['priceL'],
-                                        //   name: value['item']['name'],
-                                        //   type: value['item']['type'],
-                                        //   size: value['size'],
-                                        // );
+                                        inspect(value);
+                                        setState(() {
+                                          //finalListProducts.clear();
+                                          try {
+                                            List<String> check = [];
+                                            for (var character in value.runes) {
+                                              String singleCharacter = String.fromCharCode(character);
+                                              // print(singleCharacter);
+                                              check.add(singleCharacter);
+                                            }
+                                            //inspect(check);
 
-                                        selectedItem.add(item);
-                                        setState(() {});
+                                            List<String> substrings = value.split('+');
+                                            for (var element in substrings) {
+                                              inspect(element);
+
+                                              // final out = {
+                                              //   'item': widget.gridCoffee,
+                                              //   'size': selectedIndex,
+                                              //   'pricesize': selectedPrice
+                                              // };
+                                              // Navigator.pop(context, out);
+                                              //products[index];
+                                              //final newProduct = Product.fromJson(products[index].toJson());
+                                              // final newProduct = Product(
+                                              //   products[index].item!.id!,
+                                              //   products[index].item!.atLeastStock,
+                                              //   products[index].item!.clientId,
+                                              //   products[index].item!.code,
+                                              //   products[index].item!.cost,
+                                              //   '', // products[index].createBy,
+                                              //   '', // products[index].details,
+                                              //   '', // products[index].image,
+                                              //   null, //  products[index].memberId,
+                                              //   products[index].item!.name,
+                                              //   products[index].item!.price,
+                                              //   products[index].item!.profit,
+                                              //   products[index].item!.status,
+                                              //   products[index].item!.stock,
+                                              //   products[index].item!.unit,
+                                              //   [], // products[index].itemUnitPrices,
+                                              //   products[index].item!.unitId,
+                                              //   '', // products[index].updateBy,
+                                              // );
+                                              // final newProduct = Product2(
+                                              //   products[index].item!.id!,
+                                              //   products[index].item!.atLeastStock,
+                                              //   products[index].item!.clientId,
+                                              //   products[index].item!.code,
+                                              //   products[index].item!.cost,
+                                              //   '', // products[index].createBy,
+                                              //   '', // products[index].details,
+                                              //   '', // products[index].image,
+                                              //   null, //  products[index].memberId,
+                                              //   products[index].item!.name,
+                                              //   products[index].price,
+                                              //   products[index].item!.profit,
+                                              //   products[index].item!.status,
+                                              //   products[index].item!.stock,
+                                              //   products[index].item!.unit,
+                                              //   [], // products[index].itemUnitPrices,
+                                              //   products[index].item!.unitId,
+                                              //   null, // products[index].updateBy,
+                                              //   null,
+                                              //   null,
+                                              //   null,
+                                              // );
+                                              // inspect(newProduct);
+                                              // // newProduct.qty = int.parse(substring2[0]);
+                                              // newProduct.qtyPack = double.parse(element);
+                                              // finalListProducts.add(newProduct);
+                                            }
+                                          } catch (e) {
+                                            // _myNumber.clear();
+                                            // showDialog(
+                                            //   context: context,
+                                            //   barrierDismissible: false,
+                                            //   builder: (BuildContext context) {
+                                            //     return AlertDialogYes(
+                                            //       title: 'แจ้งเตือน',
+                                            //       //description: 'รูปแบบข้อมูลไม่ถูกต้อง',
+                                            //       description: e.toString(),
+                                            //       pressYes: () {
+                                            //         Navigator.pop(context, true);
+                                            //       },
+                                            //     );
+                                            //   },
+                                            // );
+                                          }
+                                        });
+                                        // final Product item = value["item"];
+                                        // menuSize = value["size"];
+                                        // inspect(menuSize);
+                                        // sizeprice = value["pricesize"];
+                                        // inspect(sizeprice);
+                                        // item.code;
+                                        // totleprice = item.sellprice!;
+                                        // totleqty = item.qty;
+                                        // item.priceQTY = item.sellprice!;
+                                        // // final item = Product(
+                                        // //   name: value['item']['name'],
+                                        // //   priceS: value['item']['priceS'],
+                                        // //   priceM: value['item']['priceM'],
+                                        // //   priceL: value['item']['priceL'],
+                                        // //   name: value['item']['name'],
+                                        // //   type: value['item']['type'],
+                                        // //   size: value['size'],
+                                        // // );
+
+                                        // selectedItem.add(item);
+                                        // setState(() {});
                                       },
                                     ),
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: size.height * 0.14,
-                                child: GridProMotion(),
-                              )
+                              // SizedBox(
+                              //   height: size.height * 0.14,
+                              //   child: GridProMotion(),
+                              // )
                             ],
                           ),
                         )
@@ -596,7 +693,8 @@ class _HomePageState extends State<HomePage> {
                                           style: TextStyle(
                                             fontSize: 16,
                                             fontFamily: 'IBMPlexSansThai',
-                                            color: selectedIndex == 0 ? Color.fromARGB(255, 255, 255, 255) : Colors.black,
+                                            color:
+                                                selectedIndex == 0 ? Color.fromARGB(255, 255, 255, 255) : Colors.black,
                                           ),
                                         ),
                                       ],
@@ -621,7 +719,9 @@ class _HomePageState extends State<HomePage> {
                                           style: TextStyle(
                                               fontSize: 16,
                                               fontFamily: 'IBMPlexSansThai',
-                                              color: selectedIndex == 1 ? Color.fromARGB(255, 255, 255, 255) : Colors.black),
+                                              color: selectedIndex == 1
+                                                  ? Color.fromARGB(255, 255, 255, 255)
+                                                  : Colors.black),
                                         ),
                                       ],
                                     ),
@@ -891,8 +991,10 @@ class _HomePageState extends State<HomePage> {
                                                           if (selectedItem[index].qty > 1) {
                                                             setState(() {
                                                               selectedItem[index].qty = selectedItem[index].qty - 1;
-                                                              final price =
-                                                                  double.parse((selectedItem[index].sellprice! * selectedItem[index].qty).toString());
+                                                              final price = double.parse(
+                                                                  (selectedItem[index].sellprice! *
+                                                                          selectedItem[index].qty)
+                                                                      .toString());
 
                                                               totleqty = selectedItem[index].qty;
                                                               selectedItem[index].priceQTY = price;
@@ -901,9 +1003,11 @@ class _HomePageState extends State<HomePage> {
                                                           }
                                                         },
                                                         child: Container(
-                                                          width: size.width * 0.02,
-                                                          height: 30,
-                                                          decoration: BoxDecoration(color: Color(0xFFCFD8DC), borderRadius: BorderRadius.circular(6)),
+                                                          width: size.width * 0.03,
+                                                          height: size.height * 0.04,
+                                                          decoration: BoxDecoration(
+                                                              color: Color(0xFFCFD8DC),
+                                                              borderRadius: BorderRadius.circular(6)),
                                                           child: Icon(
                                                             Icons.remove,
                                                             size: 15,
@@ -922,8 +1026,10 @@ class _HomePageState extends State<HomePage> {
                                                           if (selectedItem[index].qty >= 1) {
                                                             setState(() {
                                                               selectedItem[index].qty = selectedItem[index].qty + 1;
-                                                              final price =
-                                                                  double.parse((selectedItem[index].sellprice! * selectedItem[index].qty).toString());
+                                                              final price = double.parse(
+                                                                  (selectedItem[index].sellprice! *
+                                                                          selectedItem[index].qty)
+                                                                      .toString());
                                                               totleqty = selectedItem[index].qty;
 
                                                               selectedItem[index].priceQTY = price;
@@ -950,7 +1056,9 @@ class _HomePageState extends State<HomePage> {
                                                         child: Container(
                                                           width: size.width * 0.03,
                                                           height: size.height * 0.04,
-                                                          decoration: BoxDecoration(color: Color(0xFFCFD8DC), borderRadius: BorderRadius.circular(6)),
+                                                          decoration: BoxDecoration(
+                                                              color: Color(0xFFCFD8DC),
+                                                              borderRadius: BorderRadius.circular(6)),
                                                           child: Icon(
                                                             Icons.add,
                                                             size: 15,
@@ -986,7 +1094,10 @@ class _HomePageState extends State<HomePage> {
                                                 children: [
                                                   Text(
                                                     'โปรโมชั่น',
-                                                    style: TextStyle(fontSize: 14, fontFamily: 'IBMPlexSansThai', color: Color(0xFF455A64)),
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontFamily: 'IBMPlexSansThai',
+                                                        color: Color(0xFF455A64)),
                                                   ),
                                                 ],
                                               ),
@@ -994,7 +1105,8 @@ class _HomePageState extends State<HomePage> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Text(
-                                                    (selectedItem[index].sellprice ?? 0 + sizeprice!).toStringAsFixed(2),
+                                                    (selectedItem[index].sellprice ?? 0 + sizeprice!)
+                                                        .toStringAsFixed(2),
                                                   ),
                                                   Text("${selectedItem[index].priceQTY}"),
                                                 ],
@@ -1112,8 +1224,9 @@ class _HomePageState extends State<HomePage> {
                                             if (statusD == true) {}
                                           },
                                           child: Container(
-                                            decoration:
-                                                BoxDecoration(borderRadius: BorderRadius.circular(8), border: Border.all(color: Colors.black)),
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(8),
+                                                border: Border.all(color: Colors.black)),
                                             height: size.height * 0.05,
                                             width: size.width * 0.13,
                                             child: Padding(
@@ -1151,8 +1264,9 @@ class _HomePageState extends State<HomePage> {
                                             if (statusD == true) {}
                                           },
                                           child: Container(
-                                            decoration:
-                                                BoxDecoration(borderRadius: BorderRadius.circular(8), border: Border.all(color: Colors.black)),
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(8),
+                                                border: Border.all(color: Colors.black)),
                                             height: size.height * 0.05,
                                             width: size.width * 0.13,
                                             child: Row(
@@ -1214,7 +1328,10 @@ class _HomePageState extends State<HomePage> {
                                                   child: Text(
                                                     'ชำระเงิน ',
                                                     style: TextStyle(
-                                                        fontWeight: FontWeight.bold, fontSize: 12, fontFamily: 'IBMPlexSansThai', color: Colors.white
+                                                        fontWeight: FontWeight.bold,
+                                                        fontSize: 12,
+                                                        fontFamily: 'IBMPlexSansThai',
+                                                        color: Colors.white
                                                         // : Color.fromARGB(
                                                         //     110,
                                                         //     185,
