@@ -12,6 +12,7 @@ import 'package:possodexo/home/widgets/OpenSalesShift.dart';
 import 'package:possodexo/home/widgets/ShowOpenShift.dart';
 import 'package:possodexo/home/widgets/TablePromotion.dart';
 import 'package:possodexo/home/widgets/membership.dart';
+import 'package:possodexo/home/widgets/texPage.dart';
 import 'package:possodexo/models/attributeValues.dart';
 import 'package:possodexo/models/branch.dart';
 import 'package:possodexo/models/category.dart';
@@ -278,7 +279,12 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                           ],
                                         ),
-                                        onTap: () {},
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(builder: (context) => TaxPage()),
+                                          );
+                                        },
                                       ),
                                       PopupMenuItem(
                                         child: Row(
