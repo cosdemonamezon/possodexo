@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:possodexo/home/homePage.dart';
 import 'package:possodexo/home/widgets/OpenAndCloseSwitch.dart';
+import 'package:possodexo/models/product.dart';
 import 'package:possodexo/payment/widgets/Addpayment.dart';
 import 'package:possodexo/payment/widgets/Discount.dart';
 import 'package:possodexo/payment/widgets/GiftVoucherwidgets.dart';
@@ -18,12 +19,8 @@ import 'package:possodexo/payment/widgets/numbercel.dart';
 import 'package:possodexo/payment/widgets/paymentmedtod.dart';
 
 class PaymentCash extends StatefulWidget {
-  PaymentCash(
-      {super.key,
-      required this.selectedItem,
-      required this.sumPrice,
-      required this.sumQTY});
-  final List<ItemSelect> selectedItem;
+  PaymentCash({super.key, required this.selectedItem, required this.sumPrice, required this.sumQTY});
+  List<Product> selectedItem = [];
   final String sumPrice;
   final String sumQTY;
   String? money;
@@ -33,10 +30,12 @@ class PaymentCash extends StatefulWidget {
 
 class _PaymentCashState extends State<PaymentCash> {
   bool checkNum = false;
+  int? sizeprice;
   TextEditingController ai = TextEditingController();
   bool _isSelected = false;
 
   int selectedItem = 0;
+  int totalPrice = 0;
   void onItemTapped1(int index1) {
     setState(() {
       selectedItem = index1;
@@ -105,10 +104,7 @@ class _PaymentCashState extends State<PaymentCash> {
                           }),
                       Text(
                         'กลับ',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'IBMPlexSansThai',
-                            fontSize: 16),
+                        style: TextStyle(color: Colors.white, fontFamily: 'IBMPlexSansThai', fontSize: 16),
                       )
                     ],
                   ),
@@ -126,8 +122,9 @@ class _PaymentCashState extends State<PaymentCash> {
                         children: [
                           Row(
                             children: [
-                              Text("${widget.selectedItem[index].name}"),
-                              Text(" X ${widget.selectedItem[index].qty}"),
+                              Text('data'),
+                              // Text("${widget.selectedItem[index].name}"),
+                              // Text(" X ${widget.selectedItem[index].qty}"),
                               SizedBox(
                                 width: 10,
                               ),
@@ -135,15 +132,15 @@ class _PaymentCashState extends State<PaymentCash> {
                           ),
                           Row(
                             children: [
-                              Text('ขนาด'),
-                              SizedBox(
-                                width: size.width * 0.01,
-                              ),
-                              Text(widget.selectedItem[index].size == 0
-                                  ? 'S'
-                                  : widget.selectedItem[index].size == 1
-                                      ? 'M'
-                                      : "L")
+                              // Text('ขนาด'),
+                              // SizedBox(
+                              //   width: size.width * 0.01,
+                              // ),
+                              // Text(widget.selectedItem[index].size == 0
+                              //     ? 'S'
+                              //     : widget.selectedItem[index].size == 1
+                              //         ? 'M'
+                              //         : "L")
                             ],
                           ),
                           Row(
@@ -154,29 +151,22 @@ class _PaymentCashState extends State<PaymentCash> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                widget.selectedItem[index].size == 0
-                                    ? widget.selectedItem[index].priceS!
-                                        .toStringAsFixed(2)
-                                    : widget.selectedItem[index].size == 1
-                                        ? widget.selectedItem[index].priceM!
-                                            .toStringAsFixed(2)
-                                        : widget.selectedItem[index].priceL!
-                                            .toStringAsFixed(2),
-                              ),
-                              widget.selectedItem[index].priceQTY == 0
-                                  ? Text(
-                                      widget.selectedItem[index].priceS!
-                                          .toStringAsFixed(2),
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  : Text(
-                                      widget.selectedItem[index].priceQTY!
-                                          .toStringAsFixed(2),
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                              // Text(
+                              //   widget.selectedItem[index].size == 0
+                              //       ? widget.selectedItem[index].priceS!.toStringAsFixed(2)
+                              //       : widget.selectedItem[index].size == 1
+                              //           ? widget.selectedItem[index].priceM!.toStringAsFixed(2)
+                              //           : widget.selectedItem[index].priceL!.toStringAsFixed(2),
+                              // ),
+                              // widget.selectedItem[index].priceQTY == 0
+                              //     ? Text(
+                              //         widget.selectedItem[index].priceS!.toStringAsFixed(2),
+                              //         style: TextStyle(fontWeight: FontWeight.bold),
+                              //       )
+                              //     : Text(
+                              //         widget.selectedItem[index].priceQTY!.toStringAsFixed(2),
+                              //         style: TextStyle(fontWeight: FontWeight.bold),
+                              //       ),
                             ],
                           ),
                         ],
@@ -196,11 +186,8 @@ class _PaymentCashState extends State<PaymentCash> {
                   height: size.height * 0.05,
                   width: size.width * 0.25,
                   decoration: BoxDecoration(
-                      color:
-                          selectedItem == 1 ? Color(0xff1264E3) : Colors.white,
-                      border: Border(
-                          bottom: BorderSide(
-                              color: Color.fromARGB(255, 228, 226, 226)))),
+                      color: selectedItem == 1 ? Color(0xff1264E3) : Colors.white,
+                      border: Border(bottom: BorderSide(color: Color.fromARGB(255, 228, 226, 226)))),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -219,20 +206,13 @@ class _PaymentCashState extends State<PaymentCash> {
                                     )),
                           Text(
                             "ส่วนลด",
-                            style: TextStyle(
-                                color: selectedItem == 1
-                                    ? Colors.white
-                                    : Color(0xff1264E3)),
+                            style: TextStyle(color: selectedItem == 1 ? Colors.white : Color(0xff1264E3)),
                           ),
                         ],
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Icon(Icons.arrow_forward_ios_outlined,
-                            size: 15,
-                            color: selectedItem == 1
-                                ? Colors.white
-                                : Color(0xff1264E3)),
+                        child: Icon(Icons.arrow_forward_ios_outlined, size: 15, color: selectedItem == 1 ? Colors.white : Color(0xff1264E3)),
                       )
                     ],
                   ),
@@ -251,11 +231,8 @@ class _PaymentCashState extends State<PaymentCash> {
                   height: size.height * 0.05,
                   width: size.width * 0.25,
                   decoration: BoxDecoration(
-                      color:
-                          selectedItem == 0 ? Color(0xff1264E3) : Colors.white,
-                      border: Border(
-                          bottom: BorderSide(
-                              color: Color.fromARGB(255, 228, 226, 226)))),
+                      color: selectedItem == 0 ? Color(0xff1264E3) : Colors.white,
+                      border: Border(bottom: BorderSide(color: Color.fromARGB(255, 228, 226, 226)))),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -274,20 +251,13 @@ class _PaymentCashState extends State<PaymentCash> {
                                     )),
                           Text(
                             "ชำระเงิน",
-                            style: TextStyle(
-                                color: selectedItem == 0
-                                    ? Colors.white
-                                    : Color(0xff1264E3)),
+                            style: TextStyle(color: selectedItem == 0 ? Colors.white : Color(0xff1264E3)),
                           ),
                         ],
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Icon(Icons.arrow_forward_ios_outlined,
-                            size: 15,
-                            color: selectedItem == 0
-                                ? Colors.white
-                                : Color(0xff1264E3)),
+                        child: Icon(Icons.arrow_forward_ios_outlined, size: 15, color: selectedItem == 0 ? Colors.white : Color(0xff1264E3)),
                       ),
                     ],
                   ),
@@ -365,8 +335,7 @@ class _PaymentCashState extends State<PaymentCash> {
                       height: size.height * 0.95,
                       width: double.infinity,
                       padding: EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 228, 226, 226)),
+                      decoration: BoxDecoration(color: Color.fromARGB(255, 228, 226, 226)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -398,23 +367,17 @@ class _PaymentCashState extends State<PaymentCash> {
                                         SizedBox(
                                             child: selectedItem == 0
                                                 ? Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                     children: [
-                                                      Text(
-                                                          "เลือกวิธีการชำระเงิน"),
+                                                      Text("เลือกวิธีการชำระเงิน"),
                                                       SizedBox(
-                                                        width:
-                                                            size.width * 0.23,
+                                                        width: size.width * 0.23,
                                                       ),
                                                       OpenAndCloseSwitch(
                                                         size: size,
                                                         open: open,
-                                                        showTextClose:
-                                                            'เเบ่งจ่าย',
-                                                        showTextOpen:
-                                                            'เเบ่งจ่าย',
+                                                        showTextClose: 'เเบ่งจ่าย',
+                                                        showTextOpen: 'เเบ่งจ่าย',
                                                         onChanged: (value) {
                                                           setState(() {
                                                             open = value;
@@ -437,50 +400,28 @@ class _PaymentCashState extends State<PaymentCash> {
                                                           ? Addpayment(
                                                               size: size,
                                                               money: money,
-                                                              general2:
-                                                                  general2,
-                                                              seclecpayment:
-                                                                  (value) {
+                                                              general2: general2,
+                                                              seclecpayment: (value) {
                                                                 setState(() {
-                                                                  money =
-                                                                      value!;
+                                                                  money = value!;
                                                                 });
                                                               },
                                                             )
                                                           : Column(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
+                                                              mainAxisAlignment: MainAxisAlignment.start,
+                                                              crossAxisAlignment: CrossAxisAlignment.start,
                                                               children: [
-                                                                Container(
-                                                                    height: size
-                                                                            .height *
-                                                                        0.18,
-                                                                    child:
-                                                                        PaymentMethod()),
+                                                                Container(height: size.height * 0.18, child: PaymentMethod()),
                                                                 Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
+                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                   children: [
                                                                     Text(
                                                                       'ยอดชำระ',
-                                                                      style: TextStyle(
-                                                                          color: Color(
-                                                                              0xFF424242),
-                                                                          fontSize:
-                                                                              16),
+                                                                      style: TextStyle(color: Color(0xFF424242), fontSize: 16),
                                                                     ),
                                                                     Text(
                                                                       'ชำระทั้งหมด',
-                                                                      style: TextStyle(
-                                                                          color: Color(
-                                                                              0xFF1264E3),
-                                                                          fontSize:
-                                                                              16),
+                                                                      style: TextStyle(color: Color(0xFF1264E3), fontSize: 16),
                                                                     ),
                                                                   ],
                                                                 ),
@@ -492,220 +433,124 @@ class _PaymentCashState extends State<PaymentCash> {
                                                 : Column(
                                                     children: [
                                                       Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
+                                                        mainAxisAlignment: MainAxisAlignment.center,
                                                         children: [
                                                           InkWell(
                                                               onTap: () {
-                                                                onItemTappeDiscount(
-                                                                    0);
+                                                                onItemTappeDiscount(0);
                                                               },
-                                                              child: selectedIndex ==
-                                                                      0
+                                                              child: selectedIndex == 0
                                                                   ? Container(
-                                                                      width: size
-                                                                              .width *
-                                                                          0.12,
-                                                                      height: size
-                                                                              .height *
-                                                                          0.05,
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        border: Border(
-                                                                            bottom:
-                                                                                BorderSide(color: Color(0xFF1264E3))),
+                                                                      width: size.width * 0.12,
+                                                                      height: size.height * 0.05,
+                                                                      decoration: BoxDecoration(
+                                                                        border: Border(bottom: BorderSide(color: Color(0xFF1264E3))),
                                                                       ),
-                                                                      child:
-                                                                          Text(
+                                                                      child: Text(
                                                                         'ส่วนลด',
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        style: TextStyle(
-                                                                            fontSize:
-                                                                                20,
-                                                                            color:
-                                                                                Color(0xFF1264E3)),
+                                                                        textAlign: TextAlign.center,
+                                                                        style: TextStyle(fontSize: 20, color: Color(0xFF1264E3)),
                                                                       ),
                                                                     )
                                                                   : Container(
-                                                                      width: size
-                                                                              .width *
-                                                                          0.12,
-                                                                      height: size
-                                                                              .height *
-                                                                          0.05,
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        border: Border(
-                                                                            bottom:
-                                                                                BorderSide(color: Color(0xFFB0BEC5))),
+                                                                      width: size.width * 0.12,
+                                                                      height: size.height * 0.05,
+                                                                      decoration: BoxDecoration(
+                                                                        border: Border(bottom: BorderSide(color: Color(0xFFB0BEC5))),
                                                                       ),
-                                                                      child:
-                                                                          Text(
+                                                                      child: Text(
                                                                         'ส่วนลด',
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        style: TextStyle(
-                                                                            fontSize:
-                                                                                20,
-                                                                            color:
-                                                                                Color(0xFF424242)),
+                                                                        textAlign: TextAlign.center,
+                                                                        style: TextStyle(fontSize: 20, color: Color(0xFF424242)),
                                                                       ),
                                                                     )),
                                                           InkWell(
                                                             onTap: () {
-                                                              onItemTappeDiscount(
-                                                                  1);
+                                                              onItemTappeDiscount(1);
                                                             },
-                                                            child:
-                                                                selectedIndex ==
-                                                                        1
-                                                                    ? Container(
-                                                                        width: size.width *
-                                                                            0.12,
-                                                                        height: size.height *
-                                                                            0.05,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          border:
-                                                                              Border(bottom: BorderSide(color: Color(0xFF1264E3))),
-                                                                        ),
-                                                                        child:
-                                                                            Text(
-                                                                          'Gift Voucher',
-                                                                          textAlign:
-                                                                              TextAlign.center,
-                                                                          style: TextStyle(
-                                                                              fontSize: 20,
-                                                                              color: Color(0xFF1264E3)),
-                                                                        ),
-                                                                      )
-                                                                    : Container(
-                                                                        width: size.width *
-                                                                            0.12,
-                                                                        height: size.height *
-                                                                            0.05,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          border:
-                                                                              Border(bottom: BorderSide(color: Color(0xFFB0BEC5))),
-                                                                        ),
-                                                                        child:
-                                                                            Text(
-                                                                          'Gift Voucher',
-                                                                          textAlign:
-                                                                              TextAlign.center,
-                                                                          style: TextStyle(
-                                                                              fontSize: 20,
-                                                                              color: Color(0xFF424242)),
-                                                                        ),
-                                                                      ),
+                                                            child: selectedIndex == 1
+                                                                ? Container(
+                                                                    width: size.width * 0.12,
+                                                                    height: size.height * 0.05,
+                                                                    decoration: BoxDecoration(
+                                                                      border: Border(bottom: BorderSide(color: Color(0xFF1264E3))),
+                                                                    ),
+                                                                    child: Text(
+                                                                      'Gift Voucher',
+                                                                      textAlign: TextAlign.center,
+                                                                      style: TextStyle(fontSize: 20, color: Color(0xFF1264E3)),
+                                                                    ),
+                                                                  )
+                                                                : Container(
+                                                                    width: size.width * 0.12,
+                                                                    height: size.height * 0.05,
+                                                                    decoration: BoxDecoration(
+                                                                      border: Border(bottom: BorderSide(color: Color(0xFFB0BEC5))),
+                                                                    ),
+                                                                    child: Text(
+                                                                      'Gift Voucher',
+                                                                      textAlign: TextAlign.center,
+                                                                      style: TextStyle(fontSize: 20, color: Color(0xFF424242)),
+                                                                    ),
+                                                                  ),
                                                           ),
                                                           InkWell(
                                                             onTap: () {
-                                                              onItemTappeDiscount(
-                                                                  2);
+                                                              onItemTappeDiscount(2);
                                                             },
-                                                            child:
-                                                                selectedIndex ==
-                                                                        2
-                                                                    ? Container(
-                                                                        width: size.width *
-                                                                            0.12,
-                                                                        height: size.height *
-                                                                            0.05,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          border:
-                                                                              Border(bottom: BorderSide(color: Color(0xFF1264E3))),
-                                                                        ),
-                                                                        child:
-                                                                            Text(
-                                                                          'แลกคะแนน',
-                                                                          textAlign:
-                                                                              TextAlign.center,
-                                                                          style: TextStyle(
-                                                                              fontSize: 20,
-                                                                              color: Color(0xFF1264E3)),
-                                                                        ),
-                                                                      )
-                                                                    : Container(
-                                                                        width: size.width *
-                                                                            0.12,
-                                                                        height: size.height *
-                                                                            0.05,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          border:
-                                                                              Border(bottom: BorderSide(color: Color(0xFFB0BEC5))),
-                                                                        ),
-                                                                        child:
-                                                                            Text(
-                                                                          'แลกคะแนน',
-                                                                          textAlign:
-                                                                              TextAlign.center,
-                                                                          style: TextStyle(
-                                                                              fontSize: 20,
-                                                                              color: Color(0xFF424242)),
-                                                                        ),
-                                                                      ),
+                                                            child: selectedIndex == 2
+                                                                ? Container(
+                                                                    width: size.width * 0.12,
+                                                                    height: size.height * 0.05,
+                                                                    decoration: BoxDecoration(
+                                                                      border: Border(bottom: BorderSide(color: Color(0xFF1264E3))),
+                                                                    ),
+                                                                    child: Text(
+                                                                      'แลกคะแนน',
+                                                                      textAlign: TextAlign.center,
+                                                                      style: TextStyle(fontSize: 20, color: Color(0xFF1264E3)),
+                                                                    ),
+                                                                  )
+                                                                : Container(
+                                                                    width: size.width * 0.12,
+                                                                    height: size.height * 0.05,
+                                                                    decoration: BoxDecoration(
+                                                                      border: Border(bottom: BorderSide(color: Color(0xFFB0BEC5))),
+                                                                    ),
+                                                                    child: Text(
+                                                                      'แลกคะแนน',
+                                                                      textAlign: TextAlign.center,
+                                                                      style: TextStyle(fontSize: 20, color: Color(0xFF424242)),
+                                                                    ),
+                                                                  ),
                                                           ),
                                                           InkWell(
                                                               onTap: () {
-                                                                onItemTappeDiscount(
-                                                                    3);
+                                                                onItemTappeDiscount(3);
                                                               },
-                                                              child: selectedIndex ==
-                                                                      3
+                                                              child: selectedIndex == 3
                                                                   ? Container(
-                                                                      width: size
-                                                                              .width *
-                                                                          0.12,
-                                                                      height: size
-                                                                              .height *
-                                                                          0.05,
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        border: Border(
-                                                                            bottom:
-                                                                                BorderSide(color: Color(0xFF1264E3))),
+                                                                      width: size.width * 0.12,
+                                                                      height: size.height * 0.05,
+                                                                      decoration: BoxDecoration(
+                                                                        border: Border(bottom: BorderSide(color: Color(0xFF1264E3))),
                                                                       ),
-                                                                      child:
-                                                                          Text(
+                                                                      child: Text(
                                                                         'ส่วนลดอื่นๆ',
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        style: TextStyle(
-                                                                            fontSize:
-                                                                                20,
-                                                                            color:
-                                                                                Color(0xFF1264E3)),
+                                                                        textAlign: TextAlign.center,
+                                                                        style: TextStyle(fontSize: 20, color: Color(0xFF1264E3)),
                                                                       ),
                                                                     )
                                                                   : Container(
-                                                                      width: size
-                                                                              .width *
-                                                                          0.12,
-                                                                      height: size
-                                                                              .height *
-                                                                          0.05,
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        border: Border(
-                                                                            bottom:
-                                                                                BorderSide(color: Color(0xFFB0BEC5))),
+                                                                      width: size.width * 0.12,
+                                                                      height: size.height * 0.05,
+                                                                      decoration: BoxDecoration(
+                                                                        border: Border(bottom: BorderSide(color: Color(0xFFB0BEC5))),
                                                                       ),
-                                                                      child:
-                                                                          Text(
+                                                                      child: Text(
                                                                         'ส่วนลดอื่นๆ',
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        style: TextStyle(
-                                                                            fontSize:
-                                                                                20,
-                                                                            color:
-                                                                                Color(0xFF424242)),
+                                                                        textAlign: TextAlign.center,
+                                                                        style: TextStyle(fontSize: 20, color: Color(0xFF424242)),
                                                                       ),
                                                                     )),
                                                         ],
@@ -714,11 +559,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                                           ? DiscountWidgets()
                                                           : selectedIndex == 1
                                                               ? GiftVoucherwidgets()
-                                                              : selectedIndex ==
-                                                                      2
+                                                              : selectedIndex == 2
                                                                   ? Redeempointswidget()
-                                                                  : selectedIndex ==
-                                                                          3
+                                                                  : selectedIndex == 3
                                                                       ? OtherDiscountsWidgets()
                                                                       : SizedBox(),
                                                     ],
@@ -746,8 +589,7 @@ class _PaymentCashState extends State<PaymentCash> {
                               Container(
                                 height: size.height * 0.08,
                                 width: size.width * 0.25,
-                                decoration:
-                                    BoxDecoration(color: Color(0xfffECEFF1)),
+                                decoration: BoxDecoration(color: Color(0xfffECEFF1)),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8),
                                   child: Text(
@@ -760,14 +602,12 @@ class _PaymentCashState extends State<PaymentCash> {
                                 height: size.height * 0.87,
                                 width: size.width * 0.25,
                                 padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                    color: Color.fromARGB(255, 245, 245, 245)),
+                                decoration: BoxDecoration(color: Color.fromARGB(255, 245, 245, 245)),
                                 child: Column(children: [
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           "รวม",
@@ -790,8 +630,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           "ยอดชำระ",
@@ -811,8 +650,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           "เงินทอน",
@@ -832,8 +670,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           "รวม",
@@ -859,17 +696,10 @@ class _PaymentCashState extends State<PaymentCash> {
                                   SizedBox(
                                     child: InkWell(
                                       onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    Proceedsplitpayments()));
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) => Proceedsplitpayments()));
                                       },
                                       child: Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            color: Color(0xff4CAF50)),
+                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Color(0xff4CAF50)),
                                         height: size.height * 0.095,
                                         width: double.infinity,
                                         child: Padding(
@@ -877,8 +707,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                           child: Center(
                                             child: Text(
                                               "ยืนยันชำระเงิน",
-                                              style: TextStyle(
-                                                  color: Colors.white),
+                                              style: TextStyle(color: Colors.white),
                                             ),
                                           ),
                                         ),
@@ -898,8 +727,7 @@ class _PaymentCashState extends State<PaymentCash> {
                               Container(
                                 height: size.height * 0.08,
                                 width: size.width * 0.25,
-                                decoration:
-                                    BoxDecoration(color: Color(0xfffECEFF1)),
+                                decoration: BoxDecoration(color: Color(0xfffECEFF1)),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8),
                                   child: Text(
@@ -912,14 +740,12 @@ class _PaymentCashState extends State<PaymentCash> {
                                 height: size.height * 0.87,
                                 width: size.width * 0.25,
                                 padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                    color: Color.fromARGB(255, 245, 245, 245)),
+                                decoration: BoxDecoration(color: Color.fromARGB(255, 245, 245, 245)),
                                 child: Column(children: [
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           "รวม",
@@ -942,8 +768,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           "ยอดชำระ",
@@ -963,8 +788,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           "เงินทอน",
@@ -984,8 +808,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           "รวม",
@@ -1011,17 +834,10 @@ class _PaymentCashState extends State<PaymentCash> {
                                   SizedBox(
                                     child: InkWell(
                                       onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    Proceedpayment()));
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) => Proceedpayment()));
                                       },
                                       child: Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            color: Color(0xff4CAF50)),
+                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Color(0xff4CAF50)),
                                         height: size.height * 0.095,
                                         width: double.infinity,
                                         child: Padding(
@@ -1029,8 +845,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                           child: Center(
                                             child: Text(
                                               "ยืนยันชำระเงิน",
-                                              style: TextStyle(
-                                                  color: Colors.white),
+                                              style: TextStyle(color: Colors.white),
                                             ),
                                           ),
                                         ),
@@ -1096,8 +911,7 @@ class _PaymentCashState extends State<PaymentCash> {
                           ),
                           Text(
                             'ส่วนลด',
-                            style: TextStyle(
-                                fontSize: 20, color: Color(0xFF1264E3)),
+                            style: TextStyle(fontSize: 20, color: Color(0xFF1264E3)),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1187,8 +1001,7 @@ class _PaymentCashState extends State<PaymentCash> {
                           ),
                           Text(
                             'Gift Voucher',
-                            style: TextStyle(
-                                fontSize: 20, color: Color(0xFF1264E3)),
+                            style: TextStyle(fontSize: 20, color: Color(0xFF1264E3)),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1278,8 +1091,7 @@ class _PaymentCashState extends State<PaymentCash> {
                           ),
                           Text(
                             'แลกคะแนน',
-                            style: TextStyle(
-                                fontSize: 20, color: Color(0xFF1264E3)),
+                            style: TextStyle(fontSize: 20, color: Color(0xFF1264E3)),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1373,9 +1185,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                   height: size.height * 0.1,
                   width: size.width * 0.13,
                   decoration: BoxDecoration(
-                      border: Border(bottom: BorderSide(color: Colors.grey)),
-                      borderRadius: BorderRadius.circular(2),
-                      color: Color(0xFFFFFAFAFA)),
+                      border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -1398,12 +1208,10 @@ class _SplitPaymentState extends State<SplitPayment> {
                             child: DropdownButton<String>(
                               isExpanded: true,
                               items: general2
-                                  .map((String item) =>
-                                      DropdownMenuItem<String>(
+                                  .map((String item) => DropdownMenuItem<String>(
                                         value: item,
                                         child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 1.0),
+                                          padding: const EdgeInsets.symmetric(horizontal: 1.0),
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Text(
@@ -1435,9 +1243,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                   height: size.height * 0.1,
                   width: size.width * 0.13,
                   decoration: BoxDecoration(
-                      border: Border(bottom: BorderSide(color: Colors.grey)),
-                      borderRadius: BorderRadius.circular(2),
-                      color: Color(0xFFFFFAFAFA)),
+                      border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Row(
@@ -1487,9 +1293,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                   height: size.height * 0.1,
                   width: size.width * 0.13,
                   decoration: BoxDecoration(
-                      border: Border(bottom: BorderSide(color: Colors.grey)),
-                      borderRadius: BorderRadius.circular(2),
-                      color: Color(0xFFFFFAFAFA)),
+                      border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Row(
@@ -1580,9 +1384,7 @@ class _SplitPaymentState extends State<SplitPayment> {
           Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Container(
-              decoration: BoxDecoration(
-                  border: Border.all(color: Color(0xff1264E3)),
-                  borderRadius: BorderRadius.circular(8)),
+              decoration: BoxDecoration(border: Border.all(color: Color(0xff1264E3)), borderRadius: BorderRadius.circular(8)),
               height: size.height * 0.05,
               width: size.width * 0.1,
               child: Padding(
@@ -1603,9 +1405,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                 print(payment);
               },
               child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(color: Color(0xff1264E3)),
-                    borderRadius: BorderRadius.circular(8)),
+                decoration: BoxDecoration(border: Border.all(color: Color(0xff1264E3)), borderRadius: BorderRadius.circular(8)),
                 height: size.height * 0.05,
                 width: size.width * 0.14,
                 child: Padding(
