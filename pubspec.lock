@@ -467,6 +467,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
+  presentation_displays:
+    dependency: "direct dev"
+    description:
+      name: presentation_displays
+      sha256: "4338251d3ab9f7c8c040481e8e987a81aa7accd87bf1f75d7042a268f907742b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   provider:
     dependency: "direct main"
     description:
@@ -658,4 +666,4 @@ packages:
     version: "3.1.2"
 sdks:
   dart: ">=3.2.0 <4.0.0"
-  flutter: ">=3.7.0"
+  flutter: ">=3.10.0"

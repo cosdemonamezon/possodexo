@@ -171,12 +171,17 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                                 : Padding(
                                     padding: const EdgeInsets.only(right: 10),
                                     child: Container(
-                                      color: Colors.black,
                                       height: size.height * 0.12,
-                                      width: size.width * 0.035,
+                                      width: size.width * 0.04,
+                                      decoration: BoxDecoration(
+                                        // color: Color(0xFFE8EAF6),
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(6),
+                                        border: Border.all(color: Colors.blue),
+                                      ),
                                       child: Text(
                                         // ignore: unnecessary_string_interpolations
-                                        "โชท็อปปิ้ง",
+                                        '${widget.productmains.productAttribute[index].attributeValues[index2].name}',
                                         style: TextStyle(color: Colors.amber),
                                       ),
                                     ),
