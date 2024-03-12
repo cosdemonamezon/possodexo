@@ -46,6 +46,8 @@ dependencies:
   json_annotation: ^4.8.0
   provider: ^6.0.3
   http: ^0.13.5
+  presentation_displays: ^1.0.0
+  device_info_plus: ^9.1.2
 
  
 dev_dependencies:

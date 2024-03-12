@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:possodexo/home/homePage.dart';
-import 'package:possodexo/seconDisplay/seconmain.dart';
 import 'package:possodexo/home/widgets/ItemMenuWidget.dart';
+import 'package:possodexo/seconDisplay/secondisplay.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -24,7 +24,7 @@ class _FirstPageState extends State<FirstPage> {
       case 'History':
         return Container();
       case 'Setting':
-        return Container();
+        return MyApp();
 
       default:
         return HomePage();
