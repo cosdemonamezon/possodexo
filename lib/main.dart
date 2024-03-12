@@ -24,7 +24,12 @@ class MySecondApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+        fontFamily: 'IBMPlexSansThai',
+      ),
       home: Scaffold(
         body: Listpayment(),
       ),
