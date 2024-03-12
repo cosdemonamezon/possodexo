@@ -174,7 +174,6 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                                       height: size.height * 0.12,
                                       width: size.width * 0.04,
                                       decoration: BoxDecoration(
-                                        // color: Color(0xFFE8EAF6),
                                         color: Colors.white,
                                         borderRadius: BorderRadius.circular(6),
                                         border: Border.all(color: Colors.blue),
@@ -223,7 +222,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                     selectedPrice = widget.productmains.productAttribute[0].attributeValues[0].price;
                   });
                 }
-                final out = {'item': widget.gridCoffee, 'size': selectedIndex, 'pricesize': selectedPrice};
+                final out = {'item': widget.productmains, 'size': selectedIndex, 'pricesize': selectedPrice};
                 Navigator.pop(context, out);
               },
               child: Container(
