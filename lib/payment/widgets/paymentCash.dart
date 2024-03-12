@@ -110,6 +110,8 @@ class _PaymentCashState extends State<PaymentCash> {
                   ),
                 ),
               ),
+
+              /// โชราคาที่มาจากหน้า homepage////
               Container(
                   height: size.height * 0.46,
                   width: size.width * 0.25,
