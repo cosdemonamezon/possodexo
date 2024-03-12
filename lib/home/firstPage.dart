@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 
 import 'package:possodexo/home/homePage.dart';
 import 'package:possodexo/home/widgets/ItemMenuWidget.dart';
+import 'package:possodexo/seconDisplay/secondisplay.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -23,7 +24,7 @@ class _FirstPageState extends State<FirstPage> {
       case 'History':
         return Container();
       case 'Setting':
-        return Container();
+        return MyApp();
 
       default:
         return HomePage();
@@ -155,9 +156,7 @@ class _FirstPageState extends State<FirstPage> {
                 margin: EdgeInsets.only(top: 2, right: 1),
                 padding: EdgeInsets.only(top: 0, right: 0, left: 0),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(1),
-                      topRight: Radius.circular(1)),
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(1), topRight: Radius.circular(1)),
                   color: Color.fromARGB(255, 229, 230, 240),
                 ),
                 child: _pageView(),

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:possodexo/constants.dart';
 import 'package:possodexo/home/service/productController.dart';
 import 'package:possodexo/home/widgets/ClosePrintDialog.dart';
@@ -18,6 +19,7 @@ import 'package:possodexo/models/attributeValues.dart';
 import 'package:possodexo/models/branch.dart';
 import 'package:possodexo/models/category.dart';
 import 'package:possodexo/models/product.dart';
+import 'package:possodexo/models/productMain.dart';
 import 'package:provider/provider.dart';
 import '../payment/widgets/paymentCash.dart';
 import 'widgets/Addpointsela.dart';
@@ -40,10 +42,12 @@ class _HomePageState extends State<HomePage> {
   List<String> nationality = ["ไทย", "พม่า", "ลาว"];
   String lang = "ไทย";
   List<Product> selectedItem = [];
+  List<ProductMain> selectedItem2 = [];
   int selectedIndex = 0;
   int totleqty = 0;
   double totleprice = 0.00;
   int selectedPayback = 0;
+  int? selectedPrice = 0;
 
   void onItemTapped(int index) {
     setState(() {
@@ -66,6 +70,7 @@ class _HomePageState extends State<HomePage> {
   List<Map<String, dynamic>> gridCoffees = [];
   int? menuSize;
   int? sizeprice;
+  AttributeValues? attributeValues;
   List<Widget> orders = [];
   void onTapProduct(int index) {
     setState(() {});
@@ -149,8 +154,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   //ฟังก์ชั่นคำนวน ราคา และ qty
-  double sum(List<Product> orders) => orders.fold(0, (previous, o) => previous + (o.qty * o.priceQTY));
-  int newQty(List<Product> orders) => orders.fold(0, (previousValue, e) => previousValue + e.qty);
+  double sum(List<ProductMain> orders) => orders.fold(0, (previous, o) => previous + (o.qty * o.priceQTY));
+  int newQty(List<ProductMain> orders) => orders.fold(0, (previousValue, e) => previousValue + e.qty);
 
   // double newtotal(Product orders, AttributeValues sizes) {
   //   return double.parse((sizes.price! == 0
@@ -343,8 +348,7 @@ class _HomePageState extends State<HomePage> {
                                         scrollDirection: Axis.horizontal,
                                         dragStartBehavior: DragStartBehavior.start,
                                         physics: AlwaysScrollableScrollPhysics(),
-                                        child: Container(
-                                            child: Row(
+                                        child: Row(
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
@@ -429,7 +433,7 @@ class _HomePageState extends State<HomePage> {
                                               ),
                                             )
                                           ],
-                                        )),
+                                        ),
                                       ),
                                       SizedBox(
                                         height: size.height * 0.01,
@@ -494,17 +498,18 @@ class _HomePageState extends State<HomePage> {
                                               gridCoffee: products,
                                               onChange: (value) {
                                                 // inspect(value);
-                                                final Product item = value["item"];
-                                                menuSize = value["size"];
-                                                inspect(menuSize);
-                                                sizeprice = value["pricesize"];
-                                                inspect(sizeprice);
-                                                item.code;
-                                                totleprice = item.sellprice!;
+                                                final ProductMain item = value["item"];
+                                                // menuSize = value["size"];
+                                                // // inspect(menuSize);
+                                                // sizeprice = value["pricesize"];
+                                                // inspect(sizeprice);
+                                                attributeValues = value["selectedSize"];
+                                                inspect(attributeValues);
+                                                totleprice = item.price!.toDouble();
                                                 totleqty = item.qty;
-                                                item.priceQTY = item.sellprice!;
+                                                item.priceQTY = item.price!.toDouble();
 
-                                                selectedItem.add(item);
+                                                selectedItem2.add(item);
                                                 setState(() {});
                                               },
                                             ),
@@ -820,7 +825,7 @@ class _HomePageState extends State<HomePage> {
                                           child: InkWell(
                                               onTap: () {
                                                 setState(() {
-                                                  selectedItem.clear();
+                                                  selectedItem2.clear();
                                                 });
                                               },
                                               child: Row(
@@ -874,143 +879,160 @@ class _HomePageState extends State<HomePage> {
                                       SizedBox(
                                         height: size.height * 0.01,
                                       ),
-                                      selectedItem.isEmpty
+                                      //ฟังชั่นกดเเล้วเเสดงผล ////
+                                      selectedItem2.isEmpty
                                           ? SizedBox.shrink()
                                           : SizedBox(
                                               height: size.height * 0.3,
                                               child: ListView.builder(
-                                                itemCount: selectedItem.length,
+                                                itemCount: selectedItem2.length,
                                                 itemBuilder: (context, index) {
+                                                  final item = selectedItem2[index];
+
                                                   return Padding(
                                                     padding: const EdgeInsets.all(8.0),
-                                                    child: Column(
-                                                      children: [
-                                                        SizedBox(
-                                                          height: size.height * 0.01,
-                                                        ),
-                                                        Row(
-                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    child: Slidable(
+                                                      key: Key("${item}"),
+                                                      endActionPane: ActionPane(
+                                                        motion: const ScrollMotion(),
+                                                        children: [
+                                                          SlidableAction(
+                                                            onPressed: (context) {
+                                                              setState(() {
+                                                                selectedItem2.removeAt(index);
+                                                              });
+                                                            },
+                                                            backgroundColor: Colors.red,
+                                                            icon: Icons.delete,
+                                                          )
+                                                        ],
+                                                      ),
+                                                      child: SizedBox(
+                                                        child: Column(
                                                           children: [
-                                                            Text(selectedItem[index].name ?? ''),
+                                                            SizedBox(
+                                                              height: size.height * 0.01,
+                                                            ),
                                                             Row(
+                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                               children: [
-                                                                InkWell(
-                                                                  onTap: () {
-                                                                    if (selectedItem[index].qty > 1) {
-                                                                      setState(() {
-                                                                        selectedItem[index].qty = selectedItem[index].qty - 1;
-                                                                        final price = double.parse(
-                                                                            (selectedItem[index].sellprice! * selectedItem[index].qty).toString());
+                                                                Text(selectedItem2[index].name ?? ''),
+                                                                Row(
+                                                                  children: [
+                                                                    InkWell(
+                                                                      onTap: () {
+                                                                        if (selectedItem2[index].qty > 1) {
+                                                                          setState(() {
+                                                                            selectedItem2[index].qty = selectedItem2[index].qty - 1;
+                                                                            final price = double.parse(
+                                                                                (selectedItem2[index].price! * selectedItem2[index].qty).toString());
 
-                                                                        totleqty = selectedItem[index].qty;
-                                                                        selectedItem[index].priceQTY = price;
-                                                                        totleprice = selectedItem[index].priceQTY;
-                                                                      });
-                                                                    }
-                                                                  },
-                                                                  child: Container(
-                                                                    width: size.width * 0.02,
-                                                                    height: 30,
-                                                                    decoration: BoxDecoration(
-                                                                        color: Color(0xFFCFD8DC), borderRadius: BorderRadius.circular(6)),
-                                                                    child: Icon(
-                                                                      Icons.remove,
-                                                                      size: 15,
+                                                                            totleqty = selectedItem2[index].qty;
+                                                                            selectedItem2[index].priceQTY = price;
+                                                                            totleprice = selectedItem2[index].priceQTY;
+                                                                          });
+                                                                        }
+                                                                      },
+                                                                      child: Container(
+                                                                        width: size.width * 0.02,
+                                                                        height: 30,
+                                                                        decoration: BoxDecoration(
+                                                                            color: Color(0xFFCFD8DC), borderRadius: BorderRadius.circular(6)),
+                                                                        child: Icon(
+                                                                          Icons.remove,
+                                                                          size: 15,
+                                                                        ),
+                                                                      ),
                                                                     ),
-                                                                  ),
-                                                                ),
-                                                                SizedBox(
-                                                                  width: 10,
-                                                                ),
-                                                                Text("${selectedItem[index].qty}"),
-                                                                SizedBox(
-                                                                  width: 10,
-                                                                ),
-                                                                InkWell(
-                                                                  onTap: () {
-                                                                    if (selectedItem[index].qty >= 1) {
-                                                                      setState(() {
-                                                                        selectedItem[index].qty = selectedItem[index].qty + 1;
-                                                                        final price = double.parse(
-                                                                            (selectedItem[index].sellprice! * selectedItem[index].qty).toString());
-                                                                        totleqty = selectedItem[index].qty;
-
-                                                                        selectedItem[index].priceQTY = price;
-                                                                        totleprice = selectedItem[index].priceQTY;
-                                                                      });
-                                                                    }
-                                                                    // setState(() {
-                                                                    //   selectedItem[index].qty = selectedItem[index].qty ?? 1 + 1;
-                                                                    //   final price = int.parse(selectedItem[index]) * selectedItem[index].qty!;
-
-                                                                    //   selectedItem[index].priceQTY = price;
-                                                                    // });
-                                                                    // setState(() {
-                                                                    //   selectedItem[index].qty = selectedItem[index].qty! + 1;
-                                                                    //   final price = selectedItem[index].sellprice == 0
-                                                                    //       ? selectedItem[index].priceS! * selectedItem[index].qty!
-                                                                    //       : selectedItem[index].size == 1
-                                                                    //           ? selectedItem[index].priceM! * selectedItem[index].qty!
-                                                                    //           : selectedItem[index].priceL! * selectedItem[index].qty!;
-                                                                    //   inspect(price);
-                                                                    //   selectedItem[index].priceQTY = price;
-                                                                    // });
-                                                                  },
-                                                                  child: Container(
-                                                                    width: size.width * 0.03,
-                                                                    height: size.height * 0.04,
-                                                                    decoration: BoxDecoration(
-                                                                        color: Color(0xFFCFD8DC), borderRadius: BorderRadius.circular(6)),
-                                                                    child: Icon(
-                                                                      Icons.add,
-                                                                      size: 15,
+                                                                    SizedBox(
+                                                                      width: 10,
                                                                     ),
-                                                                  ),
+                                                                    Text("${selectedItem2[index].qty}"),
+                                                                    SizedBox(
+                                                                      width: 10,
+                                                                    ),
+                                                                    InkWell(
+                                                                      onTap: () {
+                                                                        if (selectedItem2[index].qty >= 1) {
+                                                                          setState(() {
+                                                                            selectedItem2[index].qty = selectedItem2[index].qty + 1;
+                                                                            final price = double.parse(
+                                                                                (selectedItem2[index].price! * selectedItem2[index].qty).toString());
+                                                                            totleqty = selectedItem2[index].qty;
+
+                                                                            selectedItem2[index].priceQTY = price;
+                                                                            totleprice = selectedItem2[index].priceQTY;
+                                                                          });
+                                                                        }
+                                                                        // setState(() {
+                                                                        //   selectedItem[index].qty = selectedItem[index].qty ?? 1 + 1;
+                                                                        //   final price = int.parse(selectedItem[index]) * selectedItem[index].qty!;
+
+                                                                        //   selectedItem[index].priceQTY = price;
+                                                                        // });
+                                                                        // setState(() {
+                                                                        //   selectedItem[index].qty = selectedItem[index].qty! + 1;
+                                                                        //   final price = selectedItem[index].sellprice == 0
+                                                                        //       ? selectedItem[index].priceS! * selectedItem[index].qty!
+                                                                        //       : selectedItem[index].size == 1
+                                                                        //           ? selectedItem[index].priceM! * selectedItem[index].qty!
+                                                                        //           : selectedItem[index].priceL! * selectedItem[index].qty!;
+                                                                        //   inspect(price);
+                                                                        //   selectedItem[index].priceQTY = price;
+                                                                        // });
+                                                                      },
+                                                                      child: Container(
+                                                                        width: size.width * 0.02,
+                                                                        height: 30,
+                                                                        decoration: BoxDecoration(
+                                                                            color: Color(0xFFCFD8DC), borderRadius: BorderRadius.circular(6)),
+                                                                        child: Icon(
+                                                                          Icons.add,
+                                                                          size: 15,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
                                                                 ),
                                                               ],
                                                             ),
-                                                          ],
-                                                        ),
-                                                        // selectedItem[index].type == "เครื่องดื่ม"
-                                                        //     ? Row(
-                                                        //         children: [
-                                                        //           Text(
-                                                        //             'ขนาด',
-                                                        //             style: TextStyle(fontSize: 14, fontFamily: 'IBMPlexSansThai', color: Color(0xFF455A64)),
-                                                        //           ),
-                                                        //           SizedBox(
-                                                        //             width: size.width * 0.01,
-                                                        //           ),
-                                                        //           Text(
-                                                        //             selectedItem[index].size == 0
-                                                        //                 ? 'S'
-                                                        //                 : selectedItem[index].size == 1
-                                                        //                     ? 'M'
-                                                        //                     : "L",
-                                                        //             style: TextStyle(fontSize: 14, fontFamily: 'IBMPlexSansThai', color: Color(0xFF455A64)),
-                                                        //           )
-                                                        //         ],
-                                                        //       )
-                                                        //     : SizedBox.shrink(),
-                                                        Row(
-                                                          children: [
-                                                            Text(
-                                                              'โปรโมชั่น',
-                                                              style: TextStyle(fontSize: 14, fontFamily: 'IBMPlexSansThai', color: Color(0xFF455A64)),
+                                                            Row(
+                                                              children: [
+                                                                Padding(
+                                                                  padding: const EdgeInsets.only(
+                                                                    right: 5,
+                                                                  ),
+                                                                  child: Text(
+                                                                    'ขนาด',
+                                                                    style: TextStyle(
+                                                                        fontSize: 14, fontFamily: 'IBMPlexSansThai', color: Color(0xFF455A64)),
+                                                                  ),
+                                                                ),
+                                                                Text(attributeValues?.name ?? ''),
+                                                              ],
                                                             ),
-                                                          ],
-                                                        ),
-                                                        Row(
-                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                          children: [
-                                                            Text(
-                                                              (selectedItem[index].sellprice ?? 0 + sizeprice!).toStringAsFixed(2),
+                                                            Padding(
+                                                              padding: const EdgeInsets.only(right: 5, top: 5),
+                                                              child: Row(
+                                                                children: [Text("เเถมโค้กฟรี 1 ขวด")],
+                                                              ),
                                                             ),
-                                                            Text("${selectedItem[index].priceQTY}"),
+                                                            Row(
+                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: const EdgeInsets.only(right: 5, top: 5),
+                                                                  child: Text(
+                                                                    (selectedItem2[index].price ?? 0 + attributeValues!.price!).toStringAsFixed(2),
+                                                                  ),
+                                                                ),
+                                                                Text("${selectedItem2[index].priceQTY}"),
+                                                              ],
+                                                            ),
+                                                            Divider()
                                                           ],
                                                         ),
-                                                        Divider()
-                                                      ],
+                                                      ),
                                                     ),
                                                   );
                                                 },
@@ -1028,6 +1050,7 @@ class _HomePageState extends State<HomePage> {
                                     height: size.height * 0.01,
                                     width: size.width * 1,
                                   ),
+                                  // ผลรวมจำนวนสินค้า/////
                                   Column(
                                     children: [
                                       Container(
@@ -1049,7 +1072,7 @@ class _HomePageState extends State<HomePage> {
                                                     style: TextStyle(fontFamily: 'IBMPlexSansThai', color: Color(0xFF424242)),
                                                   ),
                                                   Text(
-                                                    '${newQty(selectedItem)}',
+                                                    '${newQty(selectedItem2)}',
                                                     // '${sumQTY(selectedItem)} ชิ้น',
                                                     style: TextStyle(
                                                       fontFamily: 'IBMPlexSansThai',
@@ -1065,7 +1088,7 @@ class _HomePageState extends State<HomePage> {
                                                     style: TextStyle(fontFamily: 'IBMPlexSansThai', color: Color(0xFF424242)),
                                                   ),
                                                   Text(
-                                                    '${sum(selectedItem)}',
+                                                    '${sum(selectedItem2)}',
                                                     // '${sumPrice(selectedItem)} ฿',
                                                     style: TextStyle(
                                                       fontFamily: 'IBMPlexSansThai',

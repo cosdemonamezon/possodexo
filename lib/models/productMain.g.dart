@@ -14,6 +14,8 @@ ProductMain _$ProductMainFromJson(Map<String, dynamic> json) => ProductMain(
       (json['productAttribute'] as List<dynamic>)
           .map((e) => ProductAttribute.fromJson(e as Map<String, dynamic>))
           .toList(),
+      qty: json['qty'] as int? ?? 1,
+      priceQTY: (json['priceQTY'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$ProductMainToJson(ProductMain instance) =>
@@ -23,4 +25,6 @@ Map<String, dynamic> _$ProductMainToJson(ProductMain instance) =>
       'price': instance.price,
       'imageUrl': instance.imageUrl,
       'productAttribute': instance.productAttribute,
+      'priceQTY': instance.priceQTY,
+      'qty': instance.qty,
     };

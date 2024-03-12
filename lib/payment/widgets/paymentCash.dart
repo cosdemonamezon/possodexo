@@ -110,68 +110,105 @@ class _PaymentCashState extends State<PaymentCash> {
                   ),
                 ),
               ),
+
+              /// โชราคาที่มาจากหน้า homepage////
               Container(
-                  height: size.height * 0.46,
-                  width: size.width * 0.25,
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(color: Colors.white),
-                  child: ListView.builder(
-                    itemCount: widget.selectedItem.length,
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          Row(
-                            children: [
-                              Text("${widget.selectedItem[index].name}"),
-                              Text(" X ${widget.selectedItem[index].qty}"),
-                              SizedBox(
-                                width: 10,
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Text('ขนาด'),
-                              SizedBox(
-                                width: size.width * 0.01,
-                              ),
-                              Text(widget.selectedItem[index].size == 0
-                                  ? 'S'
-                                  : widget.selectedItem[index].size == 1
-                                      ? 'M'
-                                      : "L")
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Text('โปรโมชั่น'),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                widget.selectedItem[index].size == 0
-                                    ? widget.selectedItem[index].priceS!.toStringAsFixed(2)
-                                    : widget.selectedItem[index].size == 1
-                                        ? widget.selectedItem[index].priceM!.toStringAsFixed(2)
-                                        : widget.selectedItem[index].priceL!.toStringAsFixed(2),
-                              ),
-                              widget.selectedItem[index].priceQTY == 0
-                                  ? Text(
-                                      widget.selectedItem[index].priceS!.toStringAsFixed(2),
-                                      style: TextStyle(fontWeight: FontWeight.bold),
-                                    )
-                                  : Text(
-                                      widget.selectedItem[index].priceQTY!.toStringAsFixed(2),
-                                      style: TextStyle(fontWeight: FontWeight.bold),
-                                    ),
-                            ],
-                          ),
-                        ],
-                      );
-                    },
-                  )),
+                height: size.height * 0.46,
+                width: size.width * 0.25,
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(color: Colors.white),
+                child: Column(
+                  children: [
+                    Container(
+                        color: Color(0xffE8EAF6),
+                        width: size.width * 0.5,
+                        height: size.height * 0.06,
+                        child: InkWell(
+                            onTap: () {
+                              setState(() {
+                                // selectedItem2.clear();
+                              });
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text("Order #20240214001"),
+                                ),
+                                SizedBox(
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Icon(Icons.cancel),
+                                      ),
+                                      Text("ลบบิล")
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ))),
+                  ],
+                ),
+                // child: ListView.builder(
+                //   itemCount: widget.selectedItem.length,
+                //   itemBuilder: (context, index) {
+                //     return Column(
+                //       children: [
+                //         Row(
+                //           children: [
+                //             Text("${widget.selectedItem[index].name}"),
+                //             Text(" X ${widget.selectedItem[index].qty}"),
+                //             SizedBox(
+                //               width: 10,
+                //             ),
+                //           ],
+                //         ),
+                //         Row(
+                //           children: [
+                //             Text('ขนาด'),
+                //             SizedBox(
+                //               width: size.width * 0.01,
+                //             ),
+                //             Text(widget.selectedItem[index].size == 0
+                //                 ? 'S'
+                //                 : widget.selectedItem[index].size == 1
+                //                     ? 'M'
+                //                     : "L")
+                //           ],
+                //         ),
+                //         Row(
+                //           children: [
+                //             Text('โปรโมชั่น'),
+                //           ],
+                //         ),
+                //         Row(
+                //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //           children: [
+                //             Text(
+                //               widget.selectedItem[index].size == 0
+                //                   ? widget.selectedItem[index].priceS!.toStringAsFixed(2)
+                //                   : widget.selectedItem[index].size == 1
+                //                       ? widget.selectedItem[index].priceM!.toStringAsFixed(2)
+                //                       : widget.selectedItem[index].priceL!.toStringAsFixed(2),
+                //             ),
+                //             widget.selectedItem[index].priceQTY == 0
+                //                 ? Text(
+                //                     widget.selectedItem[index].priceS!.toStringAsFixed(2),
+                //                     style: TextStyle(fontWeight: FontWeight.bold),
+                //                   )
+                //                 : Text(
+                //                     widget.selectedItem[index].priceQTY!.toStringAsFixed(2),
+                //                     style: TextStyle(fontWeight: FontWeight.bold),
+                //                   ),
+                //           ],
+                //         ),
+                //       ],
+                //     );
+                //   },
+                // )
+              ),
               Container(
                 color: Color.fromARGB(15, 0, 0, 0),
                 height: size.height * 0.005,
