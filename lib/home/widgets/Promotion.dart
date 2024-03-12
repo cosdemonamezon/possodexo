@@ -49,9 +49,7 @@ class _GridProMotionState extends State<GridProMotion> {
             itemBuilder: (_, index) {
               return Container(
                 padding: EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(6)),
+                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(6)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -73,37 +71,31 @@ class _GridProMotionState extends State<GridProMotion> {
                         child: DashedVerticalLine(),
                       ),
                     ),
-                    Expanded(
-                      flex: 6,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            GridProMotion[index]['Tiltle'],
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: 'IBMPlexSansThai',
-                                fontWeight: FontWeight.bold),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          GridProMotion[index]['Tiltle'],
+                          style: TextStyle(fontSize: 14, fontFamily: 'IBMPlexSansThai', fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          GridProMotion[index]['Order1'],
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: ktextColr,
+                            fontFamily: 'IBMPlexSansThai',
                           ),
-                          Text(
-                            GridProMotion[index]['Order1'],
-                            style: TextStyle(
-                              fontSize: 10,
-                              color: ktextColr,
-                              fontFamily: 'IBMPlexSansThai',
-                            ),
+                        ),
+                        Text(
+                          GridProMotion[index]['Order2'],
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: ktextColr,
+                            fontFamily: 'IBMPlexSansThai',
                           ),
-                          Text(
-                            GridProMotion[index]['Order2'],
-                            style: TextStyle(
-                              fontSize: 10,
-                              color: ktextColr,
-                              fontFamily: 'IBMPlexSansThai',
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

@@ -982,8 +982,8 @@ class _HomePageState extends State<HomePage> {
                                                                         // });
                                                                       },
                                                                       child: Container(
-                                                                        width: size.width * 0.03,
-                                                                        height: size.height * 0.04,
+                                                                        width: size.width * 0.02,
+                                                                        height: 30,
                                                                         decoration: BoxDecoration(
                                                                             color: Color(0xFFCFD8DC), borderRadius: BorderRadius.circular(6)),
                                                                         child: Icon(
@@ -1010,6 +1010,12 @@ class _HomePageState extends State<HomePage> {
                                                                 ),
                                                                 Text(attributeValues?.name ?? ''),
                                                               ],
+                                                            ),
+                                                            Padding(
+                                                              padding: const EdgeInsets.only(right: 5, top: 5),
+                                                              child: Row(
+                                                                children: [Text("เเถมโค้กฟรี 1 ขวด")],
+                                                              ),
                                                             ),
                                                             Row(
                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
