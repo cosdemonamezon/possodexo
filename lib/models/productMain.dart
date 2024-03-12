@@ -10,12 +10,20 @@ class ProductMain {
   final int? price;
   final String? imageUrl;
   final List<ProductAttribute> productAttribute;
+  double priceQTY;
+  int qty;
 
   ProductMain(
-      this.id, this.name, this.price, this.imageUrl, this.productAttribute);
+    this.id,
+    this.name,
+    this.price,
+    this.imageUrl,
+    this.productAttribute, {
+    this.qty = 1,
+    this.priceQTY = 0,
+  });
 
-  factory ProductMain.fromJson(Map<String, dynamic> json) =>
-      _$ProductMainFromJson(json);
+  factory ProductMain.fromJson(Map<String, dynamic> json) => _$ProductMainFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductMainToJson(this);
 }
