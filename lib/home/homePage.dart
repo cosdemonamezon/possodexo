@@ -70,6 +70,7 @@ class _HomePageState extends State<HomePage> {
   List<Map<String, dynamic>> gridCoffees = [];
   int? menuSize;
   int? sizeprice;
+  AttributeValues? attributeValues;
   List<Widget> orders = [];
   void onTapProduct(int index) {
     setState(() {});
@@ -498,10 +499,12 @@ class _HomePageState extends State<HomePage> {
                                               onChange: (value) {
                                                 // inspect(value);
                                                 final ProductMain item = value["item"];
-                                                menuSize = value["size"];
-                                                inspect(menuSize);
-                                                sizeprice = value["pricesize"];
-                                                inspect(sizeprice);
+                                                // menuSize = value["size"];
+                                                // // inspect(menuSize);
+                                                // sizeprice = value["pricesize"];
+                                                // inspect(sizeprice);
+                                                attributeValues = value["selectedSize"];
+                                                inspect(attributeValues);
                                                 totleprice = item.price!.toDouble();
                                                 totleqty = item.qty;
                                                 item.priceQTY = item.price!.toDouble();
@@ -822,7 +825,7 @@ class _HomePageState extends State<HomePage> {
                                           child: InkWell(
                                               onTap: () {
                                                 setState(() {
-                                                  selectedItem.clear();
+                                                  selectedItem2.clear();
                                                 });
                                               },
                                               child: Row(
@@ -979,8 +982,8 @@ class _HomePageState extends State<HomePage> {
                                                                         // });
                                                                       },
                                                                       child: Container(
-                                                                        width: size.width * 0.03,
-                                                                        height: size.height * 0.04,
+                                                                        width: size.width * 0.02,
+                                                                        height: 30,
                                                                         decoration: BoxDecoration(
                                                                             color: Color(0xFFCFD8DC), borderRadius: BorderRadius.circular(6)),
                                                                         child: Icon(
@@ -995,19 +998,33 @@ class _HomePageState extends State<HomePage> {
                                                             ),
                                                             Row(
                                                               children: [
-                                                                Text(
-                                                                  'โปรโมชั่น',
-                                                                  style: TextStyle(
-                                                                      fontSize: 14, fontFamily: 'IBMPlexSansThai', color: Color(0xFF455A64)),
+                                                                Padding(
+                                                                  padding: const EdgeInsets.only(
+                                                                    right: 5,
+                                                                  ),
+                                                                  child: Text(
+                                                                    'ขนาด',
+                                                                    style: TextStyle(
+                                                                        fontSize: 14, fontFamily: 'IBMPlexSansThai', color: Color(0xFF455A64)),
+                                                                  ),
                                                                 ),
-                                                                Text("s")
+                                                                Text(attributeValues?.name ?? ''),
                                                               ],
+                                                            ),
+                                                            Padding(
+                                                              padding: const EdgeInsets.only(right: 5, top: 5),
+                                                              child: Row(
+                                                                children: [Text("เเถมโค้กฟรี 1 ขวด")],
+                                                              ),
                                                             ),
                                                             Row(
                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                               children: [
-                                                                Text(
-                                                                  (selectedItem2[index].price ?? 0 + sizeprice!).toStringAsFixed(2),
+                                                                Padding(
+                                                                  padding: const EdgeInsets.only(right: 5, top: 5),
+                                                                  child: Text(
+                                                                    (selectedItem2[index].price ?? 0 + attributeValues!.price!).toStringAsFixed(2),
+                                                                  ),
                                                                 ),
                                                                 Text("${selectedItem2[index].priceQTY}"),
                                                               ],

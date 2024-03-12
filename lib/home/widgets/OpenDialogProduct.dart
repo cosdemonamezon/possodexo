@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:possodexo/models/attributeValues.dart';
 import 'package:possodexo/models/product.dart';
 import 'package:possodexo/models/productMain.dart';
 
@@ -23,6 +24,7 @@ class OpenDialogProduct extends StatefulWidget {
 class _OpenDialogProductState extends State<OpenDialogProduct> {
   int selectedIndex = 0;
   int? selectedPrice = 0;
+  AttributeValues? selectedSize;
   void selectSize(int index) {
     setState(() {
       selectedIndex = index;
@@ -95,6 +97,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                                   print(index2);
                                   selectSize(index2);
                                   selectedPrice = widget.productmains.productAttribute[index].attributeValues[index2].price;
+                                  selectedSize = widget.productmains.productAttribute[index].attributeValues[index2];
                                   print(selectedPrice);
                                 },
                                 child: Padding(
@@ -220,9 +223,15 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                 if (selectedPrice == 0) {
                   setState(() {
                     selectedPrice = widget.productmains.productAttribute[0].attributeValues[0].price;
+                    selectedSize = widget.productmains.productAttribute[0].attributeValues[0];
                   });
                 }
-                final out = {'item': widget.productmains, 'size': selectedIndex, 'pricesize': selectedPrice};
+                final out = {
+                  'item': widget.productmains,
+                  'size': selectedIndex,
+                  'pricesize': selectedPrice,
+                  'selectedSize': selectedSize,
+                };
                 Navigator.pop(context, out);
               },
               child: Container(

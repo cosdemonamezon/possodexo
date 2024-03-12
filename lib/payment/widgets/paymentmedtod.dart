@@ -42,9 +42,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
           onTap: () => onItemTapped(index),
           child: Container(
             decoration: BoxDecoration(
-              color: selectedIndex == index
-                  ? const Color(0xfffE8EAF6)
-                  : Colors.white,
+              color: selectedIndex == index ? const Color(0xfffE8EAF6) : Colors.white,
               border: Border.all(color: const Color(0xff1264E3)),
               borderRadius: BorderRadius.circular(8),
             ),
@@ -52,10 +50,12 @@ class _PaymentMethodState extends State<PaymentMethod> {
             width: size.width * 0.11,
             child: Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Image.network(productController.payments[index].icon!),
-                ),
+                productController.payments[index].icon == null
+                    ? SizedBox()
+                    : Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Image.network(productController.payments[index].icon!),
+                      ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
                   child: Text(productController.payments[index].name!),
