@@ -1,10 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class OtherDiscountsWidgets extends StatefulWidget {
-  OtherDiscountsWidgets({Key? key, this.otherDiscount});
   final Function(String)? otherDiscount;
+
+  OtherDiscountsWidgets({Key? key, this.otherDiscount});
 
   @override
   State<OtherDiscountsWidgets> createState() => _OtherDiscountsWidgetsState();
@@ -12,6 +15,7 @@ class OtherDiscountsWidgets extends StatefulWidget {
 
 class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
   final TextEditingController otherdiscount = TextEditingController();
+  TextEditingController discount = TextEditingController();
   List<String> payment = ["จำนวนเงิน", "เปอร์เซ็นต์"];
   String payment1 = 'จำนวนเงิน';
   String? _selectedpayment;
@@ -103,6 +107,7 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                 },
                 itemBuilder: (BuildContext context, int index) {
                   return RowDiscountWidget(
+                    otherDiscount: otherdiscount,
                     rowData: rowData[index],
                     payment: payment,
                     point: point,
@@ -170,6 +175,7 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                     child: ElevatedButton(
                       onPressed: () {
                         widget.otherDiscount!(otherdiscount.text);
+                        log(otherdiscount.text);
                         otherdiscount.clear();
                       },
                       style: ElevatedButton.styleFrom(
@@ -210,29 +216,29 @@ class RowDiscountWidget extends StatefulWidget {
   final ValueChanged<String?> onChangedPoint;
   final ValueChanged<String> onChangedAmount;
   final VoidCallback onRemove;
+  final Function(String)? otherdiscount;
+  TextEditingController? otherDiscount;
 
-  const RowDiscountWidget(
-      {Key? key,
-      required this.rowData,
-      required this.payment,
-      required this.point,
-      required this.onChangedPayment,
-      required this.onChangedPoint,
-      required this.onChangedAmount,
-      required this.onRemove,
-      this.otherDiscount})
-      : super(key: key);
-  final Function(String)? otherDiscount;
+  RowDiscountWidget({
+    Key? key,
+    required this.rowData,
+    required this.payment,
+    required this.point,
+    required this.onChangedPayment,
+    required this.onChangedPoint,
+    required this.onChangedAmount,
+    required this.onRemove,
+    this.otherdiscount,
+    this.otherDiscount,
+  }) : super(key: key);
   @override
   _RowDiscountWidgetState createState() => _RowDiscountWidgetState();
 }
 
 class _RowDiscountWidgetState extends State<RowDiscountWidget> {
-  TextEditingController otherDiscount = TextEditingController();
-
   @override
   void dispose() {
-    otherDiscount.dispose();
+    widget.otherDiscount?.dispose();
     super.dispose();
   }
 
@@ -382,7 +388,7 @@ class _RowDiscountWidgetState extends State<RowDiscountWidget> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child: TextFormField(
-                        controller: otherDiscount,
+                        controller: widget.otherDiscount,
                         onChanged: widget.onChangedAmount,
                         decoration: InputDecoration(
                           hintText: 'จำนานเงิน',

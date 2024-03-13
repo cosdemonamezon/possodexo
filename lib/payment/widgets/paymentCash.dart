@@ -37,6 +37,10 @@ class _PaymentCashState extends State<PaymentCash> {
   int priceDiscount = 0;
   int priceVoucher = 0;
   int priceotherDiscount = 0;
+  int Points = 0;
+  int Price = 0;
+  int priceDiscountPercen = 0;
+  String? from = 'discount';
 
   int selectedItem = 0;
   int totalPrice = 0;
@@ -331,7 +335,7 @@ class _PaymentCashState extends State<PaymentCash> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          // child: Text("${widget.sumPrice} ฿"),
+                          child: Text("1,000"),
                         )
                       ],
                     ),
@@ -598,7 +602,18 @@ class _PaymentCashState extends State<PaymentCash> {
                                                         ],
                                                       ),
                                                       selectedIndex == 0
-                                                          ? DiscountWidgets(discount: (value) => {setState(() => priceDiscount = int.parse(value))})
+                                                          ? DiscountWidgets(
+                                                              from: (value) => {setState(() => from = value)},
+                                                              discount: (value) => {
+                                                                setState(() {
+                                                                  if (from == 'discount') {
+                                                                    priceDiscount = int.parse(value);
+                                                                  } else {
+                                                                    priceDiscountPercen = int.parse(value);
+                                                                  }
+                                                                })
+                                                              },
+                                                            )
                                                           : selectedIndex == 1
                                                               ? GiftVoucherwidgets(
                                                                   voucher: (value) {
@@ -611,7 +626,20 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                   },
                                                                 )
                                                               : selectedIndex == 2
-                                                                  ? Redeempointswidget()
+                                                                  ? Redeempointswidget(
+                                                                      redeem: (p0) {
+                                                                        RegExp regex =
+                                                                            RegExp(r"(\d{1,3}(,\d{3})*)\s*คะแนน.*?(\d{1,3}(,\d{3})*)\s*บาท");
+
+                                                                        Match? match = regex.firstMatch(p0);
+                                                                        if (match != null) {
+                                                                          Points = int.parse(match.group(1)!.replaceAll(',', ''));
+                                                                          Price = int.parse(match.group(3)!.replaceAll(',', ''));
+                                                                          log(Points.toString());
+                                                                          setState(() {});
+                                                                        }
+                                                                      },
+                                                                    )
                                                                   : selectedIndex == 3
                                                                       ? OtherDiscountsWidgets(
                                                                           otherDiscount: (value) {
@@ -1028,7 +1056,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                 width: size.width * 0.1,
                                 child: Text(
                                   textAlign: TextAlign.end,
-                                  '15.00',
+                                  NumberFormat('#,##0.00', 'en_US').format(priceDiscountPercen),
                                   style: TextStyle(
                                       color: Color(
                                         0xFF424242,
@@ -1037,7 +1065,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                 ),
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    setState(() => priceDiscountPercen = 0);
+                                  },
                                   icon: Icon(
                                     Icons.highlight_remove_sharp,
                                     size: 15,
@@ -1163,7 +1193,7 @@ class _PaymentCashState extends State<PaymentCash> {
                               Container(
                                 width: size.width * 0.1,
                                 child: Text(
-                                  '100 คะแนน',
+                                  '${NumberFormat('#,##0', 'en_US').format(Points)} คะแนน',
                                   style: TextStyle(
                                       color: Color(
                                         0xFF424242,
@@ -1175,7 +1205,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                 width: size.width * 0.1,
                                 child: Text(
                                   textAlign: TextAlign.end,
-                                  '10.00',
+                                  NumberFormat('#,##0.00', 'en_US').format(Price),
                                   style: TextStyle(
                                       color: Color(
                                         0xFF424242,

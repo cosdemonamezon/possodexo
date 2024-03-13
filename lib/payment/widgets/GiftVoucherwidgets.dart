@@ -1,11 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class GiftVoucherwidgets extends StatefulWidget {
-  GiftVoucherwidgets({
-    super.key,
-    this.voucher,
-  });
+  GiftVoucherwidgets({super.key, this.voucher, this.dropdownvoucher});
   final Function(String)? voucher;
+  final Function(String)? dropdownvoucher;
 
   @override
   State<GiftVoucherwidgets> createState() => _GiftVoucherwidgetsState();
@@ -202,6 +202,7 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
                   child: ElevatedButton(
                     onPressed: () {
                       widget.voucher!(text.text);
+                      widget.dropdownvoucher!(_selectedCoupon ?? '');
                       text.clear();
                     },
                     style: ElevatedButton.styleFrom(

@@ -5,9 +5,10 @@ import 'package:possodexo/payment/widgets/numbercel.dart';
 import 'package:possodexo/payment/widgets/numbercelpercen.dart';
 
 class DiscountWidgets extends StatefulWidget {
-  const DiscountWidgets({super.key, this.discount});
+  const DiscountWidgets({super.key, this.discount, this.from});
 
   final Function(String)? discount;
+  final Function(String)? from;
 
   @override
   State<DiscountWidgets> createState() => _DiscountWidgetsState();
@@ -52,6 +53,7 @@ class _DiscountWidgetsState extends State<DiscountWidgets> {
               children: [
                 InkWell(
                     onTap: () {
+                      widget.from!('discount');
                       onItemTapped(0);
                     },
                     child: selectedIndex == 0
@@ -110,6 +112,7 @@ class _DiscountWidgetsState extends State<DiscountWidgets> {
                 ),
                 InkWell(
                     onTap: () {
+                      widget.from!('discountPercen');
                       onItemTapped(1);
                     },
                     child: selectedIndex == 1
@@ -169,7 +172,7 @@ class _DiscountWidgetsState extends State<DiscountWidgets> {
           SizedBox(
             height: 20,
           ),
-          selectedIndex == 0 ? Numbercel(ai: ai) : Numbercelpercen(),
+          selectedIndex == 0 ? Numbercel(ai: ai) : Numbercelpercen(ai: ai),
           Padding(
             padding: const EdgeInsets.only(left: 40, right: 40),
             child: Row(
@@ -206,6 +209,7 @@ class _DiscountWidgetsState extends State<DiscountWidgets> {
                     onPressed: () {
                       if (ai != null && ai.text.isNotEmpty) {
                         widget.discount!(ai.text);
+
                         ai.clear();
                       }
                     },
