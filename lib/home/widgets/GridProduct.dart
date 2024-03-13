@@ -18,7 +18,7 @@ class GridCoffee extends StatefulWidget {
   });
 
   int qty = 0;
-  List<Product> gridCoffee = [];
+  final List<Product> gridCoffee;
   final ValueChanged onChange;
   @override
   State<GridCoffee> createState() => _GridCoffeeState();
@@ -29,13 +29,21 @@ class _GridCoffeeState extends State<GridCoffee> {
   @override
   void initState() {
     super.initState();
-    getproductMain(id: widget.gridCoffee[0].id);
+    getlistproduct(categoryid: widget.gridCoffee[0].id);
+    inspect(widget.gridCoffee);
   }
 
-//ดึงขอมูล ProductMain
-  Future<void> getproductMain({required int id}) async {
+  Future<void> getlistproduct({required int categoryid}) async {
     try {
-      await context.read<ProductController>().getproductMain(id: id);
+      await context.read<ProductController>().getProduct(categoryid: categoryid);
+    } on Exception catch (e) {
+      inspect(e);
+    }
+  }
+
+  Future<void> getproductbyId({required int productId}) async {
+    try {
+      await context.read<ProductController>().getproductById(productId: productId);
     } on Exception catch (e) {
       inspect(e);
     }
@@ -45,10 +53,10 @@ class _GridCoffeeState extends State<GridCoffee> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Consumer<ProductController>(builder: (context, productController, child) {
-      final productmains = productController.productMain;
+      final productmains = productController.products;
       return Padding(
         padding: const EdgeInsets.all(18.0),
-        child: widget.gridCoffee.isNotEmpty
+        child: productmains.isNotEmpty
             ? GridView.builder(
                 shrinkWrap: true,
                 physics: ClampingScrollPhysics(),
@@ -58,49 +66,23 @@ class _GridCoffeeState extends State<GridCoffee> {
                   mainAxisExtent: 150,
                   mainAxisSpacing: 10,
                 ),
-                itemCount: widget.gridCoffee.length,
+                itemCount: productmains.length,
                 itemBuilder: (_, index) {
                   return GestureDetector(
                     onTap: () async {
-                      // if (widget.gridCoffee[index]['type'] == 'เครื่องดื่ม') {
-                      //   final item = await showDialog(
-                      //       context: context,
-                      //       builder: (context) => OpenDialogProduct(
-                      //             gridCoffee: widget.gridCoffee[index],
-                      //           ));
-                      //   if (item != null) {
-                      //     inspect(item);
-                      //     widget.onChange(item);
-                      //   }
-                      // } else {
-                      //   final item = await showDialog(
-                      //       context: context,
-                      //       builder: (context) => OpenDialogDessert(
-                      //             gridCoffee: widget.gridCoffee[index],
-                      //           ));
-                      //   if (item != null) {
-                      //     inspect(item);
-                      //     widget.onChange(item);
-                      //   }
-                      // }
-
-                      // await getproductMain(id: widget.gridCoffee[index].id);
-                      // if (!mounted) return;
-                      if (productmains?.name == "กาแฟ") {
+                      /// หน้าเลือกขนาด////////
+                      await getproductbyId(productId: productmains[index].id);
+                      if (!mounted) {
+                        return;
+                      }
+                      if (productController.product != null) {
                         final item = await showDialog(
                             context: context,
                             builder: (context) {
-                              return OpenDialogProduct(productmains: productmains!, gridCoffee: widget.gridCoffee[index]);
+                              return OpenDialogProduct(
+                                gridCoffee: productController.product!,
+                              );
                             });
-                        if (item != null) {
-                          // inspect(item);
-                          widget.onChange(item);
-                        }
-                      } else {
-                        final item = await showDialog(
-                          context: context,
-                          builder: (context) => OpenDialogDessert(gridCoffee: widget.gridCoffee[index]),
-                        );
                         if (item != null) {
                           // inspect(item);
                           widget.onChange(item);
@@ -112,20 +94,23 @@ class _GridCoffeeState extends State<GridCoffee> {
                         Expanded(
                           child: Stack(
                             children: [
-                              Image.asset(
-                                'assets/images/coffee2.png',
+                              Image.network(
+                                productmains[index].image ?? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
                                 width: size.width * 0.22,
                                 height: size.height * 0.22,
                                 fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) => Image.network(
+                                  'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
+                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
                                   padding: EdgeInsets.all(4),
                                   decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(4)),
-                                  child: widget.gridCoffee[index].sellprice != null
+                                  child: productmains[index].price != null
                                       ? Text(
-                                          widget.gridCoffee[index].sellprice!.toString(),
+                                          productmains[index].price!.toString(),
                                           style: TextStyle(
                                             fontFamily: 'IBMPlexSansThai',
                                           ),
@@ -148,9 +133,9 @@ class _GridCoffeeState extends State<GridCoffee> {
                                       width: double.maxFinite,
                                       color: Color.fromARGB(60, 0, 0, 0),
                                       child: Center(
-                                          child: widget.gridCoffee[index].name != null
+                                          child: productmains[index].name != null
                                               ? Text(
-                                                  widget.gridCoffee[index].name!,
+                                                  productmains[index].name!,
                                                   style: TextStyle(
                                                     color: Colors.white,
                                                     fontFamily: 'IBMPlexSansThai',

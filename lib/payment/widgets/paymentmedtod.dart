@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:possodexo/home/service/productController.dart';
 import 'package:provider/provider.dart';
 
@@ -54,8 +55,15 @@ class _PaymentMethodState extends State<PaymentMethod> {
                     ? SizedBox()
                     : Padding(
                         padding: const EdgeInsets.only(left: 10),
-                        child: Image.network(productController.payments[index].icon!),
-                      ),
+                        child: SvgPicture.network(
+                          productController.payments[index].icon!,
+                        )
+                        //   scale: 10,)
+                        // Image.network(
+                        //   productController.payments[index].icon!,
+                        //   scale: 10,
+                        // ),
+                        ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
                   child: Text(productController.payments[index].name!),
