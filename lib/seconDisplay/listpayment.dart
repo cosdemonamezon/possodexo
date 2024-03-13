@@ -540,13 +540,31 @@ class _ListpaymentState extends State<Listpayment> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 250),
+                    padding: const EdgeInsets.only(bottom: 100),
                     child: Center(
                       child: Container(
-                        width: size.width * 0.1,
-                        height: size.height * 0.1,
+                        width: size.width * 0.45,
+                        height: size.height * 0.6,
                         decoration: BoxDecoration(color: Colors.white),
-                        child: Text('data'),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: size.height * 0.04,
+                            ),
+                            Text(
+                              'ดำเนินการชำระเงิน',
+                              style: TextStyle(fontSize: 40, color: Color(0xFF424242)),
+                            ),
+                            Text(
+                              'ประเภท : เงินสด',
+                              style: TextStyle(fontSize: 20, color: Color(0xFF424242)),
+                            ),
+                            Text(
+                              'ประเภท : เงินสด',
+                              style: TextStyle(fontSize: 20, color: Color(0xFF424242)),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   )
