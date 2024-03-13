@@ -1,19 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'attributeValues.dart';
+part of 'productAttributeValue.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-AttributeValues _$AttributeValuesFromJson(Map<String, dynamic> json) =>
-    AttributeValues(
+ProductAttributeValue _$ProductAttributeValueFromJson(
+        Map<String, dynamic> json) =>
+    ProductAttributeValue(
       json['id'] as int,
-      json['name'] as String?,
-      json['price'] as int?,
+      json['name'] as String,
+      json['price'] as int,
     );
 
-Map<String, dynamic> _$AttributeValuesToJson(AttributeValues instance) =>
+Map<String, dynamic> _$ProductAttributeValueToJson(
+        ProductAttributeValue instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

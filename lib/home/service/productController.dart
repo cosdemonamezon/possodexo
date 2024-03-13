@@ -4,7 +4,7 @@ import 'package:possodexo/models/branch.dart';
 import 'package:possodexo/models/category.dart';
 import 'package:possodexo/models/payment.dart';
 import 'package:possodexo/models/product.dart';
-import 'package:possodexo/models/productMain.dart';
+
 import 'package:possodexo/models/shift.dart';
 
 class ProductController extends ChangeNotifier {
@@ -12,6 +12,7 @@ class ProductController extends ChangeNotifier {
   ProductApi api;
 
   List<Product> products = [];
+  Product? product;
 
   List<Category> categorized = [];
   Category? category;
@@ -24,20 +25,23 @@ class ProductController extends ChangeNotifier {
 
   Shift? shift;
 
-  ProductMain? productMain;
-
-  getProduct({required int id}) async {
+  getProduct({required int categoryid}) async {
     products.clear();
-    products = await ProductApi.getProduct(id: id);
+    products = await ProductApi.getProduct(id: categoryid);
+    notifyListeners();
+  }
+
+  getproductById({required int productId}) async {
+    product = await ProductApi.getproductById(id: productId);
     notifyListeners();
   }
 
   getListCategory() async {
     categorized.clear();
     categorized = await ProductApi.getCategory();
-    categorized.insert(0, Category(0,DateTime.now(),DateTime.now(),DateTime.now(),'00','ทั้งหมด'));
+    categorized.insert(0, Category(0, DateTime.now(), DateTime.now(), DateTime.now(), '00', 'ทั้งหมด'));
     notifyListeners();
-    getProduct(id: categorized[0].id);
+    getProduct(categoryid: categorized[0].id!);
   }
 
   getListBranch() async {
@@ -55,12 +59,6 @@ class ProductController extends ChangeNotifier {
   getListShift() async {
     shift = null;
     shift = await ProductApi.getShift();
-    notifyListeners();
-  }
-
-  getproductMain({required int id}) async {
-    productMain = null;
-    productMain = await ProductApi.getproductMain(id: id);
     notifyListeners();
   }
 }

@@ -14,12 +14,13 @@ import 'package:possodexo/home/widgets/PrintCallBack.dart';
 import 'package:possodexo/home/widgets/ShowOpenShift.dart';
 import 'package:possodexo/home/widgets/TablePromotion.dart';
 import 'package:possodexo/home/widgets/membership.dart';
+
 import 'package:possodexo/home/widgets/texPage.dart';
-import 'package:possodexo/models/attributeValues.dart';
+import 'package:possodexo/models/productAttributeValue.dart';
 import 'package:possodexo/models/branch.dart';
 import 'package:possodexo/models/category.dart';
 import 'package:possodexo/models/product.dart';
-import 'package:possodexo/models/productMain.dart';
+
 import 'package:provider/provider.dart';
 import '../payment/widgets/paymentCash.dart';
 import 'widgets/Addpointsela.dart';
@@ -42,7 +43,7 @@ class _HomePageState extends State<HomePage> {
   List<String> nationality = ["ไทย", "พม่า", "ลาว"];
   String lang = "ไทย";
   List<Product> selectedItem = [];
-  List<ProductMain> selectedItem2 = [];
+
   int selectedIndex = 0;
   int totleqty = 0;
   double totleprice = 0.00;
@@ -70,7 +71,7 @@ class _HomePageState extends State<HomePage> {
   List<Map<String, dynamic>> gridCoffees = [];
   int? menuSize;
   int? sizeprice;
-  AttributeValues? attributeValues;
+  ProductAttributeValue? attributeValues;
   List<Widget> orders = [];
   void onTapProduct(int index) {
     setState(() {});
@@ -104,13 +105,13 @@ class _HomePageState extends State<HomePage> {
   }
 
 // ดึงข้อมูล product
-  // Future<void> getlistproduct() async {
-  //   try {
-  //     await context.read<ProductController>().getProduct();
-  //   } on Exception catch (e) {
-  //     inspect(e);
-  //   }
-  // }
+//   Future<void> getlistproduct() async {
+//     try {
+//       await context.read<ProductController>().getProduct();
+//     } on Exception catch (e) {
+//       inspect(e);
+//     }
+//   }
 
   //ดึงข้อมูล Category
   Future<void> getlistCategory() async {
@@ -154,8 +155,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   //ฟังก์ชั่นคำนวน ราคา และ qty
-  double sum(List<ProductMain> orders) => orders.fold(0, (previous, o) => previous + (o.qty * o.priceQTY));
-  int newQty(List<ProductMain> orders) => orders.fold(0, (previousValue, e) => previousValue + e.qty);
+  double sum(List<Product> orders) => orders.fold(0, (previous, o) => previous + (o.qty * o.priceQTY));
+  int newQty(List<Product> orders) => orders.fold(0, (previousValue, e) => previousValue + e.qty);
 
   // double newtotal(Product orders, AttributeValues sizes) {
   //   return double.parse((sizes.price! == 0
@@ -443,6 +444,7 @@ class _HomePageState extends State<HomePage> {
                                         width: double.infinity,
                                         color: kTabColor,
                                         child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
                                             SizedBox(
                                               width: 20,
@@ -480,8 +482,31 @@ class _HomePageState extends State<HomePage> {
                                                 setState(() {
                                                   sclectedProduct = v;
                                                 });
-                                                await context.read<ProductController>().getProduct(id: sclectedProduct!.id);
+                                                await context.read<ProductController>().getProduct(categoryid: sclectedProduct!.id!);
                                               },
+                                            ),
+                                            SizedBox(
+                                              width: size.width * 0.4,
+                                            ),
+                                            IconButton(
+                                              icon: Icon(Icons.search),
+                                              onPressed: () {
+                                                showSearch(context: context, delegate: MySearch());
+                                              },
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Image.asset(
+                                                "assets/icons/Frame (5).png",
+                                                scale: 20,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Image.asset(
+                                                "assets/icons/Frame (6).png",
+                                                scale: 20,
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -498,7 +523,7 @@ class _HomePageState extends State<HomePage> {
                                               gridCoffee: products,
                                               onChange: (value) {
                                                 // inspect(value);
-                                                final ProductMain item = value["item"];
+                                                final Product item = value["item"];
                                                 // menuSize = value["size"];
                                                 // // inspect(menuSize);
                                                 // sizeprice = value["pricesize"];
@@ -509,7 +534,7 @@ class _HomePageState extends State<HomePage> {
                                                 totleqty = item.qty;
                                                 item.priceQTY = item.price!.toDouble();
 
-                                                selectedItem2.add(item);
+                                                selectedItem.add(item);
                                                 setState(() {});
                                               },
                                             ),
@@ -825,7 +850,7 @@ class _HomePageState extends State<HomePage> {
                                           child: InkWell(
                                               onTap: () {
                                                 setState(() {
-                                                  selectedItem2.clear();
+                                                  selectedItem.clear();
                                                 });
                                               },
                                               child: Row(
@@ -880,14 +905,14 @@ class _HomePageState extends State<HomePage> {
                                         height: size.height * 0.01,
                                       ),
                                       //ฟังชั่นกดเเล้วเเสดงผล ////
-                                      selectedItem2.isEmpty
+                                      selectedItem.isEmpty
                                           ? SizedBox.shrink()
                                           : SizedBox(
                                               height: size.height * 0.3,
                                               child: ListView.builder(
-                                                itemCount: selectedItem2.length,
+                                                itemCount: selectedItem.length,
                                                 itemBuilder: (context, index) {
-                                                  final item = selectedItem2[index];
+                                                  final item = selectedItem[index];
 
                                                   return Padding(
                                                     padding: const EdgeInsets.all(8.0),
@@ -899,7 +924,7 @@ class _HomePageState extends State<HomePage> {
                                                           SlidableAction(
                                                             onPressed: (context) {
                                                               setState(() {
-                                                                selectedItem2.removeAt(index);
+                                                                selectedItem.removeAt(index);
                                                               });
                                                             },
                                                             backgroundColor: Colors.red,
@@ -916,20 +941,20 @@ class _HomePageState extends State<HomePage> {
                                                             Row(
                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                               children: [
-                                                                Text(selectedItem2[index].name ?? ''),
+                                                                Text(selectedItem[index].name ?? ''),
                                                                 Row(
                                                                   children: [
                                                                     InkWell(
                                                                       onTap: () {
-                                                                        if (selectedItem2[index].qty > 1) {
+                                                                        if (selectedItem[index].qty > 1) {
                                                                           setState(() {
-                                                                            selectedItem2[index].qty = selectedItem2[index].qty - 1;
+                                                                            selectedItem[index].qty = selectedItem[index].qty - 1;
                                                                             final price = double.parse(
-                                                                                (selectedItem2[index].price! * selectedItem2[index].qty).toString());
+                                                                                (selectedItem[index].price! * selectedItem[index].qty).toString());
 
-                                                                            totleqty = selectedItem2[index].qty;
-                                                                            selectedItem2[index].priceQTY = price;
-                                                                            totleprice = selectedItem2[index].priceQTY;
+                                                                            totleqty = selectedItem[index].qty;
+                                                                            selectedItem[index].priceQTY = price;
+                                                                            totleprice = selectedItem[index].priceQTY;
                                                                           });
                                                                         }
                                                                       },
@@ -947,21 +972,21 @@ class _HomePageState extends State<HomePage> {
                                                                     SizedBox(
                                                                       width: 10,
                                                                     ),
-                                                                    Text("${selectedItem2[index].qty}"),
+                                                                    Text("${selectedItem[index].qty}"),
                                                                     SizedBox(
                                                                       width: 10,
                                                                     ),
                                                                     InkWell(
                                                                       onTap: () {
-                                                                        if (selectedItem2[index].qty >= 1) {
+                                                                        if (selectedItem[index].qty >= 1) {
                                                                           setState(() {
-                                                                            selectedItem2[index].qty = selectedItem2[index].qty + 1;
+                                                                            selectedItem[index].qty = selectedItem[index].qty + 1;
                                                                             final price = double.parse(
-                                                                                (selectedItem2[index].price! * selectedItem2[index].qty).toString());
-                                                                            totleqty = selectedItem2[index].qty;
+                                                                                (selectedItem[index].price! * selectedItem[index].qty).toString());
+                                                                            totleqty = selectedItem[index].qty;
 
-                                                                            selectedItem2[index].priceQTY = price;
-                                                                            totleprice = selectedItem2[index].priceQTY;
+                                                                            selectedItem[index].priceQTY = price;
+                                                                            totleprice = selectedItem[index].priceQTY;
                                                                           });
                                                                         }
                                                                         // setState(() {
@@ -1023,10 +1048,10 @@ class _HomePageState extends State<HomePage> {
                                                                 Padding(
                                                                   padding: const EdgeInsets.only(right: 5, top: 5),
                                                                   child: Text(
-                                                                    (selectedItem2[index].price ?? 0 + attributeValues!.price!).toStringAsFixed(2),
+                                                                    (selectedItem[index].price ?? 0 + attributeValues!.price!).toStringAsFixed(2),
                                                                   ),
                                                                 ),
-                                                                Text("${selectedItem2[index].priceQTY}"),
+                                                                Text("${selectedItem[index].priceQTY}"),
                                                               ],
                                                             ),
                                                             Divider()
@@ -1071,13 +1096,13 @@ class _HomePageState extends State<HomePage> {
                                                     "จำนวนสินค้า",
                                                     style: TextStyle(fontFamily: 'IBMPlexSansThai', color: Color(0xFF424242)),
                                                   ),
-                                                  Text(
-                                                    '${newQty(selectedItem2)}',
-                                                    // '${sumQTY(selectedItem)} ชิ้น',
-                                                    style: TextStyle(
-                                                      fontFamily: 'IBMPlexSansThai',
-                                                    ),
-                                                  )
+                                                  // Text(
+                                                  //   '${newQty(selectedItem)}',
+                                                  //   // '${sumQTY(selectedItem)} ชิ้น',
+                                                  //   style: TextStyle(
+                                                  //     fontFamily: 'IBMPlexSansThai',
+                                                  //   ),
+                                                  // )
                                                 ],
                                               ),
                                               Row(
@@ -1087,13 +1112,13 @@ class _HomePageState extends State<HomePage> {
                                                     "รวม",
                                                     style: TextStyle(fontFamily: 'IBMPlexSansThai', color: Color(0xFF424242)),
                                                   ),
-                                                  Text(
-                                                    '${sum(selectedItem2)}',
-                                                    // '${sumPrice(selectedItem)} ฿',
-                                                    style: TextStyle(
-                                                      fontFamily: 'IBMPlexSansThai',
-                                                    ),
-                                                  )
+                                                  // Text(
+                                                  //   '${sum(selectedItem)}',
+                                                  //   // '${sumPrice(selectedItem)} ฿',
+                                                  //   style: TextStyle(
+                                                  //     fontFamily: 'IBMPlexSansThai',
+                                                  //   ),
+                                                  // )
                                                 ],
                                               ),
                                               Row(
@@ -1231,8 +1256,7 @@ class _HomePageState extends State<HomePage> {
                                                 child: Container(
                                                   decoration: BoxDecoration(
                                                       borderRadius: BorderRadius.circular(8),
-                                                      // color: selectedItem.isNotEmpty
-                                                      color: Colors.blue),
+                                                      color: selectedItem.isNotEmpty ? Colors.blue : Colors.grey),
                                                   height: size.height * 0.05,
                                                   width: size.width * 0.28,
                                                   child: Padding(
@@ -1308,4 +1332,27 @@ class ItemSelect {
     this.type,
     this.qty = 1,
   });
+}
+
+class MySearch extends SearchDelegate {
+  @override
+  Widget buildLeading(BuildContext context) => Container();
+
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    // TODO: implement buildActions
+    throw Container();
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    // TODO: implement buildResults
+    throw Container();
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    // TODO: implement buildSuggestions
+    throw Container();
+  }
 }
