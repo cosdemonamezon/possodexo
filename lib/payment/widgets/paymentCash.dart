@@ -969,18 +969,33 @@ class _PaymentCashState extends State<PaymentCash> {
                                   style: TextStyle(fontSize: 20),
                                 ),
                               ),
-                              Container(
-                                child: Row(
-                                  children: [
-                                    IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(
-                                          Icons.highlight_remove_sharp,
-                                          size: 15,
-                                          color: Color(0xFF616161),
-                                        )),
-                                    Text('ล้างข้อมูลทั้งหมด')
-                                  ],
+                              InkWell(
+                                onTap: () {
+                                  setState(() => priceDiscount = 0);
+                                  setState(() => priceDiscountPercen = 0);
+                                  setState(() => priceVoucher = 0);
+                                  setState(() => Price = 0);
+                                  setState(() => priceotherDiscount = 0);
+                                },
+                                child: Container(
+                                  child: Row(
+                                    children: [
+                                      IconButton(
+                                          onPressed: () {
+                                            setState(() => priceDiscount = 0);
+                                            setState(() => priceDiscountPercen = 0);
+                                            setState(() => priceVoucher = 0);
+                                            setState(() => Price = 0);
+                                            setState(() => priceotherDiscount = 0);
+                                          },
+                                          icon: Icon(
+                                            Icons.highlight_remove_sharp,
+                                            size: 15,
+                                            color: Color(0xFF616161),
+                                          )),
+                                      Text('ล้างข้อมูลทั้งหมด')
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
@@ -1214,7 +1229,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                 ),
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    setState(() => Price = 0);
+                                  },
                                   icon: Icon(
                                     Icons.highlight_remove_sharp,
                                     size: 15,

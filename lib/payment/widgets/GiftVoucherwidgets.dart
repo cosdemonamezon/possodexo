@@ -202,7 +202,7 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
                   child: ElevatedButton(
                     onPressed: () {
                       widget.voucher!(text.text);
-                      widget.dropdownvoucher!(_selectedCoupon ?? '');
+                      // widget.dropdownvoucher!(_selectedCoupon ?? '');
                       text.clear();
                     },
                     style: ElevatedButton.styleFrom(

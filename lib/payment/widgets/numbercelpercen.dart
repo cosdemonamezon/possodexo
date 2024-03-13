@@ -36,6 +36,7 @@ class _NumbercelpercenState extends State<Numbercelpercen> {
                     controller: widget.ai,
                     readOnly: true,
                     decoration: InputDecoration(
+                      hintText: ' 0',
                       border: InputBorder.none,
                     ),
                     validator: (selectedItem) {
