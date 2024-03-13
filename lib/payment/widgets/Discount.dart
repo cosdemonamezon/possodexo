@@ -1,9 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:possodexo/payment/widgets/numbercel.dart';
 import 'package:possodexo/payment/widgets/numbercelpercen.dart';
 
 class DiscountWidgets extends StatefulWidget {
-  const DiscountWidgets({super.key});
+  const DiscountWidgets({super.key, this.discount, this.from});
+
+  final Function(String)? discount;
+  final Function(String)? from;
 
   @override
   State<DiscountWidgets> createState() => _DiscountWidgetsState();
@@ -22,12 +27,12 @@ class _DiscountWidgetsState extends State<DiscountWidgets> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.75,
+      height: size.height * 0.77,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 30, bottom: 30, top: 20),
+            padding: const EdgeInsets.only(left: 30, bottom: 10, top: 10),
             child: Row(
               children: [
                 Text(
@@ -48,11 +53,12 @@ class _DiscountWidgetsState extends State<DiscountWidgets> {
               children: [
                 InkWell(
                     onTap: () {
+                      widget.from!('discount');
                       onItemTapped(0);
                     },
                     child: selectedIndex == 0
                         ? Container(
-                            height: size.height * 0.08,
+                            height: size.height * 0.06,
                             width: size.width * 0.11,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
@@ -77,7 +83,7 @@ class _DiscountWidgetsState extends State<DiscountWidgets> {
                             ),
                           )
                         : Container(
-                            height: size.height * 0.08,
+                            height: size.height * 0.06,
                             width: size.width * 0.11,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
@@ -106,11 +112,12 @@ class _DiscountWidgetsState extends State<DiscountWidgets> {
                 ),
                 InkWell(
                     onTap: () {
+                      widget.from!('discountPercen');
                       onItemTapped(1);
                     },
                     child: selectedIndex == 1
                         ? Container(
-                            height: size.height * 0.08,
+                            height: size.height * 0.06,
                             width: size.width * 0.11,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
@@ -135,7 +142,7 @@ class _DiscountWidgetsState extends State<DiscountWidgets> {
                             ),
                           )
                         : Container(
-                            height: size.height * 0.08,
+                            height: size.height * 0.06,
                             width: size.width * 0.11,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
@@ -163,9 +170,73 @@ class _DiscountWidgetsState extends State<DiscountWidgets> {
             ),
           ),
           SizedBox(
-            height: 25,
+            height: 20,
           ),
-          selectedIndex == 0 ? Numbercel() : Numbercelpercen(),
+          selectedIndex == 0 ? Numbercel(ai: ai) : Numbercelpercen(ai: ai),
+          Padding(
+            padding: const EdgeInsets.only(left: 40, right: 40),
+            child: Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      surfaceTintColor: Colors.white,
+                      foregroundColor: Colors.red,
+                      backgroundColor: Colors.white,
+                      fixedSize: Size.fromHeight(50),
+                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        side: BorderSide(color: Colors.red),
+                      ),
+                    ),
+                    child: Text(
+                      'ล้างข้อมูล',
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Colors.red,
+                        fontFamily: 'IBMPlexSansThai',
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 50,
+                ),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (ai != null && ai.text.isNotEmpty) {
+                        widget.discount!(ai.text);
+
+                        ai.clear();
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      surfaceTintColor: Color(0xFF4CAF50),
+                      foregroundColor: Color(0xFF4CAF50),
+                      backgroundColor: Color(0xFF4CAF50),
+                      fixedSize: Size.fromHeight(50),
+                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        // side: BorderSide(color: Colors.red),
+                      ),
+                    ),
+                    child: Text(
+                      'บันทึก',
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Color(0xFFFFFFFF),
+                        fontFamily: 'IBMPlexSansThai',
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
         ],
       ),
     );

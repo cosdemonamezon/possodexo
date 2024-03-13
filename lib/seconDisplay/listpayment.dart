@@ -508,6 +508,8 @@ class _ListpaymentState extends State<Listpayment> {
             //// ชำระเงินทั้งหมด
             Expanded(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
                     width: size.width * 0.65,
@@ -537,7 +539,35 @@ class _ListpaymentState extends State<Listpayment> {
                       ),
                     ),
                   ),
-                  Text('data')
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Center(
+                      child: Container(
+                        width: size.width * 0.45,
+                        height: size.height * 0.6,
+                        decoration: BoxDecoration(color: Colors.white),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: size.height * 0.04,
+                            ),
+                            Text(
+                              'ดำเนินการชำระเงิน',
+                              style: TextStyle(fontSize: 40, color: Color(0xFF424242)),
+                            ),
+                            Text(
+                              'ประเภท : เงินสด',
+                              style: TextStyle(fontSize: 20, color: Color(0xFF424242)),
+                            ),
+                            Text(
+                              'ประเภท : เงินสด',
+                              style: TextStyle(fontSize: 20, color: Color(0xFF424242)),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),

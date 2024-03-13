@@ -103,7 +103,7 @@ class _FirstPageState extends State<FirstPage> {
                           press: () => _setPage('History'),
                         ),
                         SizedBox(
-                          height: size.height * 0.13,
+                          height: size.height * 0.11,
                         ),
                         ItemMenuWidget(
                           pageActive: pageActive,
