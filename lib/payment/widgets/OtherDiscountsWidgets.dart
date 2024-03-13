@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class OtherDiscountsWidgets extends StatefulWidget {
-  OtherDiscountsWidgets({Key? key});
+  OtherDiscountsWidgets({Key? key, this.otherDiscount});
+  final Function(String)? otherDiscount;
 
   @override
   State<OtherDiscountsWidgets> createState() => _OtherDiscountsWidgetsState();
 }
 
 class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
+  final TextEditingController otherdiscount = TextEditingController();
   List<String> payment = ["จำนวนเงิน", "เปอร์เซ็นต์"];
   String payment1 = 'จำนวนเงิน';
   String? _selectedpayment;
@@ -64,8 +66,7 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(
-                  left: 30, bottom: 30, top: 20, right: 30),
+              padding: const EdgeInsets.only(left: 30, bottom: 30, top: 20, right: 30),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -167,7 +168,10 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                   ),
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        widget.otherDiscount!(otherdiscount.text);
+                        otherdiscount.clear();
+                      },
                       style: ElevatedButton.styleFrom(
                         surfaceTintColor: Color(0xFF4CAF50),
                         foregroundColor: Color(0xFF4CAF50),
@@ -198,7 +202,7 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
   }
 }
 
-class RowDiscountWidget extends StatelessWidget {
+class RowDiscountWidget extends StatefulWidget {
   final Map<String, String> rowData;
   final List<String> payment;
   final List<String> point;
@@ -208,13 +212,29 @@ class RowDiscountWidget extends StatelessWidget {
   final VoidCallback onRemove;
 
   const RowDiscountWidget(
-      {required this.rowData,
+      {Key? key,
+      required this.rowData,
       required this.payment,
       required this.point,
       required this.onChangedPayment,
       required this.onChangedPoint,
       required this.onChangedAmount,
-      required this.onRemove});
+      required this.onRemove,
+      this.otherDiscount})
+      : super(key: key);
+  final Function(String)? otherDiscount;
+  @override
+  _RowDiscountWidgetState createState() => _RowDiscountWidgetState();
+}
+
+class _RowDiscountWidgetState extends State<RowDiscountWidget> {
+  TextEditingController otherDiscount = TextEditingController();
+
+  @override
+  void dispose() {
+    otherDiscount.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -253,7 +273,7 @@ class RowDiscountWidget extends StatelessWidget {
                     ),
                     DropdownButton<String>(
                       isExpanded: true,
-                      items: payment
+                      items: widget.payment
                           .map((String item) => DropdownMenuItem<String>(
                                 value: item,
                                 child: Padding(
@@ -268,8 +288,8 @@ class RowDiscountWidget extends StatelessWidget {
                                 ),
                               ))
                           .toList(),
-                      value: rowData['payment'],
-                      onChanged: onChangedPayment,
+                      value: widget.rowData['payment'],
+                      onChanged: widget.onChangedPayment,
                       underline: SizedBox(),
                       dropdownColor: Color.fromARGB(255, 255, 255, 255),
                     ),
@@ -305,7 +325,7 @@ class RowDiscountWidget extends StatelessWidget {
                     ),
                     DropdownButton<String>(
                       isExpanded: true,
-                      items: point
+                      items: widget.point
                           .map((String item) => DropdownMenuItem<String>(
                                 value: item,
                                 child: Padding(
@@ -320,8 +340,8 @@ class RowDiscountWidget extends StatelessWidget {
                                 ),
                               ))
                           .toList(),
-                      value: rowData['point'],
-                      onChanged: onChangedPoint,
+                      value: widget.rowData['point'],
+                      onChanged: widget.onChangedPoint,
                       underline: SizedBox(),
                       dropdownColor: Color.fromARGB(255, 255, 255, 255),
                     ),
@@ -362,7 +382,8 @@ class RowDiscountWidget extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child: TextFormField(
-                        onChanged: onChangedAmount,
+                        controller: otherDiscount,
+                        onChanged: widget.onChangedAmount,
                         decoration: InputDecoration(
                           hintText: 'จำนานเงิน',
                           border: InputBorder.none,
@@ -374,7 +395,7 @@ class RowDiscountWidget extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: onRemove,
+              onPressed: widget.onRemove,
               icon: Icon(
                 Icons.highlight_remove_sharp,
                 color: Color(0xFF616161),

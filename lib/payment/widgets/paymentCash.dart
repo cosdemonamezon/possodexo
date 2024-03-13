@@ -36,6 +36,7 @@ class _PaymentCashState extends State<PaymentCash> {
   bool _isSelected = false;
   int priceDiscount = 0;
   int priceVoucher = 0;
+  int priceotherDiscount = 0;
 
   int selectedItem = 0;
   int totalPrice = 0;
@@ -464,7 +465,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                     ),
                                                                   ],
                                                                 ),
-                                                                Numbercel(),
+                                                                Numbercel(
+                                                                  ai: ai,
+                                                                ),
                                                               ],
                                                             ),
                                                     ],
@@ -598,13 +601,29 @@ class _PaymentCashState extends State<PaymentCash> {
                                                           ? DiscountWidgets(discount: (value) => {setState(() => priceDiscount = int.parse(value))})
                                                           : selectedIndex == 1
                                                               ? GiftVoucherwidgets(
-                                                                  voucher: (value) => {setState(() => priceVoucher = int.parse(value))},
+                                                                  voucher: (value) {
+                                                                    inspect(value);
+                                                                    if (value != '') {
+                                                                      setState(() {
+                                                                        priceVoucher = int.parse(value);
+                                                                      });
+                                                                    }
+                                                                  },
                                                                 )
                                                               : selectedIndex == 2
                                                                   ? Redeempointswidget()
                                                                   : selectedIndex == 3
-                                                                      ? OtherDiscountsWidgets()
-                                                                      : SizedBox(),
+                                                                      ? OtherDiscountsWidgets(
+                                                                          otherDiscount: (value) {
+                                                                            inspect(value);
+                                                                            if (value != '') {
+                                                                              setState(() {
+                                                                                priceotherDiscount = int.parse(value);
+                                                                              });
+                                                                            }
+                                                                          },
+                                                                        )
+                                                                      : SizedBox.shrink(),
                                                     ],
                                                   )),
                                       ],
@@ -916,10 +935,10 @@ class _PaymentCashState extends State<PaymentCash> {
                           child: Row(
                             children: [
                               Container(
-                                width: size.width * 0.12,
+                                width: size.width * 0.10,
                                 child: Text(
                                   "รายการส่วนลด",
-                                  style: TextStyle(fontSize: 23),
+                                  style: TextStyle(fontSize: 20),
                                 ),
                               ),
                               Container(
@@ -1073,7 +1092,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                 ),
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    setState(() => priceVoucher = 0);
+                                  },
                                   icon: Icon(
                                     Icons.highlight_remove_sharp,
                                     size: 15,
@@ -1209,7 +1230,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                 width: size.width * 0.1,
                                 child: Text(
                                   textAlign: TextAlign.end,
-                                  '5',
+                                  NumberFormat('#,##0.00', 'en_US').format(priceotherDiscount),
                                   style: TextStyle(
                                       color: Color(
                                         0xFF424242,
@@ -1218,7 +1239,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                 ),
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    setState(() => priceotherDiscount = 0);
+                                  },
                                   icon: Icon(
                                     Icons.highlight_remove_sharp,
                                     size: 15,

@@ -1,5 +1,5 @@
 import 'package:possodexo/home/model/detialmodel.dart';
-import 'package:possodexo/home/mogup/receiptmodel.dart';
+import 'package:possodexo/home/model/receiptmodel.dart';
 
 final allDetails = <Receipt>[
   Receipt(

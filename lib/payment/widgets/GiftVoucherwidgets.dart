@@ -1,17 +1,10 @@
-import 'dart:developer';
-
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:possodexo/constants.dart';
 
 class GiftVoucherwidgets extends StatefulWidget {
   GiftVoucherwidgets({
     super.key,
     this.voucher,
   });
-  TextEditingController? ai = TextEditingController();
   final Function(String)? voucher;
 
   @override
@@ -19,18 +12,17 @@ class GiftVoucherwidgets extends StatefulWidget {
 }
 
 class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
-  TextEditingController ai = TextEditingController();
+  final TextEditingController text = TextEditingController();
   List<String> coupon = ["คูปองห้อง", "คูปองหน้าร้าน"];
   String? _selectedCoupon;
   @override
   void initState() {
     super.initState();
-    ai = TextEditingController();
   }
 
   @override
   void dispose() {
-    ai.dispose();
+    text.dispose();
     super.dispose();
   }
 
@@ -125,7 +117,7 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
                     color: Color(0xFFFAFAFA),
                   ),
                   child: TextFormField(
-                    controller: widget.ai,
+                    // controller: text,
                     decoration: InputDecoration(
                       hintText: 'Gift Voucher',
                       prefixIcon: Icon(
@@ -161,6 +153,7 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
                     child: SizedBox(
                       width: size.width * 0.45,
                       child: TextFormField(
+                        controller: text,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                         ),
@@ -207,7 +200,10 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
                 ),
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () => widget.voucher!(widget.ai!.text),
+                    onPressed: () {
+                      widget.voucher!(text.text);
+                      text.clear();
+                    },
                     style: ElevatedButton.styleFrom(
                       surfaceTintColor: Color(0xFF4CAF50),
                       foregroundColor: Color(0xFF4CAF50),
