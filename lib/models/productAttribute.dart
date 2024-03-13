@@ -1,24 +1,23 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:possodexo/models/attributeValues.dart';
+import 'package:possodexo/models/productAttributeValue.dart';
 
 part 'productAttribute.g.dart';
 
 @JsonSerializable()
 class ProductAttribute {
   final int id;
-  final String? name;
-  final int? price;
-  final List<AttributeValues> attributeValues;
+  final String name;
+  final String type;
+  final List<ProductAttributeValue> productAttributeValues;
 
   ProductAttribute(
     this.id,
     this.name,
-    this.price,
-    this.attributeValues,
+    this.type,
+    this.productAttributeValues,
   );
 
-  factory ProductAttribute.fromJson(Map<String, dynamic> json) =>
-      _$ProductAttributeFromJson(json);
+  factory ProductAttribute.fromJson(Map<String, dynamic> json) => _$ProductAttributeFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductAttributeToJson(this);
 }

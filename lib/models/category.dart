@@ -4,7 +4,7 @@ part 'category.g.dart';
 
 @JsonSerializable()
 class Category {
-  final int id;
+  final int? id;
   final DateTime? createdAt;
   final DateTime? updatedAt;
   final DateTime? deletedAt;

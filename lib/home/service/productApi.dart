@@ -5,7 +5,6 @@ import 'package:possodexo/models/branch.dart';
 import 'package:possodexo/models/category.dart';
 import 'package:possodexo/models/payment.dart';
 import 'package:possodexo/models/product.dart';
-import 'package:possodexo/models/productMain.dart';
 import 'package:possodexo/models/shift.dart';
 
 class ProductApi {
@@ -23,6 +22,24 @@ class ProductApi {
       final data = convert.jsonDecode(response.body);
       final list = data as List;
       return list.map((e) => Product.fromJson(e)).toList();
+    } else {
+      final data = convert.jsonDecode(response.body);
+      throw Exception(data['message']);
+    }
+  }
+
+  static Future<Product> getproductById({required int id}) async {
+    final url = Uri.https(
+      publicUrl,
+      '/api/product/$id',
+    );
+    final response = await http.get(
+      url,
+    );
+    if (response.statusCode == 200) {
+      final data = convert.jsonDecode(response.body);
+
+      return Product.fromJson(data);
     } else {
       final data = convert.jsonDecode(response.body);
       throw Exception(data['message']);
@@ -101,18 +118,18 @@ class ProductApi {
     }
   }
 
-  static Future<ProductMain> getproductMain({required int id}) async {
-    final url = Uri.https(publicUrl, '/api/product/$id');
-    final response = await http.get(
-      url,
-    );
-    if (response.statusCode == 200) {
-      final data = convert.jsonDecode(response.body);
+  // static Future<ProductMain> getproductMain({required int id}) async {
+  //   final url = Uri.https(publicUrl, '/api/product/$id');
+  //   final response = await http.get(
+  //     url,
+  //   );
+  //   if (response.statusCode == 200) {
+  //     final data = convert.jsonDecode(response.body);
 
-      return ProductMain.fromJson(data);
-    } else {
-      final data = convert.jsonDecode(response.body);
-      throw Exception(data['message']);
-    }
-  }
+  //     return ProductMain.fromJson(data);
+  //   } else {
+  //     final data = convert.jsonDecode(response.body);
+  //     throw Exception(data['message']);
+  //   }
+  // }
 }
