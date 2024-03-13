@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,15 +9,30 @@ import 'package:possodexo/constants.dart';
 class GiftVoucherwidgets extends StatefulWidget {
   GiftVoucherwidgets({
     super.key,
+    this.voucher,
   });
+  TextEditingController? ai = TextEditingController();
+  final Function(String)? voucher;
 
   @override
   State<GiftVoucherwidgets> createState() => _GiftVoucherwidgetsState();
 }
 
 class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
+  TextEditingController ai = TextEditingController();
   List<String> coupon = ["คูปองห้อง", "คูปองหน้าร้าน"];
   String? _selectedCoupon;
+  @override
+  void initState() {
+    super.initState();
+    ai = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    ai.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,8 +86,7 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
                           .map((String item) => DropdownMenuItem<String>(
                                 value: item,
                                 child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 1.0),
+                                  padding: const EdgeInsets.symmetric(horizontal: 1.0),
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
@@ -109,6 +125,7 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
                     color: Color(0xFFFAFAFA),
                   ),
                   child: TextFormField(
+                    controller: widget.ai,
                     decoration: InputDecoration(
                       hintText: 'Gift Voucher',
                       prefixIcon: Icon(
@@ -190,7 +207,7 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
                 ),
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => widget.voucher!(widget.ai!.text),
                     style: ElevatedButton.styleFrom(
                       surfaceTintColor: Color(0xFF4CAF50),
                       foregroundColor: Color(0xFF4CAF50),
@@ -199,7 +216,6 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
                       padding: EdgeInsets.symmetric(horizontal: 50),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
-                        // side: BorderSide(color: Colors.red),
                       ),
                     ),
                     child: Text(

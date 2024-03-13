@@ -4,6 +4,7 @@ import 'package:chips_choice/chips_choice.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 import 'package:possodexo/home/homePage.dart';
 import 'package:possodexo/home/widgets/OpenAndCloseSwitch.dart';
 import 'package:possodexo/models/product.dart';
@@ -33,6 +34,8 @@ class _PaymentCashState extends State<PaymentCash> {
   int? sizeprice;
   TextEditingController ai = TextEditingController();
   bool _isSelected = false;
+  int priceDiscount = 0;
+  int priceVoucher = 0;
 
   int selectedItem = 0;
   int totalPrice = 0;
@@ -394,7 +397,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                     borderRadius: BorderRadius.circular(8),
                                     color: Colors.white,
                                   ),
-                                  height: size.height * 0.84,
+                                  height: size.height * 0.86,
                                   width: size.width * 0.5,
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -592,9 +595,11 @@ class _PaymentCashState extends State<PaymentCash> {
                                                         ],
                                                       ),
                                                       selectedIndex == 0
-                                                          ? DiscountWidgets()
+                                                          ? DiscountWidgets(discount: (value) => {setState(() => priceDiscount = int.parse(value))})
                                                           : selectedIndex == 1
-                                                              ? GiftVoucherwidgets()
+                                                              ? GiftVoucherwidgets(
+                                                                  voucher: (value) => {setState(() => priceVoucher = int.parse(value))},
+                                                                )
                                                               : selectedIndex == 2
                                                                   ? Redeempointswidget()
                                                                   : selectedIndex == 3
@@ -967,7 +972,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                 width: size.width * 0.1,
                                 child: Text(
                                   textAlign: TextAlign.end,
-                                  '5',
+                                  NumberFormat('#,##0.00', 'en_US').format(priceDiscount),
                                   style: TextStyle(
                                       color: Color(
                                         0xFF424242,
@@ -976,7 +981,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                 ),
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    setState(() => priceDiscount = 0);
+                                  },
                                   icon: Icon(
                                     Icons.highlight_remove_sharp,
                                     size: 15,
@@ -1057,7 +1064,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                 width: size.width * 0.1,
                                 child: Text(
                                   textAlign: TextAlign.end,
-                                  '5',
+                                  NumberFormat('#,##0.00', 'en_US').format(priceVoucher),
                                   style: TextStyle(
                                       color: Color(
                                         0xFF424242,
@@ -1172,6 +1179,89 @@ class _PaymentCashState extends State<PaymentCash> {
                           height: 10,
                           color: Color(0xFFB0BEC5),
                         ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: size.height * 0.01,
+                          ),
+                          Text(
+                            'ส่วนลดอื่นๆ',
+                            style: TextStyle(fontSize: 20, color: Color(0xFF1264E3)),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                width: size.width * 0.1,
+                                child: Text(
+                                  'ส่วนลด The 1',
+                                  style: TextStyle(
+                                      color: Color(
+                                        0xFF424242,
+                                      ),
+                                      fontSize: 16),
+                                ),
+                              ),
+                              Container(
+                                width: size.width * 0.1,
+                                child: Text(
+                                  textAlign: TextAlign.end,
+                                  '5',
+                                  style: TextStyle(
+                                      color: Color(
+                                        0xFF424242,
+                                      ),
+                                      fontSize: 20),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.highlight_remove_sharp,
+                                    size: 15,
+                                    color: Color(0xFF616161),
+                                  )),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                width: size.width * 0.1,
+                                child: Text(
+                                  'คูปองห้าง',
+                                  style: TextStyle(
+                                      color: Color(
+                                        0xFF424242,
+                                      ),
+                                      fontSize: 16),
+                                ),
+                              ),
+                              Container(
+                                width: size.width * 0.1,
+                                child: Text(
+                                  textAlign: TextAlign.end,
+                                  '25.00',
+                                  style: TextStyle(
+                                      color: Color(
+                                        0xFF424242,
+                                      ),
+                                      fontSize: 20),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.highlight_remove_sharp,
+                                    size: 15,
+                                    color: Color(0xFF616161),
+                                  )),
+                            ],
+                          ),
+                        ],
                       ),
                     ],
                   )
