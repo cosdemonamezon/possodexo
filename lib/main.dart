@@ -8,9 +8,34 @@ import 'package:possodexo/home/service/productController.dart';
 import 'package:possodexo/login/loginPage.dart';
 import 'package:possodexo/payment/widgets/Proceedpayment.dart';
 import 'package:possodexo/payment/widgets/paymentCash.dart';
+import 'package:possodexo/seconDisplay/listpayment.dart';
 import 'package:provider/provider.dart';
 import 'package:possodexo/payment/widgets/Discount.dart';
 import 'package:possodexo/payment/widgets/paymentCash.dart';
+
+@pragma('vm:entry-point')
+void secondaryDisplayMain() {
+  debugPrint('second main');
+  runApp(const MySecondApp());
+}
+
+class MySecondApp extends StatelessWidget {
+  const MySecondApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+        fontFamily: 'IBMPlexSansThai',
+      ),
+      home: Scaffold(
+        body: Listpayment(),
+      ),
+    );
+  }
+}
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
