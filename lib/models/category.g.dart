@@ -7,7 +7,7 @@ part of 'category.dart';
 // **************************************************************************
 
 Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
-      json['id'] as int,
+      json['id'] as int?,
       json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),

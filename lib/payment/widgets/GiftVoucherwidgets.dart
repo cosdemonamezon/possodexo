@@ -1,21 +1,30 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter/cupertino.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:possodexo/constants.dart';
 
 class GiftVoucherwidgets extends StatefulWidget {
-  GiftVoucherwidgets({
-    super.key,
-  });
+  GiftVoucherwidgets({super.key, this.voucher, this.dropdownvoucher});
+  final Function(String)? voucher;
+  final Function(String)? dropdownvoucher;
 
   @override
   State<GiftVoucherwidgets> createState() => _GiftVoucherwidgetsState();
 }
 
 class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
+  final TextEditingController text = TextEditingController();
   List<String> coupon = ["คูปองห้อง", "คูปองหน้าร้าน"];
   String? _selectedCoupon;
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    text.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,8 +78,7 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
                           .map((String item) => DropdownMenuItem<String>(
                                 value: item,
                                 child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 1.0),
+                                  padding: const EdgeInsets.symmetric(horizontal: 1.0),
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
@@ -109,6 +117,7 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
                     color: Color(0xFFFAFAFA),
                   ),
                   child: TextFormField(
+                    // controller: text,
                     decoration: InputDecoration(
                       hintText: 'Gift Voucher',
                       prefixIcon: Icon(
@@ -144,6 +153,7 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
                     child: SizedBox(
                       width: size.width * 0.45,
                       child: TextFormField(
+                        controller: text,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                         ),
@@ -190,7 +200,11 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
                 ),
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      widget.voucher!(text.text);
+                      // widget.dropdownvoucher!(_selectedCoupon ?? '');
+                      text.clear();
+                    },
                     style: ElevatedButton.styleFrom(
                       surfaceTintColor: Color(0xFF4CAF50),
                       foregroundColor: Color(0xFF4CAF50),
@@ -199,7 +213,6 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
                       padding: EdgeInsets.symmetric(horizontal: 50),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
-                        // side: BorderSide(color: Colors.red),
                       ),
                     ),
                     child: Text(

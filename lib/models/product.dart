@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:possodexo/models/category.dart';
+import 'package:possodexo/models/productAttribute.dart';
 
 part 'product.g.dart';
 
@@ -11,11 +13,11 @@ class Product {
   final DateTime? deletedAt;
   final String? code;
   final String? name;
-  final double? stdprice;
-  final double? sellprice;
-  final bool enableShot;
-  final String? shotPrice;
+  final String? image;
+  final double? price;
   final Category? category;
+  final List<ProductAttribute>? productAttributes;
+
   double priceQTY;
   int qty;
 
@@ -26,11 +28,10 @@ class Product {
     this.deletedAt,
     this.code,
     this.name,
-    this.stdprice,
-    this.sellprice,
-    this.enableShot,
-    this.shotPrice,
-    this.category, {
+    this.image,
+    this.price,
+    this.category,
+    this.productAttributes, {
     this.qty = 1,
     this.priceQTY = 0,
   });

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
 class Numbercel extends StatefulWidget {
-  const Numbercel({super.key});
-
+  Numbercel({super.key, this.ai});
+  TextEditingController? ai = TextEditingController();
   @override
   State<Numbercel> createState() => _NumbercelState();
 }
 
 class _NumbercelState extends State<Numbercel> {
-  TextEditingController ai = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -33,9 +32,10 @@ class _NumbercelState extends State<Numbercel> {
                 SizedBox(
                   width: size.width * 0.45,
                   child: TextFormField(
-                    controller: ai,
+                    controller: widget.ai,
                     readOnly: true,
                     decoration: InputDecoration(
+                      hintText: '0.00',
                       border: InputBorder.none,
                     ),
                     validator: (selectedItem) {
@@ -69,9 +69,9 @@ class _NumbercelState extends State<Numbercel> {
                           number: '7',
                           size: 10,
                           color: Color(0xFFCFD8DC),
-                          controller: ai,
+                          controller: widget.ai!,
                           onPressed: () {
-                            ai.text += '7';
+                            widget.ai!.text += '7';
                           },
                         ),
                       ),
@@ -85,9 +85,9 @@ class _NumbercelState extends State<Numbercel> {
                           number: '8',
                           size: 10,
                           color: Color(0xFFCFD8DC),
-                          controller: ai,
+                          controller: widget.ai!,
                           onPressed: () {
-                            ai.text += '8';
+                            widget.ai!.text += '8';
                           },
                         ),
                       ),
@@ -101,9 +101,9 @@ class _NumbercelState extends State<Numbercel> {
                           number: '9',
                           size: 10,
                           color: Color(0xFFCFD8DC),
-                          controller: ai,
+                          controller: widget.ai!,
                           onPressed: () {
-                            ai.text += '9';
+                            widget.ai!.text += '9';
                           },
                         ),
                       ),
@@ -120,9 +120,9 @@ class _NumbercelState extends State<Numbercel> {
                           number: '4',
                           size: 10,
                           color: Color(0xFFCFD8DC),
-                          controller: ai,
+                          controller: widget.ai!,
                           onPressed: () {
-                            ai.text += '4';
+                            widget.ai!.text += '4';
                           },
                         ),
                       ),
@@ -136,9 +136,9 @@ class _NumbercelState extends State<Numbercel> {
                           number: '5',
                           size: 10,
                           color: Color(0xFFCFD8DC),
-                          controller: ai,
+                          controller: widget.ai!,
                           onPressed: () {
-                            ai.text += '5';
+                            widget.ai!.text += '5';
                           },
                         ),
                       ),
@@ -152,9 +152,9 @@ class _NumbercelState extends State<Numbercel> {
                           number: '6',
                           size: 10,
                           color: Color(0xFFCFD8DC),
-                          controller: ai,
+                          controller: widget.ai!,
                           onPressed: () {
-                            ai.text += '6';
+                            widget.ai!.text += '6';
                           },
                         ),
                       ),
@@ -171,9 +171,9 @@ class _NumbercelState extends State<Numbercel> {
                           number: '1',
                           size: 10,
                           color: Color(0xFFCFD8DC),
-                          controller: ai,
+                          controller: widget.ai!,
                           onPressed: () {
-                            ai.text += '1';
+                            widget.ai!.text += '1';
                           },
                         ),
                       ),
@@ -187,9 +187,9 @@ class _NumbercelState extends State<Numbercel> {
                           number: '2',
                           size: 10,
                           color: Color(0xFFCFD8DC),
-                          controller: ai,
+                          controller: widget.ai!,
                           onPressed: () {
-                            ai.text += '2';
+                            widget.ai!.text += '2';
                           },
                         ),
                       ),
@@ -203,9 +203,9 @@ class _NumbercelState extends State<Numbercel> {
                           number: '3',
                           size: 10,
                           color: Color(0xFFCFD8DC),
-                          controller: ai,
+                          controller: widget.ai!,
                           onPressed: () {
-                            ai.text += '3';
+                            widget.ai!.text += '3';
                           },
                         ),
                       ),
@@ -221,9 +221,9 @@ class _NumbercelState extends State<Numbercel> {
                           number: '00',
                           size: 10,
                           color: Color(0xFFCFD8DC),
-                          controller: ai,
+                          controller: widget.ai!,
                           onPressed: () {
-                            ai.text += '00';
+                            widget.ai!.text += '00';
                           },
                         ),
                       ),
@@ -237,9 +237,9 @@ class _NumbercelState extends State<Numbercel> {
                           number: '0',
                           size: 10,
                           color: Color(0xFFCFD8DC),
-                          controller: ai,
+                          controller: widget.ai!,
                           onPressed: () {
-                            ai.text += '0';
+                            widget.ai!.text += '0';
                           },
                         ),
                       ),
@@ -253,9 +253,9 @@ class _NumbercelState extends State<Numbercel> {
                           number: '.',
                           size: 10,
                           color: Color(0xFFCFD8DC),
-                          controller: ai,
+                          controller: widget.ai!,
                           onPressed: () {
-                            ai.text += '.';
+                            widget.ai!.text += '.';
                           },
                         ),
                       ),
@@ -275,8 +275,7 @@ class _NumbercelState extends State<Numbercel> {
                     child: InkWell(
                       onTap: () {
                         // ตรวจสอบว่ามีตัวอักษรใน TextFormField หรือไม่
-                        ai.text = ai.text.substring(
-                            0, ai.text.length - 1); // ลบตัวอักษรที่สุดท้ายออก
+                        widget.ai!.text = widget.ai!.text.substring(0, widget.ai!.text.length - 1); // ลบตัวอักษรที่สุดท้ายออก
                       },
                       child: SizedBox(
                         width: size.width * 0.08,
@@ -285,11 +284,10 @@ class _NumbercelState extends State<Numbercel> {
                           number: '<',
                           size: 10,
                           color: Color(0xFFCFD8DC),
-                          controller: ai,
+                          controller: widget.ai!,
                           onPressed: () {
-                            if (ai.text.isNotEmpty) {
-                              ai.text =
-                                  ai.text.substring(0, ai.text.length - 1);
+                            if (widget.ai!.text.isNotEmpty) {
+                              widget.ai!.text = widget.ai!.text.substring(0, widget.ai!.text.length - 1);
                             }
                           },
                         ),
@@ -303,9 +301,9 @@ class _NumbercelState extends State<Numbercel> {
                       number: 'C',
                       size: 10,
                       color: Color(0xFFCFD8DC),
-                      controller: ai,
+                      controller: widget.ai!,
                       onPressed: () {
-                        ai.text = '';
+                        widget.ai!.text = '';
                       },
                     ),
                   ),
@@ -351,8 +349,7 @@ class NumberButton extends StatelessWidget {
         child: Center(
           child: Text(
             number.toString(),
-            style: const TextStyle(
-                fontWeight: FontWeight.bold, color: Colors.black, fontSize: 25),
+            style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 25),
           ),
         ),
       ),

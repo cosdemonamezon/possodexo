@@ -2,17 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Redeempointswidget extends StatefulWidget {
-  const Redeempointswidget({super.key});
+  Redeempointswidget({super.key, this.redeem});
+  final Function(String)? redeem;
 
   @override
   State<Redeempointswidget> createState() => _RedeempointswidgetState();
 }
 
 class _RedeempointswidgetState extends State<Redeempointswidget> {
-  List<String> point = [
-    "200 คะแนน จะได้รับสิทธิแลกซื้อสินค้ามูลค่า 500 บาท",
-    "400 คะแนน จะได้รับสิทธิแลกซื้อสินค้ามูลค่า 1,000 บาท"
-  ];
+  List<String> point = ["200 คะแนน จะได้รับสิทธิแลกซื้อสินค้ามูลค่า 500 บาท", "1,000,000 คะแนน จะได้รับสิทธิแลกซื้อสินค้ามูลค่า 1,000,000 บาท"];
   String? _selectedponit;
   @override
   Widget build(BuildContext context) {
@@ -22,13 +20,10 @@ class _RedeempointswidgetState extends State<Redeempointswidget> {
       child: Column(
         children: [
           Padding(
-            padding:
-                const EdgeInsets.only(left: 30, bottom: 30, top: 20, right: 30),
+            padding: const EdgeInsets.only(left: 30, bottom: 30, top: 20, right: 30),
             child: Container(
               height: size.height * 0.1,
-              decoration: BoxDecoration(
-                  color: Color(0xFFE8EAF6),
-                  borderRadius: BorderRadius.circular(8)),
+              decoration: BoxDecoration(color: Color(0xFFE8EAF6), borderRadius: BorderRadius.circular(8)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -151,7 +146,9 @@ class _RedeempointswidgetState extends State<Redeempointswidget> {
                 ),
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      widget.redeem!(_selectedponit ?? '');
+                    },
                     style: ElevatedButton.styleFrom(
                       surfaceTintColor: Color(0xFF4CAF50),
                       foregroundColor: Color(0xFF4CAF50),
@@ -184,11 +181,9 @@ class _RedeempointswidgetState extends State<Redeempointswidget> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
-                  decoration: BoxDecoration(
-                      color: Color(0xFFFFECB3),
-                      borderRadius: BorderRadius.circular(8)),
+                  decoration: BoxDecoration(color: Color(0xFFFFECB3), borderRadius: BorderRadius.circular(8)),
                   width: size.width * 0.22,
-                  height: size.height * 0.11,
+                  height: size.height * 0.09,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -218,11 +213,9 @@ class _RedeempointswidgetState extends State<Redeempointswidget> {
                   ),
                 ),
                 Container(
-                  decoration: BoxDecoration(
-                      color: Color(0xFFE8EAF6),
-                      borderRadius: BorderRadius.circular(8)),
+                  decoration: BoxDecoration(color: Color(0xFFE8EAF6), borderRadius: BorderRadius.circular(8)),
                   width: size.width * 0.22,
-                  height: size.height * 0.11,
+                  height: size.height * 0.09,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

@@ -19,13 +19,14 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
           : DateTime.parse(json['deletedAt'] as String),
       json['code'] as String?,
       json['name'] as String?,
-      (json['stdprice'] as num?)?.toDouble(),
-      (json['sellprice'] as num?)?.toDouble(),
-      json['enableShot'] as bool,
-      json['shotPrice'] as String?,
+      json['image'] as String?,
+      (json['price'] as num?)?.toDouble(),
       json['category'] == null
           ? null
           : Category.fromJson(json['category'] as Map<String, dynamic>),
+      (json['productAttributes'] as List<dynamic>?)
+          ?.map((e) => ProductAttribute.fromJson(e as Map<String, dynamic>))
+          .toList(),
       qty: json['qty'] as int? ?? 1,
       priceQTY: (json['priceQTY'] as num?)?.toDouble() ?? 0,
     );
@@ -37,11 +38,10 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       'deletedAt': instance.deletedAt?.toIso8601String(),
       'code': instance.code,
       'name': instance.name,
-      'stdprice': instance.stdprice,
-      'sellprice': instance.sellprice,
-      'enableShot': instance.enableShot,
-      'shotPrice': instance.shotPrice,
+      'image': instance.image,
+      'price': instance.price,
       'category': instance.category,
+      'productAttributes': instance.productAttributes,
       'priceQTY': instance.priceQTY,
       'qty': instance.qty,
     };
