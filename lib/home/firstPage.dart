@@ -24,7 +24,7 @@ class _FirstPageState extends State<FirstPage> {
       case 'History':
         return Container();
       case 'Setting':
-        return MyApp();
+        return Container();
 
       default:
         return HomePage();

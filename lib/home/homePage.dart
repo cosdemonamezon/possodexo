@@ -16,6 +16,7 @@ import 'package:possodexo/home/widgets/TablePromotion.dart';
 import 'package:possodexo/home/widgets/membership.dart';
 
 import 'package:possodexo/home/widgets/texPage.dart';
+import 'package:possodexo/models/listProduct.dart';
 import 'package:possodexo/models/productAttributeValue.dart';
 import 'package:possodexo/models/branch.dart';
 import 'package:possodexo/models/category.dart';
@@ -42,7 +43,7 @@ class _HomePageState extends State<HomePage> {
   List<String> filteredProducts = [];
   List<String> nationality = ["ไทย", "พม่า", "ลาว"];
   String lang = "ไทย";
-  List<Product> selectedItem = [];
+  List<ListProduct> selectedItem = [];
 
   int selectedIndex = 0;
   int totleqty = 0;
@@ -523,16 +524,18 @@ class _HomePageState extends State<HomePage> {
                                               gridCoffee: products,
                                               onChange: (value) {
                                                 // inspect(value);
-                                                final Product item = value["item"];
+                                                // final Product item = value["item"];
                                                 // menuSize = value["size"];
                                                 // // inspect(menuSize);
                                                 // sizeprice = value["pricesize"];
                                                 // inspect(sizeprice);
-                                                attributeValues = value["selectedSize"];
+                                                // attributeValues = value["selectedSize"];
+                                                final item = ListProduct(value["item"], value["selectedSize"]);
+                                                inspect(value["item"]);
                                                 inspect(attributeValues);
-                                                totleprice = item.price!.toDouble();
-                                                totleqty = item.qty;
-                                                item.priceQTY = item.price!.toDouble();
+                                                totleprice = item.product.price!.toDouble();
+                                                totleqty = item.product.qty;
+                                                item.product.priceQTY = item.product.price!.toDouble();
 
                                                 selectedItem.add(item);
                                                 setState(() {});
@@ -867,39 +870,7 @@ class _HomePageState extends State<HomePage> {
                                                 ],
                                               ))),
 
-                                      /// โช สินค้า
-                                      // SingleChildScrollView(
-                                      //   child: Column(
-                                      //     children: [
-                                      //       SizedBox(
-                                      //         height: 0.01,
-                                      //         width: 0.01,
-                                      //         child: GestureDetector(
-                                      //           onTap: () async {
-                                      //             // final listItem2 = await showDialog(
-                                      //             //     context: context,
-                                      //             //     builder: (context) {
-                                      //             //       return GridCoffee(
-                                      //             //         qty: qty,
-                                      //             //         gridCoffee: [],
-                                      //             //         onChange: (value) {
-                                      //             //           // inspect(value);
-                                      //             //         },
-                                      //             //       );
-                                      //             //     });
-
-                                      //             // if (listItem2 != null) {
-                                      //             //   setState(() {
-                                      //             //     selectedItem.add(listItem2["item"]);
-                                      //             //     inspect(selectedItem);
-                                      //             //   });
-                                      //             // }
-                                      //           },
-                                      //         ),
-                                      //       ),
-                                      //     ],
-                                      //   ),
-                                      // ),
+                                  
 
                                       SizedBox(
                                         height: size.height * 0.01,
@@ -913,6 +884,7 @@ class _HomePageState extends State<HomePage> {
                                                 itemCount: selectedItem.length,
                                                 itemBuilder: (context, index) {
                                                   final item = selectedItem[index];
+                                                  inspect(item);
 
                                                   return Padding(
                                                     padding: const EdgeInsets.all(8.0),
@@ -941,20 +913,21 @@ class _HomePageState extends State<HomePage> {
                                                             Row(
                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                               children: [
-                                                                Text(selectedItem[index].name ?? ''),
+                                                                Text(selectedItem[index].product.name ?? ''),
                                                                 Row(
                                                                   children: [
                                                                     InkWell(
                                                                       onTap: () {
-                                                                        if (selectedItem[index].qty > 1) {
+                                                                        if (selectedItem[index].product.qty > 1) {
                                                                           setState(() {
-                                                                            selectedItem[index].qty = selectedItem[index].qty - 1;
+                                                                            selectedItem[index].product.qty = selectedItem[index].product.qty - 1;
                                                                             final price = double.parse(
-                                                                                (selectedItem[index].price! * selectedItem[index].qty).toString());
+                                                                                (selectedItem[index].product.price! * selectedItem[index].product.qty)
+                                                                                    .toString());
 
-                                                                            totleqty = selectedItem[index].qty;
-                                                                            selectedItem[index].priceQTY = price;
-                                                                            totleprice = selectedItem[index].priceQTY;
+                                                                            totleqty = selectedItem[index].product.qty;
+                                                                            selectedItem[index].product.priceQTY = price;
+                                                                            totleprice = selectedItem[index].product.priceQTY;
                                                                           });
                                                                         }
                                                                       },
@@ -972,39 +945,24 @@ class _HomePageState extends State<HomePage> {
                                                                     SizedBox(
                                                                       width: 10,
                                                                     ),
-                                                                    Text("${selectedItem[index].qty}"),
+                                                                    Text("${selectedItem[index].product.qty}"),
                                                                     SizedBox(
                                                                       width: 10,
                                                                     ),
                                                                     InkWell(
                                                                       onTap: () {
-                                                                        if (selectedItem[index].qty >= 1) {
+                                                                        if (selectedItem[index].product.qty >= 1) {
                                                                           setState(() {
-                                                                            selectedItem[index].qty = selectedItem[index].qty + 1;
+                                                                            selectedItem[index].product.qty = selectedItem[index].product.qty + 1;
                                                                             final price = double.parse(
-                                                                                (selectedItem[index].price! * selectedItem[index].qty).toString());
-                                                                            totleqty = selectedItem[index].qty;
+                                                                                (selectedItem[index].product.price! * selectedItem[index].product.qty)
+                                                                                    .toString());
+                                                                            totleqty = selectedItem[index].product.qty;
 
-                                                                            selectedItem[index].priceQTY = price;
-                                                                            totleprice = selectedItem[index].priceQTY;
+                                                                            selectedItem[index].product.priceQTY = price;
+                                                                            totleprice = selectedItem[index].product.priceQTY;
                                                                           });
                                                                         }
-                                                                        // setState(() {
-                                                                        //   selectedItem[index].qty = selectedItem[index].qty ?? 1 + 1;
-                                                                        //   final price = int.parse(selectedItem[index]) * selectedItem[index].qty!;
-
-                                                                        //   selectedItem[index].priceQTY = price;
-                                                                        // });
-                                                                        // setState(() {
-                                                                        //   selectedItem[index].qty = selectedItem[index].qty! + 1;
-                                                                        //   final price = selectedItem[index].sellprice == 0
-                                                                        //       ? selectedItem[index].priceS! * selectedItem[index].qty!
-                                                                        //       : selectedItem[index].size == 1
-                                                                        //           ? selectedItem[index].priceM! * selectedItem[index].qty!
-                                                                        //           : selectedItem[index].priceL! * selectedItem[index].qty!;
-                                                                        //   inspect(price);
-                                                                        //   selectedItem[index].priceQTY = price;
-                                                                        // });
                                                                       },
                                                                       child: Container(
                                                                         width: size.width * 0.02,
@@ -1033,7 +991,7 @@ class _HomePageState extends State<HomePage> {
                                                                         fontSize: 14, fontFamily: 'IBMPlexSansThai', color: Color(0xFF455A64)),
                                                                   ),
                                                                 ),
-                                                                Text(attributeValues?.name ?? ''),
+                                                                Text(selectedItem[index].attributeValues.name),
                                                               ],
                                                             ),
                                                             Padding(
@@ -1048,10 +1006,11 @@ class _HomePageState extends State<HomePage> {
                                                                 Padding(
                                                                   padding: const EdgeInsets.only(right: 5, top: 5),
                                                                   child: Text(
-                                                                    (selectedItem[index].price ?? 0 + attributeValues!.price!).toStringAsFixed(2),
+                                                                    (selectedItem[index].product.price ?? 0 + attributeValues!.price!)
+                                                                        .toStringAsFixed(2),
                                                                   ),
                                                                 ),
-                                                                Text("${selectedItem[index].priceQTY}"),
+                                                                Text("${selectedItem[index].product.priceQTY}"),
                                                               ],
                                                             ),
                                                             Divider()

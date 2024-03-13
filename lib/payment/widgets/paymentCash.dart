@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:possodexo/home/homePage.dart';
 import 'package:possodexo/home/widgets/OpenAndCloseSwitch.dart';
+import 'package:possodexo/home/widgets/SingelProduct.dart';
 import 'package:possodexo/models/product.dart';
 import 'package:possodexo/payment/widgets/Addpayment.dart';
 import 'package:possodexo/payment/widgets/Discount.dart';
