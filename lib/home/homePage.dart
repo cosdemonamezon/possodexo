@@ -1000,15 +1000,6 @@ class _HomePageState extends State<HomePage> {
                                                               ),
                                                             ),
                                                             Row(
-                                                              children: [
-                                                                Text("Topping"),
-                                                                Padding(
-                                                                  padding: const EdgeInsets.all(8.0),
-                                                                  child: Text(""),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            Row(
                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                               children: [
                                                                 Padding(
