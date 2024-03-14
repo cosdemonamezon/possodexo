@@ -6,16 +6,17 @@ import 'package:flutter/widgets.dart';
 
 class OtherDiscountsWidgets extends StatefulWidget {
   final Function(String)? otherDiscount;
+  final Function(String)? fromtype;
 
-  OtherDiscountsWidgets({Key? key, this.otherDiscount});
-
+  OtherDiscountsWidgets({Key? key, this.otherDiscount, this.fromtype});
   @override
   State<OtherDiscountsWidgets> createState() => _OtherDiscountsWidgetsState();
 }
 
 class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
-  final TextEditingController otherdiscount = TextEditingController();
+  List<TextEditingController> otherdiscount = [];
   TextEditingController discount = TextEditingController();
+
   List<String> payment = ["จำนวนเงิน", "เปอร์เซ็นต์"];
   String payment1 = 'จำนวนเงิน';
   String? _selectedpayment;
@@ -38,6 +39,7 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
       'point': point1,
       'amount': '',
     });
+    addUniqueController();
   }
 
   void addPaddingAndRow() {
@@ -45,9 +47,19 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
       rowData.add({
         'payment': payment1,
         'point': point1,
-        'amount': '',
+        'amount': '0',
       });
+      addUniqueController();
     });
+  }
+
+  void addUniqueController() {
+    TextEditingController newController = TextEditingController();
+    String newValue = newController.text;
+    bool valueExists = otherdiscount.any((controller) => controller.text == newValue);
+    // if (!valueExists) {
+    otherdiscount.add(newController);
+    // }
   }
 
   void clearAllData() {
@@ -58,6 +70,7 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
         'point': point1,
         'amount': '',
       });
+      addUniqueController();
     });
   }
 
@@ -107,7 +120,7 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                 },
                 itemBuilder: (BuildContext context, int index) {
                   return RowDiscountWidget(
-                    otherDiscount: otherdiscount,
+                    otherDiscount: otherdiscount[index],
                     rowData: rowData[index],
                     payment: payment,
                     point: point,
@@ -128,9 +141,18 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                         rowData[index]['amount'] = newValue;
                       });
                     },
-                    onRemove: () {
+                    onRemove: (index) {
                       setState(() {
+                        log(index.toString());
+                        // log(rowData.toString());
+                        inspect(rowData.toString());
+                        inspect(otherdiscount.toString());
+                        // log(otherdiscount.toString());
                         rowData.removeAt(index);
+                        // otherdiscount.removeAt(index);
+                        otherdiscount[index].dispose();
+                        log(rowData.toString());
+                        log(otherdiscount.toString());
                       });
                     },
                   );
@@ -146,7 +168,10 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: clearAllData,
+                      onPressed: () {
+                        otherdiscount.clear();
+                        clearAllData();
+                      },
                       style: ElevatedButton.styleFrom(
                         surfaceTintColor: Colors.white,
                         foregroundColor: Colors.red,
@@ -174,9 +199,14 @@ class _OtherDiscountsWidgetsState extends State<OtherDiscountsWidgets> {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        widget.otherDiscount!(otherdiscount.text);
-                        log(otherdiscount.text);
+                        widget.otherDiscount!(otherdiscount
+                            .map((controller) => int.tryParse(controller.text) ?? 0)
+                            .reduce((value, element) => value + element)
+                            .toString());
                         otherdiscount.clear();
+                        // rowData.clear();
+                        clearAllData();
+                        widget.fromtype!(point1);
                       },
                       style: ElevatedButton.styleFrom(
                         surfaceTintColor: Color(0xFF4CAF50),
@@ -215,9 +245,10 @@ class RowDiscountWidget extends StatefulWidget {
   final ValueChanged<String?> onChangedPayment;
   final ValueChanged<String?> onChangedPoint;
   final ValueChanged<String> onChangedAmount;
-  final VoidCallback onRemove;
+  final Function(int)? onRemove;
   final Function(String)? otherdiscount;
   TextEditingController? otherDiscount;
+  final Function(String)? fromtype;
 
   RowDiscountWidget({
     Key? key,
@@ -230,6 +261,7 @@ class RowDiscountWidget extends StatefulWidget {
     required this.onRemove,
     this.otherdiscount,
     this.otherDiscount,
+    this.fromtype,
   }) : super(key: key);
   @override
   _RowDiscountWidgetState createState() => _RowDiscountWidgetState();
@@ -383,7 +415,7 @@ class _RowDiscountWidgetState extends State<RowDiscountWidget> {
                       ],
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: size.width * 0.2,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 10),
@@ -401,7 +433,9 @@ class _RowDiscountWidgetState extends State<RowDiscountWidget> {
               ),
             ),
             IconButton(
-              onPressed: widget.onRemove,
+              onPressed: () {
+                widget.onRemove;
+              },
               icon: Icon(
                 Icons.highlight_remove_sharp,
                 color: Color(0xFF616161),

@@ -72,9 +72,7 @@ class _GridCoffeeState extends State<GridCoffee> {
                     onTap: () async {
                       /// หน้าเลือกขนาด////////
                       await getproductbyId(productId: productmains[index].id);
-                      if (!mounted) {
-                        return;
-                      }
+                      if (!mounted) return;
                       if (productController.product != null) {
                         final item = await showDialog(
                             context: context,

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:possodexo/home/widgets/Multiplepeoduct.dart';
+import 'package:possodexo/home/widgets/QuantityProduct.dart';
+import 'package:possodexo/home/widgets/SingelProduct.dart';
 import 'package:possodexo/models/productAttributeValue.dart';
 import 'package:possodexo/models/product.dart';
-
-import '../../constants.dart';
 
 class OpenDialogProduct extends StatefulWidget {
   OpenDialogProduct({
@@ -70,62 +71,76 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Column(
-            children: List.generate(
-              widget.gridCoffee.productAttributes?.length ?? 0,
-              (index) => Row(
-                children: [
-                  SizedBox(
-                    width: size.width * 0.15,
-                    height: size.height * 0.04,
-                    child: Text(
-                      widget.gridCoffee.productAttributes![index].name,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontFamily: 'IBMPlexSansThai',
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: size.width * 0.25,
-                    height: size.height * 0.065,
-                    child: Row(
-                      children: List.generate(
-                          widget.gridCoffee.productAttributes![index].productAttributeValues.length,
-                          (index2) => GestureDetector(
-                                onTap: () {
-                                  print(index2);
-                                  selectSize(index2);
-                                  selectedPrice = widget.gridCoffee.productAttributes![index].productAttributeValues[index2].price;
-                                  selectedSize = widget.gridCoffee.productAttributes![index].productAttributeValues[index2];
-                                  print(selectedPrice);
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 10),
-                                  child: Container(
-                                    height: size.height * 0.12,
-                                    width: size.width * 0.03,
-                                    decoration: BoxDecoration(
-                                      color: selectedIndex == index2 ? Color(0xFFE8EAF6) : Colors.white,
-                                      borderRadius: BorderRadius.circular(6),
-                                      border: Border.all(color: Colors.blue),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        '${widget.gridCoffee.productAttributes![index].productAttributeValues[index2].name}',
-                                        style: TextStyle(
-                                          fontFamily: 'IBMPlexSansThai',
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+              children: List.generate(
+            widget.gridCoffee.productAttributes?.length ?? 0,
+            (index) => widget.gridCoffee.productAttributes![index].type == "SINGLE"
+                ? SingelProduct(
+                    productAttribute: widget.gridCoffee.productAttributes![index],
+                  )
+                : widget.gridCoffee.productAttributes![index].type == "QUANTITY"
+                    ? QuantityProduct(
+                        productAttribute: widget.gridCoffee.productAttributes![index],
+                      )
+                    : widget.gridCoffee.productAttributes![index].type == "MULTIPLE"
+                        ? Multiplepeoduct(
+                            productAttribute: widget.gridCoffee.productAttributes![index],
+                          )
+                        : SizedBox(),
+            // (index) => Row(
+            //   children: [
+            //     SizedBox(
+            //       width: size.width * 0.15,
+            //       height: size.height * 0.04,
+            //       child: Text(
+            //         widget.gridCoffee.productAttributes![index].name,
+            //         style: TextStyle(
+            //           fontSize: 18,
+            //           fontFamily: 'IBMPlexSansThai',
+            //         ),
+            //       ),
+            //     ),
+            //     SizedBox(
+            //       width: size.width * 0.25,
+            //       height: size.height * 0.065,
+            //       child: Row(
+            //         children: List.generate(
+            //             widget.gridCoffee.productAttributes![index].productAttributeValues.length,
+            //             (index2) => GestureDetector(
+            //                   onTap: () {
+            //                     // print(index2);
+            //                     selectSize(index2);
+            //                     selectedPrice = widget.gridCoffee.productAttributes![index].productAttributeValues[index2].price;
+            //                     selectedSize = widget.gridCoffee.productAttributes![index].productAttributeValues[index2];
+            //                     // print(selectedPrice);
+            //                   },
+            //                   child: Padding(
+            //                     padding: const EdgeInsets.only(right: 10),
+            //                     child: Container(
+            //                       height: size.height * 0.12,
+            //                       width: size.width * 0.03,
+            //                       decoration: BoxDecoration(
+            //                         color: selectedIndex == index2 ? Color(0xFFE8EAF6) : Colors.white,
+            //                         borderRadius: BorderRadius.circular(6),
+            //                         border: Border.all(color: Colors.blue),
+            //                       ),
+            //                       child: Center(
+            //                         child: Text(
+            //                           // ignore: unnecessary_string_interpolations
+            //                           '${widget.gridCoffee.productAttributes![index].productAttributeValues[index2].name}',
+            //                           style: TextStyle(
+            //                             fontFamily: 'IBMPlexSansThai',
+            //                           ),
+            //                         ),
+            //                       ),
+            //                     ),
+            //                   ),
+            //                 )
+            //                 ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
+          )),
         ],
       ),
       actions: [

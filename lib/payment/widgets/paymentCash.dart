@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:possodexo/home/homePage.dart';
 import 'package:possodexo/home/widgets/OpenAndCloseSwitch.dart';
+import 'package:possodexo/home/widgets/SingelProduct.dart';
 import 'package:possodexo/models/product.dart';
 import 'package:possodexo/payment/widgets/Addpayment.dart';
 import 'package:possodexo/payment/widgets/Discount.dart';
@@ -36,11 +37,15 @@ class _PaymentCashState extends State<PaymentCash> {
   bool _isSelected = false;
   int priceDiscount = 0;
   int priceVoucher = 0;
+  int priceVoucherstorefront = 0;
   int priceotherDiscount = 0;
+  int priceotherDiscountthe1 = 0;
   int Points = 0;
   int Price = 0;
   int priceDiscountPercen = 0;
   String? from = 'discount';
+  String? frompriceVoucher = 'คูปองห้อง';
+  String? fromotherdiscount = 'คูปองห้อง';
 
   int selectedItem = 0;
   int totalPrice = 0;
@@ -616,13 +621,17 @@ class _PaymentCashState extends State<PaymentCash> {
                                                             )
                                                           : selectedIndex == 1
                                                               ? GiftVoucherwidgets(
+                                                                  frompriceVoucher: (value) => {setState(() => frompriceVoucher = value)},
                                                                   voucher: (value) {
-                                                                    inspect(value);
-                                                                    if (value != '') {
-                                                                      setState(() {
+                                                                    setState(() {
+                                                                      log(frompriceVoucher.toString());
+                                                                      if (frompriceVoucher == 'คูปองห้อง') {
                                                                         priceVoucher = int.parse(value);
-                                                                      });
-                                                                    }
+                                                                      } else {
+                                                                        priceVoucherstorefront = int.parse(value);
+                                                                      }
+                                                                      log(frompriceVoucher.toString());
+                                                                    });
                                                                   },
                                                                 )
                                                               : selectedIndex == 2
@@ -642,13 +651,21 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                     )
                                                                   : selectedIndex == 3
                                                                       ? OtherDiscountsWidgets(
+                                                                          fromtype: (value) => {setState(() => fromotherdiscount = value)},
                                                                           otherDiscount: (value) {
                                                                             inspect(value);
-                                                                            if (value != '') {
-                                                                              setState(() {
-                                                                                priceotherDiscount = int.parse(value);
-                                                                              });
+                                                                            log(fromotherdiscount.toString());
+                                                                            if (fromotherdiscount == 'คูปองห้าง') {
+                                                                              priceotherDiscountthe1 = int.parse(value);
+                                                                            } else {
+                                                                              priceotherDiscount = int.parse(value);
                                                                             }
+                                                                            // log(frompriceVoucher.toString());
+                                                                            // if (value != '') {
+                                                                            //   setState(() {
+                                                                            //     priceotherDiscount = int.parse(value);
+                                                                            //   });
+                                                                            // }
                                                                           },
                                                                         )
                                                                       : SizedBox.shrink(),
@@ -976,12 +993,14 @@ class _PaymentCashState extends State<PaymentCash> {
                                   setState(() => priceVoucher = 0);
                                   setState(() => Price = 0);
                                   setState(() => priceotherDiscount = 0);
+                                  setState(() => Points = 0);
                                 },
                                 child: Container(
                                   child: Row(
                                     children: [
                                       IconButton(
                                           onPressed: () {
+                                            setState(() => Points = 0);
                                             setState(() => priceDiscount = 0);
                                             setState(() => priceDiscountPercen = 0);
                                             setState(() => priceVoucher = 0);
@@ -1019,7 +1038,7 @@ class _PaymentCashState extends State<PaymentCash> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
+                              SizedBox(
                                 width: size.width * 0.1,
                                 child: Text(
                                   'จำนวนเงิน',
@@ -1030,7 +1049,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                       fontSize: 16),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: size.width * 0.1,
                                 child: Text(
                                   textAlign: TextAlign.end,
@@ -1056,10 +1075,10 @@ class _PaymentCashState extends State<PaymentCash> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
+                              SizedBox(
                                 width: size.width * 0.1,
                                 child: Text(
-                                  'เปอร์เซ็น  5 %',
+                                  'เปอร์เซ็นต์ ${NumberFormat('#,##0', 'en_US').format(priceDiscountPercen)} %',
                                   style: TextStyle(
                                       color: Color(
                                         0xFF424242,
@@ -1067,11 +1086,12 @@ class _PaymentCashState extends State<PaymentCash> {
                                       fontSize: 16),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: size.width * 0.1,
                                 child: Text(
                                   textAlign: TextAlign.end,
-                                  NumberFormat('#,##0.00', 'en_US').format(priceDiscountPercen),
+                                  NumberFormat('#,##0.00', 'en_US')
+                                      .format(double.parse(NumberFormat('#,##0.00', 'en_US').format(priceDiscountPercen)) * 1000 / 100),
                                   style: TextStyle(
                                       color: Color(
                                         0xFF424242,
@@ -1165,7 +1185,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                 width: size.width * 0.1,
                                 child: Text(
                                   textAlign: TextAlign.end,
-                                  '15.00',
+                                  NumberFormat('#,##0.00', 'en_US').format(priceVoucherstorefront),
                                   style: TextStyle(
                                       color: Color(
                                         0xFF424242,
@@ -1174,7 +1194,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                 ),
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    setState(() => priceVoucherstorefront = 0);
+                                  },
                                   icon: Icon(
                                     Icons.highlight_remove_sharp,
                                     size: 15,
@@ -1205,7 +1227,7 @@ class _PaymentCashState extends State<PaymentCash> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
+                              SizedBox(
                                 width: size.width * 0.1,
                                 child: Text(
                                   '${NumberFormat('#,##0', 'en_US').format(Points)} คะแนน',
@@ -1216,7 +1238,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                       fontSize: 16),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: size.width * 0.1,
                                 child: Text(
                                   textAlign: TextAlign.end,
@@ -1231,6 +1253,7 @@ class _PaymentCashState extends State<PaymentCash> {
                               IconButton(
                                   onPressed: () {
                                     setState(() => Price = 0);
+                                    setState(() => Points = 0);
                                   },
                                   icon: Icon(
                                     Icons.highlight_remove_sharp,
@@ -1314,7 +1337,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                 width: size.width * 0.1,
                                 child: Text(
                                   textAlign: TextAlign.end,
-                                  '25.00',
+                                  NumberFormat('#,##0.00', 'en_US').format(priceotherDiscountthe1),
                                   style: TextStyle(
                                       color: Color(
                                         0xFF424242,
@@ -1323,7 +1346,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                 ),
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    setState(() => priceotherDiscountthe1 = 0);
+                                  },
                                   icon: Icon(
                                     Icons.highlight_remove_sharp,
                                     size: 15,
