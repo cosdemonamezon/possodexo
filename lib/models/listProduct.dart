@@ -11,10 +11,12 @@ part 'listProduct.g.dart';
 class ListProduct {
   final Product product;
   final ProductAttributeValue attributeValues;
+  final ProductAttributeValue p0;
 
   ListProduct(
     this.product,
     this.attributeValues,
+    this.p0,
   );
 
   factory ListProduct.fromJson(Map<String, dynamic> json) => _$ListProductFromJson(json);

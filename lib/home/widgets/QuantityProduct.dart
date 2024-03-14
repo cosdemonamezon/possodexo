@@ -3,19 +3,16 @@ import 'package:possodexo/models/productAttribute.dart';
 import 'package:possodexo/models/productAttributeValue.dart';
 
 class QuantityProduct extends StatefulWidget {
-  const QuantityProduct({
-    Key? key,
-    required this.productAttribute,
-  }) : super(key: key);
+  const QuantityProduct({Key? key, required this.productAttribute, required this.vicecall2}) : super(key: key);
 
   final ProductAttribute productAttribute;
-
+  final Function(int) vicecall2;
   @override
   State<QuantityProduct> createState() => _QuantityProductState();
 }
 
 class _QuantityProductState extends State<QuantityProduct> {
-  int qty = 0;
+  int qty2 = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +30,11 @@ class _QuantityProductState extends State<QuantityProduct> {
               InkWell(
                 onTap: () {
                   setState(() {
-                    if (qty > 0) {
-                      qty--;
+                    if (qty2 > 0) {
+                      qty2--;
                     }
                   });
+                  widget.vicecall2(qty2);
                 },
                 child: Container(
                   width: size.width * 0.02,
@@ -51,15 +49,16 @@ class _QuantityProductState extends State<QuantityProduct> {
               SizedBox(
                 width: 10,
               ),
-              Text("$qty"),
+              Text("$qty2"),
               SizedBox(
                 width: 10,
               ),
               InkWell(
                 onTap: () {
                   setState(() {
-                    qty++;
+                    qty2++;
                   });
+                  widget.vicecall2(qty2);
                 },
                 child: Container(
                   width: size.width * 0.02,

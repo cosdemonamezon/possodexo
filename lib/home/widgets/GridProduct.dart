@@ -82,7 +82,7 @@ class _GridCoffeeState extends State<GridCoffee> {
                               );
                             });
                         if (item != null) {
-                          // inspect(item);
+                          inspect(item);
                           widget.onChange(item);
                         }
                       }

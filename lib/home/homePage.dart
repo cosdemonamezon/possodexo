@@ -75,6 +75,9 @@ class _HomePageState extends State<HomePage> {
   int? sizeprice;
   ProductAttributeValue? attributeValues;
   List<Widget> orders = [];
+  ProductAttributeValue? p0;
+  int? p1;
+  List<ProductAttributeValue>? p2;
   void onTapProduct(int index) {
     setState(() {});
   }
@@ -531,9 +534,7 @@ class _HomePageState extends State<HomePage> {
                                                 // sizeprice = value["pricesize"];
                                                 // inspect(sizeprice);
                                                 // attributeValues = value["selectedSize"];
-                                                final item = ListProduct(value["item"], value["selectedSize"]);
-                                                inspect(value["item"]);
-                                                inspect(attributeValues);
+                                                final item = ListProduct(value["item"], value["selectedSize"], value["p0"]);
                                                 totleprice = item.product.price!.toDouble();
                                                 totleqty = item.product.qty;
                                                 item.product.priceQTY = item.product.price!.toDouble();
@@ -990,7 +991,7 @@ class _HomePageState extends State<HomePage> {
                                                                         fontSize: 14, fontFamily: 'IBMPlexSansThai', color: Color(0xFF455A64)),
                                                                   ),
                                                                 ),
-                                                                Text(selectedItem[index].attributeValues.name),
+                                                                Text("${selectedItem[index].p0.name}")
                                                               ],
                                                             ),
                                                             Padding(

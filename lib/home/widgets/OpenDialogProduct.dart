@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:possodexo/home/widgets/Multiplepeoduct.dart';
 import 'package:possodexo/home/widgets/QuantityProduct.dart';
@@ -24,8 +26,14 @@ class OpenDialogProduct extends StatefulWidget {
 }
 
 class _OpenDialogProductState extends State<OpenDialogProduct> {
+  ProductAttributeValue? selected;
+  ProductAttributeValue? p00;
+  int? p1;
+  List<ProductAttributeValue>? p2;
+
   int selectedIndex = 0;
   int? selectedPrice = 0;
+  int? selectedIndex1;
   ProductAttributeValue? selectedSize;
   void selectSize(int index) {
     setState(() {
@@ -75,14 +83,29 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
             widget.gridCoffee.productAttributes?.length ?? 0,
             (index) => widget.gridCoffee.productAttributes![index].type == "SINGLE"
                 ? SingelProduct(
+                    vicecall: (p0) {
+                      setState(() {
+                        p00 = p0;
+                      });
+                    },
                     productAttribute: widget.gridCoffee.productAttributes![index],
                   )
                 : widget.gridCoffee.productAttributes![index].type == "QUANTITY"
                     ? QuantityProduct(
+                        vicecall2: (p1) {
+                          setState(() {
+                            p1 = p1;
+                          });
+                        },
                         productAttribute: widget.gridCoffee.productAttributes![index],
                       )
                     : widget.gridCoffee.productAttributes![index].type == "MULTIPLE"
                         ? Multiplepeoduct(
+                            vicecall3: (p2) {
+                              setState(() {
+                                p2 = p2;
+                              });
+                            },
                             productAttribute: widget.gridCoffee.productAttributes![index],
                           )
                         : SizedBox(),
@@ -172,12 +195,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                     selectedSize = widget.gridCoffee.productAttributes?[0].productAttributeValues[0];
                   });
                 }
-                final out = {
-                  'item': widget.gridCoffee,
-                  'size': selectedIndex,
-                  'pricesize': selectedPrice,
-                  'selectedSize': selectedSize,
-                };
+                final out = {'item': widget.gridCoffee, 'pricesize': selectedPrice, 'selectedSize': selectedSize, "p0": p00};
                 Navigator.pop(context, out);
               },
               child: Container(

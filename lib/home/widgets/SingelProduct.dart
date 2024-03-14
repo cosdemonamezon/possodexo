@@ -6,9 +6,10 @@ class SingelProduct extends StatefulWidget {
   const SingelProduct({
     Key? key, // เพิ่ม Key เป็น parameter ของ constructor
     required this.productAttribute,
+    required this.vicecall,
   }) : super(key: key); // ส่ง Key ไปยัง super constructor
   final ProductAttribute productAttribute;
-
+  final Function(ProductAttributeValue) vicecall;
   @override
   State<SingelProduct> createState() => _SingelProductState();
 }
@@ -50,6 +51,7 @@ class _SingelProductState extends State<SingelProduct> {
                           selected = productAttributeValue;
                         }
                       });
+                      widget.vicecall(selected!);
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(right: 20),

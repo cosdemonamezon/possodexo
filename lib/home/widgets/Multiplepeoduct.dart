@@ -6,20 +6,20 @@ class Multiplepeoduct extends StatefulWidget {
   const Multiplepeoduct({
     Key? key, // ปรับเปลี่ยนการรับ Key
     required this.productAttribute,
+    required this.vicecall3,
   }) : super(key: key); // แก้ไขการส่ง key ให้กับ super constructor
   final ProductAttribute productAttribute;
+  final Function(List<ProductAttributeValue>) vicecall3;
   @override
   State<Multiplepeoduct> createState() => _MultiplepeoductState();
 }
 
 class _MultiplepeoductState extends State<Multiplepeoduct> {
-  // ลบตัวแปร _isSelected และ selected เนื่องจากเราต้องการเลือกได้มากกว่าหนึ่งตัว
-  List<bool> _isSelectedList = []; // เก็บสถานะการเลือกของแต่ละ Choice Chip
-
+  List<bool> _isSelectedList = [];
+  List<ProductAttributeValue> toppingproduct = [];
   @override
   void initState() {
     super.initState();
-    // กำหนดค่าเริ่มต้นให้ List ของสถานะการเลือก
     _isSelectedList = List<bool>.filled(
       widget.productAttribute.productAttributeValues.length,
       false,
@@ -42,7 +42,9 @@ class _MultiplepeoductState extends State<Multiplepeoduct> {
                 onTap: () {
                   setState(() {
                     _isSelectedList[index] = !_isSelectedList[index];
+                    toppingproduct.add(widget.productAttribute.productAttributeValues[index]);
                   });
+                  widget.vicecall3(toppingproduct);
                 },
                 child: Container(
                   margin: EdgeInsets.all(4),
