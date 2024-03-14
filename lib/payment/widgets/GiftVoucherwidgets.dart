@@ -3,10 +3,11 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 
 class GiftVoucherwidgets extends StatefulWidget {
-  GiftVoucherwidgets({super.key, this.voucher, this.dropdownvoucher});
+  GiftVoucherwidgets({super.key, this.voucher, this.dropdownvoucher, this.frompriceVoucher});
   final Function(String)? voucher;
   final Function(String)? dropdownvoucher;
 
+  final Function(String)? frompriceVoucher;
   @override
   State<GiftVoucherwidgets> createState() => _GiftVoucherwidgetsState();
 }
@@ -94,7 +95,7 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
                       value: _selectedCoupon,
                       onChanged: (v) {
                         setState(() {
-                          _selectedCoupon = v ?? '';
+                          _selectedCoupon = v;
                         });
                       },
                       underline: SizedBox(),
@@ -202,8 +203,9 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
                   child: ElevatedButton(
                     onPressed: () {
                       widget.voucher!(text.text);
-                      // widget.dropdownvoucher!(_selectedCoupon ?? '');
+                      widget.frompriceVoucher!(_selectedCoupon!);
                       text.clear();
+                      setState(() {});
                     },
                     style: ElevatedButton.styleFrom(
                       surfaceTintColor: Color(0xFF4CAF50),
