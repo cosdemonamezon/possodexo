@@ -1038,7 +1038,7 @@ class _PaymentCashState extends State<PaymentCash> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
+                              SizedBox(
                                 width: size.width * 0.1,
                                 child: Text(
                                   'จำนวนเงิน',
@@ -1049,7 +1049,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                       fontSize: 16),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: size.width * 0.1,
                                 child: Text(
                                   textAlign: TextAlign.end,
@@ -1075,7 +1075,7 @@ class _PaymentCashState extends State<PaymentCash> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
+                              SizedBox(
                                 width: size.width * 0.1,
                                 child: Text(
                                   'เปอร์เซ็นต์ ${NumberFormat('#,##0', 'en_US').format(priceDiscountPercen)} %',
@@ -1086,7 +1086,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                       fontSize: 16),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: size.width * 0.1,
                                 child: Text(
                                   textAlign: TextAlign.end,
@@ -1227,7 +1227,7 @@ class _PaymentCashState extends State<PaymentCash> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
+                              SizedBox(
                                 width: size.width * 0.1,
                                 child: Text(
                                   '${NumberFormat('#,##0', 'en_US').format(Points)} คะแนน',
@@ -1238,7 +1238,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                       fontSize: 16),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: size.width * 0.1,
                                 child: Text(
                                   textAlign: TextAlign.end,

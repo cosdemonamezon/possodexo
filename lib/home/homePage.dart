@@ -44,6 +44,7 @@ class _HomePageState extends State<HomePage> {
   List<String> nationality = ["ไทย", "พม่า", "ลาว"];
   String lang = "ไทย";
   List<ListProduct> selectedItem = [];
+  ProductAttributeValue? selected;
 
   int selectedIndex = 0;
   int totleqty = 0;
@@ -791,7 +792,7 @@ class _HomePageState extends State<HomePage> {
                                                   decoration: BoxDecoration(
                                                       border: Border(bottom: BorderSide(color: Colors.grey)),
                                                       borderRadius: BorderRadius.circular(2),
-                                                      color: Color(0xFFFFFAFAFA)),
+                                                      color: Color(0xfffffafafa)),
                                                   child: Column(
                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
@@ -870,8 +871,6 @@ class _HomePageState extends State<HomePage> {
                                                 ],
                                               ))),
 
-                                  
-
                                       SizedBox(
                                         height: size.height * 0.01,
                                       ),
@@ -889,7 +888,7 @@ class _HomePageState extends State<HomePage> {
                                                   return Padding(
                                                     padding: const EdgeInsets.all(8.0),
                                                     child: Slidable(
-                                                      key: Key("${item}"),
+                                                      key: Key("$item"),
                                                       endActionPane: ActionPane(
                                                         motion: const ScrollMotion(),
                                                         children: [
@@ -1294,24 +1293,54 @@ class ItemSelect {
 }
 
 class MySearch extends SearchDelegate {
-  @override
-  Widget buildLeading(BuildContext context) => Container();
+  List<String> searchResults = [
+    "กาเเฟ",
+    "ขนม",
+    "นม",
+    "เนย",
+  ];
 
   @override
-  List<Widget>? buildActions(BuildContext context) {
-    // TODO: implement buildActions
-    throw Container();
-  }
+  Widget buildLeading(BuildContext context) => IconButton(onPressed: () => close(context, null), icon: const Icon(Icons.arrow_back));
+
+  @override
+  List<Widget>? buildActions(BuildContext context) => [
+        IconButton(
+            onPressed: () {
+              if (query.isEmpty) {
+                close(context, null);
+              } else {
+                query = "";
+              }
+            },
+            icon: const Icon(Icons.clear))
+      ];
 
   @override
   Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
     throw Container();
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // TODO: implement buildSuggestions
-    throw Container();
+    List<String> suggestions = searchResults.where((searchResult) {
+      final result = searchResult.toLowerCase();
+      final input = query.toLowerCase();
+
+      return result.contains(input);
+    }).toList();
+    return ListView.builder(
+      itemCount: suggestions.length,
+      itemBuilder: (context, index) {
+        final suggestion = suggestions[index];
+        return ListTile(
+          title: Text(suggestion),
+          onTap: () {
+            query = suggestion;
+            showResults(context);
+          },
+        );
+      },
+    );
   }
 }
