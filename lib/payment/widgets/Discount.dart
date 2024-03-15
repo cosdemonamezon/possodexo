@@ -179,7 +179,9 @@ class _DiscountWidgetsState extends State<DiscountWidgets> {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      ai.clear();
+                    },
                     style: ElevatedButton.styleFrom(
                       surfaceTintColor: Colors.white,
                       foregroundColor: Colors.red,
