@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:possodexo/seconDisplay/seconAds.dart';
 
 class Listpayment extends StatefulWidget {
   const Listpayment({Key? key}) : super(key: key);
@@ -540,13 +541,84 @@ class _ListpaymentState extends State<Listpayment> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 250),
+                    padding: const EdgeInsets.only(bottom: 100),
                     child: Center(
                       child: Container(
-                        width: size.width * 0.1,
-                        height: size.height * 0.1,
+                        width: size.width * 0.45,
+                        height: size.height * 0.6,
                         decoration: BoxDecoration(color: Colors.white),
-                        child: Text('data'),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: size.height * 0.04,
+                            ),
+                            Text(
+                              'ดำเนินการชำระเงิน',
+                              style: TextStyle(fontSize: 40, color: Color(0xFF424242)),
+                            ),
+                            Text(
+                              'ประเภท : เงินสด',
+                              style: TextStyle(fontSize: 20, color: Color(0xFF424242)),
+                            ),
+                            Text(
+                              double.parse('500').toStringAsFixed(2),
+                              style: TextStyle(fontSize: 57, color: Color(0xFF1264E3)),
+                            ),
+                            SizedBox(
+                              width: size.width * 0.35,
+                              child: Divider(
+                                color: Color(0xFF78909C),
+                              ),
+                            ),
+                            SizedBox(
+                              height: size.height * 0.02,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 30, right: 30),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'ราคารวม',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: Color(0xFF424242),
+                                    ),
+                                  ),
+                                  Text(
+                                    '243.00 B',
+                                    style: TextStyle(
+                                      fontSize: 34,
+                                      color: Color(0xFF424242),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 30, right: 30),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'เงินทอน',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: Color(0xFF424242),
+                                    ),
+                                  ),
+                                  Text(
+                                    '257.00 B',
+                                    style: TextStyle(
+                                      fontSize: 34,
+                                      color: Color(0xFF424242),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   )

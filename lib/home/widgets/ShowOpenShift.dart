@@ -50,11 +50,7 @@ class ShowOpenShift extends StatelessWidget {
               child: Center(
                   child: Text(
                 'เปิดกะงาน',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontFamily: 'IBMPlexSansThai',
-                    fontWeight: FontWeight.bold),
+                style: TextStyle(color: Colors.white, fontSize: 16, fontFamily: 'IBMPlexSansThai', fontWeight: FontWeight.bold),
               )),
             ),
           ),

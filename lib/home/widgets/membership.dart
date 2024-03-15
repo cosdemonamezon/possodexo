@@ -40,8 +40,7 @@ class _MembershipState extends State<Membership> {
     return AlertDialog(
       surfaceTintColor: Colors.white,
       backgroundColor: Colors.white,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(2))),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(2))),
       title: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,10 +50,7 @@ class _MembershipState extends State<Membership> {
             children: [
               Text(
                 'สมัครสมาชิก',
-                style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
               ),
               InkWell(
                 onTap: widget.closeblack,
@@ -95,8 +91,7 @@ class _MembershipState extends State<Membership> {
                           .map((String item) => DropdownMenuItem<String>(
                                 value: item,
                                 child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 1.0),
+                                  padding: const EdgeInsets.symmetric(horizontal: 1.0),
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
@@ -193,8 +188,7 @@ class _MembershipState extends State<Membership> {
                       decoration: BoxDecoration(
                         color: Colors.white,
                         border: Border(
-                          bottom:
-                              BorderSide(width: 2, color: Color(0xff78909C)),
+                          bottom: BorderSide(width: 2, color: Color(0xff78909C)),
                         ),
                       ),
                       width: size.width * 0.15,
@@ -204,8 +198,7 @@ class _MembershipState extends State<Membership> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                dateTime?.formatTo('dd/MM/y') ?? 'วันเกิด'),
+                            child: Text(dateTime?.formatTo('dd/MM/y') ?? 'วันเกิด'),
                           ),
                           Image.asset(
                             "assets/icons/CalendarBlank.png",
@@ -248,16 +241,14 @@ class _MembershipState extends State<Membership> {
                         child: DropdownButtonHideUnderline(
                           child: DropdownButton<String>(
                             hint: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 10, right: 10),
+                              padding: const EdgeInsets.only(left: 10, right: 10),
                             ),
                             isExpanded: true,
                             items: general
                                 .map((String item) => DropdownMenuItem<String>(
                                       value: item,
                                       child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 1.0),
+                                        padding: const EdgeInsets.symmetric(horizontal: 1.0),
                                         child: Text(
                                           item,
                                           style: const TextStyle(
@@ -311,16 +302,14 @@ class _MembershipState extends State<Membership> {
                         child: DropdownButtonHideUnderline(
                           child: DropdownButton<String>(
                             hint: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 10, right: 10),
+                              padding: const EdgeInsets.only(left: 10, right: 10),
                             ),
                             isExpanded: true,
                             items: nationality
                                 .map((String item) => DropdownMenuItem<String>(
                                       value: item,
                                       child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 1.0),
+                                        padding: const EdgeInsets.symmetric(horizontal: 1.0),
                                         child: Text(
                                           item,
                                           style: const TextStyle(
@@ -422,10 +411,7 @@ class _MembershipState extends State<Membership> {
                   text: TextSpan(
                     text:
                         " UPOS ให้ความสำคัญต่อข้อมูลส่วนบุคคลของท่านเพื่อเพิ่มประสิทธิภาพและความปลอดภัย\nในการจัดเก็บข้อมูลกรุณายินยอมให้เก็บข้อมูลส่วนตัวตามพระราชบัญญัติการป้องกันข้อมูลส่วนบุคคล\n(PDPA)ตาม",
-                    style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black,
-                        fontFamily: "DB Heavent"),
+                    style: TextStyle(fontSize: 15, color: Colors.black, fontFamily: "DB Heavent"),
                     children: [
                       TextSpan(
                         text: 'นโยบายความเป็นส่วนตัว',
@@ -438,10 +424,7 @@ class _MembershipState extends State<Membership> {
                         onExit: (event) => setState(() => _hover = false),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Policypage()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => Policypage()));
                           },
                       ),
                       TextSpan(
@@ -475,9 +458,7 @@ class _MembershipState extends State<Membership> {
               child: Card(
                 //color: Colors.blue,
                 elevation: 5,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                    side: BorderSide(color: kButtonColor)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0), side: BorderSide(color: kButtonColor)),
 
                 child: Container(
                   color: Colors.white,
@@ -486,10 +467,7 @@ class _MembershipState extends State<Membership> {
                   child: Center(
                       child: Text(
                     'ยกเลิก',
-                    style: TextStyle(
-                        color: kButtonColor,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold),
+                    style: TextStyle(color: kButtonColor, fontSize: 16, fontWeight: FontWeight.bold),
                   )),
                 ),
               ),
@@ -510,10 +488,7 @@ class _MembershipState extends State<Membership> {
                   child: Center(
                       child: Text(
                     'ยืนยัน',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                   )),
                 ),
               ),
@@ -533,8 +508,7 @@ class _MembershipState extends State<Membership> {
                   borderRadius: BorderRadius.zero,
                 ),
               ),
-              inputDecorationTheme: InputDecorationTheme(
-                  border: OutlineInputBorder(borderRadius: BorderRadius.zero)),
+              inputDecorationTheme: InputDecorationTheme(border: OutlineInputBorder(borderRadius: BorderRadius.zero)),
               primaryColor: Colors.blue,
               colorScheme: ColorScheme.light(primary: Colors.blue),
               buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
