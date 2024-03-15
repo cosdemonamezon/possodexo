@@ -14,7 +14,7 @@ class GiftVoucherwidgets extends StatefulWidget {
 
 class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
   final TextEditingController text = TextEditingController();
-  List<String> coupon = ["คูปองห้อง", "คูปองหน้าร้าน"];
+  List<String> coupon = ["คูปองห้าง", "คูปองหน้าร้าน"];
   String? _selectedCoupon;
   @override
   void initState() {
@@ -174,7 +174,9 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      text.clear();
+                    },
                     style: ElevatedButton.styleFrom(
                       surfaceTintColor: Colors.white,
                       foregroundColor: Colors.red,

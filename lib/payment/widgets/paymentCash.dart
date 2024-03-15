@@ -1136,7 +1136,7 @@ class _PaymentCashState extends State<PaymentCash> {
                               Container(
                                 width: size.width * 0.1,
                                 child: Text(
-                                  'คูปองห้อง',
+                                  'คูปองห้าง',
                                   style: TextStyle(
                                       color: Color(
                                         0xFF424242,

@@ -50,6 +50,7 @@ dependencies:
   flutter_svg: ^2.0.9
   presentation_displays: ^1.0.0
   device_info_plus: ^9.1.2
+  smooth_page_indicator: ^1.1.0
 
  
 dev_dependencies:

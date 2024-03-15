@@ -560,9 +560,62 @@ class _ListpaymentState extends State<Listpayment> {
                               style: TextStyle(fontSize: 20, color: Color(0xFF424242)),
                             ),
                             Text(
-                              'ประเภท : เงินสด',
-                              style: TextStyle(fontSize: 20, color: Color(0xFF424242)),
+                              double.parse('500').toStringAsFixed(2),
+                              style: TextStyle(fontSize: 57, color: Color(0xFF1264E3)),
                             ),
+                            SizedBox(
+                              width: size.width * 0.35,
+                              child: Divider(
+                                color: Color(0xFF78909C),
+                              ),
+                            ),
+                            SizedBox(
+                              height: size.height * 0.02,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 30, right: 30),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'ราคารวม',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: Color(0xFF424242),
+                                    ),
+                                  ),
+                                  Text(
+                                    '243.00 B',
+                                    style: TextStyle(
+                                      fontSize: 34,
+                                      color: Color(0xFF424242),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 30, right: 30),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'เงินทอน',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: Color(0xFF424242),
+                                    ),
+                                  ),
+                                  Text(
+                                    '257.00 B',
+                                    style: TextStyle(
+                                      fontSize: 34,
+                                      color: Color(0xFF424242),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       ),

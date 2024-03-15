@@ -432,15 +432,15 @@ class _RowDiscountWidgetState extends State<RowDiscountWidget> {
                 ],
               ),
             ),
-            IconButton(
-              onPressed: () {
-                widget.onRemove;
-              },
-              icon: Icon(
-                Icons.highlight_remove_sharp,
-                color: Color(0xFF616161),
-              ),
-            ),
+            // IconButton(
+            //   onPressed: () {
+            //     widget.onRemove;
+            //   },
+            //   icon: Icon(
+            //     Icons.highlight_remove_sharp,
+            //     color: Color(0xFF616161),
+            //   ),
+            // ),
           ],
         ),
       ),
