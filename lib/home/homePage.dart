@@ -534,7 +534,13 @@ class _HomePageState extends State<HomePage> {
                                                 // sizeprice = value["pricesize"];
                                                 // inspect(sizeprice);
                                                 // attributeValues = value["selectedSize"];
-                                                final item = ListProduct(value["item"], value["selectedSize"], value["p0"]);
+                                                final item = ListProduct(
+                                                  value["item"],
+                                                  value["selectedSize"],
+                                                  value["p0"],
+                                                  value["p1"],
+                                                  value["p2"],
+                                                );
                                                 totleprice = item.product.price!.toDouble();
                                                 totleqty = item.product.qty;
                                                 item.product.priceQTY = item.product.price!.toDouble();
@@ -997,7 +1003,7 @@ class _HomePageState extends State<HomePage> {
                                                             Padding(
                                                               padding: const EdgeInsets.only(right: 5, top: 5),
                                                               child: Row(
-                                                                children: [Text("เเถมโค้กฟรี 1 ขวด")],
+                                                                children: [Text("${selectedItem[index].p1}")],
                                                               ),
                                                             ),
                                                             Row(
@@ -1012,6 +1018,9 @@ class _HomePageState extends State<HomePage> {
                                                                 ),
                                                                 Text("${selectedItem[index].product.priceQTY}"),
                                                               ],
+                                                            ),
+                                                            Row(
+                                                              children: [Text("${selectedItem[index].p2}")],
                                                             ),
                                                             Divider()
                                                           ],
