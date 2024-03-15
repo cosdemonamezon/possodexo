@@ -27,9 +27,9 @@ class OpenDialogProduct extends StatefulWidget {
 
 class _OpenDialogProductState extends State<OpenDialogProduct> {
   ProductAttributeValue? selected;
-  ProductAttributeValue? p00;
-  int? p1;
-  List<ProductAttributeValue>? p2;
+  ProductAttributeValue? singelProduct0;
+  int? quantityProduct1;
+  List<ProductAttributeValue>? multiplepeoduct2;
 
   int selectedIndex = 0;
   int? selectedPrice = 0;
@@ -85,7 +85,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                 ? SingelProduct(
                     vicecall: (p0) {
                       setState(() {
-                        p00 = p0;
+                        singelProduct0 = p0;
                       });
                     },
                     productAttribute: widget.gridCoffee.productAttributes![index],
@@ -94,7 +94,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                     ? QuantityProduct(
                         vicecall2: (p1) {
                           setState(() {
-                            p1 = p1;
+                            quantityProduct1 = p1;
                           });
                         },
                         productAttribute: widget.gridCoffee.productAttributes![index],
@@ -103,7 +103,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                         ? Multiplepeoduct(
                             vicecall3: (p2) {
                               setState(() {
-                                p2 = p2;
+                                multiplepeoduct2 = p2;
                               });
                             },
                             productAttribute: widget.gridCoffee.productAttributes![index],
@@ -195,13 +195,23 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                     selectedSize = widget.gridCoffee.productAttributes?[0].productAttributeValues[0];
                   });
                 }
-                final out = {'item': widget.gridCoffee, 'pricesize': selectedPrice, 'selectedSize': selectedSize, "p0": p00};
+                final out = {
+                  'item': widget.gridCoffee,
+                  'pricesize': selectedPrice,
+                  'selectedSize': selectedSize,
+                  "p0": singelProduct0,
+                  "p1": quantityProduct1,
+                  "p2": multiplepeoduct2,
+                };
                 Navigator.pop(context, out);
               },
               child: Container(
                   width: size.width * 0.08,
                   height: size.height * 0.05,
-                  decoration: BoxDecoration(border: Border.all(color: Colors.blue), color: Colors.blue, borderRadius: BorderRadius.circular(6)),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: const Color.fromARGB(255, 103, 106, 108)),
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(6)),
                   child: Center(
                     child: Text(
                       'ตกลง',
