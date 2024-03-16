@@ -19,6 +19,7 @@ import 'package:possodexo/payment/widgets/Redeempointswidget.dart';
 
 import 'package:possodexo/payment/widgets/numbercel.dart';
 import 'package:possodexo/payment/widgets/paymentmedtod.dart';
+import 'package:presentation_displays/display.dart';
 
 class PaymentCash extends StatefulWidget {
   PaymentCash({super.key, required this.selectedItem, required this.sumPrice, required this.sumQTY});
@@ -685,681 +686,723 @@ class _PaymentCashState extends State<PaymentCash> {
                 ),
               ),
             ),
-            selectedItem == 0
-                ? open == true
-                    ? Column(
-                        children: [
-                          Column(
-                            children: [
-                              Container(
-                                height: size.height * 0.08,
-                                width: size.width * 0.25,
-                                decoration: BoxDecoration(color: Color(0xfffECEFF1)),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8),
-                                  child: Text(
-                                    "แบ่งจ่าย",
-                                    style: TextStyle(fontSize: 23),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: size.height * 0.87,
-                                width: size.width * 0.25,
-                                padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(color: Color.fromARGB(255, 245, 245, 245)),
-                                child: Column(children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "รวม",
-                                          style: TextStyle(
-                                            fontFamily: 'IBMPlexSansThai',
-                                          ),
-                                        ),
-                                        // Text(
-                                        //   '${widget.sumPrice} ฿',
-                                        //   style: TextStyle(
-                                        //     fontFamily: 'IBMPlexSansThai',
-                                        //   ),
-                                        // ),
-                                      ],
-                                    ),
-                                  ),
-                                  Divider(
-                                    color: Color(0xfff78909C),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "ยอดชำระ",
-                                          style: TextStyle(
-                                            fontFamily: 'IBMPlexSansThai',
-                                          ),
-                                        ),
-                                        // Text(
-                                        //   '${widget.sumPrice} ฿',
-                                        //   style: TextStyle(
-                                        //     fontFamily: 'IBMPlexSansThai',
-                                        //   ),
-                                        // ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "เงินทอน",
-                                          style: TextStyle(
-                                            fontFamily: 'IBMPlexSansThai',
-                                          ),
-                                        ),
-                                        Text(
-                                          '0.00 ฿',
-                                          style: TextStyle(
-                                            fontFamily: 'IBMPlexSansThai',
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "รวม",
-                                          style: TextStyle(
-                                            color: Colors.red,
-                                            fontFamily: 'IBMPlexSansThai',
-                                          ),
-                                        ),
-                                        // Text(
-                                        //   '${widget.sumPrice} ฿',
-                                        //   style: TextStyle(
-                                        //     color: Colors.red,
-                                        //     fontFamily: 'IBMPlexSansThai',
-                                        //   ),
-                                        // ),
-                                      ],
-                                    ),
-                                  ),
-                                  Divider(color: Color(0xfff78909C)),
-                                  SizedBox(
-                                    height: size.height * 0.5,
-                                  ),
-                                  SizedBox(
-                                    child: InkWell(
-                                      onTap: () {
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) => Proceedsplitpayments()));
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Color(0xff4CAF50)),
-                                        height: size.height * 0.095,
-                                        width: double.infinity,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Center(
-                                            child: Text(
-                                              "ยืนยันชำระเงิน",
-                                              style: TextStyle(color: Colors.white),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ]),
-                              ),
-                            ],
-                          ),
-                        ],
-                      )
-                    : Column(
-                        children: [
-                          Column(
-                            children: [
-                              Container(
-                                height: size.height * 0.08,
-                                width: size.width * 0.25,
-                                decoration: BoxDecoration(color: Color(0xfffECEFF1)),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8),
-                                  child: Text(
-                                    "เงินสด",
-                                    style: TextStyle(fontSize: 23),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: size.height * 0.87,
-                                width: size.width * 0.25,
-                                padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(color: Color.fromARGB(255, 245, 245, 245)),
-                                child: Column(children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "รวม",
-                                          style: TextStyle(
-                                            fontFamily: 'IBMPlexSansThai',
-                                          ),
-                                        ),
-                                        // Text(
-                                        //   '${widget.sumPrice} ฿',
-                                        //   style: TextStyle(
-                                        //     fontFamily: 'IBMPlexSansThai',
-                                        //   ),
-                                        // ),
-                                      ],
-                                    ),
-                                  ),
-                                  Divider(
-                                    color: Color(0xfff78909C),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "ยอดชำระ",
-                                          style: TextStyle(
-                                            fontFamily: 'IBMPlexSansThai',
-                                          ),
-                                        ),
-                                        // Text(
-                                        //   '${widget.sumPrice} ฿',
-                                        //   style: TextStyle(
-                                        //     fontFamily: 'IBMPlexSansThai',
-                                        //   ),
-                                        // ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "เงินทอน",
-                                          style: TextStyle(
-                                            fontFamily: 'IBMPlexSansThai',
-                                          ),
-                                        ),
-                                        Text(
-                                          '0.00 ฿',
-                                          style: TextStyle(
-                                            fontFamily: 'IBMPlexSansThai',
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "รวม",
-                                          style: TextStyle(
-                                            color: Colors.red,
-                                            fontFamily: 'IBMPlexSansThai',
-                                          ),
-                                        ),
-                                        // Text(
-                                        //   '${widget.sumPrice} ฿',
-                                        //   style: TextStyle(
-                                        //     color: Colors.red,
-                                        //     fontFamily: 'IBMPlexSansThai',
-                                        //   ),
-                                        // ),
-                                      ],
-                                    ),
-                                  ),
-                                  Divider(color: Color(0xfff78909C)),
-                                  SizedBox(
-                                    height: size.height * 0.5,
-                                  ),
-                                  SizedBox(
-                                    child: InkWell(
-                                      onTap: () {
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) => Proceedpayment()));
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Color(0xff4CAF50)),
-                                        height: size.height * 0.095,
-                                        width: double.infinity,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Center(
-                                            child: Text(
-                                              "ยืนยันชำระเงิน",
-                                              style: TextStyle(color: Colors.white),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ]),
-                              ),
-                            ],
-                          ),
-                        ],
-                      )
-                : Column(
-                    children: [
-                      Container(
-                        height: size.height * 0.1,
-                        width: size.width * 0.245,
-                        decoration: BoxDecoration(
-                            color: Color(0xfffECEFF1),
-                            border: Border(
-                              bottom: BorderSide(
-                                color: Color(0xFFB0BEC5),
-                              ),
-                            )),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Row(
-                            children: [
-                              Container(
-                                width: size.width * 0.10,
+            if (selectedItem == 0)
+              open == true
+                  ? Column(
+                      children: [
+                        Column(
+                          children: [
+                            Container(
+                              height: size.height * 0.08,
+                              width: size.width * 0.25,
+                              decoration: BoxDecoration(color: Color(0xfffECEFF1)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8),
                                 child: Text(
-                                  "รายการส่วนลด",
-                                  style: TextStyle(fontSize: 20),
+                                  "แบ่งจ่าย",
+                                  style: TextStyle(fontSize: 23),
                                 ),
                               ),
-                              InkWell(
-                                onTap: () {
-                                  setState(() => priceDiscount = 0);
-                                  setState(() => priceDiscountPercen = 0);
-                                  setState(() => priceVoucher = 0);
-                                  setState(() => Price = 0);
-                                  setState(() => priceotherDiscount = 0);
-                                  setState(() => Points = 0);
-                                },
-                                child: Container(
+                            ),
+                            Container(
+                              height: size.height * 0.87,
+                              width: size.width * 0.25,
+                              padding: EdgeInsets.all(8),
+                              decoration: BoxDecoration(color: Color.fromARGB(255, 245, 245, 245)),
+                              child: Column(children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      IconButton(
-                                          onPressed: () {
-                                            setState(() => Points = 0);
-                                            setState(() => priceDiscount = 0);
-                                            setState(() => priceDiscountPercen = 0);
-                                            setState(() => priceVoucher = 0);
-                                            setState(() => Price = 0);
-                                            setState(() => priceotherDiscount = 0);
-                                          },
-                                          icon: Icon(
-                                            Icons.highlight_remove_sharp,
-                                            size: 15,
-                                            color: Color(0xFF616161),
-                                          )),
-                                      Text('ล้างข้อมูลทั้งหมด')
+                                      Text(
+                                        "รวม",
+                                        style: TextStyle(
+                                          fontFamily: 'IBMPlexSansThai',
+                                        ),
+                                      ),
+                                      // Text(
+                                      //   '${widget.sumPrice} ฿',
+                                      //   style: TextStyle(
+                                      //     fontFamily: 'IBMPlexSansThai',
+                                      //   ),
+                                      // ),
                                     ],
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
+                                Divider(
+                                  color: Color(0xfff78909C),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "ยอดชำระ",
+                                        style: TextStyle(
+                                          fontFamily: 'IBMPlexSansThai',
+                                        ),
+                                      ),
+                                      // Text(
+                                      //   '${widget.sumPrice} ฿',
+                                      //   style: TextStyle(
+                                      //     fontFamily: 'IBMPlexSansThai',
+                                      //   ),
+                                      // ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "เงินทอน",
+                                        style: TextStyle(
+                                          fontFamily: 'IBMPlexSansThai',
+                                        ),
+                                      ),
+                                      Text(
+                                        '0.00 ฿',
+                                        style: TextStyle(
+                                          fontFamily: 'IBMPlexSansThai',
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "รวม",
+                                        style: TextStyle(
+                                          color: Colors.red,
+                                          fontFamily: 'IBMPlexSansThai',
+                                        ),
+                                      ),
+                                      // Text(
+                                      //   '${widget.sumPrice} ฿',
+                                      //   style: TextStyle(
+                                      //     color: Colors.red,
+                                      //     fontFamily: 'IBMPlexSansThai',
+                                      //   ),
+                                      // ),
+                                    ],
+                                  ),
+                                ),
+                                Divider(color: Color(0xfff78909C)),
+                                SizedBox(
+                                  height: size.height * 0.5,
+                                ),
+                                SizedBox(
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Proceedsplitpayments()));
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Color(0xff4CAF50)),
+                                      height: size.height * 0.095,
+                                      width: double.infinity,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Center(
+                                          child: Text(
+                                            "ยืนยันชำระเงิน",
+                                            style: TextStyle(color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                            ),
+                          ],
                         ),
+                      ],
+                    )
+                  : Column(
+                      children: [
+                        Column(
+                          children: [
+                            Container(
+                              height: size.height * 0.08,
+                              width: size.width * 0.25,
+                              decoration: BoxDecoration(color: Color(0xfffECEFF1)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8),
+                                child: Text(
+                                  "เงินสด",
+                                  style: TextStyle(fontSize: 23),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: size.height * 0.87,
+                              width: size.width * 0.25,
+                              padding: EdgeInsets.all(8),
+                              decoration: BoxDecoration(color: Color.fromARGB(255, 245, 245, 245)),
+                              child: Column(children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "รวม",
+                                        style: TextStyle(
+                                          fontFamily: 'IBMPlexSansThai',
+                                        ),
+                                      ),
+                                      // Text(
+                                      //   '${widget.sumPrice} ฿',
+                                      //   style: TextStyle(
+                                      //     fontFamily: 'IBMPlexSansThai',
+                                      //   ),
+                                      // ),
+                                    ],
+                                  ),
+                                ),
+                                Divider(
+                                  color: Color(0xfff78909C),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "ยอดชำระ",
+                                        style: TextStyle(
+                                          fontFamily: 'IBMPlexSansThai',
+                                        ),
+                                      ),
+                                      // Text(
+                                      //   '${widget.sumPrice} ฿',
+                                      //   style: TextStyle(
+                                      //     fontFamily: 'IBMPlexSansThai',
+                                      //   ),
+                                      // ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "เงินทอน",
+                                        style: TextStyle(
+                                          fontFamily: 'IBMPlexSansThai',
+                                        ),
+                                      ),
+                                      Text(
+                                        '0.00 ฿',
+                                        style: TextStyle(
+                                          fontFamily: 'IBMPlexSansThai',
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "รวม",
+                                        style: TextStyle(
+                                          color: Colors.red,
+                                          fontFamily: 'IBMPlexSansThai',
+                                        ),
+                                      ),
+                                      // Text(
+                                      //   '${widget.sumPrice} ฿',
+                                      //   style: TextStyle(
+                                      //     color: Colors.red,
+                                      //     fontFamily: 'IBMPlexSansThai',
+                                      //   ),
+                                      // ),
+                                    ],
+                                  ),
+                                ),
+                                Divider(color: Color(0xfff78909C)),
+                                SizedBox(
+                                  height: size.height * 0.5,
+                                ),
+                                SizedBox(
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Proceedpayment()));
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Color(0xff4CAF50)),
+                                      height: size.height * 0.095,
+                                      width: double.infinity,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Center(
+                                          child: Text(
+                                            "ยืนยันชำระเงิน",
+                                            style: TextStyle(color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )
+            else
+              Column(
+                children: [
+                  Container(
+                    height: size.height * 0.1,
+                    width: size.width * 0.245,
+                    decoration: BoxDecoration(
+                        color: Color(0xfffECEFF1),
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Color(0xFFB0BEC5),
+                          ),
+                        )),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: size.width * 0.10,
+                            child: Text(
+                              "รายการส่วนลด",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              setState(() => priceDiscount = 0);
+                              setState(() => priceDiscountPercen = 0);
+                              setState(() => priceVoucher = 0);
+                              setState(() => Price = 0);
+                              setState(() => priceotherDiscount = 0);
+                              setState(() => Points = 0);
+                            },
+                            child: Container(
+                              child: Row(
+                                children: [
+                                  IconButton(
+                                      onPressed: () {
+                                        setState(() => Points = 0);
+                                        setState(() => priceDiscount = 0);
+                                        setState(() => priceDiscountPercen = 0);
+                                        setState(() => priceVoucher = 0);
+                                        setState(() => Price = 0);
+                                        setState(() => priceotherDiscount = 0);
+                                      },
+                                      icon: Icon(
+                                        Icons.highlight_remove_sharp,
+                                        size: 15,
+                                        color: Color(0xFF616161),
+                                      )),
+                                  Text('ล้างข้อมูลทั้งหมด')
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.01,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       SizedBox(
                         height: size.height * 0.01,
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: size.height * 0.01,
-                          ),
-                          Text(
-                            'ส่วนลด',
-                            style: TextStyle(fontSize: 20, color: Color(0xFF1264E3)),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                width: size.width * 0.1,
-                                child: Text(
-                                  'จำนวนเงิน',
-                                  style: TextStyle(
-                                      color: Color(
-                                        0xFF424242,
-                                      ),
-                                      fontSize: 16),
-                                ),
+                      priceDiscount != 0 || priceDiscountPercen != 0
+                          ? Text(
+                              'ส่วนลด',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Color(0xFF1264E3),
                               ),
-                              SizedBox(
-                                width: size.width * 0.1,
-                                child: Text(
-                                  textAlign: TextAlign.end,
-                                  NumberFormat('#,##0.00', 'en_US').format(priceDiscount),
-                                  style: TextStyle(
-                                      color: Color(
-                                        0xFF424242,
-                                      ),
-                                      fontSize: 20),
+                              textAlign: TextAlign.left,
+                            )
+                          : SizedBox.shrink(),
+                      priceDiscount != 0
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(
+                                  width: size.width * 0.1,
+                                  child: Text(
+                                    'จำนวนเงิน',
+                                    style: TextStyle(
+                                        color: Color(
+                                          0xFF424242,
+                                        ),
+                                        fontSize: 16),
+                                  ),
                                 ),
-                              ),
-                              IconButton(
-                                  onPressed: () {
-                                    setState(() => priceDiscount = 0);
-                                  },
-                                  icon: Icon(
-                                    Icons.highlight_remove_sharp,
-                                    size: 15,
-                                    color: Color(0xFF616161),
-                                  )),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                width: size.width * 0.1,
-                                child: Text(
-                                  'เปอร์เซ็นต์ ${NumberFormat('#,##0', 'en_US').format(priceDiscountPercen)} %',
-                                  style: TextStyle(
-                                      color: Color(
-                                        0xFF424242,
-                                      ),
-                                      fontSize: 16),
+                                SizedBox(
+                                  width: size.width * 0.1,
+                                  child: Text(
+                                    textAlign: TextAlign.end,
+                                    NumberFormat('#,##0.00', 'en_US').format(priceDiscount),
+                                    style: TextStyle(
+                                        color: Color(
+                                          0xFF424242,
+                                        ),
+                                        fontSize: 20),
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: size.width * 0.1,
-                                child: Text(
-                                  textAlign: TextAlign.end,
-                                  NumberFormat('#,##0.00', 'en_US')
-                                      .format(double.parse(NumberFormat('#,##0.00', 'en_US').format(priceDiscountPercen)) * 1000 / 100),
-                                  style: TextStyle(
-                                      color: Color(
-                                        0xFF424242,
-                                      ),
-                                      fontSize: 20),
+                                IconButton(
+                                    onPressed: () {
+                                      setState(() => priceDiscount = 0);
+                                    },
+                                    icon: Icon(
+                                      Icons.highlight_remove_sharp,
+                                      size: 15,
+                                      color: Color(0xFF616161),
+                                    )),
+                              ],
+                            )
+                          : SizedBox.shrink(),
+                      priceDiscountPercen != 0
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(
+                                  width: size.width * 0.1,
+                                  child: Text(
+                                    'เปอร์เซ็นต์ ${NumberFormat('#,##0', 'en_US').format(priceDiscountPercen)} %',
+                                    style: TextStyle(
+                                        color: Color(
+                                          0xFF424242,
+                                        ),
+                                        fontSize: 16),
+                                  ),
                                 ),
-                              ),
-                              IconButton(
-                                  onPressed: () {
-                                    setState(() => priceDiscountPercen = 0);
-                                  },
-                                  icon: Icon(
-                                    Icons.highlight_remove_sharp,
-                                    size: 15,
-                                    color: Color(0xFF616161),
-                                  )),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: size.width * 0.24,
-                        child: Divider(
-                          height: 10,
-                          color: Color(0xFFB0BEC5),
-                        ),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: size.height * 0.01,
-                          ),
-                          Text(
-                            'Gift Voucher',
-                            style: TextStyle(fontSize: 20, color: Color(0xFF1264E3)),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: size.width * 0.1,
-                                child: Text(
-                                  'คูปองห้าง',
-                                  style: TextStyle(
-                                      color: Color(
-                                        0xFF424242,
-                                      ),
-                                      fontSize: 16),
+                                SizedBox(
+                                  width: size.width * 0.1,
+                                  child: Text(
+                                    textAlign: TextAlign.end,
+                                    NumberFormat('#,##0.00', 'en_US')
+                                        .format(double.parse(NumberFormat('#,##0.00', 'en_US').format(priceDiscountPercen)) * 1000 / 100),
+                                    style: TextStyle(
+                                        color: Color(
+                                          0xFF424242,
+                                        ),
+                                        fontSize: 20),
+                                  ),
                                 ),
-                              ),
-                              Container(
-                                width: size.width * 0.1,
-                                child: Text(
-                                  textAlign: TextAlign.end,
-                                  NumberFormat('#,##0.00', 'en_US').format(priceVoucher),
-                                  style: TextStyle(
-                                      color: Color(
-                                        0xFF424242,
-                                      ),
-                                      fontSize: 20),
-                                ),
-                              ),
-                              IconButton(
-                                  onPressed: () {
-                                    setState(() => priceVoucher = 0);
-                                  },
-                                  icon: Icon(
-                                    Icons.highlight_remove_sharp,
-                                    size: 15,
-                                    color: Color(0xFF616161),
-                                  )),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: size.width * 0.1,
-                                child: Text(
-                                  'คูปองหน้าร้าน',
-                                  style: TextStyle(
-                                      color: Color(
-                                        0xFF424242,
-                                      ),
-                                      fontSize: 16),
-                                ),
-                              ),
-                              Container(
-                                width: size.width * 0.1,
-                                child: Text(
-                                  textAlign: TextAlign.end,
-                                  NumberFormat('#,##0.00', 'en_US').format(priceVoucherstorefront),
-                                  style: TextStyle(
-                                      color: Color(
-                                        0xFF424242,
-                                      ),
-                                      fontSize: 20),
-                                ),
-                              ),
-                              IconButton(
-                                  onPressed: () {
-                                    setState(() => priceVoucherstorefront = 0);
-                                  },
-                                  icon: Icon(
-                                    Icons.highlight_remove_sharp,
-                                    size: 15,
-                                    color: Color(0xFF616161),
-                                  )),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: size.width * 0.24,
-                        child: Divider(
-                          height: 10,
-                          color: Color(0xFFB0BEC5),
-                        ),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: size.height * 0.01,
-                          ),
-                          Text(
-                            'แลกคะแนน',
-                            style: TextStyle(fontSize: 20, color: Color(0xFF1264E3)),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                width: size.width * 0.1,
-                                child: Text(
-                                  '${NumberFormat('#,##0', 'en_US').format(Points)} คะแนน',
-                                  style: TextStyle(
-                                      color: Color(
-                                        0xFF424242,
-                                      ),
-                                      fontSize: 16),
-                                ),
-                              ),
-                              SizedBox(
-                                width: size.width * 0.1,
-                                child: Text(
-                                  textAlign: TextAlign.end,
-                                  NumberFormat('#,##0.00', 'en_US').format(Price),
-                                  style: TextStyle(
-                                      color: Color(
-                                        0xFF424242,
-                                      ),
-                                      fontSize: 20),
-                                ),
-                              ),
-                              IconButton(
-                                  onPressed: () {
-                                    setState(() => Price = 0);
-                                    setState(() => Points = 0);
-                                  },
-                                  icon: Icon(
-                                    Icons.highlight_remove_sharp,
-                                    size: 15,
-                                    color: Color(0xFF616161),
-                                  )),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: size.width * 0.24,
-                        child: Divider(
-                          height: 10,
-                          color: Color(0xFFB0BEC5),
-                        ),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: size.height * 0.01,
-                          ),
-                          Text(
-                            'ส่วนลดอื่นๆ',
-                            style: TextStyle(fontSize: 20, color: Color(0xFF1264E3)),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: size.width * 0.1,
-                                child: Text(
-                                  'ส่วนลด The 1',
-                                  style: TextStyle(
-                                      color: Color(
-                                        0xFF424242,
-                                      ),
-                                      fontSize: 16),
-                                ),
-                              ),
-                              Container(
-                                width: size.width * 0.1,
-                                child: Text(
-                                  textAlign: TextAlign.end,
-                                  NumberFormat('#,##0.00', 'en_US').format(priceotherDiscount),
-                                  style: TextStyle(
-                                      color: Color(
-                                        0xFF424242,
-                                      ),
-                                      fontSize: 20),
-                                ),
-                              ),
-                              IconButton(
-                                  onPressed: () {
-                                    setState(() => priceotherDiscount = 0);
-                                  },
-                                  icon: Icon(
-                                    Icons.highlight_remove_sharp,
-                                    size: 15,
-                                    color: Color(0xFF616161),
-                                  )),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: size.width * 0.1,
-                                child: Text(
-                                  'คูปองห้าง',
-                                  style: TextStyle(
-                                      color: Color(
-                                        0xFF424242,
-                                      ),
-                                      fontSize: 16),
-                                ),
-                              ),
-                              Container(
-                                width: size.width * 0.1,
-                                child: Text(
-                                  textAlign: TextAlign.end,
-                                  NumberFormat('#,##0.00', 'en_US').format(priceotherDiscountthe1),
-                                  style: TextStyle(
-                                      color: Color(
-                                        0xFF424242,
-                                      ),
-                                      fontSize: 20),
-                                ),
-                              ),
-                              IconButton(
-                                  onPressed: () {
-                                    setState(() => priceotherDiscountthe1 = 0);
-                                  },
-                                  icon: Icon(
-                                    Icons.highlight_remove_sharp,
-                                    size: 15,
-                                    color: Color(0xFF616161),
-                                  )),
-                            ],
-                          ),
-                        ],
-                      ),
+                                IconButton(
+                                    onPressed: () {
+                                      setState(() => priceDiscountPercen = 0);
+                                    },
+                                    icon: Icon(
+                                      Icons.highlight_remove_sharp,
+                                      size: 15,
+                                      color: Color(0xFF616161),
+                                    )),
+                              ],
+                            )
+                          : SizedBox.shrink(),
                     ],
-                  )
+                  ),
+                  priceDiscount != 0
+                      ? SizedBox(
+                          width: size.width * 0.24,
+                          child: Divider(
+                            height: 10,
+                            color: Color(0xFFB0BEC5),
+                          ),
+                        )
+                      : SizedBox.shrink(),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: size.height * 0.01,
+                      ),
+                      priceVoucher != 0 || priceVoucherstorefront != 0
+                          ? Text(
+                              'Gift Voucher',
+                              style: TextStyle(fontSize: 20, color: Color(0xFF1264E3)),
+                            )
+                          : SizedBox.shrink(),
+                      priceVoucher != 0
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: size.width * 0.1,
+                                  child: Text(
+                                    'คูปองห้าง',
+                                    style: TextStyle(
+                                        color: Color(
+                                          0xFF424242,
+                                        ),
+                                        fontSize: 16),
+                                  ),
+                                ),
+                                Container(
+                                  width: size.width * 0.1,
+                                  child: Text(
+                                    textAlign: TextAlign.end,
+                                    NumberFormat('#,##0.00', 'en_US').format(priceVoucher),
+                                    style: TextStyle(
+                                        color: Color(
+                                          0xFF424242,
+                                        ),
+                                        fontSize: 20),
+                                  ),
+                                ),
+                                IconButton(
+                                    onPressed: () {
+                                      setState(() => priceVoucher = 0);
+                                    },
+                                    icon: Icon(
+                                      Icons.highlight_remove_sharp,
+                                      size: 15,
+                                      color: Color(0xFF616161),
+                                    )),
+                              ],
+                            )
+                          : SizedBox.shrink(),
+                      priceVoucherstorefront != 0
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: size.width * 0.1,
+                                  child: Text(
+                                    'คูปองหน้าร้าน',
+                                    style: TextStyle(
+                                        color: Color(
+                                          0xFF424242,
+                                        ),
+                                        fontSize: 16),
+                                  ),
+                                ),
+                                Container(
+                                  width: size.width * 0.1,
+                                  child: Text(
+                                    textAlign: TextAlign.end,
+                                    NumberFormat('#,##0.00', 'en_US').format(priceVoucherstorefront),
+                                    style: TextStyle(
+                                        color: Color(
+                                          0xFF424242,
+                                        ),
+                                        fontSize: 20),
+                                  ),
+                                ),
+                                IconButton(
+                                    onPressed: () {
+                                      setState(() => priceVoucherstorefront = 0);
+                                    },
+                                    icon: Icon(
+                                      Icons.highlight_remove_sharp,
+                                      size: 15,
+                                      color: Color(0xFF616161),
+                                    )),
+                              ],
+                            )
+                          : SizedBox.shrink(),
+                    ],
+                  ),
+                  priceVoucherstorefront != 0 || priceVoucher != 0
+                      ? SizedBox(
+                          width: size.width * 0.24,
+                          child: Divider(
+                            height: 10,
+                            color: Color(0xFFB0BEC5),
+                          ),
+                        )
+                      : SizedBox.shrink(),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: size.height * 0.01,
+                      ),
+                      Price != 0 || Points != 0
+                          ? Text(
+                              'แลกคะแนน',
+                              style: TextStyle(fontSize: 20, color: Color(0xFF1264E3)),
+                            )
+                          : SizedBox.shrink(),
+                      Price != 0 || Points != 0
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(
+                                  width: size.width * 0.1,
+                                  child: Text(
+                                    '${NumberFormat('#,##0', 'en_US').format(Points)} คะแนน',
+                                    style: TextStyle(
+                                        color: Color(
+                                          0xFF424242,
+                                        ),
+                                        fontSize: 16),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: size.width * 0.1,
+                                  child: Text(
+                                    textAlign: TextAlign.end,
+                                    NumberFormat('#,##0.00', 'en_US').format(Price),
+                                    style: TextStyle(
+                                        color: Color(
+                                          0xFF424242,
+                                        ),
+                                        fontSize: 20),
+                                  ),
+                                ),
+                                IconButton(
+                                    onPressed: () {
+                                      setState(() => Price = 0);
+                                      setState(() => Points = 0);
+                                    },
+                                    icon: Icon(
+                                      Icons.highlight_remove_sharp,
+                                      size: 15,
+                                      color: Color(0xFF616161),
+                                    )),
+                              ],
+                            )
+                          : SizedBox.shrink(),
+                    ],
+                  ),
+                  Price != 0 || Points != 0
+                      ? SizedBox(
+                          width: size.width * 0.24,
+                          child: Divider(
+                            height: 10,
+                            color: Color(0xFFB0BEC5),
+                          ),
+                        )
+                      : SizedBox.shrink(),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: size.height * 0.01,
+                      ),
+                      priceotherDiscount != 0 || priceotherDiscountthe1 != 0
+                          ? Text(
+                              'ส่วนลดอื่นๆ',
+                              style: TextStyle(fontSize: 20, color: Color(0xFF1264E3)),
+                            )
+                          : SizedBox.shrink(),
+                      priceotherDiscount != 0
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: size.width * 0.1,
+                                  child: Text(
+                                    'ส่วนลด The 1',
+                                    style: TextStyle(
+                                        color: Color(
+                                          0xFF424242,
+                                        ),
+                                        fontSize: 16),
+                                  ),
+                                ),
+                                Container(
+                                  width: size.width * 0.1,
+                                  child: Text(
+                                    textAlign: TextAlign.end,
+                                    NumberFormat('#,##0.00', 'en_US').format(priceotherDiscount),
+                                    style: TextStyle(
+                                        color: Color(
+                                          0xFF424242,
+                                        ),
+                                        fontSize: 20),
+                                  ),
+                                ),
+                                IconButton(
+                                    onPressed: () {
+                                      setState(() => priceotherDiscount = 0);
+                                    },
+                                    icon: Icon(
+                                      Icons.highlight_remove_sharp,
+                                      size: 15,
+                                      color: Color(0xFF616161),
+                                    )),
+                              ],
+                            )
+                          : SizedBox.shrink(),
+                      priceotherDiscountthe1 != 0
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: size.width * 0.1,
+                                  child: Text(
+                                    'คูปองห้าง',
+                                    style: TextStyle(
+                                        color: Color(
+                                          0xFF424242,
+                                        ),
+                                        fontSize: 16),
+                                  ),
+                                ),
+                                Container(
+                                  width: size.width * 0.1,
+                                  child: Text(
+                                    textAlign: TextAlign.end,
+                                    NumberFormat('#,##0.00', 'en_US').format(priceotherDiscountthe1),
+                                    style: TextStyle(
+                                        color: Color(
+                                          0xFF424242,
+                                        ),
+                                        fontSize: 20),
+                                  ),
+                                ),
+                                IconButton(
+                                    onPressed: () {
+                                      setState(() => priceotherDiscountthe1 = 0);
+                                    },
+                                    icon: Icon(
+                                      Icons.highlight_remove_sharp,
+                                      size: 15,
+                                      color: Color(0xFF616161),
+                                    )),
+                              ],
+                            )
+                          : SizedBox.shrink(),
+                      priceotherDiscount != 0 || priceotherDiscountthe1 != 0
+                          ? SizedBox(
+                              width: size.width * 0.24,
+                              child: Divider(
+                                height: 10,
+                                color: Color(0xFFB0BEC5),
+                              ),
+                            )
+                          : SizedBox.shrink(),
+                    ],
+                  ),
+                ],
+              )
           ],
         ),
       ),
