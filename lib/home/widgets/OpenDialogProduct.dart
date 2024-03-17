@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:possodexo/home/widgets/Multiplepeoduct.dart';
 import 'package:possodexo/home/widgets/QuantityProduct.dart';
 import 'package:possodexo/home/widgets/SingelProduct.dart';
+import 'package:possodexo/models/attributesdto.dart';
+import 'package:possodexo/models/attributevaluesdto.dart';
+import 'package:possodexo/models/orderitemsdto.dart';
 import 'package:possodexo/models/productAttributeValue.dart';
 import 'package:possodexo/models/product.dart';
 
@@ -27,9 +30,14 @@ class OpenDialogProduct extends StatefulWidget {
 
 class _OpenDialogProductState extends State<OpenDialogProduct> {
   ProductAttributeValue? selected;
-  ProductAttributeValue? singelProduct0;
+  List<AttributeValuesDto> singelProduct0 = [];
+  List<AttributeValuesDto> quantityProduct = [];
+  List<AttributeValuesDto> multiplepeoduct = [];
   int? quantityProduct1;
+  ProductAttributeValue? singelProduct1;
   List<ProductAttributeValue>? multiplepeoduct2;
+  List<AttributesDto> attributes = [];
+  OrderItemsDto? orderitemsdto;
 
   int selectedIndex = 0;
   int? selectedPrice = 0;
@@ -40,6 +48,9 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
       selectedIndex = index;
     });
   }
+
+  double sum(List<AttributeValuesDto> attributesValue) => attributesValue.fold(0, (p, o) => p + o.price);
+  double sumAttributes(List<AttributesDto> attributes) => attributes.fold(0, (p, o) => p + o.total);
 
   int qty = 0;
   @override
@@ -85,7 +96,17 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                 ? SingelProduct(
                     vicecall: (p0) {
                       setState(() {
-                        singelProduct0 = p0;
+                        singelProduct1 = p0;
+                        final _attributesvaluedto = AttributeValuesDto(
+                          p0.name,
+                          1,
+                          p0.price,
+                          p0.price.toDouble()
+                        );
+                        singelProduct0.insert(0, _attributesvaluedto);
+                        if (singelProduct0.length > 1) {
+                          singelProduct0.removeAt(1);
+                        }
                       });
                     },
                     productAttribute: widget.gridCoffee.productAttributes![index],
@@ -95,6 +116,16 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                         vicecall2: (p1) {
                           setState(() {
                             quantityProduct1 = p1;
+                            final _attributesvaluedto = AttributeValuesDto(
+                              widget.gridCoffee.productAttributes![index].name,
+                              p1,
+                              widget.gridCoffee.productAttributes![index].productAttributeValues[0].price,
+                              widget.gridCoffee.productAttributes![index].productAttributeValues[0].price.toDouble()
+                            );
+                            quantityProduct.insert(0, _attributesvaluedto);
+                            if (quantityProduct.length > 1) {
+                              quantityProduct.removeAt(1);
+                            }
                           });
                         },
                         productAttribute: widget.gridCoffee.productAttributes![index],
@@ -104,65 +135,22 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                             vicecall3: (p2) {
                               setState(() {
                                 multiplepeoduct2 = p2;
+                                for (var i = 0; i < multiplepeoduct2!.length; i++) {
+                                  final multiple = AttributeValuesDto(
+                                    multiplepeoduct2![i].name,
+                                    1,
+                                    multiplepeoduct2![i].price,
+                                    multiplepeoduct2![i].price.toDouble()
+                                  );
+                                  multiplepeoduct.add(multiple);
+                                }
+                                 
                               });
                             },
                             productAttribute: widget.gridCoffee.productAttributes![index],
                           )
                         : SizedBox(),
-            // (index) => Row(
-            //   children: [
-            //     SizedBox(
-            //       width: size.width * 0.15,
-            //       height: size.height * 0.04,
-            //       child: Text(
-            //         widget.gridCoffee.productAttributes![index].name,
-            //         style: TextStyle(
-            //           fontSize: 18,
-            //           fontFamily: 'IBMPlexSansThai',
-            //         ),
-            //       ),
-            //     ),
-            //     SizedBox(
-            //       width: size.width * 0.25,
-            //       height: size.height * 0.065,
-            //       child: Row(
-            //         children: List.generate(
-            //             widget.gridCoffee.productAttributes![index].productAttributeValues.length,
-            //             (index2) => GestureDetector(
-            //                   onTap: () {
-            //                     // print(index2);
-            //                     selectSize(index2);
-            //                     selectedPrice = widget.gridCoffee.productAttributes![index].productAttributeValues[index2].price;
-            //                     selectedSize = widget.gridCoffee.productAttributes![index].productAttributeValues[index2];
-            //                     // print(selectedPrice);
-            //                   },
-            //                   child: Padding(
-            //                     padding: const EdgeInsets.only(right: 10),
-            //                     child: Container(
-            //                       height: size.height * 0.12,
-            //                       width: size.width * 0.03,
-            //                       decoration: BoxDecoration(
-            //                         color: selectedIndex == index2 ? Color(0xFFE8EAF6) : Colors.white,
-            //                         borderRadius: BorderRadius.circular(6),
-            //                         border: Border.all(color: Colors.blue),
-            //                       ),
-            //                       child: Center(
-            //                         child: Text(
-            //                           // ignore: unnecessary_string_interpolations
-            //                           '${widget.gridCoffee.productAttributes![index].productAttributeValues[index2].name}',
-            //                           style: TextStyle(
-            //                             fontFamily: 'IBMPlexSansThai',
-            //                           ),
-            //                         ),
-            //                       ),
-            //                     ),
-            //                   ),
-            //                 )
-            //                 ),
-            //       ),
-            //     ),
-            //   ],
-            // ),
+            
           )),
         ],
       ),
@@ -193,15 +181,43 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                   setState(() {
                     selectedPrice = widget.gridCoffee.productAttributes?[0].productAttributeValues[0].price;
                     selectedSize = widget.gridCoffee.productAttributes?[0].productAttributeValues[0];
+
+                    //จัดรูปแบบก่อนนำไปใช้สร้าง ออร์เดอร์
+                    for (var i = 0; i < widget.gridCoffee.productAttributes!.length; i++) {
+                      final _attributesdto =  AttributesDto(
+                        widget.gridCoffee.productAttributes![i].name,
+                        widget.gridCoffee.productAttributes![i].type == "SINGLE"
+                        ?sum(singelProduct0)
+                        :widget.gridCoffee.productAttributes![i].type == "QUANTITY"
+                        ?sum(quantityProduct)
+                        :sum(multiplepeoduct),
+                        widget.gridCoffee.productAttributes![i].type == "SINGLE"
+                        ?singelProduct0
+                        :widget.gridCoffee.productAttributes![i].type == "QUANTITY"
+                        ?quantityProduct
+                        :multiplepeoduct,
+                      );
+                      attributes.add(_attributesdto);
+                    }
                   });
+                  //inspect(attributes);
+                  orderitemsdto = OrderItemsDto(
+                    widget.gridCoffee.id,
+                    widget.gridCoffee.price!.toDouble(),
+                    sumAttributes(attributes),
+                    1,
+                    attributes
+                  );
                 }
+
                 final out = {
                   'item': widget.gridCoffee,
                   'pricesize': selectedPrice,
                   'selectedSize': selectedSize,
-                  "p0": singelProduct0,
+                  "p0": singelProduct1,
                   "p1": quantityProduct1,
                   "p2": multiplepeoduct2,
+                  'orderItems': orderitemsdto
                 };
                 Navigator.pop(context, out);
               },
