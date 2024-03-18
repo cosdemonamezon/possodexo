@@ -13,6 +13,7 @@ class PaymentApi {
     final url = Uri.https(publicUrl, '/api/order');
     final response = await http.post(url,
         //headers: {'Authorization': 'Bearer $token', 'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json'},
         body: convert.jsonEncode({
           "shiftId": shiftId,
           "total": total,

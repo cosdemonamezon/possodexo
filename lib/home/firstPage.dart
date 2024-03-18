@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 
 import 'package:possodexo/home/homePage.dart';
 import 'package:possodexo/home/widgets/ItemMenuWidget.dart';
+import 'package:possodexo/Cancelbill/cancelBill.dart';
 import 'package:possodexo/seconDisplay/secondisplay.dart';
 
 class FirstPage extends StatefulWidget {
@@ -20,7 +21,7 @@ class _FirstPageState extends State<FirstPage> {
       case 'Home':
         return HomePage();
       case 'Menu':
-        return Container();
+        return Cancelbill();
       case 'History':
         return Container();
       case 'Setting':
