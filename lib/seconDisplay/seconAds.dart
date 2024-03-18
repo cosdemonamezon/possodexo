@@ -10,13 +10,14 @@ class SeconAds extends StatefulWidget {
 
 class _SeconAdsState extends State<SeconAds> {
   final PageController _controller = PageController(viewportFraction: 0.8, keepPage: true);
+
   final int _numberOfPages = 6;
   int _currentPage = 0;
 
   @override
   void initState() {
     super.initState();
-    Timer.periodic(Duration(seconds: 3), (timer) {
+    Timer.periodic(Duration(seconds: 3), (Timer timer) {
       if (_currentPage < _numberOfPages - 1) {
         _currentPage++;
       } else {
@@ -33,6 +34,40 @@ class _SeconAdsState extends State<SeconAds> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final pages = List.generate(
+      12,
+      (index) => Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: Colors.grey.shade300,
+        ),
+        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                index % 6 == 0
+                    ? 'assets/images/Promotion.png'
+                    : index % 6 == 1
+                        ? 'assets/images/imagelogin.png'
+                        : index % 6 == 2
+                            ? 'assets/images/Promotion.png'
+                            : index % 6 == 3
+                                ? 'assets/images/imagelogin.png'
+                                : index % 6 == 4
+                                    ? 'assets/images/Promotion.png'
+                                    : 'assets/images/imagelogin.png',
+                fit: BoxFit.cover,
+                width: size.width * 0.5,
+                height: size.height * 0.5,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -41,32 +76,11 @@ class _SeconAdsState extends State<SeconAds> {
             children: <Widget>[
               SizedBox(height: 16),
               SizedBox(
-                height: 600,
+                height: size.height * 0.52,
                 child: PageView.builder(
                   controller: _controller,
-                  itemCount: _numberOfPages,
                   itemBuilder: (_, index) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: Colors.grey.shade300,
-                      ),
-                      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: FractionallySizedBox(
-                              widthFactor: 1,
-                              child: Image.asset(
-                                'assets/images/Promotion.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
+                    return pages[index % pages.length];
                   },
                 ),
               ),

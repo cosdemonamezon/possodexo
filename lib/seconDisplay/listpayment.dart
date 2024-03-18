@@ -545,7 +545,7 @@ class _ListpaymentState extends State<Listpayment> {
                     child: Center(
                       child: Container(
                         width: size.width * 0.45,
-                        height: size.height * 0.6,
+                        height: size.height * 0.5,
                         decoration: BoxDecoration(color: Colors.white),
                         child: Column(
                           children: [
@@ -586,7 +586,7 @@ class _ListpaymentState extends State<Listpayment> {
                                     ),
                                   ),
                                   Text(
-                                    '243.00 B',
+                                    '243.00 ฿',
                                     style: TextStyle(
                                       fontSize: 34,
                                       color: Color(0xFF424242),
@@ -608,7 +608,7 @@ class _ListpaymentState extends State<Listpayment> {
                                     ),
                                   ),
                                   Text(
-                                    '257.00 B',
+                                    '257.00 ฿',
                                     style: TextStyle(
                                       fontSize: 34,
                                       color: Color(0xFF424242),
