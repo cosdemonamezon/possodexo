@@ -5,10 +5,10 @@ import 'package:presentation_displays/displays_manager.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
+  runApp(Sencondisplay());
 }
 
-class MyApp extends StatelessWidget {
+class Sencondisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

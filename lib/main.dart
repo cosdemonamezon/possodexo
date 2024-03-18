@@ -10,6 +10,7 @@ import 'package:possodexo/payment/widgets/Proceedpayment.dart';
 import 'package:possodexo/payment/widgets/paymentCash.dart';
 import 'package:possodexo/seconDisplay/listpayment.dart';
 import 'package:possodexo/seconDisplay/seconAds.dart';
+import 'package:possodexo/seconDisplay/secondisplay.dart';
 import 'package:provider/provider.dart';
 import 'package:possodexo/payment/widgets/Discount.dart';
 import 'package:possodexo/payment/widgets/paymentCash.dart';
@@ -17,11 +18,11 @@ import 'package:possodexo/payment/widgets/paymentCash.dart';
 @pragma('vm:entry-point')
 void secondaryDisplayMain() {
   debugPrint('second main');
-  runApp(const MySecondApp());
+  runApp(MySecondApp());
 }
 
 class MySecondApp extends StatelessWidget {
-  const MySecondApp({Key? key}) : super(key: key);
+  MySecondApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class MySecondApp extends StatelessWidget {
         fontFamily: 'IBMPlexSansThai',
       ),
       home: Scaffold(
-        body: Listpayment(),
+        body: SeconAds(),
       ),
     );
   }
@@ -71,12 +72,11 @@ class MyApp extends StatelessWidget {
           fontFamily: 'IBMPlexSansThai',
         ),
         debugShowCheckedModeBanner: false,
-        home: FirstPage(),
-        // home: PaymentCash(
-        //   selectedItem: [],
-        //   sumPrice: '',
-        //   sumQTY: '',
-        // ),
+        home: LoginPage(
+            // selectedItem: [],
+            // sumPrice: '',
+            // sumQTY: '',
+            ),
       ),
     );
   }

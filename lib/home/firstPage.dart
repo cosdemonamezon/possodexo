@@ -25,7 +25,7 @@ class _FirstPageState extends State<FirstPage> {
       case 'History':
         return Container();
       case 'Setting':
-        return Container();
+        return Sencondisplay();
 
       default:
         return HomePage();

@@ -1,4 +1,7 @@
 // import 'package:flutter/material.dart';
+// import 'package:presentation_displays/display.dart';
+// import 'package:presentation_displays/displays_manager.dart';
+// import 'package:presentation_displays/secondary_display.dart';
 
 // Route<dynamic> generateRoute(RouteSettings settings) {
 //   switch (settings.name) {
@@ -79,8 +82,8 @@
 // }
 
 // class _DisplayManagerScreenState extends State<DisplayManagerScreen> {
-//   // DisplayManager displayManager = DisplayManager();
-//   // List<Display?> displays = [];
+//   DisplayManager displayManager = DisplayManager();
+//   List<Display?> displays = [];
 
 //   final TextEditingController _indexToShareController = TextEditingController();
 //   final TextEditingController _dataToTransferController = TextEditingController();
