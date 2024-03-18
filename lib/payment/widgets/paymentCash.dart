@@ -90,7 +90,6 @@ class _PaymentCashState extends State<PaymentCash> {
         priceotherDiscountthe1 +
         Price +
         (priceDiscountPercen * totalSum / 100));
-    // priceDiscountPercen != 0 ? totalDiscount *= totalSum / 100 : totalDiscount;
     return double.parse(totalDiscount.toStringAsFixed(2));
   }
 
@@ -377,8 +376,13 @@ class _PaymentCashState extends State<PaymentCash> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(calcuateDiscount().toStringAsFixed(2)),
-                        )
+                          child: Text(
+                            calcuateDiscount().toStringAsFixed(2).replaceAllMapped(
+                                  RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+                                  (Match match) => '${match[1]},',
+                                ),
+                          ),
+                        ),
                       ],
                     ),
                     Divider(),

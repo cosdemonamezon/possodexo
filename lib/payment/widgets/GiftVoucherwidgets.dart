@@ -155,6 +155,7 @@ class _GiftVoucherwidgetsState extends State<GiftVoucherwidgets> {
                       width: size.width * 0.45,
                       child: TextFormField(
                         controller: text,
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                         ),
