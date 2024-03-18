@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:possodexo/home/data/detialdata.dart';
 import 'package:possodexo/home/model/detialmodel.dart';
 
-class TableCancelBill extends StatefulWidget {
-  const TableCancelBill({
+class TableCanceBill extends StatefulWidget {
+  const TableCanceBill({
     super.key,
     required this.closeblack,
   });
   final VoidCallback closeblack;
 
   @override
-  State<TableCancelBill> createState() => _TableCancelBillState();
+  State<TableCanceBill> createState() => _TableCancBilleState();
 }
 
-class _TableCancelBillState extends State<TableCancelBill> {
+class _TableCancBilleState extends State<TableCanceBill> {
   late List<ProDetail> prodetails;
   int? sortColumnIndex;
   bool isAscending = false;

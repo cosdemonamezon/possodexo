@@ -1,7 +1,6 @@
 import 'package:possodexo/home/model/cancelBillmodel.dart';
-import 'package:possodexo/home/model/detialmodel.dart';
 
-final cancelbilllDetails = <Cancelbill>[
+final cancelbilllDetail = <Cancelbill>[
   Cancelbill(
     promoCode: "mainPRO5per",
     promotionName: "Discount",

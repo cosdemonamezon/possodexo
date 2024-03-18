@@ -1,4 +1,3 @@
-import 'package:possodexo/home/model/detialmodel.dart';
 import 'package:possodexo/home/model/receiptmodel.dart';
 
 final allDetails = <Receipt>[

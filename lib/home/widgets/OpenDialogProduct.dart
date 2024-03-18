@@ -97,12 +97,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                     vicecall: (p0) {
                       setState(() {
                         singelProduct1 = p0;
-                        final _attributesvaluedto = AttributeValuesDto(
-                          p0.name,
-                          1,
-                          p0.price,
-                          p0.price.toDouble()
-                        );
+                        final _attributesvaluedto = AttributeValuesDto(p0.name, 1, p0.price, p0.price.toDouble());
                         singelProduct0.insert(0, _attributesvaluedto);
                         if (singelProduct0.length > 1) {
                           singelProduct0.removeAt(1);
@@ -117,11 +112,10 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                           setState(() {
                             quantityProduct1 = p1;
                             final _attributesvaluedto = AttributeValuesDto(
-                              widget.gridCoffee.productAttributes![index].name,
-                              p1,
-                              widget.gridCoffee.productAttributes![index].productAttributeValues[0].price,
-                              widget.gridCoffee.productAttributes![index].productAttributeValues[0].price.toDouble()
-                            );
+                                widget.gridCoffee.productAttributes![index].name,
+                                p1,
+                                widget.gridCoffee.productAttributes![index].productAttributeValues[0].price,
+                                widget.gridCoffee.productAttributes![index].productAttributeValues[0].price.toDouble());
                             quantityProduct.insert(0, _attributesvaluedto);
                             if (quantityProduct.length > 1) {
                               quantityProduct.removeAt(1);
@@ -137,20 +131,14 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                                 multiplepeoduct2 = p2;
                                 for (var i = 0; i < multiplepeoduct2!.length; i++) {
                                   final multiple = AttributeValuesDto(
-                                    multiplepeoduct2![i].name,
-                                    1,
-                                    multiplepeoduct2![i].price,
-                                    multiplepeoduct2![i].price.toDouble()
-                                  );
+                                      multiplepeoduct2![i].name, 1, multiplepeoduct2![i].price, multiplepeoduct2![i].price.toDouble());
                                   multiplepeoduct.add(multiple);
                                 }
-                                 
                               });
                             },
                             productAttribute: widget.gridCoffee.productAttributes![index],
                           )
                         : SizedBox(),
-            
           )),
         ],
       ),
@@ -184,30 +172,24 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
 
                     //จัดรูปแบบก่อนนำไปใช้สร้าง ออร์เดอร์
                     for (var i = 0; i < widget.gridCoffee.productAttributes!.length; i++) {
-                      final _attributesdto =  AttributesDto(
+                      final _attributesdto = AttributesDto(
                         widget.gridCoffee.productAttributes![i].name,
                         widget.gridCoffee.productAttributes![i].type == "SINGLE"
-                        ?sum(singelProduct0)
-                        :widget.gridCoffee.productAttributes![i].type == "QUANTITY"
-                        ?sum(quantityProduct)
-                        :sum(multiplepeoduct),
+                            ? sum(singelProduct0)
+                            : widget.gridCoffee.productAttributes![i].type == "QUANTITY"
+                                ? sum(quantityProduct)
+                                : sum(multiplepeoduct),
                         widget.gridCoffee.productAttributes![i].type == "SINGLE"
-                        ?singelProduct0
-                        :widget.gridCoffee.productAttributes![i].type == "QUANTITY"
-                        ?quantityProduct
-                        :multiplepeoduct,
+                            ? singelProduct0
+                            : widget.gridCoffee.productAttributes![i].type == "QUANTITY"
+                                ? quantityProduct
+                                : multiplepeoduct,
                       );
                       attributes.add(_attributesdto);
                     }
                   });
                   //inspect(attributes);
-                  orderitemsdto = OrderItemsDto(
-                    widget.gridCoffee.id,
-                    widget.gridCoffee.price!.toDouble(),
-                    sumAttributes(attributes),
-                    1,
-                    attributes
-                  );
+                  orderitemsdto = OrderItemsDto(widget.gridCoffee.id, widget.gridCoffee.price!.toDouble(), sumAttributes(attributes), 1, attributes);
                 }
 
                 final out = {
