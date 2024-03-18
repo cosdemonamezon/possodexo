@@ -72,11 +72,11 @@ class MyApp extends StatelessWidget {
           fontFamily: 'IBMPlexSansThai',
         ),
         debugShowCheckedModeBanner: false,
-        home: LoginPage(
-            // selectedItem: [],
-            // sumPrice: '',
-            // sumQTY: '',
-            ),
+        home: PaymentCash(
+          selectedItem: [],
+          sumPrice: '',
+          sumQTY: '',
+        ),
       ),
     );
   }

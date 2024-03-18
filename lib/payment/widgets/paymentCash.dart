@@ -16,13 +16,20 @@ import 'package:possodexo/payment/widgets/Redeempointswidget.dart';
 
 import 'package:possodexo/payment/widgets/numbercel.dart';
 import 'package:possodexo/payment/widgets/paymentmedtod.dart';
+import 'package:presentation_displays/display.dart';
 
 class PaymentCash extends StatefulWidget {
-  PaymentCash({super.key, required this.selectedItem, required this.sumPrice, required this.sumQTY});
+  PaymentCash({
+    super.key,
+    required this.selectedItem,
+    required this.sumPrice,
+    required this.sumQTY,
+  });
   final List<ListProduct> selectedItem;
   final String sumPrice;
   final String sumQTY;
   String? money;
+  double priceDiscount = 0;
   @override
   State<PaymentCash> createState() => _PaymentCashState();
 }
@@ -32,23 +39,26 @@ class _PaymentCashState extends State<PaymentCash> {
   int? sizeprice;
   TextEditingController ai = TextEditingController();
   bool _isSelected = false;
-  int priceDiscount = 0;
-  int priceVoucher = 0;
-  int priceVoucherstorefront = 0;
-  int priceotherDiscount = 0;
-  int priceotherDiscountthe1 = 0;
-  int Points = 0;
-  int Price = 0;
-  int priceDiscountPercen = 0;
+  double priceDiscount = 0;
+  double priceVoucher = 0;
+  double priceVoucherstorefront = 0;
+  double priceotherDiscount = 0;
+  double priceotherDiscountthe1 = 0;
+  double Point = 0;
+  double Price = 0;
+  double priceDiscountPercen = 0;
+  double pricesum = 0;
   String? from = 'discount';
   String? frompriceVoucher = 'คูปองห้อง';
   String? fromotherdiscount = 'คูปองห้อง';
+  double selectedItem = 0;
+  double sumDiscount = 0;
+  double totalSum = 1000;
+  double sumPercen = 0;
 
-  int selectedItem = 0;
-  int totalPrice = 0;
   void onItemTapped1(int index1) {
     setState(() {
-      selectedItem = index1;
+      selectedItem = index1.toDouble();
     });
   }
 
@@ -72,8 +82,31 @@ class _PaymentCashState extends State<PaymentCash> {
     });
   }
 
+  double calcuateDiscount() {
+    double totalDiscount = (priceDiscount +
+        priceVoucher +
+        priceVoucherstorefront +
+        priceotherDiscount +
+        priceotherDiscountthe1 +
+        Price +
+        (priceDiscountPercen * totalSum / 100));
+    // priceDiscountPercen != 0 ? totalDiscount *= totalSum / 100 : totalDiscount;
+    return double.parse(totalDiscount.toStringAsFixed(2));
+  }
+
   String money = "เงินสด";
-  List<String> general2 = ["เงินสด", "บัตรเครดิต/เดบิต", "QR Promptpay", "True Money", "LINE Pay", "Transfer", "Consignment", "บัตรพนักงาน  ", "แม่มณี", "อื่นๆ"];
+  List<String> general2 = [
+    "เงินสด",
+    "บัตรเครดิต/เดบิต",
+    "QR Promptpay",
+    "True Money",
+    "LINE Pay",
+    "Transfer",
+    "Consignment",
+    "บัตรพนักงาน  ",
+    "แม่มณี",
+    "อื่นๆ"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -223,7 +256,9 @@ class _PaymentCashState extends State<PaymentCash> {
                 child: Container(
                   height: size.height * 0.05,
                   width: size.width * 0.25,
-                  decoration: BoxDecoration(color: selectedItem == 1 ? Color(0xff1264E3) : Colors.white, border: Border(bottom: BorderSide(color: Color.fromARGB(255, 228, 226, 226)))),
+                  decoration: BoxDecoration(
+                      color: selectedItem == 1 ? Color(0xff1264E3) : Colors.white,
+                      border: Border(bottom: BorderSide(color: Color.fromARGB(255, 228, 226, 226)))),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -266,7 +301,9 @@ class _PaymentCashState extends State<PaymentCash> {
                 child: Container(
                   height: size.height * 0.05,
                   width: size.width * 0.25,
-                  decoration: BoxDecoration(color: selectedItem == 0 ? Color(0xff1264E3) : Colors.white, border: Border(bottom: BorderSide(color: Color.fromARGB(255, 228, 226, 226)))),
+                  decoration: BoxDecoration(
+                      color: selectedItem == 0 ? Color(0xff1264E3) : Colors.white,
+                      border: Border(bottom: BorderSide(color: Color.fromARGB(255, 228, 226, 226)))),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -325,7 +362,9 @@ class _PaymentCashState extends State<PaymentCash> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text("1,000"),
+                          child: Text(
+                            NumberFormat('#,##0.00', 'en_US').format(totalSum),
+                          ),
                         )
                       ],
                     ),
@@ -338,7 +377,7 @@ class _PaymentCashState extends State<PaymentCash> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text("0฿"),
+                          child: Text(calcuateDiscount().toStringAsFixed(2)),
                         )
                       ],
                     ),
@@ -597,9 +636,11 @@ class _PaymentCashState extends State<PaymentCash> {
                                                               discount: (value) => {
                                                                 setState(() {
                                                                   if (from == 'discount') {
-                                                                    priceDiscount = int.parse(value);
+                                                                    priceDiscount = double.parse(value);
+                                                                    sumDiscount = sumDiscount + priceDiscount;
                                                                   } else {
-                                                                    priceDiscountPercen = int.parse(value);
+                                                                    priceDiscountPercen = double.parse(value);
+                                                                    sumDiscount = sumDiscount + priceDiscountPercen;
                                                                   }
                                                                 })
                                                               },
@@ -611,9 +652,11 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                     setState(() {
                                                                       log(frompriceVoucher.toString());
                                                                       if (frompriceVoucher == 'คูปองห้อง') {
-                                                                        priceVoucher = int.parse(value);
+                                                                        priceVoucher = double.parse(value);
+                                                                        sumDiscount = sumDiscount + priceVoucher;
                                                                       } else {
-                                                                        priceVoucherstorefront = int.parse(value);
+                                                                        priceVoucherstorefront = double.parse(value);
+                                                                        sumDiscount = sumDiscount + priceVoucherstorefront;
                                                                       }
                                                                       log(frompriceVoucher.toString());
                                                                     });
@@ -622,13 +665,15 @@ class _PaymentCashState extends State<PaymentCash> {
                                                               : selectedIndex == 2
                                                                   ? Redeempointswidget(
                                                                       redeem: (p0) {
-                                                                        RegExp regex = RegExp(r"(\d{1,3}(,\d{3})*)\s*คะแนน.*?(\d{1,3}(,\d{3})*)\s*บาท");
+                                                                        RegExp regex =
+                                                                            RegExp(r"(\d{1,3}(,\d{3})*)\s*คะแนน.*?(\d{1,3}(,\d{3})*)\s*บาท");
 
                                                                         Match? match = regex.firstMatch(p0);
                                                                         if (match != null) {
-                                                                          Points = int.parse(match.group(1)!.replaceAll(',', ''));
-                                                                          Price = int.parse(match.group(3)!.replaceAll(',', ''));
-                                                                          log(Points.toString());
+                                                                          Point = double.parse(match.group(1)!.replaceAll(',', ''));
+                                                                          Price = double.parse(match.group(3)!.replaceAll(',', ''));
+                                                                          sumDiscount = sumDiscount + Point;
+                                                                          log(Point.toString());
                                                                           setState(() {});
                                                                         }
                                                                       },
@@ -640,9 +685,11 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                             inspect(value);
                                                                             log(fromotherdiscount.toString());
                                                                             if (fromotherdiscount == 'คูปองห้าง') {
-                                                                              priceotherDiscountthe1 = int.parse(value);
+                                                                              priceotherDiscountthe1 = double.parse(value);
+                                                                              sumDiscount = sumDiscount + priceotherDiscountthe1;
                                                                             } else {
-                                                                              priceotherDiscount = int.parse(value);
+                                                                              priceotherDiscount = double.parse(value);
+                                                                              sumDiscount = sumDiscount + priceotherDiscount;
                                                                             }
                                                                             // log(frompriceVoucher.toString());
                                                                             // if (value != '') {
@@ -973,24 +1020,28 @@ class _PaymentCashState extends State<PaymentCash> {
                           ),
                           InkWell(
                             onTap: () {
+                              setState(() => Point = 0);
                               setState(() => priceDiscount = 0);
                               setState(() => priceDiscountPercen = 0);
                               setState(() => priceVoucher = 0);
+                              setState(() => priceVoucherstorefront = 0);
                               setState(() => Price = 0);
                               setState(() => priceotherDiscount = 0);
-                              setState(() => Points = 0);
+                              setState(() => priceotherDiscountthe1 = 0);
                             },
                             child: Container(
                               child: Row(
                                 children: [
                                   IconButton(
                                       onPressed: () {
-                                        setState(() => Points = 0);
+                                        setState(() => Point = 0);
                                         setState(() => priceDiscount = 0);
                                         setState(() => priceDiscountPercen = 0);
                                         setState(() => priceVoucher = 0);
+                                        setState(() => priceVoucherstorefront = 0);
                                         setState(() => Price = 0);
                                         setState(() => priceotherDiscount = 0);
+                                        setState(() => priceotherDiscountthe1 = 0);
                                       },
                                       icon: Icon(
                                         Icons.highlight_remove_sharp,
@@ -1056,6 +1107,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                 IconButton(
                                     onPressed: () {
                                       setState(() => priceDiscount = 0);
+                                      setState(() => sumDiscount = 0);
                                     },
                                     icon: Icon(
                                       Icons.highlight_remove_sharp,
@@ -1084,7 +1136,8 @@ class _PaymentCashState extends State<PaymentCash> {
                                   width: size.width * 0.1,
                                   child: Text(
                                     textAlign: TextAlign.end,
-                                    NumberFormat('#,##0.00', 'en_US').format(double.parse(NumberFormat('#,##0.00', 'en_US').format(priceDiscountPercen)) * 1000 / 100),
+                                    NumberFormat('#,##0.00', 'en_US')
+                                        .format(double.parse(NumberFormat('#,##0.00', 'en_US').format(priceDiscountPercen)) * totalSum / 100),
                                     style: TextStyle(
                                         color: Color(
                                           0xFF424242,
@@ -1095,6 +1148,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                 IconButton(
                                     onPressed: () {
                                       setState(() => priceDiscountPercen = 0);
+                                      setState(() => sumDiscount = 0);
                                     },
                                     icon: Icon(
                                       Icons.highlight_remove_sharp,
@@ -1158,6 +1212,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                 IconButton(
                                     onPressed: () {
                                       setState(() => priceVoucher = 0);
+                                      setState(() => sumDiscount = 0);
                                     },
                                     icon: Icon(
                                       Icons.highlight_remove_sharp,
@@ -1197,6 +1252,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                 IconButton(
                                     onPressed: () {
                                       setState(() => priceVoucherstorefront = 0);
+                                      setState(() => sumDiscount = 0);
                                     },
                                     icon: Icon(
                                       Icons.highlight_remove_sharp,
@@ -1224,20 +1280,20 @@ class _PaymentCashState extends State<PaymentCash> {
                       SizedBox(
                         height: size.height * 0.01,
                       ),
-                      Price != 0 || Points != 0
+                      Price != 0 || Point != 0
                           ? Text(
                               'แลกคะแนน',
                               style: TextStyle(fontSize: 20, color: Color(0xFF1264E3)),
                             )
                           : SizedBox.shrink(),
-                      Price != 0 || Points != 0
+                      Price != 0 || Point != 0
                           ? Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 SizedBox(
                                   width: size.width * 0.1,
                                   child: Text(
-                                    '${NumberFormat('#,##0', 'en_US').format(Points)} คะแนน',
+                                    '${NumberFormat('#,##0', 'en_US').format(Point)} คะแนน',
                                     style: TextStyle(
                                         color: Color(
                                           0xFF424242,
@@ -1260,7 +1316,8 @@ class _PaymentCashState extends State<PaymentCash> {
                                 IconButton(
                                     onPressed: () {
                                       setState(() => Price = 0);
-                                      setState(() => Points = 0);
+                                      setState(() => Point = 0);
+                                      setState(() => sumDiscount = 0);
                                     },
                                     icon: Icon(
                                       Icons.highlight_remove_sharp,
@@ -1272,7 +1329,7 @@ class _PaymentCashState extends State<PaymentCash> {
                           : SizedBox.shrink(),
                     ],
                   ),
-                  Price != 0 || Points != 0
+                  Price != 0 || Point != 0
                       ? SizedBox(
                           width: size.width * 0.24,
                           child: Divider(
@@ -1324,6 +1381,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                 IconButton(
                                     onPressed: () {
                                       setState(() => priceotherDiscount = 0);
+                                      setState(() => sumDiscount = 0);
                                     },
                                     icon: Icon(
                                       Icons.highlight_remove_sharp,
@@ -1363,6 +1421,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                 IconButton(
                                     onPressed: () {
                                       setState(() => priceotherDiscountthe1 = 0);
+                                      setState(() => sumDiscount = 0);
                                     },
                                     icon: Icon(
                                       Icons.highlight_remove_sharp,
@@ -1404,7 +1463,18 @@ class _SplitPaymentState extends State<SplitPayment> {
   @override
   Widget build(BuildContext context) {
     String money = "เงินสด";
-    List<String> general2 = ["เงินสด", "บัตรเครดิต/เดบิต", "QR Promptpay", "True Money", "LINE Pay", "Transfer", "Consignment", "บัตรพนักงาน  ", "แม่มณี", "อื่นๆ"];
+    List<String> general2 = [
+      "เงินสด",
+      "บัตรเครดิต/เดบิต",
+      "QR Promptpay",
+      "True Money",
+      "LINE Pay",
+      "Transfer",
+      "Consignment",
+      "บัตรพนักงาน  ",
+      "แม่มณี",
+      "อื่นๆ"
+    ];
     void addModtodpayment() {
       final size = MediaQuery.of(context).size;
       setState(() {
@@ -1419,7 +1489,8 @@ class _SplitPaymentState extends State<SplitPayment> {
                 Container(
                   height: size.height * 0.1,
                   width: size.width * 0.13,
-                  decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
+                  decoration: BoxDecoration(
+                      border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -1476,7 +1547,8 @@ class _SplitPaymentState extends State<SplitPayment> {
                 Container(
                   height: size.height * 0.1,
                   width: size.width * 0.13,
-                  decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
+                  decoration: BoxDecoration(
+                      border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Row(
@@ -1525,7 +1597,8 @@ class _SplitPaymentState extends State<SplitPayment> {
                 Container(
                   height: size.height * 0.1,
                   width: size.width * 0.13,
-                  decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
+                  decoration: BoxDecoration(
+                      border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Row(
