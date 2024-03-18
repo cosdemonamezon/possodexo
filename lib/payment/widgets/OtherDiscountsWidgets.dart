@@ -422,6 +422,7 @@ class _RowDiscountWidgetState extends State<RowDiscountWidget> {
                       child: TextFormField(
                         controller: widget.otherDiscount,
                         onChanged: widget.onChangedAmount,
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           hintText: 'จำนานเงิน',
                           border: InputBorder.none,
