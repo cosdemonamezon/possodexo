@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:number_paginator/number_paginator.dart';
 import 'package:possodexo/home/widgets/Tablereceipt.dart';
 
 class PrintCallBack extends StatefulWidget {
@@ -81,6 +82,13 @@ class _PrintCallBackState extends State<PrintCallBack> {
                 Tablereceipt(
                   closeblack: () {},
                 ),
+                NumberPaginator(
+                  numberPages: 10,
+                  config: const NumberPaginatorUIConfig(mode: ContentDisplayMode.dropdown),
+                  onPageChange: (int index) {
+                    setState(() {});
+                  },
+                )
               ],
             ),
           ),

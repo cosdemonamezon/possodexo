@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:possodexo/home/data/callbackdata.dart';
 import 'package:possodexo/home/data/receipt.dart';
+import 'package:possodexo/home/model/callbackmodel.dart';
 import 'package:possodexo/home/model/receiptmodel.dart';
 
-class Tablereceipt extends StatefulWidget {
-  const Tablereceipt({
+class TableCallback extends StatefulWidget {
+  const TableCallback({
     Key? key,
     required this.closeblack,
   }) : super(key: key);
@@ -11,18 +13,18 @@ class Tablereceipt extends StatefulWidget {
   final VoidCallback closeblack;
 
   @override
-  State<Tablereceipt> createState() => _TablereceiptState();
+  State<TableCallback> createState() => _TableCallbackState();
 }
 
-class _TablereceiptState extends State<Tablereceipt> {
-  late List<Receipt> redetails;
+class _TableCallbackState extends State<TableCallback> {
+  late List<Callback> calldetails;
   int? sortColumnIndex;
   bool isAscending = false;
 
   @override
   void initState() {
     super.initState();
-    redetails = List.of(receipts);
+    calldetails = List.of(callbackallDetails);
   }
 
   @override
@@ -44,7 +46,7 @@ class _TablereceiptState extends State<Tablereceipt> {
       sortAscending: isAscending,
       sortColumnIndex: sortColumnIndex,
       columns: getColumns(columns),
-      rows: getRows(redetails),
+      rows: getRows(calldetails),
     );
   }
 
@@ -57,24 +59,24 @@ class _TablereceiptState extends State<Tablereceipt> {
         .toList();
   }
 
-  List<DataRow> getRows(List<Receipt> redetails) => redetails.map((Receipt redetail) {
+  List<DataRow> getRows(List<Callback> calldetails) => calldetails.map((Callback calldetail) {
         final cells = [
-          redetail.receiptnumber,
-          redetail.date,
-          redetail.employee,
-          redetail.salesperson,
-          redetail.numberofproducts,
-          redetail.tax,
-          redetail.paymentmethod,
-          redetail.status,
+          calldetail.receiptnumber,
+          calldetail.date,
+          calldetail.employee,
+          calldetail.salesperson,
+          calldetail.numberofproducts,
+          calldetail.tax,
+          calldetail.paymentmethod,
+          calldetail.status,
           Image.asset(
-            redetail.imageUrl,
+            calldetail.imageUrl,
             scale: 20,
           ),
         ];
         final dataCells = getCells(cells);
-        if (redetail.status == 'Close') {
-          dataCells[7] = DataCell(Text(redetail.status, style: TextStyle(color: Colors.green)));
+        if (calldetail.status == 'Close') {
+          dataCells[7] = DataCell(Text(calldetail.status, style: TextStyle(color: Colors.green)));
         }
 
         return DataRow(cells: dataCells);

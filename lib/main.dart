@@ -73,7 +73,7 @@ class MyApp extends StatelessWidget {
           fontFamily: 'IBMPlexSansThai',
         ),
         debugShowCheckedModeBanner: false,
-        home: Printter(),
+        home: LoginPage(),
         // home: Printter(
         //     // selectedItem: [],
         //     // sumPrice: '',

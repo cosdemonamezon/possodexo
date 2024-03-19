@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:possodexo/home/widgets/TableCallback.dart';
 
 class Cancelbill extends StatefulWidget {
   const Cancelbill({super.key});
@@ -22,7 +23,7 @@ class _CancelbillState extends State<Cancelbill> {
               children: [
                 Container(
                   height: size.height * 0.08,
-                  width: size.width * 0.16,
+                  width: double.infinity,
                   decoration: BoxDecoration(color: Color(0xFFECEFF1)),
                   child: Row(
                     children: [
@@ -33,6 +34,12 @@ class _CancelbillState extends State<Cancelbill> {
                     ],
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TableCallback(
+                    closeblack: () {},
+                  ),
+                )
               ],
             ),
           )

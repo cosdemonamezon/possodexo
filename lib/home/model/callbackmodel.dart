@@ -1,4 +1,4 @@
-class Receipt {
+class Callback {
   final String receiptnumber;
   final String date;
   final String employee;
@@ -8,9 +8,9 @@ class Receipt {
   final String paymentmethod;
   final String netbalance;
   final String status;
-  final String imageUrl; // เพิ่มฟิลด์ imageUrl เพื่อเก็บ URL ของรูปภาพ
+  final String imageUrl;
 
-  const Receipt({
+  const Callback({
     required this.receiptnumber,
     required this.date,
     required this.employee,
@@ -20,10 +20,9 @@ class Receipt {
     required this.paymentmethod,
     required this.netbalance,
     required this.status,
-    required this.imageUrl, // ปรับเปลี่ยนตามการเพิ่มฟิลด์
+    required this.imageUrl,
   });
-
-  Receipt copy({
+  Callback copy({
     String? promoCode,
     String? date,
     String? salesperson,
@@ -31,9 +30,9 @@ class Receipt {
     String? tax,
     String? paymentmethod,
     String? netbalance,
-    String? imageUrl, // ปรับเปลี่ยนตามการเพิ่มฟิลด์
+    String? imageUrl,
   }) =>
-      Receipt(
+      Callback(
         receiptnumber: promoCode ?? this.receiptnumber,
         date: date ?? this.date,
         salesperson: salesperson ?? this.salesperson,

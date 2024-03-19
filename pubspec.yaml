@@ -52,6 +52,7 @@ dependencies:
   device_info_plus: ^9.1.2
   smooth_page_indicator: ^1.1.0
   permission_handler: ^9.2.0
+  number_paginator: ^0.4.1
 
   imin_printer:
       git:

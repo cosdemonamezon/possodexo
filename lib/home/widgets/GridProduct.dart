@@ -30,7 +30,7 @@ class _GridCoffeeState extends State<GridCoffee> {
   void initState() {
     super.initState();
     getlistproduct(categoryid: widget.gridCoffee[0].id);
-    inspect(widget.gridCoffee);
+    // inspect(widget.gridCoffee);
   }
 
   Future<void> getlistproduct({required int categoryid}) async {
@@ -82,7 +82,7 @@ class _GridCoffeeState extends State<GridCoffee> {
                               );
                             });
                         if (item != null) {
-                          inspect(item);
+                          // inspect(item);
                           widget.onChange(item);
                         }
                       }
