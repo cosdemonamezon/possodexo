@@ -53,6 +53,7 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   permission_handler: ^9.2.0
   number_paginator: ^0.4.1
+  fluttertoast: ^8.2.4
 
   imin_printer:
       git:
