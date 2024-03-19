@@ -101,7 +101,6 @@ class _PrintterState extends State<Printter> {
       textColor: Colors.white,
       fontSize: 16.0,
     );
-    await iminPrinter.printAndLineFeed();
     // Print Image and Right Aligned Text
     Uint8List byte = await _getImageFromAsset('assets/images/logowhitemini.png');
     await iminPrinter.printSingleBitmap(
@@ -115,7 +114,7 @@ class _PrintterState extends State<Printter> {
       style: IminTextStyle(
         wordWrap: true,
         fontSize: 22,
-        space: 10,
+        space: 0,
         align: IminPrintAlign.left,
       ),
     );
@@ -192,9 +191,9 @@ class _PrintterState extends State<Printter> {
           align: IminPrintAlign.left,
         ),
         ColumnMaker(
-          text: 'SVC#46228754752147740174',
+          text: 'SVC#462287547521477401',
           width: 1,
-          fontSize: 22,
+          fontSize: 20,
           align: IminPrintAlign.right,
         ),
       ],
@@ -213,7 +212,7 @@ class _PrintterState extends State<Printter> {
     await iminPrinter.printAndLineFeed();
 
     await iminPrinter.printText(
-      '===Txn Ecpn reload === 02-02-24 10:01===',
+      '======Txn Ecpn reload ====== 02-02-24 10:01======',
       style: IminTextStyle(
         wordWrap: true,
         fontSize: 22,
@@ -242,7 +241,7 @@ class _PrintterState extends State<Printter> {
     await iminPrinter.printAndLineFeed();
 
     await iminPrinter.printText(
-      '======Total remain======',
+      '============Total remain============',
       style: IminTextStyle(
         wordWrap: true,
         fontSize: 22,
@@ -289,7 +288,7 @@ class _PrintterState extends State<Printter> {
     await iminPrinter.printAndLineFeed();
 
     await iminPrinter.printText(
-      '---Ecpn-----Exp-date------Get--Total--',
+      '---------Ecpn--------Exp-date---------Get--Total--------',
       style: IminTextStyle(
         wordWrap: true,
         fontSize: 22,
@@ -303,7 +302,7 @@ class _PrintterState extends State<Printter> {
       '0000009545454651651: Daily 50 Baht',
       style: IminTextStyle(
         wordWrap: true,
-        fontSize: 22,
+        fontSize: 20,
         space: 10,
         align: IminPrintAlign.left,
       ),
@@ -335,7 +334,7 @@ class _PrintterState extends State<Printter> {
     await iminPrinter.printAndLineFeed();
 
     await iminPrinter.printText(
-      '----------Werchant copy---------',
+      '--------------------Werchant copy-----------------',
       style: IminTextStyle(
         wordWrap: true,
         fontSize: 22,
@@ -343,8 +342,6 @@ class _PrintterState extends State<Printter> {
         align: IminPrintAlign.center,
       ),
     );
-
-    await iminPrinter.printAndLineFeed();
 
     // Print QR Code
     await iminPrinter.printQrCode(
