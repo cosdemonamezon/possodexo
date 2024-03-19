@@ -482,7 +482,7 @@ class _MembershipState extends State<Membership> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5.0),
                 ),
-                child: Container(
+                child: SizedBox(
                   width: size.width * 0.08,
                   height: size.height * 0.05,
                   child: Center(

@@ -17,11 +17,13 @@ class OpenPrintDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       surfaceTintColor: Colors.white,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(2))),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(2))),
       title: Column(
         children: [
-          Image.asset('assets/icons/Receipt.png'),
+          Image.asset(
+            'assets/icons/Receipt.png',
+            scale: 10,
+          ),
           Text(
             'เปิดใช้งานการพิมพ์ใบเสร็จ',
             style: TextStyle(
@@ -56,9 +58,7 @@ class OpenPrintDialog extends StatelessWidget {
                 //color: Colors.blue,
                 surfaceTintColor: Colors.white,
                 elevation: 5,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                    side: BorderSide(color: kButtonColor)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0), side: BorderSide(color: kButtonColor)),
 
                 child: Container(
                   width: size.width * 0.18,
@@ -90,10 +90,7 @@ class OpenPrintDialog extends StatelessWidget {
                   child: Center(
                       child: Text(
                     'ยืนยัน',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                   )),
                 ),
               ),

@@ -1,33 +1,38 @@
 class Receipt {
   final String receiptnumber;
-  final String type;
-  final String promotionName;
-  final String details;
-  final String StartDate;
-  final String ExpirationDate;
+  final String date;
+  final String employee;
+  final String salesperson;
+  final String numberofproducts;
+  final String tax;
+  final String paymentmethod;
+  final String netbalance;
+  final String status;
+  final String empty;
 
-  const Receipt({
-    required this.receiptnumber,
-    required this.type,
-    required this.promotionName,
-    required this.details,
-    required this.StartDate,
-    required this.ExpirationDate,
-  });
-  Receipt copy({
-    String? promoCode,
-    String? type,
-    String? promotionName,
-    String? details,
-    String? StartDate,
-    String? ExpirationDate,
-  }) =>
+  const Receipt(
+      {required this.receiptnumber,
+      required this.date,
+      required this.employee,
+      required this.salesperson,
+      required this.numberofproducts,
+      required this.tax,
+      required this.paymentmethod,
+      required this.netbalance,
+      required this.status,
+      required this.empty});
+  Receipt copy(
+          {String? promoCode, String? date, String? salesperson, String? numberofproducts, String? tax, String? paymentmethod, String? netbalance}) =>
       Receipt(
         receiptnumber: promoCode ?? this.receiptnumber,
-        type: type ?? this.type,
-        promotionName: promotionName ?? this.promotionName,
-        details: details ?? this.details,
-        StartDate: StartDate ?? this.StartDate,
-        ExpirationDate: ExpirationDate ?? this.ExpirationDate,
+        date: date ?? this.date,
+        salesperson: salesperson ?? this.salesperson,
+        employee: employee ?? this.employee,
+        numberofproducts: numberofproducts ?? this.numberofproducts,
+        tax: tax ?? this.tax,
+        paymentmethod: paymentmethod ?? this.paymentmethod,
+        netbalance: netbalance ?? this.netbalance,
+        status: status,
+        empty: empty,
       );
 }
