@@ -65,10 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                               SystemUiMode.immersiveSticky,
                             );
                             if (!mounted) return;
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => FirstPage()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => FirstPage()));
                           },
                           child: Card(
                             color: Colors.blue,
@@ -76,16 +73,13 @@ class _LoginPageState extends State<LoginPage> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0),
                             ),
-                            child: Container(
+                            child: SizedBox(
                               width: double.infinity,
                               height: size.height * 0.06,
                               child: Center(
                                   child: Text(
                                 'เข้าสู่ระบบ',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold),
+                                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                               )),
                             ),
                           ),

@@ -1032,7 +1032,7 @@ class _HomePageState extends State<HomePage> {
                                                             ),
                                                             Row(
                                                               children: List.generate(selectedItem[index].p2.length,
-                                                                  (index2) => Text("${selectedItem[index].p2[index2].name}, ")),
+                                                                  (index2) => Wrap(children: [Text("${selectedItem[index].p2[index2].name}, ")])),
                                                               //children: [Text("${selectedItem[index].p2}")],
                                                             ),
                                                             Divider()

@@ -78,9 +78,6 @@ class _PrintCallBackState extends State<PrintCallBack> {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: size.height * 0.1,
-                ),
                 Tablereceipt(
                   closeblack: () {},
                 ),
