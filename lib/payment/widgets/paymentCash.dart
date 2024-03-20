@@ -6,6 +6,10 @@ import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:possodexo/home/widgets/OpenAndCloseSwitch.dart';
 import 'package:possodexo/models/listProduct.dart';
+import 'package:possodexo/models/order.dart';
+import 'package:possodexo/models/orderpayments.dart';
+import 'package:possodexo/models/payment.dart';
+import 'package:possodexo/payment/service/paymentApi.dart';
 import 'package:possodexo/payment/widgets/Addpayment.dart';
 import 'package:possodexo/payment/widgets/Discount.dart';
 import 'package:possodexo/payment/widgets/GiftVoucherwidgets.dart';
@@ -16,6 +20,7 @@ import 'package:possodexo/payment/widgets/Redeempointswidget.dart';
 
 import 'package:possodexo/payment/widgets/numbercel.dart';
 import 'package:possodexo/payment/widgets/paymentmedtod.dart';
+import 'package:possodexo/widgets/AlertDialogYesNo.dart';
 import 'package:presentation_displays/display.dart';
 
 class PaymentCash extends StatefulWidget {
@@ -24,12 +29,14 @@ class PaymentCash extends StatefulWidget {
     required this.selectedItem,
     required this.sumPrice,
     required this.sumQTY,
+    required this.order,
   });
   final List<ListProduct> selectedItem;
   final String sumPrice;
   final String sumQTY;
   String? money;
   double priceDiscount = 0;
+  Order order;
   @override
   State<PaymentCash> createState() => _PaymentCashState();
 }
@@ -55,6 +62,8 @@ class _PaymentCashState extends State<PaymentCash> {
   double sumDiscount = 0;
   double totalSum = 1000;
   double sumPercen = 0;
+  Payment? payment;
+  List<OrderPayments> orderPayments = [];
 
   void onItemTapped1(int index1) {
     setState(() {
@@ -83,29 +92,12 @@ class _PaymentCashState extends State<PaymentCash> {
   }
 
   double calcuateDiscount() {
-    double totalDiscount = (priceDiscount +
-        priceVoucher +
-        priceVoucherstorefront +
-        priceotherDiscount +
-        priceotherDiscountthe1 +
-        Price +
-        (priceDiscountPercen * totalSum / 100));
+    double totalDiscount = (priceDiscount + priceVoucher + priceVoucherstorefront + priceotherDiscount + priceotherDiscountthe1 + Price + (priceDiscountPercen * totalSum / 100));
     return double.parse(totalDiscount.toStringAsFixed(2));
   }
 
   String money = "เงินสด";
-  List<String> general2 = [
-    "เงินสด",
-    "บัตรเครดิต/เดบิต",
-    "QR Promptpay",
-    "True Money",
-    "LINE Pay",
-    "Transfer",
-    "Consignment",
-    "บัตรพนักงาน  ",
-    "แม่มณี",
-    "อื่นๆ"
-  ];
+  List<String> general2 = ["เงินสด", "บัตรเครดิต/เดบิต", "QR Promptpay", "True Money", "LINE Pay", "Transfer", "Consignment", "บัตรพนักงาน  ", "แม่มณี", "อื่นๆ"];
 
   @override
   Widget build(BuildContext context) {
@@ -255,9 +247,7 @@ class _PaymentCashState extends State<PaymentCash> {
                 child: Container(
                   height: size.height * 0.05,
                   width: size.width * 0.25,
-                  decoration: BoxDecoration(
-                      color: selectedItem == 1 ? Color(0xff1264E3) : Colors.white,
-                      border: Border(bottom: BorderSide(color: Color.fromARGB(255, 228, 226, 226)))),
+                  decoration: BoxDecoration(color: selectedItem == 1 ? Color(0xff1264E3) : Colors.white, border: Border(bottom: BorderSide(color: Color.fromARGB(255, 228, 226, 226)))),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -300,9 +290,7 @@ class _PaymentCashState extends State<PaymentCash> {
                 child: Container(
                   height: size.height * 0.05,
                   width: size.width * 0.25,
-                  decoration: BoxDecoration(
-                      color: selectedItem == 0 ? Color(0xff1264E3) : Colors.white,
-                      border: Border(bottom: BorderSide(color: Color.fromARGB(255, 228, 226, 226)))),
+                  decoration: BoxDecoration(color: selectedItem == 0 ? Color(0xff1264E3) : Colors.white, border: Border(bottom: BorderSide(color: Color.fromARGB(255, 228, 226, 226)))),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -488,7 +476,15 @@ class _PaymentCashState extends State<PaymentCash> {
                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                               children: [
-                                                                Container(height: size.height * 0.18, child: PaymentMethod()),
+                                                                Container(
+                                                                    height: size.height * 0.18,
+                                                                    child: PaymentMethod(
+                                                                      onPayment: (paymentValue) {
+                                                                        setState(() {
+                                                                          payment = paymentValue;
+                                                                        });
+                                                                      },
+                                                                    )),
                                                                 Row(
                                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                   children: [
@@ -669,8 +665,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                                               : selectedIndex == 2
                                                                   ? Redeempointswidget(
                                                                       redeem: (p0) {
-                                                                        RegExp regex =
-                                                                            RegExp(r"(\d{1,3}(,\d{3})*)\s*คะแนน.*?(\d{1,3}(,\d{3})*)\s*บาท");
+                                                                        RegExp regex = RegExp(r"(\d{1,3}(,\d{3})*)\s*คะแนน.*?(\d{1,3}(,\d{3})*)\s*บาท");
 
                                                                         Match? match = regex.firstMatch(p0);
                                                                         if (match != null) {
@@ -835,8 +830,9 @@ class _PaymentCashState extends State<PaymentCash> {
                                 ),
                                 SizedBox(
                                   child: InkWell(
-                                    onTap: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Proceedsplitpayments()));
+                                    onTap: () async {
+                                      try {} on Exception catch (e) {}
+                                      //Navigator.push(context, MaterialPageRoute(builder: (context) => Proceedsplitpayments()));
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Color(0xff4CAF50)),
@@ -973,8 +969,47 @@ class _PaymentCashState extends State<PaymentCash> {
                                 ),
                                 SizedBox(
                                   child: InkWell(
-                                    onTap: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Proceedpayment()));
+                                    onTap: () async {
+                                      try {
+                                        if (ai.text != null || ai.text != '') {
+                                          setState(() {
+                                            final _orderPayment = OrderPayments(payment!.id, double.parse(ai.text), '');
+                                            orderPayments.add(_orderPayment);
+                                          });
+                                          final _paymentOrder = await PaymentApi.paymentSelected(orderId: widget.order.id, orderPayments: orderPayments);
+                                          if (_paymentOrder != null) {
+                                            if (!mounted) return;
+                                            Navigator.push(context, MaterialPageRoute(builder: (context) => Proceedpayment(
+                                              order: widget.order,
+                                              paymentOrder: _paymentOrder,
+                                            )));
+                                          } else {
+                                            if (!mounted) return;
+                                            showDialog(
+                                              context: context,
+                                              builder: (context) => AlertDialogYes(
+                                                title: 'แจ้งเตือน',
+                                                description: 'ค่าที่ตอบกลับมาเป็นค่าว่าง',
+                                                pressYes: () {
+                                                  Navigator.pop(context, true);
+                                                },
+                                              ),
+                                            );
+                                          }
+                                        }
+                                      } on Exception catch (e) {
+                                        if (!mounted) return;
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) => AlertDialogYes(
+                                            title: 'แจ้งเตือน',
+                                            description: '{$e}',
+                                            pressYes: () {
+                                              Navigator.pop(context, true);
+                                            },
+                                          ),
+                                        );
+                                      }
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Color(0xff4CAF50)),
@@ -1140,8 +1175,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                   width: size.width * 0.1,
                                   child: Text(
                                     textAlign: TextAlign.end,
-                                    NumberFormat('#,##0.00', 'en_US')
-                                        .format(double.parse(NumberFormat('#,##0.00', 'en_US').format(priceDiscountPercen)) * totalSum / 100),
+                                    NumberFormat('#,##0.00', 'en_US').format(double.parse(NumberFormat('#,##0.00', 'en_US').format(priceDiscountPercen)) * totalSum / 100),
                                     style: TextStyle(
                                         color: Color(
                                           0xFF424242,
@@ -1467,18 +1501,7 @@ class _SplitPaymentState extends State<SplitPayment> {
   @override
   Widget build(BuildContext context) {
     String money = "เงินสด";
-    List<String> general2 = [
-      "เงินสด",
-      "บัตรเครดิต/เดบิต",
-      "QR Promptpay",
-      "True Money",
-      "LINE Pay",
-      "Transfer",
-      "Consignment",
-      "บัตรพนักงาน  ",
-      "แม่มณี",
-      "อื่นๆ"
-    ];
+    List<String> general2 = ["เงินสด", "บัตรเครดิต/เดบิต", "QR Promptpay", "True Money", "LINE Pay", "Transfer", "Consignment", "บัตรพนักงาน  ", "แม่มณี", "อื่นๆ"];
     void addModtodpayment() {
       final size = MediaQuery.of(context).size;
       setState(() {
@@ -1493,8 +1516,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                 Container(
                   height: size.height * 0.1,
                   width: size.width * 0.13,
-                  decoration: BoxDecoration(
-                      border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
+                  decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -1551,8 +1573,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                 Container(
                   height: size.height * 0.1,
                   width: size.width * 0.13,
-                  decoration: BoxDecoration(
-                      border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
+                  decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Row(
@@ -1601,8 +1622,7 @@ class _SplitPaymentState extends State<SplitPayment> {
                 Container(
                   height: size.height * 0.1,
                   width: size.width * 0.13,
-                  decoration: BoxDecoration(
-                      border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
+                  decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Row(

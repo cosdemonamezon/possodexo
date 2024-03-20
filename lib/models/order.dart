@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:possodexo/models/orderitems.dart';
 import 'package:possodexo/models/orderpayment.dart';
 import 'package:possodexo/models/shift.dart';
 
@@ -17,7 +18,8 @@ class Order {
   final double? discount;
   final double? grandTotal;
   Shift? shift;
-  OrderPayment? orderPayments;
+  List<Orderitems>? orderItems;
+  List<OrderPayment>? orderPayments;
 
   Order(
     this.createdAt,
@@ -31,7 +33,8 @@ class Order {
     this.shift,
     this.total,
     this.updatedAt,
-    this.orderPayments
+    this.orderPayments,
+    this.orderItems
   );
 
   factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);

@@ -28,10 +28,12 @@ Order _$OrderFromJson(Map<String, dynamic> json) => Order(
       json['updatedAt'] == null
           ? null
           : DateTime.parse(json['updatedAt'] as String),
-      json['orderPayments'] == null
-          ? null
-          : OrderPayment.fromJson(
-              json['orderPayments'] as Map<String, dynamic>),
+      (json['orderPayments'] as List<dynamic>?)
+          ?.map((e) => OrderPayment.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      (json['orderItems'] as List<dynamic>?)
+          ?.map((e) => Orderitems.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
@@ -46,5 +48,6 @@ Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       'discount': instance.discount,
       'grandTotal': instance.grandTotal,
       'shift': instance.shift,
+      'orderItems': instance.orderItems,
       'orderPayments': instance.orderPayments,
     };

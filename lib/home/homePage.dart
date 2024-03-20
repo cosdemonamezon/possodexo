@@ -18,6 +18,7 @@ import 'package:possodexo/home/widgets/texFristPage.dart';
 
 import 'package:possodexo/home/widgets/texPage.dart';
 import 'package:possodexo/models/listProduct.dart';
+import 'package:possodexo/models/order.dart';
 import 'package:possodexo/models/orderitemsdto.dart';
 import 'package:possodexo/models/productAttributeValue.dart';
 import 'package:possodexo/models/branch.dart';
@@ -56,6 +57,7 @@ class _HomePageState extends State<HomePage> {
   double totleprice = 0.00;
   int selectedPayback = 0;
   int? selectedPrice = 0;
+  Order? order;
 
   void onItemTapped(int index) {
     setState(() {
@@ -281,8 +283,7 @@ class _HomePageState extends State<HomePage> {
                                 height: size.height * 0.06,
                                 width: size.width * 0.04,
                                 child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.white, borderRadius: BorderRadius.circular(8), border: Border.all(color: Color(0xFF1264E3))),
+                                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8), border: Border.all(color: Color(0xFF1264E3))),
                                   child: PopupMenuButton(
                                     color: Colors.white,
                                     surfaceTintColor: Colors.white,
@@ -381,19 +382,14 @@ class _HomePageState extends State<HomePage> {
                                                         Card(
                                                           surfaceTintColor: Colors.white,
                                                           elevation: 2,
-                                                          shape: RoundedRectangleBorder(
-                                                              borderRadius: BorderRadius.circular(5.0), side: BorderSide(color: kButtonColor)),
+                                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0), side: BorderSide(color: kButtonColor)),
                                                           child: SizedBox(
                                                             width: size.width * 0.1,
                                                             height: size.height * 0.06,
                                                             child: Center(
                                                                 child: Text(
                                                               'Order${(orders.length + 1).toString().padLeft(2, '0')}',
-                                                              style: TextStyle(
-                                                                  color: kButtonColor,
-                                                                  fontFamily: 'IBMPlexSansThai',
-                                                                  fontSize: 16,
-                                                                  fontWeight: FontWeight.bold),
+                                                              style: TextStyle(color: kButtonColor, fontFamily: 'IBMPlexSansThai', fontSize: 16, fontWeight: FontWeight.bold),
                                                             )),
                                                           ),
                                                         ),
@@ -416,8 +412,7 @@ class _HomePageState extends State<HomePage> {
                                               child: Card(
                                                 surfaceTintColor: Colors.white,
                                                 elevation: 5,
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(5.0), side: BorderSide(color: kButtonColor)),
+                                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0), side: BorderSide(color: kButtonColor)),
                                                 color: Colors.white,
                                                 child: SizedBox(
                                                   width: size.width * 0.07,
@@ -434,11 +429,7 @@ class _HomePageState extends State<HomePage> {
                                                       ),
                                                       Text(
                                                         'เพิ่ม',
-                                                        style: TextStyle(
-                                                            color: kButtonColor,
-                                                            fontFamily: 'IBMPlexSansThai',
-                                                            fontSize: 16,
-                                                            fontWeight: FontWeight.bold),
+                                                        style: TextStyle(color: kButtonColor, fontFamily: 'IBMPlexSansThai', fontSize: 16, fontWeight: FontWeight.bold),
                                                       ),
                                                     ],
                                                   ),
@@ -670,18 +661,13 @@ class _HomePageState extends State<HomePage> {
                                             child: Container(
                                               width: size.width * 0.05,
                                               height: size.height * 0.05,
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(8),
-                                                  color: selectedIndex == 1 ? Colors.blue : Color.fromARGB(255, 255, 255, 255)),
+                                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: selectedIndex == 1 ? Colors.blue : Color.fromARGB(255, 255, 255, 255)),
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                 children: [
                                                   Text(
                                                     "สมาชิก",
-                                                    style: TextStyle(
-                                                        fontSize: 16,
-                                                        fontFamily: 'IBMPlexSansThai',
-                                                        color: selectedIndex == 1 ? Color.fromARGB(255, 255, 255, 255) : Colors.black),
+                                                    style: TextStyle(fontSize: 16, fontFamily: 'IBMPlexSansThai', color: selectedIndex == 1 ? Color.fromARGB(255, 255, 255, 255) : Colors.black),
                                                   ),
                                                 ],
                                               ),
@@ -745,10 +731,7 @@ class _HomePageState extends State<HomePage> {
                                               child: Padding(
                                                 padding: const EdgeInsets.all(6.0),
                                                 child: Container(
-                                                  decoration: BoxDecoration(
-                                                      border: Border(bottom: BorderSide(color: Colors.grey)),
-                                                      borderRadius: BorderRadius.circular(2),
-                                                      color: Color(0xFFFFFAFAFA)),
+                                                  decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
                                                   child: Column(
                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
@@ -807,10 +790,7 @@ class _HomePageState extends State<HomePage> {
                                               child: Padding(
                                                 padding: const EdgeInsets.all(6.0),
                                                 child: Container(
-                                                  decoration: BoxDecoration(
-                                                      border: Border(bottom: BorderSide(color: Colors.grey)),
-                                                      borderRadius: BorderRadius.circular(2),
-                                                      color: Color(0xfffffafafa)),
+                                                  decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xfffffafafa)),
                                                   child: Column(
                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
@@ -938,9 +918,7 @@ class _HomePageState extends State<HomePage> {
                                                                         if (selectedItem[index].product.qty > 1) {
                                                                           setState(() {
                                                                             selectedItem[index].product.qty = selectedItem[index].product.qty - 1;
-                                                                            final price = double.parse(
-                                                                                (selectedItem[index].product.price! * selectedItem[index].product.qty)
-                                                                                    .toString());
+                                                                            final price = double.parse((selectedItem[index].product.price! * selectedItem[index].product.qty).toString());
 
                                                                             totleqty = selectedItem[index].product.qty;
                                                                             selectedItem[index].product.priceQTY = price;
@@ -951,8 +929,7 @@ class _HomePageState extends State<HomePage> {
                                                                       child: Container(
                                                                         width: size.width * 0.02,
                                                                         height: 30,
-                                                                        decoration: BoxDecoration(
-                                                                            color: Color(0xFFCFD8DC), borderRadius: BorderRadius.circular(6)),
+                                                                        decoration: BoxDecoration(color: Color(0xFFCFD8DC), borderRadius: BorderRadius.circular(6)),
                                                                         child: Icon(
                                                                           Icons.remove,
                                                                           size: 15,
@@ -971,9 +948,7 @@ class _HomePageState extends State<HomePage> {
                                                                         if (selectedItem[index].product.qty >= 1) {
                                                                           setState(() {
                                                                             selectedItem[index].product.qty = selectedItem[index].product.qty + 1;
-                                                                            final price = double.parse(
-                                                                                (selectedItem[index].product.price! * selectedItem[index].product.qty)
-                                                                                    .toString());
+                                                                            final price = double.parse((selectedItem[index].product.price! * selectedItem[index].product.qty).toString());
                                                                             totleqty = selectedItem[index].product.qty;
 
                                                                             selectedItem[index].product.priceQTY = price;
@@ -984,8 +959,7 @@ class _HomePageState extends State<HomePage> {
                                                                       child: Container(
                                                                         width: size.width * 0.02,
                                                                         height: 30,
-                                                                        decoration: BoxDecoration(
-                                                                            color: Color(0xFFCFD8DC), borderRadius: BorderRadius.circular(6)),
+                                                                        decoration: BoxDecoration(color: Color(0xFFCFD8DC), borderRadius: BorderRadius.circular(6)),
                                                                         child: Icon(
                                                                           Icons.add,
                                                                           size: 15,
@@ -1004,8 +978,7 @@ class _HomePageState extends State<HomePage> {
                                                                   ),
                                                                   child: Text(
                                                                     'ขนาด',
-                                                                    style: TextStyle(
-                                                                        fontSize: 14, fontFamily: 'IBMPlexSansThai', color: Color(0xFF455A64)),
+                                                                    style: TextStyle(fontSize: 14, fontFamily: 'IBMPlexSansThai', color: Color(0xFF455A64)),
                                                                   ),
                                                                 ),
                                                                 Text("${selectedItem[index].p0.name}")
@@ -1023,16 +996,14 @@ class _HomePageState extends State<HomePage> {
                                                                 Padding(
                                                                   padding: const EdgeInsets.only(right: 5, top: 5),
                                                                   child: Text(
-                                                                    (selectedItem[index].product.price ?? 0 + attributeValues!.price!)
-                                                                        .toStringAsFixed(2),
+                                                                    (selectedItem[index].product.price ?? 0 + attributeValues!.price!).toStringAsFixed(2),
                                                                   ),
                                                                 ),
                                                                 Text("${selectedItem[index].product.priceQTY}"),
                                                               ],
                                                             ),
                                                             Row(
-                                                              children: List.generate(selectedItem[index].p2.length,
-                                                                  (index2) => Wrap(children: [Text("${selectedItem[index].p2[index2].name}, ")])),
+                                                              children: List.generate(selectedItem[index].p2.length, (index2) => Wrap(children: [Text("${selectedItem[index].p2[index2].name}, ")])),
                                                               //children: [Text("${selectedItem[index].p2}")],
                                                             ),
                                                             Divider()
@@ -1151,8 +1122,7 @@ class _HomePageState extends State<HomePage> {
                                                       if (statusD == true) {}
                                                     },
                                                     child: Container(
-                                                      decoration: BoxDecoration(
-                                                          borderRadius: BorderRadius.circular(8), border: Border.all(color: Colors.black)),
+                                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), border: Border.all(color: Colors.black)),
                                                       height: size.height * 0.05,
                                                       width: size.width * 0.13,
                                                       child: Padding(
@@ -1190,8 +1160,7 @@ class _HomePageState extends State<HomePage> {
                                                       if (statusD == true) {}
                                                     },
                                                     child: Container(
-                                                      decoration: BoxDecoration(
-                                                          borderRadius: BorderRadius.circular(8), border: Border.all(color: Colors.black)),
+                                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), border: Border.all(color: Colors.black)),
                                                       height: size.height * 0.05,
                                                       width: size.width * 0.13,
                                                       child: Row(
@@ -1209,25 +1178,42 @@ class _HomePageState extends State<HomePage> {
                                               ),
                                               InkWell(
                                                 onTap: () async {
-                                                  final _order = await PaymentApi.ceateOrders(
-                                                      shiftId: 1, total: sumOrderItem(orderItemsDto), orderItems: orderItemsDto);
-                                                  if (_order == true) {
-                                                    if (!mounted) return;
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) => PaymentCash(
-                                                                  selectedItem: selectedItem,
-                                                                  sumPrice: '',
-                                                                  sumQTY: '',
-                                                                )));
-                                                  } else {
+                                                  try {
+                                                    final _order = await PaymentApi.ceateOrders(shiftId: 1, total: sumOrderItem(orderItemsDto), orderItems: orderItemsDto);
+                                                    if (_order != null) {
+                                                      setState(() {
+                                                        order = _order;
+                                                      });
+                                                      if (!mounted) return;
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) => PaymentCash(
+                                                                    selectedItem: selectedItem,
+                                                                    sumPrice: '',
+                                                                    sumQTY: '',
+                                                                    order: order!,
+                                                                  )));
+                                                    } else {
+                                                      if (!mounted) return;
+                                                      showDialog(
+                                                        context: context,
+                                                        builder: (context) => AlertDialogYes(
+                                                          title: 'แจ้งเตือน',
+                                                          description: 'ค่าที่ตอบกลับมาไม่ถูกต้อง',
+                                                          pressYes: () {
+                                                            Navigator.pop(context, true);
+                                                          },
+                                                        ),
+                                                      );
+                                                    }
+                                                  } on Exception catch (e) {
                                                     if (!mounted) return;
                                                     showDialog(
                                                       context: context,
                                                       builder: (context) => AlertDialogYes(
                                                         title: 'แจ้งเตือน',
-                                                        description: 'ค่าที่ตอบกลับมา',
+                                                        description: '{$e}',
                                                         pressYes: () {
                                                           Navigator.pop(context, true);
                                                         },
@@ -1253,9 +1239,7 @@ class _HomePageState extends State<HomePage> {
                                                   //     : null;
                                                 },
                                                 child: Container(
-                                                  decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(8),
-                                                      color: selectedItem.isNotEmpty ? Colors.blue : Colors.grey),
+                                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: selectedItem.isNotEmpty ? Colors.blue : Colors.grey),
                                                   height: size.height * 0.05,
                                                   width: size.width * 0.28,
                                                   child: Padding(
@@ -1269,11 +1253,7 @@ class _HomePageState extends State<HomePage> {
                                                             padding: const EdgeInsets.only(left: 5, top: 3),
                                                             child: Text(
                                                               'ชำระเงิน ',
-                                                              style: TextStyle(
-                                                                  fontWeight: FontWeight.bold,
-                                                                  fontSize: 12,
-                                                                  fontFamily: 'IBMPlexSansThai',
-                                                                  color: Colors.white
+                                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, fontFamily: 'IBMPlexSansThai', color: Colors.white
                                                                   // : Color.fromARGB(
                                                                   //     110,
                                                                   //     185,

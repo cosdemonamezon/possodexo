@@ -1,12 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:possodexo/constants.dart';
 import 'package:possodexo/home/firstPage.dart';
-import 'package:possodexo/home/homePage.dart';
+import 'package:possodexo/models/order.dart';
+import 'package:possodexo/models/paymentorder.dart';
+import 'package:possodexo/payment/service/paymentApi.dart';
+import 'package:possodexo/widgets/AlertDialogYesNo.dart';
 
 class Proceedpayment extends StatefulWidget {
-  const Proceedpayment({Key? key}) : super(key: key);
+  Proceedpayment({Key? key, required this.order, required this.paymentOrder}) : super(key: key);
+  PaymentOrder paymentOrder;
+  Order order;
 
   @override
   State<Proceedpayment> createState() => _ProceedpaymentState();
@@ -133,15 +136,59 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                   ),
                 ],
               ),
-              Container(
-                width: size.width * 0.25,
-                height: size.height * 0.065,
-                decoration: BoxDecoration(color: Color(0xFF1264E3), borderRadius: BorderRadius.circular(8)),
-                child: Center(
-                  child: Text(
-                    textAlign: TextAlign.center,
-                    'รับเงินสำเร็จ',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+              InkWell(
+                onTap: () async {
+                  try {
+                    final _alternativePayment = await PaymentApi.alternativePayment(orderId: widget.order.id, orderPaymentId: widget.paymentOrder.id);
+                    if (_alternativePayment != null) {
+                      if (!mounted) return;
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialogYes(
+                          title: 'ดำเนินการสำเร็จ',
+                          description: 'เดี๋ยวค่อยทำหน้าต่อไป',
+                          pressYes: () {
+                            Navigator.pop(context, true);
+                          },
+                        ),
+                      );
+                    } else {
+                      if (!mounted) return;
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialogYes(
+                          title: 'แจ้งเตือน',
+                          description: 'ค่าที่ตอบกลับมาเป็นเป็นข้อมูลที่ไม่ถูกต้อง',
+                          pressYes: () {
+                            Navigator.pop(context, true);
+                          },
+                        ),
+                      );
+                    }
+                  } on Exception catch (e) {
+                    if (!mounted) return;
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialogYes(
+                        title: 'แจ้งเตือน',
+                        description: '{$e}',
+                        pressYes: () {
+                          Navigator.pop(context, true);
+                        },
+                      ),
+                    );
+                  }
+                },
+                child: Container(
+                  width: size.width * 0.25,
+                  height: size.height * 0.065,
+                  decoration: BoxDecoration(color: Color(0xFF1264E3), borderRadius: BorderRadius.circular(8)),
+                  child: Center(
+                    child: Text(
+                      textAlign: TextAlign.center,
+                      'รับเงินสำเร็จ',
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
                   ),
                 ),
               )
@@ -213,8 +260,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                     child: Container(
                       width: size.width * 0.13,
                       height: size.height * 0.065,
-                      decoration:
-                          BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8), border: Border.all(color: Color(0xFF1264E3))),
+                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8), border: Border.all(color: Color(0xFF1264E3))),
                       child: Center(
                         child: Text(
                           textAlign: TextAlign.center,
