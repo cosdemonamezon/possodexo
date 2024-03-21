@@ -498,7 +498,7 @@ class _HomePageState extends State<HomePage> {
                                               },
                                             ),
                                             SizedBox(
-                                              width: size.width * 0.4,
+                                              width: size.width * 0.38,
                                             ),
                                             IconButton(
                                               icon: Icon(Icons.search),
@@ -1031,8 +1031,10 @@ class _HomePageState extends State<HomePage> {
                                                               ],
                                                             ),
                                                             Row(
-                                                              children: List.generate(selectedItem[index].p2.length,
-                                                                  (index2) => Wrap(children: [Text("${selectedItem[index].p2[index2].name}, ")])),
+                                                              children: List.generate(
+                                                                  selectedItem[index].p2.length,
+                                                                  (index2) => Expanded(
+                                                                      child: Wrap(children: [Text("${selectedItem[index].p2[index2].name}, ")]))),
                                                               //children: [Text("${selectedItem[index].p2}")],
                                                             ),
                                                             Divider()

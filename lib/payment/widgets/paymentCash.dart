@@ -49,8 +49,8 @@ class _PaymentCashState extends State<PaymentCash> {
   double priceDiscountPercen = 0;
   double pricesum = 0;
   String? from = 'discount';
-  String? frompriceVoucher = 'คูปองห้อง';
-  String? fromotherdiscount = 'คูปองห้อง';
+  String? frompriceVoucher = '';
+  String? fromotherdiscount = 'คูปองห้าง';
   double selectedItem = 0;
   double sumDiscount = 0;
   double totalSum = 1000;
@@ -651,18 +651,25 @@ class _PaymentCashState extends State<PaymentCash> {
                                                             )
                                                           : selectedIndex == 1
                                                               ? GiftVoucherwidgets(
-                                                                  frompriceVoucher: (value) => {setState(() => frompriceVoucher = value)},
+                                                                  frompriceVoucher: (value) => {
+                                                                    setState(() {
+                                                                      inspect(value);
+                                                                      frompriceVoucher = '';
+                                                                      frompriceVoucher = value;
+                                                                    })
+                                                                  },
                                                                   voucher: (value) {
                                                                     setState(() {
-                                                                      log(frompriceVoucher.toString());
-                                                                      if (frompriceVoucher == 'คูปองห้อง') {
+                                                                      inspect(frompriceVoucher);
+                                                                      // log(frompriceVoucher.toString());
+                                                                      if (frompriceVoucher == 'คูปองห้าง') {
                                                                         priceVoucher = double.parse(value);
                                                                         sumDiscount = sumDiscount + priceVoucher;
                                                                       } else {
                                                                         priceVoucherstorefront = double.parse(value);
                                                                         sumDiscount = sumDiscount + priceVoucherstorefront;
                                                                       }
-                                                                      log(frompriceVoucher.toString());
+                                                                      // log(frompriceVoucher.toString());
                                                                     });
                                                                   },
                                                                 )
@@ -1164,7 +1171,7 @@ class _PaymentCashState extends State<PaymentCash> {
                           : SizedBox.shrink(),
                     ],
                   ),
-                  priceDiscount != 0
+                  priceDiscount != 0 || priceDiscountPercen != 0
                       ? SizedBox(
                           width: size.width * 0.24,
                           child: Divider(
