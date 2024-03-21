@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:possodexo/home/service/productController.dart';
+import 'package:possodexo/models/payment.dart';
 import 'package:provider/provider.dart';
 
 class PaymentMethod extends StatefulWidget {
-  const PaymentMethod({Key? key}) : super(key: key);
-
+  PaymentMethod({Key? key, required this.onPayment}) : super(key: key);
+  final Function(Payment) onPayment;
   @override
   State<PaymentMethod> createState() => _PaymentMethodState();
 }
@@ -18,10 +19,14 @@ class _PaymentMethodState extends State<PaymentMethod> {
     getListPayment();
   }
 
-  void onItemTapped(int index) => setState(() => selectedIndex = index);
+  void onItemTapped(int index) => setState(() {
+    selectedIndex = index;
+    widget.onPayment(context.read<ProductController>().payments[selectedIndex]);
+  });
   Future<void> getListPayment() async {
     try {
       await context.read<ProductController>().getListPayment();
+      widget.onPayment(context.read<ProductController>().payments[0]);
     } on Exception catch (e) {
       // inspect(e);
     }
