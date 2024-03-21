@@ -11,9 +11,10 @@ ListProduct _$ListProductFromJson(Map<String, dynamic> json) => ListProduct(
       ProductAttributeValue.fromJson(
           json['attributeValues'] as Map<String, dynamic>),
       ProductAttributeValue.fromJson(json['p0'] as Map<String, dynamic>),
-      json['p1'] as int,
-      (json['p2'] as List<dynamic>)
-          .map((e) => ProductAttributeValue.fromJson(e as Map<String, dynamic>))
+      json['p1'] as int?,
+      (json['p2'] as List<dynamic>?)
+          ?.map(
+              (e) => ProductAttributeValue.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

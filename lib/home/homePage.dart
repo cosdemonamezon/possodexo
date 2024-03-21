@@ -1014,7 +1014,7 @@ class _HomePageState extends State<HomePage> {
                                                             Padding(
                                                               padding: const EdgeInsets.only(right: 5, top: 5),
                                                               child: Row(
-                                                                children: [Text("${selectedItem[index].p1}")],
+                                                                children: [Text(selectedItem[index].p1?.toString() ?? '-')],
                                                               ),
                                                             ),
                                                             Row(
@@ -1031,8 +1031,8 @@ class _HomePageState extends State<HomePage> {
                                                               ],
                                                             ),
                                                             Row(
-                                                              children: List.generate(selectedItem[index].p2.length,
-                                                                  (index2) => Wrap(children: [Text("${selectedItem[index].p2[index2].name}, ")])),
+                                                              children: List.generate(selectedItem[index].p2?.length ?? 0,
+                                                                  (index2) => Wrap(children: [Text("${selectedItem[index].p2?[index2].name}, ")])),
                                                               //children: [Text("${selectedItem[index].p2}")],
                                                             ),
                                                             Divider()

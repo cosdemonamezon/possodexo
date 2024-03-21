@@ -167,15 +167,18 @@ class _PaymentCashState extends State<PaymentCash> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text("Order #20240214001"),
                                 ),
-                                SizedBox(
-                                  child: Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Icon(Icons.cancel),
-                                      ),
-                                      Text("ลบบิล")
-                                    ],
+                                InkWell(
+                                  onTap: () {},
+                                  child: SizedBox(
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Icon(Icons.cancel),
+                                        ),
+                                        Text("ลบบิล")
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],
@@ -194,7 +197,10 @@ class _PaymentCashState extends State<PaymentCash> {
                               Row(
                                 children: [
                                   Text("${widget.selectedItem[index].product.name}"),
-                                  Text(" X ${widget.selectedItem[index].product.priceQTY}"),
+                                  SizedBox(
+                                    width: size.width * 0.08,
+                                  ),
+                                  Text(" ${widget.selectedItem[index].product.priceQTY}"),
                                   SizedBox(
                                     width: 10,
                                   ),
@@ -204,16 +210,16 @@ class _PaymentCashState extends State<PaymentCash> {
                                 children: [
                                   Text('ขนาด'),
                                   SizedBox(
-                                    width: size.width * 0.01,
+                                    width: size.width * 0.1,
                                   ),
                                   Text(widget.selectedItem[index].p0.name)
                                 ],
                               ),
                               Row(
-                                children: [
-                                  Text('โปรโมชั่น'),
-                                ],
+                                children: List.generate(widget.selectedItem[index].p2?.length ?? 0,
+                                    (index2) => Wrap(children: [Text("${widget.selectedItem[index].p2?[index2].name}, ")])),
                               ),
+                              Divider()
                               // Row(
                               //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               //   children: [

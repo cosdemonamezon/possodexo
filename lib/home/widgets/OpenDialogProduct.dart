@@ -165,43 +165,52 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
             ),
             InkWell(
               onTap: () {
-                if (selectedPrice == 0) {
-                  setState(() {
-                    selectedPrice = widget.gridCoffee.productAttributes?[0].productAttributeValues[0].price;
-                    selectedSize = widget.gridCoffee.productAttributes?[0].productAttributeValues[0];
+                if (singelProduct1 != null) {
+                  if (selectedPrice == 0) {
+                    setState(() {
+                      selectedPrice = widget.gridCoffee.productAttributes?[0].productAttributeValues[0].price;
+                      selectedSize = widget.gridCoffee.productAttributes?[0].productAttributeValues[0];
 
-                    //จัดรูปแบบก่อนนำไปใช้สร้าง ออร์เดอร์
-                    for (var i = 0; i < widget.gridCoffee.productAttributes!.length; i++) {
-                      final _attributesdto = AttributesDto(
-                        widget.gridCoffee.productAttributes![i].name,
-                        widget.gridCoffee.productAttributes![i].type == "SINGLE"
-                            ? sum(singelProduct0)
-                            : widget.gridCoffee.productAttributes![i].type == "QUANTITY"
-                                ? sum(quantityProduct)
-                                : sum(multiplepeoduct),
-                        widget.gridCoffee.productAttributes![i].type == "SINGLE"
-                            ? singelProduct0
-                            : widget.gridCoffee.productAttributes![i].type == "QUANTITY"
-                                ? quantityProduct
-                                : multiplepeoduct,
-                      );
-                      attributes.add(_attributesdto);
-                    }
-                  });
-                  //inspect(attributes);
-                  orderitemsdto = OrderItemsDto(widget.gridCoffee.id, widget.gridCoffee.price!.toDouble(), sumAttributes(attributes), 1, attributes);
+                      //จัดรูปแบบก่อนนำไปใช้สร้าง ออร์เดอร์
+                      for (var i = 0; i < widget.gridCoffee.productAttributes!.length; i++) {
+                        final _attributesdto = AttributesDto(
+                          widget.gridCoffee.productAttributes![i].name,
+                          widget.gridCoffee.productAttributes![i].type == "SINGLE"
+                              ? sum(singelProduct0)
+                              : widget.gridCoffee.productAttributes![i].type == "QUANTITY"
+                                  ? sum(quantityProduct)
+                                  : sum(multiplepeoduct),
+                          widget.gridCoffee.productAttributes![i].type == "SINGLE"
+                              ? singelProduct0
+                              : widget.gridCoffee.productAttributes![i].type == "QUANTITY"
+                                  ? quantityProduct
+                                  : multiplepeoduct,
+                        );
+                        attributes.add(_attributesdto);
+                      }
+                    });
+                    //inspect(attributes);
+                    orderitemsdto =
+                        OrderItemsDto(widget.gridCoffee.id, widget.gridCoffee.price!.toDouble(), sumAttributes(attributes), 1, attributes);
+                  }
+
+                  final out = {
+                    'item': widget.gridCoffee,
+                    'pricesize': selectedPrice,
+                    'selectedSize': selectedSize,
+                    "p0": singelProduct1,
+                    "p1": quantityProduct1,
+                    "p2": multiplepeoduct2,
+                    'orderItems': orderitemsdto
+                  };
+                  Navigator.pop(context, out);
+                } else {
+                  showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                            title: Text("ผิดพลาด"),
+                          ));
                 }
-
-                final out = {
-                  'item': widget.gridCoffee,
-                  'pricesize': selectedPrice,
-                  'selectedSize': selectedSize,
-                  "p0": singelProduct1,
-                  "p1": quantityProduct1,
-                  "p2": multiplepeoduct2,
-                  'orderItems': orderitemsdto
-                };
-                Navigator.pop(context, out);
               },
               child: Container(
                   width: size.width * 0.08,

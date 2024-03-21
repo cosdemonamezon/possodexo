@@ -12,8 +12,8 @@ class ListProduct {
   final Product product;
   final ProductAttributeValue attributeValues;
   final ProductAttributeValue p0;
-  final int p1;
-  final List<ProductAttributeValue> p2;
+  int? p1;
+  List<ProductAttributeValue>? p2;
 
   ListProduct(this.product, this.attributeValues, this.p0, this.p1, this.p2);
 
