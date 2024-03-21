@@ -16,11 +16,11 @@ import 'package:provider/provider.dart';
 import 'package:possodexo/payment/widgets/Discount.dart';
 import 'package:possodexo/payment/widgets/paymentCash.dart';
 
-// @pragma('vm:entry-point')
-// void secondaryDisplayMain() {
-//   debugPrint('second main');
-//   runApp(MySecondApp());
-// }
+@pragma('vm:entry-point')
+void secondaryDisplayMain() {
+  debugPrint('second main');
+  runApp(MySecondApp());
+}
 
 class MySecondApp extends StatelessWidget {
   MySecondApp({Key? key}) : super(key: key);
@@ -34,7 +34,7 @@ class MySecondApp extends StatelessWidget {
         fontFamily: 'IBMPlexSansThai',
       ),
       home: Scaffold(
-        body: SeconAds(),
+        body: Listpayment(),
       ),
     );
   }

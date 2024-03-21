@@ -18,6 +18,7 @@ import 'package:possodexo/home/widgets/texFristPage.dart';
 
 import 'package:possodexo/home/widgets/texPage.dart';
 import 'package:possodexo/models/listProduct.dart';
+import 'package:possodexo/models/order.dart';
 import 'package:possodexo/models/orderitemsdto.dart';
 import 'package:possodexo/models/productAttributeValue.dart';
 import 'package:possodexo/models/branch.dart';
@@ -56,6 +57,7 @@ class _HomePageState extends State<HomePage> {
   double totleprice = 0.00;
   int selectedPayback = 0;
   int? selectedPrice = 0;
+  Order? order;
 
   void onItemTapped(int index) {
     setState(() {
@@ -498,7 +500,7 @@ class _HomePageState extends State<HomePage> {
                                               },
                                             ),
                                             SizedBox(
-                                              width: size.width * 0.4,
+                                              width: size.width * 0.38,
                                             ),
                                             IconButton(
                                               icon: Icon(Icons.search),
@@ -1209,25 +1211,43 @@ class _HomePageState extends State<HomePage> {
                                               ),
                                               InkWell(
                                                 onTap: () async {
-                                                  final _order = await PaymentApi.ceateOrders(
-                                                      shiftId: 1, total: sumOrderItem(orderItemsDto), orderItems: orderItemsDto);
-                                                  if (_order == true) {
-                                                    if (!mounted) return;
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) => PaymentCash(
-                                                                  selectedItem: selectedItem,
-                                                                  sumPrice: '',
-                                                                  sumQTY: '',
-                                                                )));
-                                                  } else {
+                                                  try {
+                                                    final _order = await PaymentApi.ceateOrders(
+                                                        shiftId: 1, total: sumOrderItem(orderItemsDto), orderItems: orderItemsDto);
+                                                    if (_order != null) {
+                                                      setState(() {
+                                                        order = _order;
+                                                      });
+                                                      if (!mounted) return;
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) => PaymentCash(
+                                                                    selectedItem: selectedItem,
+                                                                    sumPrice: '',
+                                                                    sumQTY: '',
+                                                                    order: order!,
+                                                                  )));
+                                                    } else {
+                                                      if (!mounted) return;
+                                                      showDialog(
+                                                        context: context,
+                                                        builder: (context) => AlertDialogYes(
+                                                          title: 'แจ้งเตือน',
+                                                          description: 'ค่าที่ตอบกลับมาไม่ถูกต้อง',
+                                                          pressYes: () {
+                                                            Navigator.pop(context, true);
+                                                          },
+                                                        ),
+                                                      );
+                                                    }
+                                                  } on Exception catch (e) {
                                                     if (!mounted) return;
                                                     showDialog(
                                                       context: context,
                                                       builder: (context) => AlertDialogYes(
                                                         title: 'แจ้งเตือน',
-                                                        description: 'ค่าที่ตอบกลับมา',
+                                                        description: '{$e}',
                                                         pressYes: () {
                                                           Navigator.pop(context, true);
                                                         },

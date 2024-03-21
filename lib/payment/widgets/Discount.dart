@@ -209,7 +209,7 @@ class _DiscountWidgetsState extends State<DiscountWidgets> {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      if (ai != null && ai.text.isNotEmpty) {
+                      if (ai.text != '' && ai.text.isNotEmpty) {
                         widget.discount!(ai.text);
 
                         ai.clear();

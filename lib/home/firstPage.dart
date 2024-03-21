@@ -47,7 +47,7 @@ class _FirstPageState extends State<FirstPage> {
         body: Row(
           children: [
             Container(
-              width: size.width * 0.08,
+              width: size.width * 0.09,
               height: size.height,
               padding: EdgeInsets.only(top: 24, right: 12, left: 12),
               child: Column(

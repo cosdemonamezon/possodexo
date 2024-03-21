@@ -14,8 +14,8 @@ class _GridProMotionState extends State<GridProMotion> {
     {
       'image': 'assets/images/figure.png',
       'Tiltle': 'BUY 2 PAY 2  ฿ 165.00',
-      'Order1': 'น้ำผึ้งมะนาวซุปเปอร์เวค (Honey Lemon Superwake)',
-      'Order2': 'อเมริการโน่น้ำผึ้งมะนาว (Americano Honey Lemon)'
+      'Order1': 'น้ำผึ้งมะนาวซุปเปอร์เวค',
+      'Order2': 'อเมริการโน่น้ำผึ้งมะนาว'
     },
     {
       'image': 'assets/images/figure.png',

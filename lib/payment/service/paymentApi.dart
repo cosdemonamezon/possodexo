@@ -1,13 +1,16 @@
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:possodexo/constants.dart';
+import 'package:possodexo/models/order.dart';
 import 'package:possodexo/models/orderitemsdto.dart';
+import 'package:possodexo/models/orderpayments.dart';
+import 'package:possodexo/models/paymentorder.dart';
 
 class PaymentApi {
   const PaymentApi();
 
   //สร้างออร์เดอร์
-  static Future ceateOrders({required int shiftId, required double total, required List<OrderItemsDto> orderItems}) async {
+  static Future<Order> ceateOrders({required int shiftId, required double total, required List<OrderItemsDto> orderItems}) async {
     //final token = prefs.getString('token');
     //final token = prefs.getString('token');
     final url = Uri.https(publicUrl, '/api/order');
@@ -21,7 +24,7 @@ class PaymentApi {
         }));
     if (response.statusCode == 200 || response.statusCode == 201) {
       final data = convert.jsonDecode(response.body);
-      return true;
+      return Order.fromJson(data);
     } else {
       final data = convert.jsonDecode(response.body);
       throw Exception(data['message']);
@@ -29,18 +32,18 @@ class PaymentApi {
   }
 
   //เลือกการชำระเงิน
-  static Future paymentSelected({required int orderId}) async {
+  static Future<PaymentOrder> paymentSelected({required int orderId, required List<OrderPayments> orderPayments}) async {
     //final token = prefs.getString('token');
     //final token = prefs.getString('token');
     final url = Uri.https(publicUrl, '/api/order/$orderId/payment');
     final response = await http.post(url,
-        //headers: {'Authorization': 'Bearer $token', 'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json'},
         body: convert.jsonEncode({
-          "orderPayments": [],
+          "orderPayments": orderPayments,
         }));
     if (response.statusCode == 200 || response.statusCode == 201) {
       final data = convert.jsonDecode(response.body);
-      return data['data'];
+      return PaymentOrder.fromJson(data);
     } else {
       final data = convert.jsonDecode(response.body);
       throw Exception(data['message']);
@@ -58,7 +61,7 @@ class PaymentApi {
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
       final data = convert.jsonDecode(response.body);
-      return data['data'];
+      return data;
     } else {
       final data = convert.jsonDecode(response.body);
       throw Exception(data['message']);
