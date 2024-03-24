@@ -21,11 +21,11 @@ class _ProceedpaymentState extends State<Proceedpayment> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 10), () {
-      setState(() {
-        _showAlternativeBody = true;
-      });
-    });
+    // Future.delayed(Duration(seconds: 10), () {
+    //   setState(() {
+    //     _showAlternativeBody = true;
+    //   });
+    // });
   }
 
   @override
@@ -91,9 +91,14 @@ class _ProceedpaymentState extends State<Proceedpayment> {
               SizedBox(
                 height: size.height * 0.02,
               ),
-              Image.asset(
-                'assets/icons/londing.png',
-                scale: 10,
+              // Image.asset(
+              //   'assets/icons/londing.png',
+              //   scale: 10,
+              // ),
+              SizedBox(
+                width: size.width * 0.05,
+                height: size.height * 0.1,
+                child: CircularProgressIndicator(),
               ),
               Text(
                 'ดำเนินการชำระเงิน',
@@ -104,7 +109,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                 style: TextStyle(color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
               ),
               Text(
-                '243.00',
+                '${widget.paymentOrder.total}',
                 style: TextStyle(color: Color.fromARGB(255, 18, 102, 227), fontSize: 52),
               ),
               Divider(
@@ -118,7 +123,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                     style: TextStyle(color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
                   ),
                   Text(
-                    '243.00 ฿',
+                    '${widget.paymentOrder.grandTotal} ฿',
                     style: TextStyle(color: ktextColr, fontSize: 30),
                   ),
                 ],
