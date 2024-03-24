@@ -2,8 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:possodexo/home/service/productController.dart';
-import 'package:possodexo/home/widgets/OpenDialogDessert.dart';
-import 'package:possodexo/home/widgets/Promotion.dart';
 import 'package:possodexo/models/product.dart';
 import 'package:provider/provider.dart';
 

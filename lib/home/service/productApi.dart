@@ -35,12 +35,16 @@ class ProductApi {
   }
 
   static Future<Product> getproductById({required int id}) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+    var headers = {'Authorization': 'Bearer $token', 'Content-Type': 'application/json'};
     final url = Uri.https(
       publicUrl,
       '/api/product/$id',
     );
     final response = await http.get(
       url,
+      headers: headers,
     );
     if (response.statusCode == 200) {
       final data = convert.jsonDecode(response.body);
@@ -108,9 +112,12 @@ class ProductApi {
 
   static Future<Shift> openShift({required int change, required int cash, required String remark}) async {
     final url = Uri.https(publicUrl, '/api/shift');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+    var headers = {'Authorization': 'Bearer $token', 'Content-Type': 'application/json'};
     final response = await http.post(
       url,
-      headers: {'Content-Type': 'application/json'},
+      headers: headers,
       body: convert.jsonEncode(
         {
           "change": change,

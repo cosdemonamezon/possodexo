@@ -77,11 +77,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {});
   }
 
-  List<Category> product = [
-    // {'name': 'ทั้งหมด', 'type': 'all'},
-    // {'name': 'เครื่องดื่ม', 'type': 'drink'},
-    // {'name': 'ของหวาน', 'type': 'dessert'}
-  ];
+  List<Category> product = [];
   Category? sclectedProduct;
   List<Map<String, dynamic>> gridCoffees = [];
   int? menuSize;
@@ -103,6 +99,7 @@ class _HomePageState extends State<HomePage> {
       getlistCategory();
       getlistBranch();
     });
+    
 
     orders = [
       Card(
@@ -162,7 +159,6 @@ class _HomePageState extends State<HomePage> {
       inspect(e);
     }
   }
-  
 
   //ฟังก์ชั่นคำนวน ราคา และ qty
   double sum(List<Product> orders) => orders.fold(0, (previous, o) => previous + (o.qty * o.priceQTY));
@@ -582,15 +578,14 @@ class _HomePageState extends State<HomePage> {
                                     );
                                     if (ok == true) {
                                       if (change.text != "" && cash.text != "") {
-                                         await productController.openShift(change: int.parse(change.text) , cash: int.parse(cash.text), remark: remark.text);
-                                         Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-                                         prefs = await SharedPreferences.getInstance();
-                                         shiftId =  prefs.getString('shiftId');
-                                         if (shiftId != null) {
-                                           
-                                         } else {
-                                           
-                                         }
+                                        await productController.openShift(change: int.parse(change.text), cash: int.parse(cash.text), remark: remark.text);
+                                        final SharedPreferences prefs = await SharedPreferences.getInstance();
+                                        shiftId = prefs.getString('shiftId');
+                                        if (shiftId != null) {
+                                          setState(() {
+                                            openShift = true;
+                                          });
+                                        } else {}
                                       } else {
                                         if (!mounted) return;
                                         showDialog(
@@ -604,9 +599,6 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                         );
                                       }
-                                      // setState(() {
-                                      //   openShift = true;
-                                      // });
                                     }
                                   },
                                 ),
