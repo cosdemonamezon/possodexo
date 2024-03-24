@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
 class Numbercel extends StatefulWidget {
-  Numbercel({super.key, this.ai});
+  Numbercel({
+    super.key,
+    this.ai,
+    this.onChange,
+  });
   TextEditingController? ai = TextEditingController();
+  ValueChanged? onChange;
   @override
   State<Numbercel> createState() => _NumbercelState();
 }
@@ -42,6 +47,7 @@ class _NumbercelState extends State<Numbercel> {
                       if (selectedItem == '') {
                         return "โปรดใส่ข้อความให้ครบถ้วน";
                       }
+                      return null;
                     },
                   ),
                 ),
@@ -269,34 +275,36 @@ class _NumbercelState extends State<Numbercel> {
                 width: size.width * 0.01,
               ),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: InkWell(
-                      onTap: () {
-                        // ตรวจสอบว่ามีตัวอักษรใน TextFormField หรือไม่
-                        widget.ai!.text = widget.ai!.text.substring(0, widget.ai!.text.length - 1); // ลบตัวอักษรที่สุดท้ายออก
-                      },
-                      child: SizedBox(
-                        width: size.width * 0.08,
-                        height: size.height * 0.2,
-                        child: NumberButton(
-                          number: '<',
-                          size: 10,
-                          color: Color(0xFFCFD8DC),
-                          controller: widget.ai!,
-                          onPressed: () {
-                            if (widget.ai!.text.isNotEmpty) {
-                              widget.ai!.text = widget.ai!.text.substring(0, widget.ai!.text.length - 1);
-                            }
-                          },
-                        ),
+                  InkWell(
+                    onTap: () {
+                      // ตรวจสอบว่ามีตัวอักษรใน TextFormField หรือไม่
+                      widget.ai!.text =
+                          widget.ai!.text.substring(0, widget.ai!.text.length - 1); // ลบตัวอักษรที่สุดท้ายออก
+                    },
+                    child: SizedBox(
+                      width: size.width * 0.09,
+                      height: size.height * 0.1,
+                      child: NumberButton(
+                        number: '<',
+                        size: 10,
+                        color: Color(0xFFCFD8DC),
+                        controller: widget.ai!,
+                        onPressed: () {
+                          if (widget.ai!.text.isNotEmpty) {
+                            widget.ai!.text = widget.ai!.text.substring(0, widget.ai!.text.length - 1);
+                          }
+                        },
                       ),
                     ),
                   ),
                   SizedBox(
-                    width: size.width * 0.08,
-                    height: size.height * 0.2,
+                    height: size.height * 0.01,
+                  ),
+                  SizedBox(
+                    width: size.width * 0.09,
+                    height: size.height * 0.1,
                     child: NumberButton(
                       number: 'C',
                       size: 10,
@@ -304,6 +312,22 @@ class _NumbercelState extends State<Numbercel> {
                       controller: widget.ai!,
                       onPressed: () {
                         widget.ai!.text = '';
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.01,
+                  ),
+                  SizedBox(
+                    width: size.width * 0.09,
+                    height: size.height * 0.18,
+                    child: NumberButton(
+                      number: 'Enter',
+                      size: 8,
+                      color: Color(0xFFCFD8DC),
+                      controller: widget.ai!,
+                      onPressed: () {
+                        widget.onChange!(widget.ai!.text);
                       },
                     ),
                   ),

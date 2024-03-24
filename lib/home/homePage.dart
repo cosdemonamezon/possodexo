@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> {
       ),
     ];
     Future.delayed(
-      Duration(seconds: 1),
+      Duration(seconds: 2),
       () async => {
         await checkShift(),
       },
@@ -1229,8 +1229,8 @@ class _HomePageState extends State<HomePage> {
                                                           MaterialPageRoute(
                                                               builder: (context) => PaymentCash(
                                                                     selectedItem: selectedItem,
-                                                                    sumPrice: '',
-                                                                    sumQTY: '',
+                                                                    sumPrice: sum(selectedItem).toStringAsFixed(2),
+                                                                    sumQTY: selectedItem.length.toString(),
                                                                     order: order!,
                                                                   )));
                                                     } else {
