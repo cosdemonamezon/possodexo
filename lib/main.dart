@@ -1,20 +1,13 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:possodexo/home/firstPage.dart';
-import 'package:possodexo/home/homePage.dart';
 import 'package:possodexo/home/service/productController.dart';
 import 'package:possodexo/login/loginPage.dart';
-import 'package:possodexo/payment/widgets/Proceedpayment.dart';
-import 'package:possodexo/payment/widgets/paymentCash.dart';
-import 'package:possodexo/print/printmain.dart';
+import 'package:possodexo/login/services/loginController.dart';
 import 'package:possodexo/seconDisplay/listpayment.dart';
-import 'package:possodexo/seconDisplay/seconAds.dart';
-import 'package:possodexo/seconDisplay/secondisplay.dart';
 import 'package:provider/provider.dart';
-import 'package:possodexo/payment/widgets/Discount.dart';
-import 'package:possodexo/payment/widgets/paymentCash.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 @pragma('vm:entry-point')
 void secondaryDisplayMain() {
@@ -40,6 +33,9 @@ class MySecondApp extends StatelessWidget {
   }
 }
 
+String? token;
+late SharedPreferences prefs;
+
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -50,6 +46,9 @@ Future main() async {
   //     (systemOverlaysAreVisible) async {
   //   print("Chand:$systemOverlaysAreVisible");
   // });
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  prefs = await SharedPreferences.getInstance();
+  token = await prefs.getString('token');
 
   runApp(MyApp());
 }
@@ -64,6 +63,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ProductController()),
+        ChangeNotifierProvider(create: (context) => LoginController()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -73,7 +73,7 @@ class MyApp extends StatelessWidget {
           fontFamily: 'IBMPlexSansThai',
         ),
         debugShowCheckedModeBanner: false,
-        home: LoginPage(),
+        home: token == null ? LoginPage() : FirstPage(),
         // home: Printter(
         //     // selectedItem: [],
         //     // sumPrice: '',
