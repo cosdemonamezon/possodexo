@@ -876,7 +876,7 @@ class _HomePageState extends State<HomePage> {
                                                 children: [
                                                   Padding(
                                                     padding: const EdgeInsets.all(8.0),
-                                                    child: Text("Order #20240214001"),
+                                                    child: Text("Order"),
                                                   ),
                                                   Padding(
                                                     padding: const EdgeInsets.all(8.0),
