@@ -19,6 +19,9 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
           : DateTime.parse(json['deletedAt'] as String),
       json['code'] as String?,
       json['name'] as String?,
+      json['unit'] == null
+          ? null
+          : Unit.fromJson(json['unit'] as Map<String, dynamic>),
       json['image'] as String?,
       (json['price'] as num?)?.toDouble(),
       json['category'] == null
@@ -41,6 +44,7 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       'image': instance.image,
       'price': instance.price,
       'category': instance.category,
+      'unit': instance.unit,
       'productAttributes': instance.productAttributes,
       'priceQTY': instance.priceQTY,
       'qty': instance.qty,
