@@ -8,12 +8,17 @@ class LoginController extends ChangeNotifier {
   LoginApi api;
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
-  Future signIn({required String username, required String password,}) async {
-    final data = await LoginApi.login(username, password,);
+  Future signIn({
+    required String username,
+    required String password,
+  }) async {
+    final data = await LoginApi.login(
+      username,
+      password,
+    );
     final SharedPreferences prefs = await _prefs;
 
-    
-    await prefs.setString('token', data); 
+    await prefs.setString('token', data);
     notifyListeners();
     return data;
   }
@@ -21,7 +26,7 @@ class LoginController extends ChangeNotifier {
   Future<void> clearToken() async {
     SharedPreferences prefs = await _prefs;
     prefs = await SharedPreferences.getInstance();
-    await prefs.clear(); 
+    await prefs.clear();
 
     notifyListeners();
   }
