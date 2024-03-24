@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:possodexo/models/category.dart';
 import 'package:possodexo/models/productAttribute.dart';
+import 'package:possodexo/models/unit.dart';
 
 part 'product.g.dart';
 
@@ -16,6 +17,7 @@ class Product {
   final String? image;
   final double? price;
   final Category? category;
+  final Unit? unit;
   final List<ProductAttribute>? productAttributes;
 
   double priceQTY;
@@ -28,6 +30,7 @@ class Product {
     this.deletedAt,
     this.code,
     this.name,
+    this.unit,
     this.image,
     this.price,
     this.category,
