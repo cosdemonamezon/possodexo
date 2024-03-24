@@ -162,7 +162,7 @@ class _HomePageState extends State<HomePage> {
 
   //ฟังก์ชั่นคำนวน ราคา และ qty
   double sum(List<ListProduct> orders) =>
-      orders.fold(0, (previous, o) => previous + (o.product.qty * o.product.priceQTY));
+      orders.fold(0, (previous, o) => previous + (o.product.qty * o.product.price!));
   int newQty(List<Product> orders) => orders.fold(0, (previousValue, e) => previousValue + e.qty);
 
   double sumOrderItem(List<OrderItemsDto> attributesValue) =>
@@ -1082,7 +1082,10 @@ class _HomePageState extends State<HomePage> {
                                                                         .toStringAsFixed(2),
                                                                   ),
                                                                 ),
-                                                                Text("${selectedItem[index].product.priceQTY}"),
+                                                                Text(selectedItem[index]
+                                                                    .product
+                                                                    .priceQTY
+                                                                    .toStringAsFixed(2)),
                                                               ],
                                                             ),
                                                             Row(
@@ -1155,7 +1158,7 @@ class _HomePageState extends State<HomePage> {
                                                         fontFamily: 'IBMPlexSansThai', color: Color(0xFF424242)),
                                                   ),
                                                   Text(
-                                                    selectedItem.isEmpty ? '0' : sum(selectedItem).toStringAsFixed(2),
+                                                    sum(selectedItem).toStringAsFixed(2),
                                                     // '${sumPrice(selectedItem)} ฿',
                                                     style: TextStyle(
                                                       fontFamily: 'IBMPlexSansThai',
