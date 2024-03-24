@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:possodexo/home/service/productController.dart';
 import 'package:possodexo/models/payment.dart';
+import 'package:possodexo/widgets/AlertDialogYesNo.dart';
 import 'package:provider/provider.dart';
 
 class PaymentMethod extends StatefulWidget {
@@ -20,15 +21,25 @@ class _PaymentMethodState extends State<PaymentMethod> {
   }
 
   void onItemTapped(int index) => setState(() {
-    selectedIndex = index;
-    widget.onPayment(context.read<ProductController>().payments[selectedIndex]);
-  });
+        selectedIndex = index;
+        widget.onPayment(context.read<ProductController>().payments[selectedIndex]);
+      });
   Future<void> getListPayment() async {
     try {
       await context.read<ProductController>().getListPayment();
       widget.onPayment(context.read<ProductController>().payments[0]);
     } on Exception catch (e) {
-      // inspect(e);
+      if (!mounted) return;
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialogYes(
+          title: 'แจ้งเตือน',
+          description: '${e}',
+          pressYes: () {
+            Navigator.pop(context, true);
+          },
+        ),
+      );
     }
   }
 
@@ -63,11 +74,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                         child: SvgPicture.network(
                           productController.payments[index].icon!,
                         )
-                        //   scale: 10,)
-                        // Image.network(
-                        //   productController.payments[index].icon!,
-                        //   scale: 10,
-                        // ),
+                        
                         ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10),

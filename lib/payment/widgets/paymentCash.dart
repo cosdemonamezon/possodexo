@@ -1,8 +1,6 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:possodexo/home/widgets/OpenAndCloseSwitch.dart';
 import 'package:possodexo/models/listProduct.dart';
@@ -15,13 +13,11 @@ import 'package:possodexo/payment/widgets/Discount.dart';
 import 'package:possodexo/payment/widgets/GiftVoucherwidgets.dart';
 import 'package:possodexo/payment/widgets/OtherDiscountsWidgets.dart';
 import 'package:possodexo/payment/widgets/Proceedpayment.dart';
-import 'package:possodexo/payment/widgets/Proceedsplitpayments.dart';
 import 'package:possodexo/payment/widgets/Redeempointswidget.dart';
 
 import 'package:possodexo/payment/widgets/numbercel.dart';
 import 'package:possodexo/payment/widgets/paymentmedtod.dart';
 import 'package:possodexo/widgets/AlertDialogYesNo.dart';
-import 'package:presentation_displays/display.dart';
 
 class PaymentCash extends StatefulWidget {
   PaymentCash({
@@ -64,6 +60,7 @@ class _PaymentCashState extends State<PaymentCash> {
   double sumPercen = 0;
   Payment? payment;
   List<OrderPayments> orderPayments = [];
+  double change = 0;
 
   void onItemTapped1(int index1) {
     setState(() {
@@ -153,23 +150,23 @@ class _PaymentCashState extends State<PaymentCash> {
                               });
                             },
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text("Order #20240214001"),
+                                  child: Text("Order Id #${widget.order.id}"),
                                 ),
                                 InkWell(
                                   onTap: () {},
-                                  child: SizedBox(
-                                    child: Row(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Icon(Icons.cancel),
-                                        ),
-                                        Text("ลบบิล")
-                                      ],
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: SizedBox(
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.cancel),
+                                          Text("ลบบิล")
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -350,11 +347,11 @@ class _PaymentCashState extends State<PaymentCash> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Text("รวม"),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Text(
                             NumberFormat('#,##0.00', 'en_US').format(totalSum),
                           ),
@@ -365,11 +362,11 @@ class _PaymentCashState extends State<PaymentCash> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Text("ส่วนลด"),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Text(
                             calcuateDiscount().toStringAsFixed(2).replaceAllMapped(
                                   RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),

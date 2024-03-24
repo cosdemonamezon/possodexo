@@ -8,7 +8,7 @@ part of 'unit.dart';
 
 Unit _$UnitFromJson(Map<String, dynamic> json) => Unit(
       json['id'] as int?,
-      json['name'] as int?,
+      json['name'] as String?,
     );
 
 Map<String, dynamic> _$UnitToJson(Unit instance) => <String, dynamic>{

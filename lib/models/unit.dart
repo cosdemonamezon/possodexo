@@ -6,7 +6,7 @@ part 'unit.g.dart';
 @JsonSerializable()
 class Unit {
   final int? id;
-  final int? name;
+  final String? name;
 
   Unit(
     this.id,

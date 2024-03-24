@@ -94,9 +94,13 @@ class ProductApi {
 
   //เรียกดูข้อมูล payment
   static Future<List<Payment>> getPayment() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+    var headers = {'Authorization': 'Bearer $token', 'Content-Type': 'application/json'};
     final url = Uri.https(publicUrl, '/api/payment-method');
     final response = await http.get(
       url,
+      headers: headers
     );
     if (response.statusCode == 200) {
       final data = convert.jsonDecode(response.body);
