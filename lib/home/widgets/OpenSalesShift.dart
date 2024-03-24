@@ -7,18 +7,24 @@ import 'package:possodexo/login/widgets/InputTextFormField.dart';
 import '../../login/widgets/InputCounterDropDownFormField.dart';
 
 class OpenSalesShift extends StatelessWidget {
-  const OpenSalesShift({
+  OpenSalesShift({
     super.key,
     required this.size,
     required this.pressOk,
     required this.pressCancel,
     required this.pressClose,
+    this.controllerchange,
+    this.controllercash,
+    this.controllerRemark
   });
 
   final Size size;
   final VoidCallback pressOk;
   final VoidCallback pressCancel;
   final VoidCallback pressClose;
+  TextEditingController? controllerchange;
+  TextEditingController? controllercash;
+  TextEditingController? controllerRemark;
 
   @override
   Widget build(BuildContext context) {
@@ -39,38 +45,38 @@ class OpenSalesShift extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Divider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  width: size.width * 0.2,
-                  child: Text(
-                    'พนักงาน',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ),
-                InputTextFormField(size: size),
-              ],
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     Container(
+            //       width: size.width * 0.2,
+            //       child: Text(
+            //         'พนักงาน',
+            //         style: TextStyle(fontSize: 16),
+            //       ),
+            //     ),
+            //     InputTextFormField(size: size),
+            //   ],
+            // ),
             SizedBox(
               height: size.height * 0.01,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  width: size.width * 0.2,
-                  child: Text(
-                    'เคาเตอร์',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ),
-                InputCounterDropDownFormField(size: size),
-              ],
-            ),
-            SizedBox(
-              height: size.height * 0.01,
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     Container(
+            //       width: size.width * 0.2,
+            //       child: Text(
+            //         'เคาเตอร์',
+            //         style: TextStyle(fontSize: 16),
+            //       ),
+            //     ),
+            //     InputCounterDropDownFormField(size: size),
+            //   ],
+            // ),
+            // SizedBox(
+            //   height: size.height * 0.01,
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -81,7 +87,7 @@ class OpenSalesShift extends StatelessWidget {
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
-                InputChangeTextFormField(size: size),
+                InputChangeTextFormField(size: size, controller: controllerchange,),
               ],
             ),
             SizedBox(
@@ -97,7 +103,7 @@ class OpenSalesShift extends StatelessWidget {
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
-                InputChangeTextFormField(size: size),
+                InputChangeTextFormField(size: size, controller: controllercash,),
               ],
             ),
             SizedBox(
@@ -113,7 +119,7 @@ class OpenSalesShift extends StatelessWidget {
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
-                InputAnnotationTextFormField(size: size),
+                InputAnnotationTextFormField(size: size, controller: controllerRemark,),
               ],
             ),
           ],

@@ -96,16 +96,17 @@ class ProductApi {
 
   //เรียกดูข้อมูลShift
 
-  static Future<Shift> getShift() async {
+  static Future<Shift> openShift({required int change, required int cash, required String remark}) async {
     final url = Uri.https(publicUrl, '/api/shift');
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},
       body: convert.jsonEncode(
         {
-          "change": 0,
-          "cash": 0,
-          "remark": "string",
+          "change": change,
+          "cash": cash,
+          "branchId": 1,
+          "remark": remark,
         },
       ),
     );
@@ -117,6 +118,8 @@ class ProductApi {
       throw Exception(data['message']);
     }
   }
+
+
 
   // static Future<ProductMain> getproductMain({required int id}) async {
   //   final url = Uri.https(publicUrl, '/api/product/$id');

@@ -6,10 +6,13 @@ import 'package:possodexo/models/payment.dart';
 import 'package:possodexo/models/product.dart';
 
 import 'package:possodexo/models/shift.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductController extends ChangeNotifier {
   ProductController({this.api = const ProductApi()});
   ProductApi api;
+
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   List<Product> products = [];
   Product? product;
@@ -56,9 +59,12 @@ class ProductController extends ChangeNotifier {
     notifyListeners();
   }
 
-  getListShift() async {
+  openShift({required int change, required int cash, required String remark}) async {
     shift = null;
-    shift = await ProductApi.getShift();
+    shift = await ProductApi.openShift(change: change, cash: cash, remark: remark);
+    final SharedPreferences prefs = await _prefs;
+
+    await prefs.setString('shiftId', shift!.id.toString()); 
     notifyListeners();
   }
 }

@@ -21,7 +21,13 @@ Shift _$ShiftFromJson(Map<String, dynamic> json) => Shift(
       json['cash'] as int?,
       json['remark'] as String?,
       json['status'] as String?,
-    );
+    )
+      ..user = json['user'] == null
+          ? null
+          : User.fromJson(json['user'] as Map<String, dynamic>)
+      ..branch = json['branch'] == null
+          ? null
+          : Branch.fromJson(json['branch'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$ShiftToJson(Shift instance) => <String, dynamic>{
       'id': instance.id,
@@ -32,4 +38,6 @@ Map<String, dynamic> _$ShiftToJson(Shift instance) => <String, dynamic>{
       'cash': instance.cash,
       'remark': instance.remark,
       'status': instance.status,
+      'user': instance.user,
+      'branch': instance.branch,
     };

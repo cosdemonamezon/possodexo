@@ -5,12 +5,14 @@ import 'package:possodexo/models/shift.dart';
 import 'package:provider/provider.dart';
 
 class InputChangeTextFormField extends StatefulWidget {
-  const InputChangeTextFormField({
+  InputChangeTextFormField({
     super.key,
     required this.size,
+    this.controller,
   });
 
   final Size size;
+  TextEditingController? controller;
 
   @override
   State<InputChangeTextFormField> createState() =>
@@ -22,15 +24,9 @@ class _InputChangeTextFormFieldState extends State<InputChangeTextFormField> {
   @override
   void initState() {
     super.initState();
-    getListShift();
   }
 
-  void onItemTapped(int index) => setState(() => selectedIndex = index);
-  Future<void> getListShift() async {
-    try {
-      await context.read<ProductController>().getListShift();
-    } on Exception catch (e) {}
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +35,7 @@ class _InputChangeTextFormFieldState extends State<InputChangeTextFormField> {
           color: Color.fromARGB(255, 241, 241, 241),
           width: widget.size.width * 0.35,
           child: TextFormField(
+            controller: widget.controller,
             style: TextStyle(fontSize: 22),
             decoration: InputDecoration(
               contentPadding: EdgeInsets.only(left: 10),

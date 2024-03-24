@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:possodexo/models/category.dart';
+import 'package:possodexo/models/branch.dart';
+import 'package:possodexo/models/user.dart';
 
 part 'shift.g.dart';
 
@@ -13,6 +14,8 @@ class Shift {
   final int? cash;
   final String? remark;
   final String? status;
+  User? user;
+  Branch? branch;
 
   Shift(
     this.id,
