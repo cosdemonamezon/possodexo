@@ -920,7 +920,7 @@ class _HomePageState extends State<HomePage> {
                                                 children: [
                                                   Padding(
                                                     padding: const EdgeInsets.all(8.0),
-                                                    child: Text("Order #20240214001"),
+                                                    child: Text("Order"),
                                                   ),
                                                   Padding(
                                                     padding: const EdgeInsets.all(8.0),
@@ -1319,23 +1319,6 @@ class _HomePageState extends State<HomePage> {
                                                       ),
                                                     );
                                                   }
-
-                                                  // selectedItem.isNotEmpty
-                                                  //     ? Navigator.push(
-                                                  //         context,
-                                                  //         MaterialPageRoute(
-                                                  //             builder: (context) =>
-                                                  //                 PaymentCash(
-                                                  //                   selectedItem:
-                                                  //                       selectedItem,
-                                                  //                   sumPrice: sumPrice(
-                                                  //                           selectedItem)
-                                                  //                       .toString(),
-                                                  //                   sumQTY: sumQTY(
-                                                  //                           selectedItem)
-                                                  //                       .toString(),
-                                                  //                 )))
-                                                  //     : null;
                                                 },
                                                 child: Container(
                                                   decoration: BoxDecoration(
@@ -1358,13 +1341,7 @@ class _HomePageState extends State<HomePage> {
                                                                   fontWeight: FontWeight.bold,
                                                                   fontSize: 12,
                                                                   fontFamily: 'IBMPlexSansThai',
-                                                                  color: Colors.white
-                                                                  // : Color.fromARGB(
-                                                                  //     110,
-                                                                  //     185,
-                                                                  //     185,
-                                                                  //     185)
-                                                                  ),
+                                                                  color: Colors.white),
                                                             ),
                                                           ),
                                                         ),

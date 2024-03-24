@@ -5,18 +5,20 @@ import 'package:possodexo/models/order.dart';
 import 'package:possodexo/models/orderitemsdto.dart';
 import 'package:possodexo/models/orderpayments.dart';
 import 'package:possodexo/models/paymentorder.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PaymentApi {
   const PaymentApi();
 
   //สร้างออร์เดอร์
   static Future<Order> ceateOrders({required int shiftId, required double total, required List<OrderItemsDto> orderItems}) async {
-    //final token = prefs.getString('token');
-    //final token = prefs.getString('token');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+    var headers = {'Authorization': 'Bearer $token', 'Content-Type': 'application/json'};
     final url = Uri.https(publicUrl, '/api/order');
     final response = await http.post(url,
         //headers: {'Authorization': 'Bearer $token', 'Content-Type': 'application/json'},
-        headers: {'Content-Type': 'application/json'},
+        headers: headers,
         body: convert.jsonEncode({
           "shiftId": shiftId,
           "total": total,
