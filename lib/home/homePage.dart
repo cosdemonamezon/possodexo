@@ -96,6 +96,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       //getlistproduct();
+
       getlistCategory();
       getlistBranch();
     });
@@ -117,6 +118,12 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     ];
+    Future.delayed(
+      Duration(seconds: 1),
+      () async => {
+        await checkShift(),
+      },
+    );
   }
 
 // ดึงข้อมูล product
@@ -148,6 +155,16 @@ class _HomePageState extends State<HomePage> {
       await context.read<ProductController>().getListBranch();
     } on Exception catch (e) {
       inspect(e);
+    }
+  }
+
+  Future checkShift() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    shiftId = prefs.getString('shiftId');
+    if (shiftId != null) {
+      setState(() {
+        openShift = true;
+      });
     }
   }
 
@@ -1053,14 +1070,22 @@ class _HomePageState extends State<HomePage> {
                                                                     right: 5,
                                                                   ),
                                                                   child: Text(
-                                                                    'ขนาด',
+                                                                    selectedItem[index].p0.name == 'No' ||
+                                                                            selectedItem[index].p0.name == 'Yes'
+                                                                        ? selectedItem[index].p0.name == 'No'
+                                                                            ? 'ไม่ปั่น'
+                                                                            : 'ปั่น'
+                                                                        : 'ขนาด',
                                                                     style: TextStyle(
                                                                         fontSize: 14,
                                                                         fontFamily: 'IBMPlexSansThai',
                                                                         color: Color(0xFF455A64)),
                                                                   ),
                                                                 ),
-                                                                Text(selectedItem[index].p0.name)
+                                                                selectedItem[index].p0.name == 'No' ||
+                                                                        selectedItem[index].p0.name == 'Yes'
+                                                                    ? SizedBox.shrink()
+                                                                    : Text(selectedItem[index].p0.name)
                                                               ],
                                                             ),
                                                             Padding(
