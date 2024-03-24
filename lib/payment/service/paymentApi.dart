@@ -17,7 +17,6 @@ class PaymentApi {
     var headers = {'Authorization': 'Bearer $token', 'Content-Type': 'application/json'};
     final url = Uri.https(publicUrl, '/api/order');
     final response = await http.post(url,
-        //headers: {'Authorization': 'Bearer $token', 'Content-Type': 'application/json'},
         headers: headers,
         body: convert.jsonEncode({
           "shiftId": shiftId,
@@ -35,11 +34,12 @@ class PaymentApi {
 
   //เลือกการชำระเงิน
   static Future<PaymentOrder> paymentSelected({required int orderId, required List<OrderPayments> orderPayments}) async {
-    //final token = prefs.getString('token');
-    //final token = prefs.getString('token');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+    var headers = {'Authorization': 'Bearer $token', 'Content-Type': 'application/json'};
     final url = Uri.https(publicUrl, '/api/order/$orderId/payment');
     final response = await http.post(url,
-        headers: {'Content-Type': 'application/json'},
+        headers: headers,
         body: convert.jsonEncode({
           "orderPayments": orderPayments,
         }));
@@ -54,12 +54,13 @@ class PaymentApi {
 
   //จ่ายเงินทางเลือก
   static Future alternativePayment({required int orderId, required int orderPaymentId}) async {
-    //final token = prefs.getString('token');
-    //final token = prefs.getString('token');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+    var headers = {'Authorization': 'Bearer $token', 'Content-Type': 'application/json'};
     final url = Uri.https(publicUrl, '/api/order/$orderId/paid/$orderPaymentId');
     final response = await http.post(
       url,
-      //headers: {'Authorization': 'Bearer $token', 'Content-Type': 'application/json'},
+      headers: headers,
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
       final data = convert.jsonDecode(response.body);
