@@ -10,7 +10,7 @@ ProductAttribute _$ProductAttributeFromJson(Map<String, dynamic> json) =>
     ProductAttribute(
       json['id'] as int,
       json['name'] as String,
-      json['type'] as String,
+      json['type'] as String?,
       (json['productAttributeValues'] as List<dynamic>)
           .map((e) => ProductAttributeValue.fromJson(e as Map<String, dynamic>))
           .toList(),

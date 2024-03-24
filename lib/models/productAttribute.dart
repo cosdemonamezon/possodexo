@@ -7,7 +7,7 @@ part 'productAttribute.g.dart';
 class ProductAttribute {
   final int id;
   final String name;
-  final String type;
+  final String? type;
   final List<ProductAttributeValue> productAttributeValues;
 
   ProductAttribute(
