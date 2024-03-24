@@ -989,14 +989,20 @@ class _PaymentCashState extends State<PaymentCash> {
                                           final _paymentOrder = await PaymentApi.paymentSelected(orderId: widget.order.id, orderPayments: orderPayments);
                                           if (_paymentOrder != null) {
                                             if (!mounted) return;
-                                            
-                                            // Navigator.push(
-                                            //     context,
-                                            //     MaterialPageRoute(
-                                            //         builder: (context) => Proceedpayment(
-                                            //               order: widget.order,
-                                            //               paymentOrder: _paymentOrder,
-                                            //             )));
+                                            final _nextpay = await PaymentApi.nextPayment(orderId: widget.order.id);
+                                            if (_nextpay != null) {
+                                              if (_nextpay.orderPayment!.paymentMethod!.type == "cash") {
+                                                if (!mounted) return;
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) => Proceedpayment(
+                                                              order: widget.order,
+                                                              paymentOrder: _paymentOrder,
+                                                              nextPayment: _nextpay,
+                                                            )));
+                                              } else {}
+                                            } else {}
                                           } else {
                                             if (!mounted) return;
                                             showDialog(

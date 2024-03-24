@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:possodexo/models/category.dart';
 
 part 'unit.g.dart';
 

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:possodexo/constants.dart';
 import 'package:possodexo/home/firstPage.dart';
+import 'package:possodexo/models/nextpayment.dart';
 import 'package:possodexo/models/order.dart';
 import 'package:possodexo/models/paymentorder.dart';
 import 'package:possodexo/payment/service/paymentApi.dart';
 import 'package:possodexo/widgets/AlertDialogYesNo.dart';
 
 class Proceedpayment extends StatefulWidget {
-  Proceedpayment({Key? key, required this.order, required this.paymentOrder}) : super(key: key);
+  Proceedpayment({Key? key, required this.order, required this.paymentOrder, required this.nextPayment}) : super(key: key);
   PaymentOrder paymentOrder;
   Order order;
+  NextPayment nextPayment;
 
   @override
   State<Proceedpayment> createState() => _ProceedpaymentState();

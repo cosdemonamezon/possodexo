@@ -1,6 +1,7 @@
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:possodexo/constants.dart';
+import 'package:possodexo/models/nextpayment.dart';
 import 'package:possodexo/models/order.dart';
 import 'package:possodexo/models/orderitemsdto.dart';
 import 'package:possodexo/models/orderpayments.dart';
@@ -53,10 +54,23 @@ class PaymentApi {
   }
 
   //เน็ก API ดูการชำระเงินตัวถัดไป
-  static Future nextPayment() async{
-    
+  static Future<NextPayment> nextPayment({required int orderId}) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+    var headers = {'Authorization': 'Bearer $token', 'Content-Type': 'application/json'};
+    final url = Uri.https(publicUrl, '/api/order/$orderId/next-payment');
+    final response = await http.post(
+      url,
+      headers: headers,
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      final data = convert.jsonDecode(response.body);
+      return NextPayment.fromJson(data);
+    } else {
+      final data = convert.jsonDecode(response.body);
+      throw Exception(data['message']);
+    }
   }
-
 
   //จ่ายเงินทางเลือก
   static Future alternativePayment({required int orderId, required int orderPaymentId}) async {
