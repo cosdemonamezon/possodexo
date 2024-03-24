@@ -162,10 +162,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: SizedBox(
                                       child: Row(
-                                        children: [
-                                          Icon(Icons.cancel),
-                                          Text("ลบบิล")
-                                        ],
+                                        children: [Icon(Icons.cancel), Text("ลบบิล")],
                                       ),
                                     ),
                                   ),
@@ -184,29 +181,32 @@ class _PaymentCashState extends State<PaymentCash> {
                           return Column(
                             children: [
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text("${widget.selectedItem[index].product.name}"),
-                                  SizedBox(
-                                    width: size.width * 0.08,
-                                  ),
+                                  // SizedBox(
+                                  //   width: size.width * 0.08,
+                                  // ),
                                   Text(" ${widget.selectedItem[index].product.priceQTY}"),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
+                                  // SizedBox(
+                                  //   width: 10,
+                                  // ),
                                 ],
                               ),
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text('ขนาด'),
-                                  SizedBox(
-                                    width: size.width * 0.1,
+                                  Row(
+                                    children: List.generate(
+                                      widget.selectedItem[index].product.productAttributes!.length,
+                                      (index2) => Text('${widget.selectedItem[index].product.productAttributes![index2].name}'),
+                                    ),
                                   ),
                                   Text(widget.selectedItem[index].p0.name)
                                 ],
                               ),
                               Row(
-                                children: List.generate(widget.selectedItem[index].p2?.length ?? 0,
-                                    (index2) => Wrap(children: [Text("${widget.selectedItem[index].p2?[index2].name}, ")])),
+                                children: List.generate(widget.selectedItem[index].p2?.length ?? 0, (index2) => Wrap(children: [Text("${widget.selectedItem[index].p2?[index2].name}, ")])),
                               ),
                               Divider()
                               // Row(
@@ -943,7 +943,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                         ),
                                       ),
                                       Text(
-                                        '0.00 ฿',
+                                        '${change} ฿',
                                         style: TextStyle(
                                           fontFamily: 'IBMPlexSansThai',
                                         ),
@@ -989,10 +989,13 @@ class _PaymentCashState extends State<PaymentCash> {
                                           final _paymentOrder = await PaymentApi.paymentSelected(orderId: widget.order.id, orderPayments: orderPayments);
                                           if (_paymentOrder != null) {
                                             if (!mounted) return;
-                                            Navigator.push(context, MaterialPageRoute(builder: (context) => Proceedpayment(
-                                              order: widget.order,
-                                              paymentOrder: _paymentOrder,
-                                            )));
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) => Proceedpayment(
+                                                          order: widget.order,
+                                                          paymentOrder: _paymentOrder,
+                                                        )));
                                           } else {
                                             if (!mounted) return;
                                             showDialog(
