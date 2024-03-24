@@ -89,12 +89,29 @@ class _PaymentCashState extends State<PaymentCash> {
   }
 
   double calcuateDiscount() {
-    double totalDiscount = (priceDiscount + priceVoucher + priceVoucherstorefront + priceotherDiscount + priceotherDiscountthe1 + Price + (priceDiscountPercen * totalSum / 100));
+    double totalDiscount = (priceDiscount +
+        priceVoucher +
+        priceVoucherstorefront +
+        priceotherDiscount +
+        priceotherDiscountthe1 +
+        Price +
+        (priceDiscountPercen * totalSum / 100));
     return double.parse(totalDiscount.toStringAsFixed(2));
   }
 
   String money = "เงินสด";
-  List<String> general2 = ["เงินสด", "บัตรเครดิต/เดบิต", "QR Promptpay", "True Money", "LINE Pay", "Transfer", "Consignment", "บัตรพนักงาน  ", "แม่มณี", "อื่นๆ"];
+  List<String> general2 = [
+    "เงินสด",
+    "บัตรเครดิต/เดบิต",
+    "QR Promptpay",
+    "True Money",
+    "LINE Pay",
+    "Transfer",
+    "Consignment",
+    "บัตรพนักงาน  ",
+    "แม่มณี",
+    "อื่นๆ"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -199,14 +216,18 @@ class _PaymentCashState extends State<PaymentCash> {
                                   Row(
                                     children: List.generate(
                                       widget.selectedItem[index].product.productAttributes!.length,
-                                      (index2) => Text('${widget.selectedItem[index].product.productAttributes![index2].name}'),
+                                      (index2) =>
+                                          Text('${widget.selectedItem[index].product.productAttributes![index2].name}'),
                                     ),
                                   ),
                                   Text(widget.selectedItem[index].p0.name)
                                 ],
                               ),
                               Row(
-                                children: List.generate(widget.selectedItem[index].p2?.length ?? 0, (index2) => Wrap(children: [Text("${widget.selectedItem[index].p2?[index2].name}, ")])),
+                                children: List.generate(
+                                    widget.selectedItem[index].p2?.length ?? 0,
+                                    (index2) =>
+                                        Wrap(children: [Text("${widget.selectedItem[index].p2?[index2].name}, ")])),
                               ),
                               Divider()
                               // Row(
@@ -250,7 +271,9 @@ class _PaymentCashState extends State<PaymentCash> {
                 child: Container(
                   height: size.height * 0.05,
                   width: size.width * 0.25,
-                  decoration: BoxDecoration(color: selectedItem == 1 ? Color(0xff1264E3) : Colors.white, border: Border(bottom: BorderSide(color: Color.fromARGB(255, 228, 226, 226)))),
+                  decoration: BoxDecoration(
+                      color: selectedItem == 1 ? Color(0xff1264E3) : Colors.white,
+                      border: Border(bottom: BorderSide(color: Color.fromARGB(255, 228, 226, 226)))),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -275,7 +298,8 @@ class _PaymentCashState extends State<PaymentCash> {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Icon(Icons.arrow_forward_ios_outlined, size: 15, color: selectedItem == 1 ? Colors.white : Color(0xff1264E3)),
+                        child: Icon(Icons.arrow_forward_ios_outlined,
+                            size: 15, color: selectedItem == 1 ? Colors.white : Color(0xff1264E3)),
                       )
                     ],
                   ),
@@ -293,7 +317,9 @@ class _PaymentCashState extends State<PaymentCash> {
                 child: Container(
                   height: size.height * 0.05,
                   width: size.width * 0.25,
-                  decoration: BoxDecoration(color: selectedItem == 0 ? Color(0xff1264E3) : Colors.white, border: Border(bottom: BorderSide(color: Color.fromARGB(255, 228, 226, 226)))),
+                  decoration: BoxDecoration(
+                      color: selectedItem == 0 ? Color(0xff1264E3) : Colors.white,
+                      border: Border(bottom: BorderSide(color: Color.fromARGB(255, 228, 226, 226)))),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -318,7 +344,8 @@ class _PaymentCashState extends State<PaymentCash> {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Icon(Icons.arrow_forward_ios_outlined, size: 15, color: selectedItem == 0 ? Colors.white : Color(0xff1264E3)),
+                        child: Icon(Icons.arrow_forward_ios_outlined,
+                            size: 15, color: selectedItem == 0 ? Colors.white : Color(0xff1264E3)),
                       ),
                     ],
                   ),
@@ -339,7 +366,7 @@ class _PaymentCashState extends State<PaymentCash> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          // child: Text("${widget.sumQTY}"),
+                          child: Text(widget.sumQTY),
                         )
                       ],
                     ),
@@ -353,7 +380,8 @@ class _PaymentCashState extends State<PaymentCash> {
                         Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            NumberFormat('#,##0.00', 'en_US').format(totalSum),
+                            // NumberFormat('#,##0.00', 'en_US').format(totalSum),
+                            widget.sumPrice,
                           ),
                         )
                       ],
@@ -386,7 +414,7 @@ class _PaymentCashState extends State<PaymentCash> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          // child: Text("${widget.sumPrice}฿"),
+                          child: Text("${widget.sumPrice} ฿"),
                         )
                       ],
                     ),
@@ -493,16 +521,25 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                   children: [
                                                                     Text(
                                                                       'ยอดชำระ',
-                                                                      style: TextStyle(color: Color(0xFF424242), fontSize: 16),
+                                                                      style: TextStyle(
+                                                                          color: Color(0xFF424242), fontSize: 16),
                                                                     ),
                                                                     Text(
                                                                       'ชำระทั้งหมด',
-                                                                      style: TextStyle(color: Color(0xFF1264E3), fontSize: 16),
+                                                                      style: TextStyle(
+                                                                          color: Color(0xFF1264E3), fontSize: 16),
                                                                     ),
                                                                   ],
                                                                 ),
                                                                 Numbercel(
                                                                   ai: ai,
+                                                                  onChange: (value) {
+                                                                    setState(() {
+                                                                      ai.text = value;
+                                                                      change = (double.parse(ai.text) -
+                                                                          double.parse(widget.sumPrice));
+                                                                    });
+                                                                  },
                                                                 ),
                                                               ],
                                                             ),
@@ -522,24 +559,30 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                       width: size.width * 0.12,
                                                                       height: size.height * 0.05,
                                                                       decoration: BoxDecoration(
-                                                                        border: Border(bottom: BorderSide(color: Color(0xFF1264E3))),
+                                                                        border: Border(
+                                                                            bottom:
+                                                                                BorderSide(color: Color(0xFF1264E3))),
                                                                       ),
                                                                       child: Text(
                                                                         'ส่วนลด',
                                                                         textAlign: TextAlign.center,
-                                                                        style: TextStyle(fontSize: 20, color: Color(0xFF1264E3)),
+                                                                        style: TextStyle(
+                                                                            fontSize: 20, color: Color(0xFF1264E3)),
                                                                       ),
                                                                     )
                                                                   : Container(
                                                                       width: size.width * 0.12,
                                                                       height: size.height * 0.05,
                                                                       decoration: BoxDecoration(
-                                                                        border: Border(bottom: BorderSide(color: Color(0xFFB0BEC5))),
+                                                                        border: Border(
+                                                                            bottom:
+                                                                                BorderSide(color: Color(0xFFB0BEC5))),
                                                                       ),
                                                                       child: Text(
                                                                         'ส่วนลด',
                                                                         textAlign: TextAlign.center,
-                                                                        style: TextStyle(fontSize: 20, color: Color(0xFF424242)),
+                                                                        style: TextStyle(
+                                                                            fontSize: 20, color: Color(0xFF424242)),
                                                                       ),
                                                                     )),
                                                           InkWell(
@@ -551,24 +594,28 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                     width: size.width * 0.12,
                                                                     height: size.height * 0.05,
                                                                     decoration: BoxDecoration(
-                                                                      border: Border(bottom: BorderSide(color: Color(0xFF1264E3))),
+                                                                      border: Border(
+                                                                          bottom: BorderSide(color: Color(0xFF1264E3))),
                                                                     ),
                                                                     child: Text(
                                                                       'Gift Voucher',
                                                                       textAlign: TextAlign.center,
-                                                                      style: TextStyle(fontSize: 20, color: Color(0xFF1264E3)),
+                                                                      style: TextStyle(
+                                                                          fontSize: 20, color: Color(0xFF1264E3)),
                                                                     ),
                                                                   )
                                                                 : Container(
                                                                     width: size.width * 0.12,
                                                                     height: size.height * 0.05,
                                                                     decoration: BoxDecoration(
-                                                                      border: Border(bottom: BorderSide(color: Color(0xFFB0BEC5))),
+                                                                      border: Border(
+                                                                          bottom: BorderSide(color: Color(0xFFB0BEC5))),
                                                                     ),
                                                                     child: Text(
                                                                       'Gift Voucher',
                                                                       textAlign: TextAlign.center,
-                                                                      style: TextStyle(fontSize: 20, color: Color(0xFF424242)),
+                                                                      style: TextStyle(
+                                                                          fontSize: 20, color: Color(0xFF424242)),
                                                                     ),
                                                                   ),
                                                           ),
@@ -581,24 +628,28 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                     width: size.width * 0.12,
                                                                     height: size.height * 0.05,
                                                                     decoration: BoxDecoration(
-                                                                      border: Border(bottom: BorderSide(color: Color(0xFF1264E3))),
+                                                                      border: Border(
+                                                                          bottom: BorderSide(color: Color(0xFF1264E3))),
                                                                     ),
                                                                     child: Text(
                                                                       'แลกคะแนน',
                                                                       textAlign: TextAlign.center,
-                                                                      style: TextStyle(fontSize: 20, color: Color(0xFF1264E3)),
+                                                                      style: TextStyle(
+                                                                          fontSize: 20, color: Color(0xFF1264E3)),
                                                                     ),
                                                                   )
                                                                 : Container(
                                                                     width: size.width * 0.12,
                                                                     height: size.height * 0.05,
                                                                     decoration: BoxDecoration(
-                                                                      border: Border(bottom: BorderSide(color: Color(0xFFB0BEC5))),
+                                                                      border: Border(
+                                                                          bottom: BorderSide(color: Color(0xFFB0BEC5))),
                                                                     ),
                                                                     child: Text(
                                                                       'แลกคะแนน',
                                                                       textAlign: TextAlign.center,
-                                                                      style: TextStyle(fontSize: 20, color: Color(0xFF424242)),
+                                                                      style: TextStyle(
+                                                                          fontSize: 20, color: Color(0xFF424242)),
                                                                     ),
                                                                   ),
                                                           ),
@@ -611,24 +662,30 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                       width: size.width * 0.12,
                                                                       height: size.height * 0.05,
                                                                       decoration: BoxDecoration(
-                                                                        border: Border(bottom: BorderSide(color: Color(0xFF1264E3))),
+                                                                        border: Border(
+                                                                            bottom:
+                                                                                BorderSide(color: Color(0xFF1264E3))),
                                                                       ),
                                                                       child: Text(
                                                                         'ส่วนลดอื่นๆ',
                                                                         textAlign: TextAlign.center,
-                                                                        style: TextStyle(fontSize: 20, color: Color(0xFF1264E3)),
+                                                                        style: TextStyle(
+                                                                            fontSize: 20, color: Color(0xFF1264E3)),
                                                                       ),
                                                                     )
                                                                   : Container(
                                                                       width: size.width * 0.12,
                                                                       height: size.height * 0.05,
                                                                       decoration: BoxDecoration(
-                                                                        border: Border(bottom: BorderSide(color: Color(0xFFB0BEC5))),
+                                                                        border: Border(
+                                                                            bottom:
+                                                                                BorderSide(color: Color(0xFFB0BEC5))),
                                                                       ),
                                                                       child: Text(
                                                                         'ส่วนลดอื่นๆ',
                                                                         textAlign: TextAlign.center,
-                                                                        style: TextStyle(fontSize: 20, color: Color(0xFF424242)),
+                                                                        style: TextStyle(
+                                                                            fontSize: 20, color: Color(0xFF424242)),
                                                                       ),
                                                                     )),
                                                         ],
@@ -666,7 +723,8 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                         sumDiscount = sumDiscount + priceVoucher;
                                                                       } else {
                                                                         priceVoucherstorefront = double.parse(value);
-                                                                        sumDiscount = sumDiscount + priceVoucherstorefront;
+                                                                        sumDiscount =
+                                                                            sumDiscount + priceVoucherstorefront;
                                                                       }
                                                                       // log(frompriceVoucher.toString());
                                                                     });
@@ -675,12 +733,15 @@ class _PaymentCashState extends State<PaymentCash> {
                                                               : selectedIndex == 2
                                                                   ? Redeempointswidget(
                                                                       redeem: (p0) {
-                                                                        RegExp regex = RegExp(r"(\d{1,3}(,\d{3})*)\s*คะแนน.*?(\d{1,3}(,\d{3})*)\s*บาท");
+                                                                        RegExp regex = RegExp(
+                                                                            r"(\d{1,3}(,\d{3})*)\s*คะแนน.*?(\d{1,3}(,\d{3})*)\s*บาท");
 
                                                                         Match? match = regex.firstMatch(p0);
                                                                         if (match != null) {
-                                                                          Point = double.parse(match.group(1)!.replaceAll(',', ''));
-                                                                          Price = double.parse(match.group(3)!.replaceAll(',', ''));
+                                                                          Point = double.parse(
+                                                                              match.group(1)!.replaceAll(',', ''));
+                                                                          Price = double.parse(
+                                                                              match.group(3)!.replaceAll(',', ''));
                                                                           sumDiscount = sumDiscount + Point;
                                                                           log(Point.toString());
                                                                           setState(() {});
@@ -689,16 +750,21 @@ class _PaymentCashState extends State<PaymentCash> {
                                                                     )
                                                                   : selectedIndex == 3
                                                                       ? OtherDiscountsWidgets(
-                                                                          fromtype: (value) => {setState(() => fromotherdiscount = value)},
+                                                                          fromtype: (value) => {
+                                                                            setState(() => fromotherdiscount = value)
+                                                                          },
                                                                           otherDiscount: (value) {
                                                                             inspect(value);
                                                                             log(fromotherdiscount.toString());
                                                                             if (fromotherdiscount == 'คูปองห้าง') {
-                                                                              priceotherDiscountthe1 = double.parse(value);
-                                                                              sumDiscount = sumDiscount + priceotherDiscountthe1;
+                                                                              priceotherDiscountthe1 =
+                                                                                  double.parse(value);
+                                                                              sumDiscount =
+                                                                                  sumDiscount + priceotherDiscountthe1;
                                                                             } else {
                                                                               priceotherDiscount = double.parse(value);
-                                                                              sumDiscount = sumDiscount + priceotherDiscount;
+                                                                              sumDiscount =
+                                                                                  sumDiscount + priceotherDiscount;
                                                                             }
                                                                             // log(frompriceVoucher.toString());
                                                                             // if (value != '') {
@@ -845,7 +911,8 @@ class _PaymentCashState extends State<PaymentCash> {
                                       //Navigator.push(context, MaterialPageRoute(builder: (context) => Proceedsplitpayments()));
                                     },
                                     child: Container(
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Color(0xff4CAF50)),
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(8), color: Color(0xff4CAF50)),
                                       height: size.height * 0.095,
                                       width: double.infinity,
                                       child: Padding(
@@ -899,12 +966,12 @@ class _PaymentCashState extends State<PaymentCash> {
                                           fontFamily: 'IBMPlexSansThai',
                                         ),
                                       ),
-                                      // Text(
-                                      //   '${widget.sumPrice} ฿',
-                                      //   style: TextStyle(
-                                      //     fontFamily: 'IBMPlexSansThai',
-                                      //   ),
-                                      // ),
+                                      Text(
+                                        '${widget.sumPrice} ฿',
+                                        style: TextStyle(
+                                          fontFamily: 'IBMPlexSansThai',
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -922,12 +989,12 @@ class _PaymentCashState extends State<PaymentCash> {
                                           fontFamily: 'IBMPlexSansThai',
                                         ),
                                       ),
-                                      // Text(
-                                      //   '${widget.sumPrice} ฿',
-                                      //   style: TextStyle(
-                                      //     fontFamily: 'IBMPlexSansThai',
-                                      //   ),
-                                      // ),
+                                      Text(
+                                        "${ai.text} ฿",
+                                        style: TextStyle(
+                                          fontFamily: 'IBMPlexSansThai',
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -943,7 +1010,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                         ),
                                       ),
                                       Text(
-                                        '${change} ฿',
+                                        '${change.toStringAsFixed(2)} ฿',
                                         style: TextStyle(
                                           fontFamily: 'IBMPlexSansThai',
                                         ),
@@ -986,7 +1053,8 @@ class _PaymentCashState extends State<PaymentCash> {
                                             final _orderPayment = OrderPayments(payment!.id, double.parse(ai.text), '');
                                             orderPayments.add(_orderPayment);
                                           });
-                                          final _paymentOrder = await PaymentApi.paymentSelected(orderId: widget.order.id, orderPayments: orderPayments);
+                                          final _paymentOrder = await PaymentApi.paymentSelected(
+                                              orderId: widget.order.id, orderPayments: orderPayments);
                                           if (_paymentOrder != null) {
                                             if (!mounted) return;
                                             Navigator.push(
@@ -1025,7 +1093,8 @@ class _PaymentCashState extends State<PaymentCash> {
                                       }
                                     },
                                     child: Container(
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Color(0xff4CAF50)),
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(8), color: Color(0xff4CAF50)),
                                       height: size.height * 0.095,
                                       width: double.infinity,
                                       child: Padding(
@@ -1188,7 +1257,10 @@ class _PaymentCashState extends State<PaymentCash> {
                                   width: size.width * 0.1,
                                   child: Text(
                                     textAlign: TextAlign.end,
-                                    NumberFormat('#,##0.00', 'en_US').format(double.parse(NumberFormat('#,##0.00', 'en_US').format(priceDiscountPercen)) * totalSum / 100),
+                                    NumberFormat('#,##0.00', 'en_US').format(
+                                        double.parse(NumberFormat('#,##0.00', 'en_US').format(priceDiscountPercen)) *
+                                            totalSum /
+                                            100),
                                     style: TextStyle(
                                         color: Color(
                                           0xFF424242,
@@ -1514,7 +1586,18 @@ class _SplitPaymentState extends State<SplitPayment> {
   @override
   Widget build(BuildContext context) {
     String money = "เงินสด";
-    List<String> general2 = ["เงินสด", "บัตรเครดิต/เดบิต", "QR Promptpay", "True Money", "LINE Pay", "Transfer", "Consignment", "บัตรพนักงาน  ", "แม่มณี", "อื่นๆ"];
+    List<String> general2 = [
+      "เงินสด",
+      "บัตรเครดิต/เดบิต",
+      "QR Promptpay",
+      "True Money",
+      "LINE Pay",
+      "Transfer",
+      "Consignment",
+      "บัตรพนักงาน  ",
+      "แม่มณี",
+      "อื่นๆ"
+    ];
     void addModtodpayment() {
       final size = MediaQuery.of(context).size;
       setState(() {
@@ -1529,7 +1612,10 @@ class _SplitPaymentState extends State<SplitPayment> {
                 Container(
                   height: size.height * 0.1,
                   width: size.width * 0.13,
-                  decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
+                  decoration: BoxDecoration(
+                      border: Border(bottom: BorderSide(color: Colors.grey)),
+                      borderRadius: BorderRadius.circular(2),
+                      color: Color(0xFFFFFAFAFA)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -1586,7 +1672,10 @@ class _SplitPaymentState extends State<SplitPayment> {
                 Container(
                   height: size.height * 0.1,
                   width: size.width * 0.13,
-                  decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
+                  decoration: BoxDecoration(
+                      border: Border(bottom: BorderSide(color: Colors.grey)),
+                      borderRadius: BorderRadius.circular(2),
+                      color: Color(0xFFFFFAFAFA)),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Row(
@@ -1635,7 +1724,10 @@ class _SplitPaymentState extends State<SplitPayment> {
                 Container(
                   height: size.height * 0.1,
                   width: size.width * 0.13,
-                  decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey)), borderRadius: BorderRadius.circular(2), color: Color(0xFFFFFAFAFA)),
+                  decoration: BoxDecoration(
+                      border: Border(bottom: BorderSide(color: Colors.grey)),
+                      borderRadius: BorderRadius.circular(2),
+                      color: Color(0xFFFFFAFAFA)),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Row(
@@ -1726,7 +1818,8 @@ class _SplitPaymentState extends State<SplitPayment> {
           Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Container(
-              decoration: BoxDecoration(border: Border.all(color: Color(0xff1264E3)), borderRadius: BorderRadius.circular(8)),
+              decoration:
+                  BoxDecoration(border: Border.all(color: Color(0xff1264E3)), borderRadius: BorderRadius.circular(8)),
               height: size.height * 0.05,
               width: size.width * 0.1,
               child: Padding(
@@ -1747,7 +1840,8 @@ class _SplitPaymentState extends State<SplitPayment> {
                 print(payment);
               },
               child: Container(
-                decoration: BoxDecoration(border: Border.all(color: Color(0xff1264E3)), borderRadius: BorderRadius.circular(8)),
+                decoration:
+                    BoxDecoration(border: Border.all(color: Color(0xff1264E3)), borderRadius: BorderRadius.circular(8)),
                 height: size.height * 0.05,
                 width: size.width * 0.14,
                 child: Padding(
