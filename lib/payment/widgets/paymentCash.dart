@@ -1018,28 +1018,28 @@ class _PaymentCashState extends State<PaymentCash> {
                                     ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "รวม",
-                                        style: TextStyle(
-                                          color: Colors.red,
-                                          fontFamily: 'IBMPlexSansThai',
-                                        ),
-                                      ),
-                                      // Text(
-                                      //   '${widget.sumPrice} ฿',
-                                      //   style: TextStyle(
-                                      //     color: Colors.red,
-                                      //     fontFamily: 'IBMPlexSansThai',
-                                      //   ),
-                                      // ),
-                                    ],
-                                  ),
-                                ),
+                                // Padding(
+                                //   padding: const EdgeInsets.all(8.0),
+                                //   child: Row(
+                                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                //     children: [
+                                //       Text(
+                                //         "รวม",
+                                //         style: TextStyle(
+                                //           color: Colors.red,
+                                //           fontFamily: 'IBMPlexSansThai',
+                                //         ),
+                                //       ),
+                                //       // Text(
+                                //       //   '${widget.sumPrice} ฿',
+                                //       //   style: TextStyle(
+                                //       //     color: Colors.red,
+                                //       //     fontFamily: 'IBMPlexSansThai',
+                                //       //   ),
+                                //       // ),
+                                //     ],
+                                //   ),
+                                // ),
                                 Divider(color: Color(0xfff78909C)),
                                 SizedBox(
                                   height: size.height * 0.5,
@@ -1057,7 +1057,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                               orderId: widget.order.id, orderPayments: orderPayments);
                                           if (_paymentOrder != null) {
                                             if (!mounted) return;
-                                            
+
                                             // Navigator.push(
                                             //     context,
                                             //     MaterialPageRoute(
