@@ -99,7 +99,6 @@ class _HomePageState extends State<HomePage> {
       getlistCategory();
       getlistBranch();
     });
-    
 
     orders = [
       Card(
@@ -1237,23 +1236,6 @@ class _HomePageState extends State<HomePage> {
                                                       ),
                                                     );
                                                   }
-
-                                                  // selectedItem.isNotEmpty
-                                                  //     ? Navigator.push(
-                                                  //         context,
-                                                  //         MaterialPageRoute(
-                                                  //             builder: (context) =>
-                                                  //                 PaymentCash(
-                                                  //                   selectedItem:
-                                                  //                       selectedItem,
-                                                  //                   sumPrice: sumPrice(
-                                                  //                           selectedItem)
-                                                  //                       .toString(),
-                                                  //                   sumQTY: sumQTY(
-                                                  //                           selectedItem)
-                                                  //                       .toString(),
-                                                  //                 )))
-                                                  //     : null;
                                                 },
                                                 child: Container(
                                                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: selectedItem.isNotEmpty ? Colors.blue : Colors.grey),
@@ -1270,13 +1252,7 @@ class _HomePageState extends State<HomePage> {
                                                             padding: const EdgeInsets.only(left: 5, top: 3),
                                                             child: Text(
                                                               'ชำระเงิน ',
-                                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, fontFamily: 'IBMPlexSansThai', color: Colors.white
-                                                                  // : Color.fromARGB(
-                                                                  //     110,
-                                                                  //     185,
-                                                                  //     185,
-                                                                  //     185)
-                                                                  ),
+                                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, fontFamily: 'IBMPlexSansThai', color: Colors.white),
                                                             ),
                                                           ),
                                                         ),
