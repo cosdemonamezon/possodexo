@@ -1068,6 +1068,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                                               order: widget.order,
                                                               paymentOrder: _paymentOrder,
                                                               nextPayment: _nextpay,
+                                                              change: change,
                                                             )));
                                               } else {}
                                             } else {}

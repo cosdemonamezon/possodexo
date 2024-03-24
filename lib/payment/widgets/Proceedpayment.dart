@@ -8,10 +8,11 @@ import 'package:possodexo/payment/service/paymentApi.dart';
 import 'package:possodexo/widgets/AlertDialogYesNo.dart';
 
 class Proceedpayment extends StatefulWidget {
-  Proceedpayment({Key? key, required this.order, required this.paymentOrder, required this.nextPayment}) : super(key: key);
+  Proceedpayment({Key? key, required this.order, required this.paymentOrder, required this.nextPayment, this.change}) : super(key: key);
   PaymentOrder paymentOrder;
   Order order;
   NextPayment nextPayment;
+  double? change;
 
   @override
   State<Proceedpayment> createState() => _ProceedpaymentState();
@@ -137,10 +138,15 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                     'เงินทอน',
                     style: TextStyle(color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
                   ),
-                  Text(
-                    '0.00 ฿',
-                    style: TextStyle(color: ktextColr, fontSize: 30),
-                  ),
+                  widget.change != null
+                      ? Text(
+                          '${widget.change!.toStringAsFixed(2)} ฿',
+                          style: TextStyle(color: ktextColr, fontSize: 30),
+                        )
+                      : Text(
+                          '0.00 ฿',
+                          style: TextStyle(color: ktextColr, fontSize: 30),
+                        ),
                 ],
               ),
               InkWell(
@@ -148,7 +154,6 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                   try {
                     final _alternativePayment = await PaymentApi.alternativePayment(orderId: widget.order.id, orderPaymentId: widget.paymentOrder.orderPayments![0].id);
                     if (_alternativePayment != null) {
-                      if (!mounted) return;
                       final _nextpay = await PaymentApi.nextPayment(orderId: widget.order.id);
                       if (_nextpay.next == true) {
                         if (_nextpay.orderPayment!.paymentMethod!.type == "cash") {

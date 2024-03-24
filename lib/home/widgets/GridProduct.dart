@@ -3,21 +3,18 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:possodexo/home/service/productController.dart';
 import 'package:possodexo/models/product.dart';
+import 'package:possodexo/widgets/AlertDialogYesNo.dart';
 import 'package:provider/provider.dart';
 
 import 'OpenDialogProduct.dart';
 
 class GridCoffee extends StatefulWidget {
-  GridCoffee({
-    super.key,
-    required this.qty,
-    required this.gridCoffee,
-    required this.onChange,
-  });
+  GridCoffee({super.key, required this.qty, required this.gridCoffee, required this.onChange, required this.categoryid});
 
   int qty = 0;
   final List<Product> gridCoffee;
   final ValueChanged onChange;
+  final int categoryid;
   @override
   State<GridCoffee> createState() => _GridCoffeeState();
 }
@@ -27,7 +24,10 @@ class _GridCoffeeState extends State<GridCoffee> {
   @override
   void initState() {
     super.initState();
-    getlistproduct(categoryid: widget.gridCoffee[0].id);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await getlistproduct(categoryid: widget.categoryid);
+    });
+
     // inspect(widget.gridCoffee);
   }
 
@@ -35,7 +35,18 @@ class _GridCoffeeState extends State<GridCoffee> {
     try {
       await context.read<ProductController>().getProduct(categoryid: categoryid);
     } on Exception catch (e) {
-      inspect(e);
+      if (!mounted) return;
+
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialogYes(
+          title: 'แจ้งเตือน',
+          description: '${e}',
+          pressYes: () {
+            Navigator.pop(context, true);
+          },
+        ),
+      );
     }
   }
 
@@ -43,7 +54,18 @@ class _GridCoffeeState extends State<GridCoffee> {
     try {
       await context.read<ProductController>().getproductById(productId: productId);
     } on Exception catch (e) {
-      inspect(e);
+      if (!mounted) return;
+
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialogYes(
+          title: 'แจ้งเตือน',
+          description: '${e}',
+          pressYes: () {
+            Navigator.pop(context, true);
+          },
+        ),
+      );
     }
   }
 
@@ -90,15 +112,25 @@ class _GridCoffeeState extends State<GridCoffee> {
                         Expanded(
                           child: Stack(
                             children: [
-                              Image.network(
-                                productmains[index].image ?? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
-                                width: size.width * 0.22,
-                                height: size.height * 0.22,
-                                fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) => Image.network(
-                                  'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
-                                ),
-                              ),
+                              productmains.isNotEmpty
+                                  ? Image.network(
+                                      productmains[index].image ?? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
+                                      width: size.width * 0.22,
+                                      height: size.height * 0.22,
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (context, error, stackTrace) => Image.network(
+                                        'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
+                                      ),
+                                    )
+                                  : Image.network(
+                                      'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
+                                      width: size.width * 0.22,
+                                      height: size.height * 0.22,
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (context, error, stackTrace) => Image.network(
+                                        'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
+                                      ),
+                                    ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(

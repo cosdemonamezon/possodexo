@@ -43,8 +43,9 @@ class ProductController extends ChangeNotifier {
     categorized.clear();
     categorized = await ProductApi.getCategory();
     categorized.insert(0, Category(0, DateTime.now(), DateTime.now(), DateTime.now(), '00', 'ทั้งหมด'));
-    notifyListeners();
     getProduct(categoryid: categorized[0].id!);
+    notifyListeners();
+    //getProduct(categoryid: categorized[0].id!);
   }
 
   getListBranch() async {

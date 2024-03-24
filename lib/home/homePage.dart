@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {});
   }
 
-  List<Category> product = [];
+  List<Category> category = [];
   Category? sclectedProduct;
   List<Map<String, dynamic>> gridCoffees = [];
   int? menuSize;
@@ -94,11 +94,11 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async{
       //getlistproduct();
 
-      getlistCategory();
-      getlistBranch();
+      await getlistCategory();
+      await getlistBranch();
     });
 
     orders = [
@@ -140,11 +140,22 @@ class _HomePageState extends State<HomePage> {
       await context.read<ProductController>().getListCategory();
       final list = context.read<ProductController>().categorized;
       setState(() {
-        product = list;
+        category = list;
         sclectedProduct = list[0];
       });
     } on Exception catch (e) {
-      inspect(e);
+      if (!mounted) return;
+
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialogYes(
+          title: 'แจ้งเตือน',
+          description: '${e}',
+          pressYes: () {
+            Navigator.pop(context, true);
+          },
+        ),
+      );
     }
   }
 
@@ -153,7 +164,18 @@ class _HomePageState extends State<HomePage> {
     try {
       await context.read<ProductController>().getListBranch();
     } on Exception catch (e) {
-      inspect(e);
+      if (!mounted) return;
+
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialogYes(
+          title: 'แจ้งเตือน',
+          description: '${e}',
+          pressYes: () {
+            Navigator.pop(context, true);
+          },
+        ),
+      );
     }
   }
 
@@ -172,7 +194,18 @@ class _HomePageState extends State<HomePage> {
     try {
       await context.read<ProductController>().getListPayment();
     } on Exception catch (e) {
-      inspect(e);
+      if (!mounted) return;
+
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialogYes(
+          title: 'แจ้งเตือน',
+          description: '${e}',
+          pressYes: () {
+            Navigator.pop(context, true);
+          },
+        ),
+      );
     }
   }
 
@@ -181,23 +214,6 @@ class _HomePageState extends State<HomePage> {
   int newQty(List<Product> orders) => orders.fold(0, (previousValue, e) => previousValue + e.qty);
 
   double sumOrderItem(List<OrderItemsDto> attributesValue) => attributesValue.fold(0, (p, o) => p + (o.price + o.total));
-
-  // double newtotal(Product orders, AttributeValues sizes) {
-  //   return double.parse((sizes.price! == 0
-  //           ? orders.priceS! * orders.qty!
-  //           : orders.size! == 1
-  //               ? orders.priceM! * orders.qty!
-  //               : orders.priceL! * orders.qty!)
-  //       .toString());
-  // }
-
-  // double sumPrice(List<Product> productPrice) => productPrice.fold(
-  //     0, (previousValue, element) => previousValue + newtotal(element));
-
-  // double newtotaQTYl(Product orders) => double.parse((orders.qty).toString());
-
-  // double sumQTY(List<Product> productPrice) => productPrice.fold(
-  //     0, (previousValue, element) => previousValue + newtotaQTYl(element));
 
   Branch? sizeValue;
   String printValue = 'พิมพ์ใบกำกับภาษี';
@@ -463,7 +479,7 @@ class _HomePageState extends State<HomePage> {
                                               width: 20,
                                             ),
                                             DropdownButton<Category>(
-                                              selectedItemBuilder: (e) => product.map<Widget>((item) {
+                                              selectedItemBuilder: (e) => category.map<Widget>((item) {
                                                 return Center(
                                                   child: Text(
                                                     item.name!,
@@ -478,7 +494,7 @@ class _HomePageState extends State<HomePage> {
                                                 color: Colors.white,
                                               ),
                                               underline: SizedBox(),
-                                              items: product.map<DropdownMenuItem<Category>>((item) {
+                                              items: category.map<DropdownMenuItem<Category>>((item) {
                                                 return DropdownMenuItem<Category>(
                                                   value: item,
                                                   child: Text(
@@ -535,6 +551,7 @@ class _HomePageState extends State<HomePage> {
                                                   child: GridCoffee(
                                                     qty: qty,
                                                     gridCoffee: products,
+                                                    categoryid: sclectedProduct!.id!,
                                                     onChange: (value) {
                                                       // inspect(value);
                                                       // final Product item = value["item"];
