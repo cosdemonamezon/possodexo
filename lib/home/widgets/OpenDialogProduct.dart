@@ -92,7 +92,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
           Column(
               children: List.generate(
             widget.gridCoffee.productAttributes?.length ?? 0,
-            (index) => widget.gridCoffee.productAttributes![index].type == "SINGLE"
+            (index) => widget.gridCoffee.productAttributes![index].type == "single"
                 ? SingelProduct(
                     vicecall: (p0) {
                       setState(() {
@@ -106,7 +106,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                     },
                     productAttribute: widget.gridCoffee.productAttributes![index],
                   )
-                : widget.gridCoffee.productAttributes![index].type == "QUANTITY"
+                : widget.gridCoffee.productAttributes![index].type == "quantity"
                     ? QuantityProduct(
                         vicecall2: (p1) {
                           setState(() {
@@ -124,7 +124,7 @@ class _OpenDialogProductState extends State<OpenDialogProduct> {
                         },
                         productAttribute: widget.gridCoffee.productAttributes![index],
                       )
-                    : widget.gridCoffee.productAttributes![index].type == "MULTIPLE"
+                    : widget.gridCoffee.productAttributes![index].type == "multiple"
                         ? Multiplepeoduct(
                             vicecall3: (p2) {
                               setState(() {
