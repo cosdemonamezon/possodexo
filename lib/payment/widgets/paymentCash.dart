@@ -989,13 +989,14 @@ class _PaymentCashState extends State<PaymentCash> {
                                           final _paymentOrder = await PaymentApi.paymentSelected(orderId: widget.order.id, orderPayments: orderPayments);
                                           if (_paymentOrder != null) {
                                             if (!mounted) return;
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) => Proceedpayment(
-                                                          order: widget.order,
-                                                          paymentOrder: _paymentOrder,
-                                                        )));
+                                            
+                                            // Navigator.push(
+                                            //     context,
+                                            //     MaterialPageRoute(
+                                            //         builder: (context) => Proceedpayment(
+                                            //               order: widget.order,
+                                            //               paymentOrder: _paymentOrder,
+                                            //             )));
                                           } else {
                                             if (!mounted) return;
                                             showDialog(

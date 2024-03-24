@@ -52,6 +52,12 @@ class PaymentApi {
     }
   }
 
+  //เน็ก API ดูการชำระเงินตัวถัดไป
+  static Future nextPayment() async{
+    
+  }
+
+
   //จ่ายเงินทางเลือก
   static Future alternativePayment({required int orderId, required int orderPaymentId}) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
