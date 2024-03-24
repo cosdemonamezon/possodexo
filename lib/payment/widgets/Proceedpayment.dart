@@ -107,7 +107,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                 style: TextStyle(color: ktextColr, fontSize: 30),
               ),
               Text(
-                'ประเภท : เงินสด',
+                'ประเภท : ${widget.nextPayment.orderPayment!.paymentMethod!.name}',
                 style: TextStyle(color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
               ),
               Text(
@@ -146,19 +146,36 @@ class _ProceedpaymentState extends State<Proceedpayment> {
               InkWell(
                 onTap: () async {
                   try {
-                    final _alternativePayment = await PaymentApi.alternativePayment(orderId: widget.order.id, orderPaymentId: widget.paymentOrder.id);
+                    final _alternativePayment = await PaymentApi.alternativePayment(orderId: widget.order.id, orderPaymentId: widget.paymentOrder.orderPayments![0].id);
                     if (_alternativePayment != null) {
                       if (!mounted) return;
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialogYes(
-                          title: 'ดำเนินการสำเร็จ',
-                          description: 'เดี๋ยวค่อยทำหน้าต่อไป',
-                          pressYes: () {
-                            Navigator.pop(context, true);
-                          },
-                        ),
-                      );
+                      final _nextpay = await PaymentApi.nextPayment(orderId: widget.order.id);
+                      if (_nextpay.next == true) {
+                        if (_nextpay.orderPayment!.paymentMethod!.type == "cash") {
+                          if (!mounted) return;
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Proceedpayment(
+                                        order: widget.order,
+                                        paymentOrder: widget.paymentOrder,
+                                        nextPayment: _nextpay,
+                                      )));
+                        } else {}
+                      } else {
+                        if (!mounted) return;
+                        showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (context) => AlertDialogYes(
+                            title: 'ดำเนินการสำเร็จ',
+                            description: 'กลับไปหน้าแรก',
+                            pressYes: () {
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => FirstPage()));
+                            },
+                          ),
+                        );
+                      }
                     } else {
                       if (!mounted) return;
                       showDialog(

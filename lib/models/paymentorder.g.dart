@@ -12,6 +12,9 @@ PaymentOrder _$PaymentOrderFromJson(Map<String, dynamic> json) => PaymentOrder(
       (json['total'] as num?)?.toDouble(),
       (json['discount'] as num?)?.toDouble(),
       (json['grandTotal'] as num?)?.toDouble(),
+      (json['orderPayments'] as List<dynamic>?)
+          ?.map((e) => OrderPayment.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$PaymentOrderToJson(PaymentOrder instance) =>
@@ -21,4 +24,5 @@ Map<String, dynamic> _$PaymentOrderToJson(PaymentOrder instance) =>
       'total': instance.total,
       'discount': instance.discount,
       'grandTotal': instance.grandTotal,
+      'orderPayments': instance.orderPayments,
     };

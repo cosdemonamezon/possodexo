@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:possodexo/models/orderpayment.dart';
 
 part 'paymentorder.g.dart';
 
@@ -9,13 +10,15 @@ class PaymentOrder {
   final double? total;
   final double? discount;
   final double? grandTotal;
+  final List<OrderPayment>? orderPayments;
 
   PaymentOrder(
     this.id,
     this.orderStatus,
     this.total,
     this.discount,
-    this.grandTotal
+    this.grandTotal,
+    this.orderPayments
   );
 
   factory PaymentOrder.fromJson(Map<String, dynamic> json) => _$PaymentOrderFromJson(json);
