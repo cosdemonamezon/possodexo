@@ -1,4 +1,5 @@
 import 'dart:convert' as convert;
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:possodexo/constants.dart';
 import 'package:possodexo/models/branch.dart';
@@ -6,6 +7,7 @@ import 'package:possodexo/models/category.dart';
 import 'package:possodexo/models/payment.dart';
 import 'package:possodexo/models/product.dart';
 import 'package:possodexo/models/shift.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductApi {
   const ProductApi();
@@ -15,7 +17,11 @@ class ProductApi {
       "categoryId": '$id',
       "sortBy": 'createdAt:DESC',
     });
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+    var headers = {'Authorization': 'Bearer $token', 'Content-Type': 'application/json'};
     final response = await http.get(
+      headers: headers,
       url,
     );
     if (response.statusCode == 200) {
@@ -49,7 +55,11 @@ class ProductApi {
   //เรียกดูข้อมูล Category
   static Future<List<Category>> getCategory() async {
     final url = Uri.https(publicUrl, '/api/category');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+    var headers = {'Authorization': 'Bearer $token', 'Content-Type': 'application/json'};
     final response = await http.get(
+      headers: headers,
       url,
     );
     if (response.statusCode == 200) {
