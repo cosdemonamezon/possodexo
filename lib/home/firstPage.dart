@@ -4,7 +4,11 @@ import 'package:flutter/widgets.dart';
 import 'package:possodexo/home/homePage.dart';
 import 'package:possodexo/home/widgets/ItemMenuWidget.dart';
 import 'package:possodexo/Cancelbill/cancelBill.dart';
+import 'package:possodexo/login/loginPage.dart';
+import 'package:possodexo/login/services/loginController.dart';
 import 'package:possodexo/seconDisplay/secondisplay.dart';
+import 'package:possodexo/widgets/AlertDialogYesNo.dart';
+import 'package:provider/provider.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -54,18 +58,6 @@ class _FirstPageState extends State<FirstPage> {
                 children: [
                   Column(
                     children: [
-                      // Container(
-                      //   padding: EdgeInsets.all(8),
-                      //   decoration: BoxDecoration(
-                      //     borderRadius: BorderRadius.circular(20),
-                      //     color: Colors.deepOrangeAccent,
-                      //   ),
-                      //   child: Icon(
-                      //     Icons.fastfood,
-                      //     color: Colors.white,
-                      //     size: 14,
-                      //   ),
-                      // ),
                       Image.asset('assets/icons/Logo_White.png'),
                       SizedBox(height: size.height * 0.02),
                       Text(
@@ -117,9 +109,30 @@ class _FirstPageState extends State<FirstPage> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () async {
+                      if (!mounted) return;
+                      final ok = await showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (context) => AlertDialogYesNo(
+                          title: 'แจ้งเตือน',
+                          description: 'ต้องออกจากระบบหรือไม่',
+                          pressYes: () {
+                            Navigator.pop(context, true);
+                          },
+                          pressNo: () {
+                            Navigator.pop(context, false);
+                          },
+                        ),
+                      );
+                      if (ok == true) {
+                        if (!mounted) return;
+                        context.read<LoginController>().clearToken().then((value) {
+                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginPage()), (route) => false);
+                        });
+                      }
+                    },
                     child: AnimatedContainer(
-                      //padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                       height: size.height * 0.05,
                       width: size.width * 0.08,
                       decoration: BoxDecoration(
