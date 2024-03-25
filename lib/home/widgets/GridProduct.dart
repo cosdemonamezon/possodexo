@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:possodexo/home/service/productController.dart';
 import 'package:possodexo/models/product.dart';
 import 'package:possodexo/widgets/AlertDialogYesNo.dart';
+import 'package:possodexo/widgets/LoadingDialog.dart';
 import 'package:provider/provider.dart';
 
 import 'OpenDialogProduct.dart';
@@ -33,10 +34,13 @@ class _GridCoffeeState extends State<GridCoffee> {
 
   Future<void> getlistproduct({required int categoryid}) async {
     try {
+      LoadingDialog.open(context);
       await context.read<ProductController>().getProduct(categoryid: categoryid);
+      if (!mounted) return;
+      LoadingDialog.close(context);
     } on Exception catch (e) {
       if (!mounted) return;
-
+      LoadingDialog.close(context);
       showDialog(
         context: context,
         builder: (context) => AlertDialogYes(
@@ -52,10 +56,13 @@ class _GridCoffeeState extends State<GridCoffee> {
 
   Future<void> getproductbyId({required int productId}) async {
     try {
+      LoadingDialog.open(context);
       await context.read<ProductController>().getproductById(productId: productId);
+      if (!mounted) return;
+      LoadingDialog.close(context);
     } on Exception catch (e) {
       if (!mounted) return;
-
+      LoadingDialog.close(context);
       showDialog(
         context: context,
         builder: (context) => AlertDialogYes(

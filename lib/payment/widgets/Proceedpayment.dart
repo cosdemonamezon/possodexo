@@ -8,6 +8,7 @@ import 'package:possodexo/models/order.dart';
 import 'package:possodexo/models/paymentorder.dart';
 import 'package:possodexo/payment/service/paymentApi.dart';
 import 'package:possodexo/widgets/AlertDialogYesNo.dart';
+import 'package:possodexo/widgets/LoadingDialog.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class Proceedpayment extends StatefulWidget {
@@ -157,7 +158,12 @@ class _ProceedpaymentState extends State<Proceedpayment> {
               ),
               widget.nextPayment.orderPayment!.paymentMethod!.name == 'พร้อมเพย์'
                   //? Image.memory(base64Decode(widget.nextPayment.payment!.image!))
-                  ?Image.memory(base64.decode(widget.nextPayment.payment!.image!.split(',').last,),height: size. height * 0.232,)
+                  ? Image.memory(
+                      base64.decode(
+                        widget.nextPayment.payment!.image!.split(',').last,
+                      ),
+                      height: size.height * 0.232,
+                    )
                   // QrImageView(
                   //     data: widget.nextPayment.payment!.image!,
                   //     version: QrVersions.auto,
@@ -171,7 +177,10 @@ class _ProceedpaymentState extends State<Proceedpayment> {
               InkWell(
                 onTap: () async {
                   try {
+                    LoadingDialog.open(context);
                     final _alternativePayment = await PaymentApi.alternativePayment(orderId: widget.order.id, orderPaymentId: widget.paymentOrder.orderPayments![0].id);
+                    if (!mounted) return;
+                    LoadingDialog.close(context);
                     if (_alternativePayment != null) {
                       final _nextpay = await PaymentApi.nextPayment(orderId: widget.order.id);
                       if (_nextpay.next == true) {
@@ -205,6 +214,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                       }
                     } else {
                       if (!mounted) return;
+                      LoadingDialog.close(context);
                       showDialog(
                         context: context,
                         builder: (context) => AlertDialogYes(
@@ -218,6 +228,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                     }
                   } on Exception catch (e) {
                     if (!mounted) return;
+                    LoadingDialog.close(context);
                     showDialog(
                       context: context,
                       builder: (context) => AlertDialogYes(

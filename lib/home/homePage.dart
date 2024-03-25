@@ -25,6 +25,7 @@ import 'package:possodexo/models/category.dart';
 import 'package:possodexo/models/product.dart';
 import 'package:possodexo/payment/service/paymentApi.dart';
 import 'package:possodexo/widgets/AlertDialogYesNo.dart';
+import 'package:possodexo/widgets/LoadingDialog.dart';
 
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -118,7 +119,7 @@ class _HomePageState extends State<HomePage> {
       ),
     ];
     Future.delayed(
-      Duration(seconds: 2),
+      Duration(seconds: 1),
       () async => {
         await checkShift(),
       },
@@ -137,15 +138,18 @@ class _HomePageState extends State<HomePage> {
   //ดึงข้อมูล Category
   Future<void> getlistCategory() async {
     try {
+      LoadingDialog.open(context);
       await context.read<ProductController>().getListCategory();
       final list = context.read<ProductController>().categorized;
+      if (!mounted) return;
+      LoadingDialog.close(context);
       setState(() {
         category = list;
         sclectedProduct = list[0];
       });
     } on Exception catch (e) {
       if (!mounted) return;
-
+      LoadingDialog.close(context);
       showDialog(
         context: context,
         builder: (context) => AlertDialogYes(

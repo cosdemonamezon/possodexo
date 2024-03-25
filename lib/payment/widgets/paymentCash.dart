@@ -18,6 +18,7 @@ import 'package:possodexo/payment/widgets/Redeempointswidget.dart';
 import 'package:possodexo/payment/widgets/numbercel.dart';
 import 'package:possodexo/payment/widgets/paymentmedtod.dart';
 import 'package:possodexo/widgets/AlertDialogYesNo.dart';
+import 'package:possodexo/widgets/LoadingDialog.dart';
 
 class PaymentCash extends StatefulWidget {
   PaymentCash({
@@ -1053,10 +1054,12 @@ class _PaymentCashState extends State<PaymentCash> {
                                             final _orderPayment = OrderPayments(payment!.id, double.parse(ai.text), '');
                                             orderPayments.add(_orderPayment);
                                           });
+                                          LoadingDialog.open(context);
                                           final _paymentOrder = await PaymentApi.paymentSelected(
                                               orderId: widget.order.id, orderPayments: orderPayments);
                                           if (_paymentOrder != null) {
                                             if (!mounted) return;
+                                            LoadingDialog.close(context);
                                             final _nextpay = await PaymentApi.nextPayment(orderId: widget.order.id);
                                             if (_nextpay.next == true) {
                                               if (_nextpay.orderPayment!.paymentMethod!.type == "cash" || _nextpay.orderPayment!.paymentMethod!.type == "thaiqr") {
@@ -1074,6 +1077,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                             } else {}
                                           } else {
                                             if (!mounted) return;
+                                            LoadingDialog.close(context);
                                             showDialog(
                                               context: context,
                                               builder: (context) => AlertDialogYes(
@@ -1088,6 +1092,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                         }
                                       } on Exception catch (e) {
                                         if (!mounted) return;
+                                        LoadingDialog.close(context);
                                         showDialog(
                                           context: context,
                                           builder: (context) => AlertDialogYes(
