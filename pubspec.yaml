@@ -55,6 +55,7 @@ dependencies:
   number_paginator: ^0.4.1
   fluttertoast: ^8.2.4
   shared_preferences: ^2.2.2
+  qr_flutter: ^4.1.0
 
   imin_printer:
       git:

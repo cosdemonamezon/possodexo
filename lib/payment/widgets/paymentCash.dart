@@ -1059,7 +1059,7 @@ class _PaymentCashState extends State<PaymentCash> {
                                             if (!mounted) return;
                                             final _nextpay = await PaymentApi.nextPayment(orderId: widget.order.id);
                                             if (_nextpay.next == true) {
-                                              if (_nextpay.orderPayment!.paymentMethod!.type == "cash") {
+                                              if (_nextpay.orderPayment!.paymentMethod!.type == "cash" || _nextpay.orderPayment!.paymentMethod!.type == "thaiqr") {
                                                 if (!mounted) return;
                                                 Navigator.push(
                                                     context,

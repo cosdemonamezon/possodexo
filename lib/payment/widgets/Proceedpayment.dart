@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:possodexo/constants.dart';
 import 'package:possodexo/home/firstPage.dart';
@@ -6,6 +8,7 @@ import 'package:possodexo/models/order.dart';
 import 'package:possodexo/models/paymentorder.dart';
 import 'package:possodexo/payment/service/paymentApi.dart';
 import 'package:possodexo/widgets/AlertDialogYesNo.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class Proceedpayment extends StatefulWidget {
   Proceedpayment({Key? key, required this.order, required this.paymentOrder, required this.nextPayment, this.change}) : super(key: key);
@@ -83,7 +86,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
     final size = MediaQuery.of(context).size;
     return Center(
       child: Container(
-        height: size.height * 0.65,
+        height: size.height * 0.75,
         width: size.width * 0.3,
         decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
         child: Padding(
@@ -99,8 +102,8 @@ class _ProceedpaymentState extends State<Proceedpayment> {
               //   scale: 10,
               // ),
               SizedBox(
-                width: size.width * 0.05,
-                height: size.height * 0.1,
+                width: size.width * 0.02,
+                height: size.height * 0.04,
                 child: CircularProgressIndicator(),
               ),
               Text(
@@ -149,6 +152,22 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                         ),
                 ],
               ),
+              SizedBox(
+                height: size.height * 0.01,
+              ),
+              widget.nextPayment.orderPayment!.paymentMethod!.name == 'พร้อมเพย์'
+                  //? Image.memory(base64Decode(widget.nextPayment.payment!.image!))
+                  ?Image.memory(base64.decode(widget.nextPayment.payment!.image!.split(',').last,),height: size. height * 0.232,)
+                  // QrImageView(
+                  //     data: widget.nextPayment.payment!.image!,
+                  //     version: QrVersions.auto,
+                  //     size: 320,
+                  //     gapless: false,
+                  //   )
+                  : SizedBox(),
+              SizedBox(
+                height: size.height * 0.01,
+              ),
               InkWell(
                 onTap: () async {
                   try {
@@ -156,7 +175,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                     if (_alternativePayment != null) {
                       final _nextpay = await PaymentApi.nextPayment(orderId: widget.order.id);
                       if (_nextpay.next == true) {
-                        if (_nextpay.orderPayment!.paymentMethod!.type == "cash") {
+                        if (_nextpay.orderPayment!.paymentMethod!.type == "cash" || _nextpay.orderPayment!.paymentMethod!.type == "thaiqr") {
                           if (!mounted) return;
                           Navigator.push(
                               context,
@@ -174,12 +193,15 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                           barrierDismissible: false,
                           builder: (context) => AlertDialogYes(
                             title: 'ดำเนินการสำเร็จ',
-                            description: 'กลับไปหน้าแรก',
+                            description: 'ได้รับเงินสำเร็จแล้ว',
                             pressYes: () {
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => FirstPage()));
+                              Navigator.pop(context, true);
                             },
                           ),
                         );
+                        setState(() {
+                          _showAlternativeBody = true;
+                        });
                       }
                     } else {
                       if (!mounted) return;
@@ -249,7 +271,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                 style: TextStyle(color: ktextColr, fontSize: 30),
               ),
               Text(
-                'ประเภท : เงินสด',
+                'ประเภท : ${widget.nextPayment.orderPayment!.paymentMethod!.name}',
                 style: TextStyle(color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
               ),
               Row(
@@ -276,7 +298,7 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                     style: TextStyle(color: Color.fromARGB(206, 66, 66, 66), fontSize: 20),
                   ),
                   Text(
-                    '243.00 ฿',
+                    '${widget.paymentOrder.grandTotal} ฿',
                     style: TextStyle(color: ktextColr, fontSize: 30),
                   ),
                 ],
@@ -301,7 +323,8 @@ class _ProceedpaymentState extends State<Proceedpayment> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => FirstPage()));
+                      //Navigator.push(context, MaterialPageRoute(builder: (context) => FirstPage()));
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => FirstPage()));
                     },
                     child: Container(
                       width: size.width * 0.13,
