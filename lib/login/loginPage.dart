@@ -71,6 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                             RegisTextFormField(
                               size: size,
                               controller: password,
+                              isPassword: true,
                             ),
                             SizedBox(
                               height: size.height * 0.04,
