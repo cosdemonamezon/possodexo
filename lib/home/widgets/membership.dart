@@ -2,15 +2,29 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:possodexo/constants.dart';
 import 'package:possodexo/extension/dateExtension.dart';
-import 'package:possodexo/home/widgets/ClosePrintDialog.dart';
 import 'package:possodexo/home/widgets/PolicyPage.dart';
 
 class Membership extends StatefulWidget {
-  const Membership({
-    super.key,
-    required this.closeblack,
-  });
+  Membership(
+      {super.key,
+      required this.closeblack,
+      required this.close,
+      required this.confirm,
+      required this.firstName,
+      required this.lastName,
+      required this.password,
+      required this.phoneNumber,
+      required this.emal,
+      required this.username});
   final VoidCallback closeblack;
+  final VoidCallback close;
+  final VoidCallback confirm;
+  final TextEditingController phoneNumber;
+  final TextEditingController username;
+  final TextEditingController password;
+  final TextEditingController firstName;
+  final TextEditingController lastName;
+  final TextEditingController emal;
   @override
   State<Membership> createState() => _MembershipState();
 }
@@ -69,11 +83,73 @@ class _MembershipState extends State<Membership> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border(
+                      bottom: BorderSide(width: 2, color: Color(0xff78909C)),
+                    ),
+                  ),
+                  width: size.width * 0.15,
+                  height: size.height * 0.08,
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: widget.username,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "ยูสเซอร์เนม",
+                      ),
+                      validator: (value) {
+                        if (value == '') {
+                          return "โปรดใส่ยูสเซอร์เนม";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: size.width * 0.009,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border(
+                      bottom: BorderSide(width: 2, color: Color(0xff78909C)),
+                    ),
+                  ),
+                  width: size.width * 0.15,
+                  height: size.height * 0.08,
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: widget.password,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "พาสเวิร์ด",
+                      ),
+                      validator: (value) {
+                        if (value == '') {
+                          return "โปรดใส่พาสเวิร์ด";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: size.height * 0.01,
+            ),
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
                   width: size.width * 0.15,
-                  height: size.height * 0.1,
+                  height: size.height * 0.08,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border(
@@ -126,10 +202,11 @@ class _MembershipState extends State<Membership> {
                     ),
                   ),
                   width: size.width * 0.15,
-                  height: size.height * 0.1,
+                  height: size.height * 0.08,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
+                      controller: widget.firstName,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: "ชื่อ",
@@ -154,10 +231,11 @@ class _MembershipState extends State<Membership> {
                     ),
                   ),
                   width: size.width * 0.15,
-                  height: size.height * 0.1,
+                  height: size.height * 0.08,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
+                      controller: widget.lastName,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: "สกุล",
@@ -192,7 +270,7 @@ class _MembershipState extends State<Membership> {
                         ),
                       ),
                       width: size.width * 0.15,
-                      height: size.height * 0.1,
+                      height: size.height * 0.08,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -218,7 +296,7 @@ class _MembershipState extends State<Membership> {
                     ),
                   ),
                   width: size.width * 0.15,
-                  height: size.height * 0.1,
+                  height: size.height * 0.08,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -281,7 +359,7 @@ class _MembershipState extends State<Membership> {
                     ),
                   ),
                   width: size.width * 0.15,
-                  height: size.height * 0.1,
+                  height: size.height * 0.08,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -348,10 +426,11 @@ class _MembershipState extends State<Membership> {
                     ),
                   ),
                   width: size.width * 0.15,
-                  height: size.height * 0.1,
+                  height: size.height * 0.08,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
+                      controller: widget.phoneNumber,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "เบอร์โทร",
@@ -375,10 +454,11 @@ class _MembershipState extends State<Membership> {
                       ),
                     ),
                     width: size.width * 0.31,
-                    height: size.height * 0.1,
+                    height: size.height * 0.08,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
+                        controller: widget.emal,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText: "อีเมล",
@@ -452,9 +532,7 @@ class _MembershipState extends State<Membership> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             GestureDetector(
-              onTap: () {
-                Navigator.pop(context, false);
-              },
+              onTap: widget.close,
               child: Card(
                 //color: Colors.blue,
                 elevation: 5,
@@ -473,9 +551,7 @@ class _MembershipState extends State<Membership> {
               ),
             ),
             GestureDetector(
-              onTap: () {
-                Navigator.pop(context, true);
-              },
+              onTap: widget.confirm,
               child: Card(
                 color: Colors.blue,
                 elevation: 5,

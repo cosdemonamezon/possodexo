@@ -19,4 +19,25 @@ class LoginApi {
       throw Exception(data['message']);
     }
   }
+
+  //สมัครสมาชิก
+  static Future register(String phoneNumber, String username,String password,String code,String firstName,String lastName,) async {
+    final url = Uri.https(publicUrl, 'api/user');
+    final response = await http.post(url, body: {
+      'phoneNumber': phoneNumber,
+      'username': username,
+      'password': password,
+      'code': code,
+      'firstName': firstName,
+      'lastName': lastName,
+      "roleId": 0
+    });
+    if (response.statusCode == 200) {
+      final data = convert.jsonDecode(response.body);
+      return data;
+    } else {
+      final data = convert.jsonDecode(response.body);
+      throw Exception(data['message']);
+    }
+  }
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -15,6 +13,7 @@ import 'package:possodexo/home/widgets/ShowOpenShift.dart';
 import 'package:possodexo/home/widgets/TablePromotion.dart';
 import 'package:possodexo/home/widgets/membership.dart';
 import 'package:possodexo/home/widgets/texFristPage.dart';
+import 'package:possodexo/login/services/loginApi.dart';
 
 import 'package:possodexo/models/listProduct.dart';
 import 'package:possodexo/models/order.dart';
@@ -58,6 +57,13 @@ class _HomePageState extends State<HomePage> {
   final TextEditingController remark = TextEditingController();
   String? shiftId;
   late SharedPreferences prefs;
+
+  final TextEditingController phoneNumber = TextEditingController();
+  final TextEditingController username = TextEditingController();
+  final TextEditingController password = TextEditingController();
+  final TextEditingController firstName = TextEditingController();
+  final TextEditingController lastName = TextEditingController();
+  final TextEditingController email = TextEditingController();
 
   int selectedIndex = 0;
   int totleqty = 0;
@@ -1213,11 +1219,33 @@ class _HomePageState extends State<HomePage> {
                                                       final statusD = await showDialog(
                                                           context: context,
                                                           builder: (context) => Membership(
-                                                                closeblack: () {
-                                                                  Navigator.pop(context);
-                                                                },
+                                                                emal: email,
+                                                                firstName: firstName,
+                                                                lastName: lastName,
+                                                                username: username,
+                                                                password: password,
+                                                                phoneNumber: phoneNumber,
+                                                                closeblack: () {Navigator.pop(context, false);},
+                                                                close: (){Navigator.pop(context, false);},
+                                                                confirm: (){Navigator.pop(context, true);},
                                                               ));
-                                                      if (statusD == true) {}
+                                                      if (statusD == true) {
+                                                        print(statusD);
+                                                        //final regis = await LoginApi.register(phoneNumber.text, username.text, password.text, '01', firstName.text, lastName.text);
+                                                        // if (regis != null) {
+                                                        //   if (!mounted) return;
+                                                        //   showDialog(
+                                                        //     context: context,
+                                                        //     builder: (context) => AlertDialogYes(
+                                                        //       title: 'แจ้งเตือน',
+                                                        //       description: 'สมัครสำเร็จ',
+                                                        //       pressYes: () {
+                                                        //         Navigator.pop(context, true);
+                                                        //       },
+                                                        //     ),
+                                                        //   );
+                                                        // }
+                                                      }
                                                     },
                                                     child: Container(
                                                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), border: Border.all(color: Colors.black)),
